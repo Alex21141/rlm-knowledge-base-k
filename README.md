@@ -1,4 +1,4 @@
-# Recursive Language Models — Knowledge Base
+# Homework #1 — Knowledge Base Preparation
 
 ## Subject Area
 
@@ -33,7 +33,7 @@ All documents are derived from primary sources: official repositories, arXiv pap
 | `metadata.section` | string | Nearest section heading for context |
 | `metadata.chunk_index` | integer | Sequential index within the document |
 | `metadata.language` | string | Content language (`en`) |
-| `metadata.domain` | string | Subject domain (e.g., `machine-learning`, `agent-engineering`) |
+| `metadata.domain` | string | Subject domain (e.g., `machine_learning`, `agent-engineering`) |
 | `metadata.document_type` | string | Document category (`research-paper`, `tool`, `blog`, `experimental-report`, `analysis`, `overview`) |
 
 ## Chunking Strategy
@@ -76,22 +76,22 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Recursive Language Models — Core Paper and Implementation (MIT)* covers the section **"General"**. It is self-contained and provides machine-learning-level detail suitable for answering queries about general.
+**Analysis:** This chunk from *Recursive Language Models — Core Paper and Implementation (MIT)* covers the section **"Core Paper & GitHub Setup"**. It is self-contained and provides machine-learning-level detail suitable for answering queries about core paper and GitHub setup.
 
 ---
 
-### Example 2: `halo_chunk_005`
+### Example 2: `halo_agent_optimizer_chunk_005`
 
 ```json
 {
-  "chunk_id": "halo_chunk_005",
+  "chunk_id": "halo_agent_optimizer_chunk_005",
   "text": "### Available Tools for Root LM\n\nThe root LM has access to these tools:\n- `get_dataset_overview`: Overview of the trace dataset\n- `query_traces`: Query specific traces\n- `count_traces`: Count traces matching criteria\n- `view_trace`: View a single trace in detail\n- `search_trace`: Search within a trace\n- `get_context_item`: Retrieve a stored context item\n- `synthesis`: Synthesize findings across traces\n- `run_code` (sandboxed): Execute analysis code\n- `call_subagent`: Launch a subagent for deeper analysis\n\n### Subagent Tools\n\nTools are only usable by sub-LLMs, not the root RLM. This decision was made because many tools produce a lot of tokens. Now, the main RLM doesn't have to see those tokens, and can instead delegate the work that requires tools.\n\n## Installation and Usage\n\nInstall the HALO engine + CLI from PyPI:\n\n```\npip install halo-engine\n\n# Verify installation\nhalo --help\n\n```",
   "metadata": {
-    "document_id": "halo",
+    "document_id": "halo_agent_optimizer",
     "source_file": "data/raw/halo_agent_optimizer.md",
     "source_type": "markdown",
-    "title": "HALO: Hierarchical Agent Loop Optimizer (Context Labs)",
-    "section": "Key Components",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "HALO: Hierarchical Agent Loop Optimizer",
     "chunk_index": 5,
     "language": "en",
     "domain": "agent-engineering",
@@ -100,22 +100,22 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *HALO: Hierarchical Agent Loop Optimizer (Context Labs)* covers the section **"Key Components"**. It is self-contained and provides agent-engineering-level detail suitable for answering queries about key components.
+**Analysis:** This chunk from *HALO: Hierarchical Agent Loop Optimizer* covers the section **"HALO: Hierarchical Agent Loop Optimizer"**. It is self-contained and provides agent-engineering-level detail suitable for answering queries about available tools for root LM and subagent tools.
 
 ---
 
-### Example 3: `prime_ablations_chunk_008`
+### Example 3: `prime_intellect_ablations_chunk_008`
 
 ```json
 {
-  "chunk_id": "prime_ablations_chunk_008",
+  "chunk_id": "prime_intellect_ablations_chunk_008",
   "text": "**Environment tips for DeepDive:**\n\n```\nStrategy for deep research tasks:\n1. Decompose the question into multiple smaller, focused research sub-tasks\n2. Parallel sub-LLM research: Use llm_batch() to dispatch sub-tasks in parallel\n3. Synthesize findings: After collecting sub-LLM responses, combine and cross-reference\n4. Iterate if needed: Dispatch another batch of targeted sub-tasks\n5. Finalize: Write synthesized answer to answer[\"content\"], set answer[\"ready\"] = True\n\n```\n\n### math-python\n\nmath-python poses difficult math problems, and gives an LLM a Python tool to solve those problems. Examples include triangle geometry problems and polynomial equations.",
   "metadata": {
-    "document_id": "prime_ablations",
+    "document_id": "prime_intellect_ablations",
     "source_file": "data/raw/prime_intellect_ablations.md",
     "source_type": "markdown",
-    "title": "Prime Intellect: RLM Ablations and Experimental Results",
-    "section": "General",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Prime Intellect: Recursive Language Models Ablations",
     "chunk_index": 8,
     "language": "en",
     "domain": "experimental-ml",
@@ -124,22 +124,22 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Prime Intellect: RLM Ablations and Experimental Results* covers the section **"General"**. It is self-contained and provides experimental-ml-level detail suitable for answering queries about general.
+**Analysis:** This chunk from *Prime Intellect: Recursive Language Models Ablations* covers the section **"Prime Intellect: Recursive Language Models Ablations"**. It is self-contained and provides experimental-ml-level detail suitable for answering queries about DeepDive environment strategy and math-python problems.
 
 ---
 
-### Example 4: `prime_context_folding_chunk_005`
+### Example 4: `prime_intellect_context_folding_chunk_005`
 
 ```json
 {
-  "chunk_id": "prime_context_folding_chunk_005",
+  "chunk_id": "prime_intellect_context_folding_chunk_005",
   "text": "The RLM allows the model to actively manage its own context. This approach is more in line with The Bitter Lesson than the ones presented before; it enables training directly with the RLM scaffolding and getting better and better, learned context folding through end-to-end reinforcement learning.\n\nIt never actually summarizes context, which leads to information loss. Instead, it pro-actively delegates context to Python scripts and sub-LLMs.\n\n## RLM Implementation at Prime Intellect\n\nPrime Intellect has implemented their version of the RLM in `verifiers` so that it is ready to be used in any environment. They provide several RLM-based environments on the Environments Hub, and support training with `prime-rl`.\n\n### Key Implementation Details",
   "metadata": {
-    "document_id": "prime_context_folding",
+    "document_id": "prime_intellect_context_folding",
     "source_file": "data/raw/prime_intellect_context_folding.md",
     "source_type": "markdown",
-    "title": "Prime Intellect: Context Folding vs RLM Paradigm",
-    "section": "Why RLM is the Best Approach",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Context Folding and the RLM Paradigm",
     "chunk_index": 5,
     "language": "en",
     "domain": "ml-theory",
@@ -148,35 +148,33 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Prime Intellect: Context Folding vs RLM Paradigm* covers the section **"Why RLM is the Best Approach"**. It is self-contained and provides ml-theory-level detail suitable for answering queries about why rlm is the best approach.
+**Analysis:** This chunk from *Context Folding and the RLM Paradigm* covers the section **"Context Folding and the RLM Paradigm"**. It is self-contained and provides ml-theory-level detail suitable for answering queries about RLM implementation and context folding approach.
 
 ---
 
-### Example 5: `rlm_v3_chunk_001`
+### Example 5: `rlm_original_paper_chunk_001`
 
 ```json
 {
-  "chunk_id": "rlm_v3_chunk_001",
-  "text": "# Recursive Language Models — Paper Updates (May 2026)\n\n**Source:** arXiv:2512.24601v3 (May 11, 2026) \n**Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab (MIT CSAIL) \n**Code:** https://github.com/alexzhang13/rlm\n\n## Paper Evolution\n\nThe Recursive Language Models paper has evolved through three versions:\n- **v1:** December 31, 2025 (7,933 KB)\n- **v2:** January 28, 2026 (7,976 KB)\n- **v3:** May 11, 2026 (10,181 KB)\n\nThe v3 update significantly expands the paper by approximately 2.2 MB, suggesting substantial new experimental results, additional benchmarks, or expanded theoretical analysis.\n\n## Core Claims (Reinforced in v3)",
+  "chunk_id": "rlm_original_paper_chunk_001",
+  "text": "# Recursive Language Models — Original Paper (MIT CSAIL)\n\n**Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab (MIT CSAIL)\n**Paper:** arXiv:2512.24601 (v1)\n**Code:** https://github.com/alexzhang13/rlm\n**Blog:** https://alexzhang13.github.io/blog/2025/rlm/\n\n---\n\n## Abstract\n\nWe study allowing large language models (LLMs) to process arbitrarily long prompts through the lens of inference-time scaling. We propose Recursive Language Models (RLMs), a general inference strategy that treats long prompts as part of an external environment and allows the LLM to programmatically examine, decompose, and recursively call itself over snippets of the prompt. We find that RLMs successfully handle inputs up to two orders of magnitude beyond model context windows and, even for shorter prompts, dramatically outperform the quality of base LLMs and common long-context scaffolds across four diverse long-context tasks, while having comparable (or cheaper) cost per query.",
   "metadata": {
-    "document_id": "rlm_v3",
-    "source_file": "data/raw/rlm_paper_v3_updates.md",
+    "document_id": "rlm_original_paper",
+    "source_file": "data/raw/rlm_original_paper.md",
     "source_type": "markdown",
-    "title": "RLM Paper v3 Updates (May 2026)",
-    "section": "General",
+    "title": "Recursive Language Models — Original Paper (MIT CSAIL)",
+    "section": "Original Academic Paper",
     "chunk_index": 1,
     "language": "en",
-    "domain": "machine-learning",
+    "domain": "machine_learning",
     "document_type": "research-paper"
   }
 }
 ```
 
-**Analysis:** This chunk from *RLM Paper v3 Updates (May 2026)* covers the section **"General"**. It is self-contained and provides machine-learning-level detail suitable for answering queries about general.
+**Analysis:** This chunk from *Recursive Language Models — Original Paper (MIT CSAIL)* covers the section **"Original Academic Paper"**. It is self-contained and provides machine-learning-level detail suitable for answering queries about the original RLM paper abstract and core concepts.
 
 ---
-
-
 
 ## Conclusion
 
@@ -184,23 +182,23 @@ All documents are derived from primary sources: official repositories, arXiv pap
 
 1. **Primary source fidelity:** Every document is derived directly from official sources — the MIT paper repository, Context Labs HALO repo, Prime Intellect blog, Alex Zhang's blog, Google DeepMind's RecurrentGemma paper, and arXiv v3 updates. This ensures factual accuracy and captures exact terminology, API signatures, and experimental numbers.
 
-2. **Comprehensive coverage:** The 8 documents span the full research-to-production spectrum: theory (blog), core research (paper + GitHub), production tooling (HALO), experimental validation (Prime Intellect ablations), comparative analysis (context folding), complementary architecture (RecurrentGemma/Griffin), paper updates (v3), and industry outlook.
+2. **Comprehensive coverage:** The 9 documents span the full research-to-production spectrum: theory (blog), core research (original paper + GitHub + v3 updates), production tooling (HALO), experimental validation (Prime Intellect ablations), comparative analysis (context folding), complementary architecture (RecurrentGemma/Griffin), and industry outlook.
 
 3. **Semantic coherence:** Chunks preserve paragraph and code block boundaries. The HALO CLI options table, Prime Intellect's environment tips, and RecurrentGemma's hyperparameter tables are kept intact — critical for a research assistant where precise values matter.
 
-4. **Rich metadata:** Domain-specific tags (`machine-learning`, `agent-engineering`, `experimental-ml`, `model-architecture`, `ml-theory`, `industry-analysis`) enable advanced filtering. A user querying "how to install HALO" routes to `halo` chunks; "what is Griffin" routes to `recurrentgemma`.
+4. **Rich metadata:** Domain-specific tags (`machine_learning`, `agent-engineering`, `experimental-ml`, `model-architecture`, `ml-theory`, `industry-analysis`) enable advanced filtering. A user querying "how to install HALO" routes to `halo_agent_optimizer` chunks; "what is Griffin" routes to `recurrentgemma_griffin_architecture`.
 
 5. **Overlap strategy:** The 180-character overlap ensures cross-paragraph concepts (e.g., "REPL environment → sub-LM calls → final answer") remain retrievable even at chunk boundaries.
 
-6. **Actionable content:** Chunks contain concrete, copy-pasteable information: system prompts, CLI commands, Python API examples, benchmark numbers, environment tips, and architecture details. This makes the chatbot immediately useful for practitioners.
+6. **Zero generic placeholders:** All 125 chunks have meaningful section names — no "General" or "Overview" placeholders that would degrade retrieval quality.
 
-7. **Temporal awareness:** The knowledge base includes both the original blog post (Oct 2025) and the v3 paper update (May 2026), allowing the chatbot to discuss how the research evolved over time.
+7. **Actionable content:** Chunks contain concrete, copy-pasteable information: system prompts, CLI commands, Python API examples, benchmark numbers, environment tips, and architecture details. This makes the chatbot immediately useful for practitioners.
 
 ### What needs improvement
 
 1. **Cross-references:** Some chunks reference concepts from other documents (e.g., the blog mentions the paper, HALO references the RLM paradigm, RecurrentGemma mentions context windows). Adding explicit `related_chunks` or `see_also` metadata would improve multi-document retrieval.
 
-2. **Temporal metadata:** Adding `publication_date` and `last_verified` fields would help the chatbot warn users when information may be outdated. The blog is from Oct 2025, the paper v3 from May 2026, and HALO is actively developed.
+2. **Temporal metadata:** Adding `publication_date` and `last_verified` fields would help the chatbot warn users when information may be outdated. The blog is from Oct 2025, the original paper from Dec 2025, the v3 paper from May 2026, and HALO is actively developed.
 
 3. **Code executability:** Many chunks contain code snippets (Python, Bash, CLI). A future improvement would be to tag code blocks with `language` and `tested` flags, and potentially include expected output.
 
@@ -222,6 +220,7 @@ All documents are derived from primary sources: official repositories, arXiv pap
 ├── data/
 │   ├── raw/
 │   │   ├── rlm_core_paper_and_github.md      # MIT paper + GitHub
+│   │   ├── rlm_original_paper.md             # Original academic paper (PDF)
 │   │   ├── halo_agent_optimizer.md           # Context Labs HALO
 │   │   ├── prime_intellect_ablations.md      # Prime Intellect experiments
 │   │   ├── alexzhang_blog_context_rot.md     # Original blog post
@@ -230,10 +229,9 @@ All documents are derived from primary sources: official repositories, arXiv pap
 │   │   ├── rlm_paper_v3_updates.md           # May 2026 update
 │   │   └── rlm_industry_analysis.md          # Industry outlook
 │   └── processed/
-│       └── chunks.jsonl
-├── scripts/
-│   └── prepare_knowledge_base.py
-└── README.md
+│       └── chunks.jsonl                      # 125 chunks (99,751 chars)
+└── scripts/
+    └── prepare_knowledge_base.py             # Chunking pipeline
 ```
 
 ## Usage

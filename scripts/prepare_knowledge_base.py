@@ -1,22 +1,38 @@
 """
 prepare_knowledge_base.py
-========================
-Script to prepare a knowledge base for RAG system.
-Pipeline: raw sources -> normalized documents -> chunks -> metadata -> processed KB
+=========================
+Pipeline: raw sources → normalized documents → chunks → metadata → processed KB
 
 Usage:
+    # Build knowledge base:
     python scripts/prepare_knowledge_base.py
+
+    # With custom parameters:
     python scripts/prepare_knowledge_base.py --chunk_size 800 --overlap 150
-    python scripts/prepare_knowledge_base.py --chunk_size 600 --overlap 100 --output custom_output.jsonl
+
+    # Validate existing chunks (no rebuild):
+    python scripts/prepare_knowledge_base.py --validate-only
+
+    # Custom output path:
+    python scripts/prepare_knowledge_base.py --output custom_output.jsonl
 """
 
 import argparse
 import json
+import logging
 import os
 import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+
+# ── Logging ──────────────────────────────────────────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%H:%M:%S",
+)
+logger = logging.getLogger(__name__)
 
 
 # ──────────────────────────────────────────────────────────────
@@ -471,13 +487,12 @@ def process_all_documents(
     ])
 
     if not doc_files:
-        print(f"Error: No supported files found in '{input_dir}'.", file=sys.stderr)
+        logger.error("No supported files found in '%s'.", input_dir)
         sys.exit(1)
 
-    print(f"Found {len(doc_files)} document(s) in '{input_dir}':")
+    logger.info("Found %d document(s) in '%s':", len(doc_files), input_dir)
     for df in doc_files:
-        print(f"  - {df.name} ({df.stat().st_size:,} bytes)")
-    print()
+        logger.info("  - %s (%s bytes)", df.name, f"{df.stat().st_size:,}")
 
     # Process each document
     all_chunks: List[Dict[str, Any]] = []
