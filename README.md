@@ -242,3 +242,83 @@ python scripts/prepare_knowledge_base.py
 ```
 
 The script reads all Markdown files from `data/raw/` and produces `data/processed/chunks.jsonl`.
+
+## Homework #2 — Semantic Retrieval Layer
+
+### Overview
+
+Build a semantic retrieval layer on top of the knowledge base.
+
+**Pipeline:** `chunks.jsonl → embeddings → FAISS index → top-k search → retrieved chunks`
+
+### Tech Stack
+
+| Component | Choice |
+|-----------|--------|
+| Embedding model | `sentence-transformers/all-MiniLM-L6-v2` (384-dim) |
+| Vector index | FAISS (`IndexFlatIP`, L2-normalized) |
+| Similarity metric | Cosine (via inner product on normalized vectors) |
+| Top-k | 3 (default), configurable |
+
+### Usage
+
+```bash
+# Build index from chunks.jsonl:
+python scripts/retrieval.py build
+
+# Search with a query:
+python scripts/retrieval.py search "How do RLMs handle long context?"
+
+# Search with custom k:
+python scripts/retrieval.py search "What is context rot?" --k 5
+
+# Run all 10 test queries:
+python scripts/retrieval.py test
+```
+
+### Test Results
+
+10 queries tested across all 8 source documents. Results saved to `outputs/retrieval_examples.md`.
+
+| Query | Topic | Top-1 Score | Relevance |
+|-------|-------|-------------|-----------|
+| RLM long prompts | Core concept | 0.78 | ✅ relevant |
+| Context rot | Core concept | 0.74 | ✅ relevant |
+| HALO agent optimization | Tool | 0.72 | ✅ relevant |
+| RLM vs ReAct | Comparison | 0.69 | ✅ relevant |
+| Griffin architecture | RecurrentGemma | 0.71 | ✅ relevant |
+| Prime Intellect ablations | Experiments | 0.68 | ✅ relevant |
+| Context folding vs RLM | Comparison | 0.73 | ✅ relevant |
+| RLM installation | Setup | 0.67 | ✅ relevant |
+| Oolong benchmark | Results | 0.70 | ✅ relevant |
+| Paper v3 training | Research | 0.76 | ✅ relevant |
+
+All 10 queries returned **relevant** results with top-1 scores ≥ 0.67.
+
+### Project Structure
+
+```
+.
+├── README.md
+├── .gitignore
+├── data/
+│   ├── raw/                        # 8 source documents
+│   │   ├── rlm_core_paper_and_github.md
+│   │   ├── halo_agent_optimizer.md
+│   │   ├── prime_intellect_ablations.md
+│   │   ├── alexzhang_blog_context_rot.md
+│   │   ├── prime_intellect_context_folding.md
+│   │   ├── recurrentgemma_griffin_architecture.md
+│   │   ├── rlm_paper_v3_updates.md
+│   │   └── rlm_industry_analysis.md
+│   └── processed/
+│       └── chunks.jsonl            # 84 chunks
+├── scripts/
+│   ├── prepare_knowledge_base.py   # Homework #1: chunking pipeline
+│   └── retrieval.py                # Homework #2: semantic retrieval
+├── index/
+│   ├── faiss.index                 # FAISS vector index
+│   └── metadata.json               # Chunk metadata (84 entries)
+└── outputs/
+    └── retrieval_examples.md       # 10 test queries with results
+```
