@@ -33,60 +33,76 @@ MAX_OVERLAP = 200
 
 # Metadata mapping: maps raw filenames to document metadata
 DOC_METADATA_MAP = {
-    "recursive_transformers_overview.md": {
-        "title": "Recursive Transformers: An Overview",
-        "section": "Introduction & Overview",
+    "rlm_core_paper_and_github.md": {
+        "title": "Recursive Language Models — Core Paper and Implementation (MIT)",
+        "section": "Core Paper & GitHub Setup",
         "language": "en",
         "domain": "machine_learning",
-        "document_type": "survey",
+        "document_type": "research-paper",
         "source_type": "markdown",
     },
-    "rlm_chiang_stoica_2023.md": {
-        "title": "Chiang & Stoica (2023): A Recursive Language Model",
-        "section": "Paper Analysis",
+    "rlm_original_paper.md": {
+        "title": "Recursive Language Models — Original Paper (MIT CSAIL)",
+        "section": "Original Academic Paper",
         "language": "en",
         "domain": "machine_learning",
-        "document_type": "paper_summary",
+        "document_type": "research-paper",
         "source_type": "markdown",
     },
-    "rlm_training_and_optimization.md": {
-        "title": "Training and Optimization of Recursive Language Models",
-        "section": "Training Methodology",
+    "halo_agent_optimizer.md": {
+        "title": "HALO: Hierarchical Agent Loop Optimizer (Context Labs)",
+        "section": "HALO Engine & Benchmarks",
         "language": "en",
-        "domain": "machine_learning",
-        "document_type": "technical_guide",
+        "domain": "agent-engineering",
+        "document_type": "tool",
         "source_type": "markdown",
     },
-    "rlm_evaluation_and_benchmarks.md": {
-        "title": "Evaluation and Benchmarking of Recursive Language Models",
-        "section": "Evaluation Framework",
+    "prime_intellect_ablations.md": {
+        "title": "Prime Intellect: RLM Ablations and Experimental Results",
+        "section": "Ablation Studies",
         "language": "en",
-        "domain": "machine_learning",
-        "document_type": "benchmark_report",
+        "domain": "experimental-ml",
+        "document_type": "experimental-report",
         "source_type": "markdown",
     },
-    "rlm_applications_and_use_cases.md": {
-        "title": "Applications and Use Cases of Recursive Language Models",
-        "section": "Applications",
+    "alexzhang_blog_context_rot.md": {
+        "title": "Alex Zhang Blog: Context Rot and RLM Intuition",
+        "section": "Blog: Context Rot",
         "language": "en",
-        "domain": "machine_learning",
-        "document_type": "application_survey",
+        "domain": "ml-theory",
+        "document_type": "blog",
         "source_type": "markdown",
     },
-    "rlm_future_directions_and_research.md": {
-        "title": "Future Directions and Open Research Problems",
-        "section": "Future Research",
+    "prime_intellect_context_folding.md": {
+        "title": "Prime Intellect: Context Folding vs RLM Paradigm",
+        "section": "Context Folding Analysis",
         "language": "en",
-        "domain": "machine_learning",
-        "document_type": "research_outlook",
+        "domain": "ml-theory",
+        "document_type": "analysis",
         "source_type": "markdown",
     },
-    "rlm_foundations_and_background.md": {
-        "title": "Foundations of Recursive Language Models: Background and Context",
-        "section": "Background",
+    "recurrentgemma_griffin_architecture.md": {
+        "title": "RecurrentGemma: Griffin Architecture (Google DeepMind)",
+        "section": "Griffin Architecture",
+        "language": "en",
+        "domain": "model-architecture",
+        "document_type": "research-paper",
+        "source_type": "markdown",
+    },
+    "rlm_paper_v3_updates.md": {
+        "title": "RLM Paper v3 Updates (May 2026)",
+        "section": "Paper v3 Updates",
         "language": "en",
         "domain": "machine_learning",
-        "document_type": "tutorial",
+        "document_type": "research-paper",
+        "source_type": "markdown",
+    },
+    "rlm_industry_analysis.md": {
+        "title": "RLM Industry Analysis and Future Outlook",
+        "section": "Industry Analysis",
+        "language": "en",
+        "domain": "industry-analysis",
+        "document_type": "overview",
         "source_type": "markdown",
     },
 }
@@ -213,8 +229,10 @@ def infer_section_for_chunk(
         if headers:
             return headers[-1].strip()
 
-    # Strategy 3: if primary_section is generic, try to find the first real H2
-    if primary_section in ("General", "Overview", "Introduction"):
+    # Strategy 3: if primary_section is generic placeholder, try to find the first real H2
+    # Note: "Abstract", "Introduction", "Conclusion" are VALID academic section names
+    GENERIC_PLACEHOLDERS = ("General", "Overview", "Introduction & Overview")
+    if primary_section in GENERIC_PLACEHOLDERS:
         if doc_text:
             h2 = re.search(r"^##\s+(.+)$", doc_text, re.MULTILINE)
             if h2:

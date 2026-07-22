@@ -1,1 +1,3 @@
-__pycache__/
+.venv/
+index/embeddings.npy
+outputs/

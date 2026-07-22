@@ -1,0 +1,1252 @@
+[
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_001",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "chunk_index": 1,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_002",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "tl;dr",
+    "chunk_index": 2,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_003",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Prelude: Why is \"Long-Context\" Research So Unsatisfactory?",
+    "chunk_index": 3,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_004",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Prelude: Why is \"Long-Context\" Research So Unsatisfactory?",
+    "chunk_index": 4,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_005",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Recursive Language Models (RLMs)",
+    "chunk_index": 5,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_006",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "From the User/API Perspective",
+    "chunk_index": 6,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_007",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Key Results",
+    "chunk_index": 7,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_008",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Key Results",
+    "chunk_index": 8,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_009",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Comparison with Other Paradigms",
+    "chunk_index": 9,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_010",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "ReAct (Reasoning + Acting)",
+    "chunk_index": 10,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "alexzhang_blog_context_rot_chunk_011",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "document_id": "alexzhang_blog_context_rot",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Future Directions",
+    "chunk_index": 11,
+    "domain": "ml-theory",
+    "document_type": "blog"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_001",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "HALO: Hierarchical Agent Loop Optimizer",
+    "chunk_index": 1,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_002",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Telemetry",
+    "chunk_index": 2,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_003",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "HALO Engine Architecture",
+    "chunk_index": 3,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_004",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "HALO Engine Architecture",
+    "chunk_index": 4,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_005",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Verify installation",
+    "chunk_index": 5,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_006",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Verify installation",
+    "chunk_index": 6,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_007",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "CLI Options",
+    "chunk_index": 7,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_008",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Python API",
+    "chunk_index": 8,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_009",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Benchmarks",
+    "chunk_index": 9,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_010",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Benchmarks",
+    "chunk_index": 10,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_011",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Telemetry",
+    "chunk_index": 11,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "halo_agent_optimizer_chunk_012",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "document_id": "halo_agent_optimizer",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "Telemetry",
+    "chunk_index": 12,
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_001",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Prime Intellect: Recursive Language Models Ablations",
+    "chunk_index": 1,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_002",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "How the RLM Works",
+    "chunk_index": 2,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_003",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Prime Intellect's Implementation Details",
+    "chunk_index": 3,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_004",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Package Installation",
+    "chunk_index": 4,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_005",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Input Data Handling",
+    "chunk_index": 5,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_006",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Environments Tested",
+    "chunk_index": 6,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_007",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Environments Tested",
+    "chunk_index": 7,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_008",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "DeepDive",
+    "chunk_index": 8,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_009",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "math-python",
+    "chunk_index": 9,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_010",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Oolong",
+    "chunk_index": 10,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_011",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Verbatim Copy",
+    "chunk_index": 11,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_012",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "DeepDive",
+    "chunk_index": 12,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_ablations_chunk_013",
+    "source_file": "data/raw/prime_intellect_ablations.md",
+    "document_id": "prime_intellect_ablations",
+    "title": "Prime Intellect: Recursive Language Models Ablations",
+    "section": "Verbatim Copy",
+    "chunk_index": 13,
+    "domain": "experimental-ml",
+    "document_type": "experimental-report"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_001",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Context Folding and the RLM Paradigm",
+    "chunk_index": 1,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_002",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Context Folding Alternatives",
+    "chunk_index": 2,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_003",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Scaling Long-Horizon LLM Agent via Context-Folding",
+    "chunk_index": 3,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_004",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models",
+    "chunk_index": 4,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_005",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "RLM Implementation at Prime Intellect",
+    "chunk_index": 5,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_006",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Experimental Results Summary",
+    "chunk_index": 6,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_007",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Oolong Results",
+    "chunk_index": 7,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_008",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "math-python Results",
+    "chunk_index": 8,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "prime_intellect_context_folding_chunk_009",
+    "source_file": "data/raw/prime_intellect_context_folding.md",
+    "document_id": "prime_intellect_context_folding",
+    "title": "Context Folding and the RLM Paradigm",
+    "section": "Future Work",
+    "chunk_index": 9,
+    "domain": "ml-theory",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_001",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "chunk_index": 1,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_002",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "The Griffin Architecture",
+    "chunk_index": 2,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_003",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Key Differences from Transformers",
+    "chunk_index": 3,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_004",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Architecture Modifications",
+    "chunk_index": 4,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_005",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Layer Structure",
+    "chunk_index": 5,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_006",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Residual Block with Local MQA",
+    "chunk_index": 6,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_007",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Training Details",
+    "chunk_index": 7,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_008",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Instruction Tuning and RLHF",
+    "chunk_index": 8,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_009",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Limitations and Trade-offs",
+    "chunk_index": 9,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_010",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Safety and Ethics",
+    "chunk_index": 10,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_011",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Safety and Ethics",
+    "chunk_index": 11,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "recurrentgemma_griffin_architecture_chunk_012",
+    "source_file": "data/raw/recurrentgemma_griffin_architecture.md",
+    "document_id": "recurrentgemma_griffin_architecture",
+    "title": "RecurrentGemma: Moving Past Transformers for Efficient Open Language Models",
+    "section": "Safety and Ethics",
+    "chunk_index": 12,
+    "domain": "model-architecture",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_001",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Recursive Language Models  --  Core Paper and Implementation",
+    "chunk_index": 1,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_002",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Core Concept: Context-Centric View",
+    "chunk_index": 2,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_003",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Core Concept: Context-Centric View",
+    "chunk_index": 3,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_004",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "The Problem: Context Rot",
+    "chunk_index": 4,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_005",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "RLM Architecture with REPL Environment",
+    "chunk_index": 5,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_006",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Key Components",
+    "chunk_index": 6,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_007",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Experimental Results",
+    "chunk_index": 7,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_008",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Cost Comparison",
+    "chunk_index": 8,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_009",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "System Prompt for RLM with REPL",
+    "chunk_index": 9,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_010",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Quick Setup",
+    "chunk_index": 10,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_011",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "REPL Environments",
+    "chunk_index": 11,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_012",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Non-Isolated (Default)",
+    "chunk_index": 12,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_013",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Isolated (Cloud)",
+    "chunk_index": 13,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_014",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Training",
+    "chunk_index": 14,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_015",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "Trajectory Logging and Visualizer",
+    "chunk_index": 15,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_core_paper_and_github_chunk_016",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "document_id": "rlm_core_paper_and_github",
+    "title": "Recursive Language Models  --  Core Paper and Implementation",
+    "section": "RLMs in the Wild",
+    "chunk_index": 16,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_industry_analysis_chunk_001",
+    "source_file": "data/raw/rlm_industry_analysis.md",
+    "document_id": "rlm_industry_analysis",
+    "title": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "section": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "chunk_index": 1,
+    "domain": "industry-analysis",
+    "document_type": "overview"
+  },
+  {
+    "chunk_id": "rlm_industry_analysis_chunk_002",
+    "source_file": "data/raw/rlm_industry_analysis.md",
+    "document_id": "rlm_industry_analysis",
+    "title": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "section": "Prime Intellect's Vision",
+    "chunk_index": 2,
+    "domain": "industry-analysis",
+    "document_type": "overview"
+  },
+  {
+    "chunk_id": "rlm_industry_analysis_chunk_003",
+    "source_file": "data/raw/rlm_industry_analysis.md",
+    "document_id": "rlm_industry_analysis",
+    "title": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "section": "Comparison with Other Paradigms",
+    "chunk_index": 3,
+    "domain": "industry-analysis",
+    "document_type": "overview"
+  },
+  {
+    "chunk_id": "rlm_industry_analysis_chunk_004",
+    "source_file": "data/raw/rlm_industry_analysis.md",
+    "document_id": "rlm_industry_analysis",
+    "title": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "section": "Tree of Thoughts (ToT)",
+    "chunk_index": 4,
+    "domain": "industry-analysis",
+    "document_type": "overview"
+  },
+  {
+    "chunk_id": "rlm_industry_analysis_chunk_005",
+    "source_file": "data/raw/rlm_industry_analysis.md",
+    "document_id": "rlm_industry_analysis",
+    "title": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "section": "Open Questions and Research Directions",
+    "chunk_index": 5,
+    "domain": "industry-analysis",
+    "document_type": "overview"
+  },
+  {
+    "chunk_id": "rlm_industry_analysis_chunk_006",
+    "source_file": "data/raw/rlm_industry_analysis.md",
+    "document_id": "rlm_industry_analysis",
+    "title": "Recursive Language Models: Industry Analysis and Future Outlook",
+    "section": "Conclusion",
+    "chunk_index": 6,
+    "domain": "industry-analysis",
+    "document_type": "overview"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_001",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "chunk_index": 1,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_002",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 2,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_003",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 3,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_004",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 4,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_005",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 5,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_006",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 6,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_007",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 7,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_008",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 8,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_009",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 9,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_010",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 10,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_011",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 11,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_012",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 12,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_013",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 13,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_014",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Methods and Baselines",
+    "chunk_index": 14,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_015",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Methods and Baselines",
+    "chunk_index": 15,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_016",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Methods and Baselines",
+    "chunk_index": 16,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_017",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 17,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_018",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 18,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_019",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 19,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_020",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 20,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_021",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 21,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_022",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 22,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_023",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 23,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_024",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 24,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_025",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 25,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_026",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Results and Discussion",
+    "chunk_index": 26,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_027",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Emergent Patterns in RLM Trajectories",
+    "chunk_index": 27,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_028",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Emergent Patterns in RLM Trajectories",
+    "chunk_index": 28,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_029",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Emergent Patterns in RLM Trajectories",
+    "chunk_index": 29,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_030",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Related Works",
+    "chunk_index": 30,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_031",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Emergent Patterns in RLM Trajectories",
+    "chunk_index": 31,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_032",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Related Works",
+    "chunk_index": 32,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_033",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Limitations and Future Work",
+    "chunk_index": 33,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_034",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Conclusion",
+    "chunk_index": 34,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_035",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Related Works",
+    "chunk_index": 35,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_036",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Related Works",
+    "chunk_index": 36,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_037",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Conclusion",
+    "chunk_index": 37,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_038",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Limitations and Future Work",
+    "chunk_index": 38,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_039",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Limitations and Future Work",
+    "chunk_index": 39,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_040",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Conclusion",
+    "chunk_index": 40,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_original_paper_chunk_041",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "document_id": "rlm_original_paper",
+    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
+    "section": "Conclusion",
+    "chunk_index": 41,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_paper_v3_updates_chunk_001",
+    "source_file": "data/raw/rlm_paper_v3_updates.md",
+    "document_id": "rlm_paper_v3_updates",
+    "title": "Recursive Language Models  --  Paper Updates (May 2026)",
+    "section": "Recursive Language Models  --  Paper Updates (May 2026)",
+    "chunk_index": 1,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_paper_v3_updates_chunk_002",
+    "source_file": "data/raw/rlm_paper_v3_updates.md",
+    "document_id": "rlm_paper_v3_updates",
+    "title": "Recursive Language Models  --  Paper Updates (May 2026)",
+    "section": "Core Claims (Reinforced in v3)",
+    "chunk_index": 2,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_paper_v3_updates_chunk_003",
+    "source_file": "data/raw/rlm_paper_v3_updates.md",
+    "document_id": "rlm_paper_v3_updates",
+    "title": "Recursive Language Models  --  Paper Updates (May 2026)",
+    "section": "Key Insight for Training",
+    "chunk_index": 3,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_paper_v3_updates_chunk_004",
+    "source_file": "data/raw/rlm_paper_v3_updates.md",
+    "document_id": "rlm_paper_v3_updates",
+    "title": "Recursive Language Models  --  Paper Updates (May 2026)",
+    "section": "The RLM as a Language Model Replacement",
+    "chunk_index": 4,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  },
+  {
+    "chunk_id": "rlm_paper_v3_updates_chunk_005",
+    "source_file": "data/raw/rlm_paper_v3_updates.md",
+    "document_id": "rlm_paper_v3_updates",
+    "title": "Recursive Language Models  --  Paper Updates (May 2026)",
+    "section": "Training Environment",
+    "chunk_index": 5,
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  }
+]

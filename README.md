@@ -11,13 +11,14 @@ All documents are derived from primary sources: official repositories, arXiv pap
 | # | Document | Source URL | Description |
 |---|----------|------------|-------------|
 | 1 | `rlm_core_paper_and_github.md` | [github.com/alexzhang13/rlm](https://github.com/alexzhang13/rlm) | Core paper (arXiv:2512.24601), full GitHub README, system prompts, REPL environments, model providers, training harness, trajectory logging, and visualizer setup |
-| 2 | `halo_agent_optimizer.md` | [github.com/context-labs/halo](https://github.com/context-labs/halo) | HALO Desktop App — RLM-based agent optimizer using production traces. Engine architecture, CLI options, Python API, AppWorld benchmarks, and telemetry |
-| 3 | `prime_intellect_ablations.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Prime Intellect's experimental ablations across 4 environments (DeepDive, math-python, Oolong, verbatim-copy) with GPT-5-mini. Detailed environment tips and results |
-| 4 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Original blog post introducing RLMs. Context rot intuition, context-centric view, REPL environment design, and key results (OOLONG, BrowseComp-Plus, 10M+ tokens) |
-| 5 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Analysis of context folding alternatives (AgentFold, Agentic Context Engineering) and why RLM is the most flexible approach. Prime Intellect's implementation details |
-| 6 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | Google DeepMind's RecurrentGemma using the Griffin architecture. Linear recurrences + local attention, fixed-size state, inference performance, and safety evaluation |
-| 7 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601) | May 2026 update (v3, 10,181 KB). Expanded experimental results, training insights, and the RLM as a language model replacement paradigm |
-| 8 | `rlm_industry_analysis.md` | Medium analysis (2026) | Industry perspective: Prime Intellect's vision, Google Developer community response, comparison with CoT/ReAct/ToT/RAG, and open research questions |
+| 2 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Original academic paper by Alex Zhang, Tim Kraska, Omar Khattab (MIT CSAIL). Full text: abstract, introduction, methods, results, emergent patterns, related work, limitations, conclusion |
+| 3 | `halo_agent_optimizer.md` | [github.com/context-labs/halo](https://github.com/context-labs/halo) | HALO Desktop App — RLM-based agent optimizer using production traces. Engine architecture, CLI options, Python API, AppWorld benchmarks, and telemetry |
+| 4 | `prime_intellect_ablations.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Prime Intellect's experimental ablations across 4 environments (DeepDive, math-python, Oolong, verbatim-copy) with GPT-5-mini. Detailed environment tips and results |
+| 5 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Original blog post introducing RLMs. Context rot intuition, context-centric view, REPL environment design, and key results (OOLONG, BrowseComp-Plus, 10M+ tokens) |
+| 6 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Analysis of context folding alternatives (AgentFold, Agentic Context Engineering) and why RLM is the most flexible approach. Prime Intellect's implementation details |
+| 7 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | Google DeepMind's RecurrentGemma using the Griffin architecture. Linear recurrences + local attention, fixed-size state, inference performance, and safety evaluation |
+| 8 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601v3) | May 2026 update (v3, 10,181 KB). Expanded experimental results, training insights, and the RLM as a language model replacement paradigm |
+| 9 | `rlm_industry_analysis.md` | Medium analysis (2026) | Industry perspective: Prime Intellect's vision, Google Developer community response, comparison with CoT/ReAct/ToT/RAG, and open research questions |
 
 ## Metadata Structure
 
@@ -45,11 +46,13 @@ All documents are derived from primary sources: official repositories, arXiv pap
 
 ### Chunk Size Statistics
 
-- **Total chunks:** 81
-- **Average chunk size:** 727 characters
-- **Minimum chunk size:** 125 characters
-- **Maximum chunk size:** 898 characters
-- **Chunks outside 500–1000 range:** 7/81
+- **Total chunks:** 125
+- **Average chunk size:** 798 characters
+- **Minimum chunk size:** 199 characters
+- **Maximum chunk size:** 850 characters
+- **Chunks outside 500–1000 range:** 2/125
+- **Unique sections:** 77
+- **Generic placeholders:** 0
 
 ## Chunk Examples
 
@@ -64,10 +67,10 @@ All documents are derived from primary sources: official repositories, arXiv pap
     "source_file": "data/raw/rlm_core_paper_and_github.md",
     "source_type": "markdown",
     "title": "Recursive Language Models — Core Paper and Implementation (MIT)",
-    "section": "General",
+    "section": "Core Paper & GitHub Setup",
     "chunk_index": 1,
     "language": "en",
-    "domain": "machine-learning",
+    "domain": "machine_learning",
     "document_type": "research-paper"
   }
 }
