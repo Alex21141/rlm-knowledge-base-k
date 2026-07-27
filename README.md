@@ -47,15 +47,97 @@
 
 ### Статистика розміру чанків
 
-- **Всього чанків:** 248
-- **Середній розмір:** 804 символів
-- **Мінімум:** 204 символів
-- **Максимум:** 852 символів
-- **В межах 500–1000:** 244/248 (98%)
-- **Коротших за 500:** 4/248
-- **Довших за 1000:** 0/248
+- **Всього чанків:** 244
+- **Середній розмір:** 812 символів
+- **Мінімум:** 531 символ
+- **Максимум:** 913 символів
+- **В межах 500–1000:** 244/244 (100%)
+- **Коротших за 500:** 0/244
+- **Довших за 1000:** 0/244
 - **Унікальних секцій:** 103
 - **Placeholder-ів:** 0
+
+## Приклади chunks
+
+### Приклад 1: Блог-пост (теорія)
+
+```json
+{
+  "chunk_id": "alexzhang_blog_context_rot_chunk_001",
+  "text": "# Alex Zhang Blog: Recursive Language Models (Oct 2025)\n\n**Source:** https://alexzhang13.github.io/blog/2025/rlm/\n**Full Paper:** https://arxiv.org/abs/2512.24601\n**Code:** https://github.com/alexzhang13/rlm\n\n## tl;dr\n\nWe explore language models that recursively call themselves or other LLMs before providing a final answer. Our goal is to enable the processing of essentially unbounded input context length and output length and to mitigate degradation \"context rot\"...",
+  "metadata": {
+    "document_id": "alexzhang_blog_context_rot",
+    "source_file": "data/raw/alexzhang_blog_context_rot.md",
+    "source_type": "markdown",
+    "title": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "section": "Alex Zhang Blog: Recursive Language Models (Oct 2025)",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "ml-theory",
+    "document_type": "blog"
+  }
+}
+```
+
+### Приклад 2: Оригінальна стаття (дослідження)
+
+```json
+{
+  "chunk_id": "rlm_original_paper_chunk_002",
+  "text": "the LLM to programmatically examine, decompose, and recursively call itself over snippets of the prompt. We find that RLMs successfully handle inputs up to two orders of magnitude beyond model context windows and, even for shorter prompts, dramatically outperform the quality of base LLMs and common long-context scaffolds across four diverse long-context tasks, while having comparable (or cheaper) cost per query.\n\n---\n\n## Introduction\n\nDespite rapid progress in reasoning and tool use, modern language models still have limited context lengths and, even within these limits, appear to inevitably exhibit context rot...",
+  "metadata": {
+    "document_id": "rlm_original_paper",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "source_type": "markdown",
+    "title": "Recursive Language Models — Original Paper (MIT CSAIL)",
+    "section": "Introduction",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "machine_learning",
+    "document_type": "research-paper"
+  }
+}
+```
+
+### Приклад 3: RAG Survey (огляд літератури)
+
+```json
+{
+  "chunk_id": "rag_survey_arxiv2024_chunk_019",
+  "text": "ng structure and the original query. The goal of optimizing indexing is to enhance the quality of the content being indexed. This involves strategies: enhancing data granularity, optimizing index structures, adding metadata, alignment optimization, and mixed retrieval. While the goal of query optimization is to make the user's original question clearer and more suitable for the retrieval task...",
+  "metadata": {
+    "document_id": "rag_survey_arxiv2024",
+    "source_file": "data/raw/rag_survey_arxiv2024.md",
+    "source_type": "markdown",
+    "title": "Retrieval-Augmented Generation for Large Language Models: A Survey (Gao et al., 2024)",
+    "section": "General",
+    "chunk_index": 19,
+    "language": "en",
+    "domain": "machine_learning",
+    "document_type": "survey"
+  }
+}
+```
+
+### Приклад 4: HALO (production-інструмент)
+
+```json
+{
+  "chunk_id": "halo_agent_optimizer_chunk_001",
+  "text": "# HALO: Hierarchical Agent Loop Optimizer\n\n**Repository:** https://github.com/context-labs/halo\n**PyPI:** `halo-engine`\n**Tagline:** RLM-based agent optimizer using production traces\n\n## What is HALO?\n\nHALO is a hierarchical agent loop optimizer built on top of the Recursive Language Model (RLM) paradigm. It analyzes production agent execution traces, identifies inefficiencies, and rewrites agent loops to improve performance...",
+  "metadata": {
+    "document_id": "halo_agent_optimizer",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "source_type": "markdown",
+    "title": "HALO: Hierarchical Agent Loop Optimizer (Context Labs)",
+    "section": "HALO Engine & Benchmarks",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "agent-engineering",
+    "document_type": "tool"
+  }
+}
+```
 
 ## Висновки
 
@@ -69,7 +151,7 @@
 
 4. **Багаті метадані:** Domain-теги (`machine_learning`, `agent-engineering`, `experimental-ml`, `ml-theory`, `analysis`, `survey`) для фільтрування. Напр. "install HALO" → `halo_agent_optimizer`; "RAG failure points" → `rag_failure_points`.
 
-5. **Zero oversized:** Всі 248 чанків ≤ 852 символів — жодних >1000, що погіршували б embedding quality.
+5. **Zero oversized:** Всі 244 чанки ≤ 913 символів — жодних >1000, що погіршували б embedding quality.
 
 ### Що потребує покращення
 
@@ -88,21 +170,28 @@
 ├── README.md
 ├── data/
 │   ├── raw/
-│   ├── alexzhang_blog_context_rot.md
-│   ├── halo_agent_optimizer.md
-│   ├── prime_intellect_ablations.md
-│   ├── prime_intellect_context_folding.md
-│   ├── rag_failure_points_arxiv2024.md
-│   ├── rag_original_neurips2020.md
-│   ├── rag_survey_arxiv2024.md
-│   ├── rlm_core_paper_and_github.md
-│   ├── rlm_original_paper.md
-│   └── rlm_vs_rag_comparison.md
+│   │   ├── alexzhang_blog_context_rot.md
+│   │   ├── halo_agent_optimizer.md
+│   │   ├── prime_intellect_ablations.md
+│   │   ├── prime_intellect_context_folding.md
+│   │   ├── rag_failure_points_arxiv2024.md
+│   │   ├── rag_original_neurips2020.md
+│   │   ├── rag_survey_arxiv2024.md
+│   │   ├── rlm_core_paper_and_github.md
+│   │   ├── rlm_original_paper.md
+│   │   └── rlm_vs_rag_comparison.md
 │   └── processed/
 │       └── chunks.jsonl
-└── scripts/
-    └── prepare_knowledge_base.py
-
+├── index/
+│   ├── faiss.index
+│   ├── embeddings.npy
+│   └── metadata.json
+├── outputs/
+│   └── retrieval_examples.md
+├── scripts/
+│   ├── prepare_knowledge_base.py
+│   └── retrieval.py
+└── prime_intellect_blog_rlm_full.md
 ```
 
 ## Використання
@@ -120,7 +209,7 @@ python scripts/prepare_knowledge_base.py
 ### Архітектура
 
 - **Embedding model:** `sentence-transformers/all-MiniLM-L6-v2` (384-dim)
-- **Vector storage:** FAISS (Inner Product, L2-normalized)
+- **Vector storage:** FAISS (Inner Product, L2-normalized) + embeddings.npy
 - **Chunks indexed:** 244
 - **Top-k:** 3
 
