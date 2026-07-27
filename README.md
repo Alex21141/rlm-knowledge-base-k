@@ -19,6 +19,7 @@
 | 7 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | RecurrentGemma від Google DeepMind на архітектурі Griffin. Лінійні рекурренції + локальна увага, fixed-size state, інференс-продуктивність та safety evaluation |
 | 8 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601v3) | Оновлення травень 2026 (v3, 10,181 KB). Розширені експериментальні результати, інсайти для навчання та RLM як парадигма заміни мовних моделей |
 | 9 | `rlm_industry_analysis.md` | Medium аналіз (2026) | Промислова перспектива: візія Prime Intellect, відповідь Google Developer community, порівняння з CoT/ReAct/ToT/RAG та відкриті дослідницькі питання |
+| 10 | `rlm_vs_rag_comparison.md` | [rlm.md/blog](https://rlm.md/blog/rlm-vs-rag-retrieval-augmented-generation.html) | Детальне порівняння RLM vs RAG: архітектура, failure modes RAG (relevance gap, aggregation gap, completeness gap), completeness advantage RLM, cost/latency trade-offs, when to use each |
 
 ## Структура метаданих
 
@@ -46,12 +47,12 @@
 
 ### Статистика розміру чанків
 
-- **Всього чанків:** 125
-- **Середній розмір:** 798 символів
-- **Мінімум:** 199 символів
-- **Максимум:** 850 символів
-- **Чанків поза межами 500–1000:** 2/125
-- **Унікальних секцій:** 77
+- **Всього чанків:** 133
+- **Середній розмір:** 789 символів
+- **Мінімум:** 186 символів
+- **Максимум:** 898 символів
+- **Чанків поза межами 500–1000:** 5/133
+- **Унікальних секцій:** 88
 - **Placeholder-ів:** 0
 
 ## Приклади чанків
@@ -227,9 +228,10 @@
 │   │   ├── prime_intellect_context_folding.md # Аналіз context folding
 │   │   ├── recurrentgemma_griffin_architecture.md # Google DeepMind
 │   │   ├── rlm_paper_v3_updates.md           # Оновлення травень 2026
-│   │   └── rlm_industry_analysis.md          # Промисловий огляд
+│   │   ├── rlm_industry_analysis.md          # Промисловий огляд
+│   │   └── rlm_vs_rag_comparison.md          # RLM vs RAG порівняння
 │   └── processed/
-│       └── chunks.jsonl                      # 125 чанків (99,751 chars)
+│       └── chunks.jsonl                      # 133 чанків (104,994 chars)
 └── scripts/
     └── prepare_knowledge_base.py             # Chunking pipeline
 ```
