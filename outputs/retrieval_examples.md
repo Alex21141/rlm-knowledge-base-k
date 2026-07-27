@@ -4,7 +4,7 @@
 
 **Index:** FAISS (Inner Product, dim=384)
 
-**Chunks indexed:** 118
+**Chunks indexed:** 248
 
 **Top-k:** 3
 
@@ -131,13 +131,7 @@ A general-purpose harness like C...
 **Expected:** RLM is recursive, ReAct is reasoning+acting with tools
 
 
-Top-1: rlm_industry_analysis_chunk_003 | score: 0.5649
-  Text: Developers are exploring how to integrate RLM concepts into existing agent frameworks, particularly for applications requiring extremely long context lengths (10M+ tokens) and information-dense tasks....
-  Source: data/raw/rlm_industry_analysis.md | Section: Comparison with Other Paradigms
-
-
-
-Top-2: alexzhang_blog_context_rot_chunk_010 | score: 0.5253
+Top-1: alexzhang_blog_context_rot_chunk_010 | score: 0.5253
   Text: the model to delegate reasoning steps to sub-calls, effectively creating a tree of thought rather than a linear chain.
 
 ### ReAct (Reasoning + Acting)
@@ -147,11 +141,23 @@ ReAct models interleave reasoning and action. RL...
 
 
 
-Top-3: rlm_core_paper_and_github_chunk_016 | score: 0.4652
+Top-2: rlm_core_paper_and_github_chunk_016 | score: 0.4652
   Text: e many amazing demos and production-ready use cases of RLMs. Notable examples that explicitly use RLMs as a central piece of their design include HALO
 
 (Context Labs) and various agent optimization to...
   Source: data/raw/rlm_core_paper_and_github.md | Section: RLMs in the Wild
+
+
+
+Top-3: rlm_original_paper_chunk_017 | score: 0.4302
+  Text: o for compaction and GPT-5 to provide the final
+answer.
+
+CodeAct (+ BM25). We compare directly to a CodeAct (Wang et al., 2024) agent
+that can execute
+
+code inside of a ReAct (Yao et al., 2023) loop. ...
+  Source: data/raw/rlm_original_paper.md | Section: Results and Discussion
 
 
 
@@ -160,37 +166,30 @@ Top-3: rlm_core_paper_and_github_chunk_016 | score: 0.4652
 
 ---
 
-## Query 5: What is the Griffin architecture used in RecurrentGemma?
+## Query 5: What are the seven failure points when engineering a RAG system?
 
-**Expected:** linear recurrences, fixed-size state, local attention
-
-
-Top-1: recurrentgemma_griffin_architecture_chunk_002 | score: 0.5325
-  Text: We provide two sizes of models, containing 2B and 9B parameters, and provide pre-trained and instruction tuned variants for both. Our models achieve comparable performance to similarly-sized Gemma bas...
-  Source: data/raw/recurrentgemma_griffin_architecture.md | Section: The Griffin Architecture
+**Expected:** indexing, querying, chunking, scoring, reranking, generation, evaluation
 
 
+Top-1: rag_failure_points_arxiv2024_chunk_008 | score: 0.6125
+  Text: advances for building RAG systems are constantly emerging (Lewis et al., [2020](https://arxiv.org/html/2401.05856v1#bib.bib13 ""); Hofstätter et al.,
 
-Top-2: recurrentgemma_griffin_architecture_chunk_001 | score: 0.5223
-  Text: # RecurrentGemma: Moving Past Transformers for Efficient Open Language Models
-
-**Authors:** Griffin, RLHF, and Gemma Teams (Google DeepMind)
-**Paper:** arXiv:2404.07839 (Apr 11, 2024)
-**Code:** https:...
-  Source: data/raw/recurrentgemma_griffin_architecture.md | Section: RecurrentGemma: Moving Past Transformers for Efficient Open Language Models
+[2023](https://arxiv.org/html/2401.05856v1#bib.bi...
+  Source: data/raw/rag_failure_points_arxiv2024.md | Section: 1\. Introduction
 
 
 
-Top-3: recurrentgemma_griffin_architecture_chunk_004 | score: 0.4596
-  Text: ----------------|-------------------|
-| Total params | 2.68B | 8.58B |
-| Non-Embedding params | 2.03B | 7.53B |
-| Embedding params | 0.65B | 1.05B |
-|
+Top-2: rag_failure_points_arxiv2024_chunk_010 | score: 0.6031
+  Text: All question and answer pairs were then validated with OpenAI evals 111https://github.com/openai/evals. Manual inspection (all discrepancies, all flagged as incorrect, and a sample of correct labels) ...
+  Source: data/raw/rag_failure_points_arxiv2024.md | Section: Seven Failure Points When Engineering a Retrieval Augmented Generation System
 
-Vocabulary size | 256k | 256k |
-| Model width | ...
-  Source: data/raw/recurrentgemma_griffin_architecture.md | Section: Architecture Modifications
+
+
+Top-3: rag_failure_points_arxiv2024_chunk_023 | score: 0.5835
+  Text: multiple prompts to process questions and answers. This process ensures that questions relevant for the domain are returned. The use of large language
+
+models to answer real time questions from docume...
+  Source: data/raw/rag_failure_points_arxiv2024.md | Section: 4\. Case Studies
 
 
 
@@ -299,13 +298,20 @@ Top-2: prime_intellect_context_folding_chunk_006 | score: 0.4307
 
 
 
-Top-3: rlm_paper_v3_updates_chunk_002 | score: 0.3536
-  Text: y 2.2 MB, suggesting substantial new experimental results, additional benchmarks, or expanded theoretical analysis.
+Top-3: rlm_core_paper_and_github_chunk_011 | score: 0.3374
+  Text: nswer the original query in your final answer.
+```
 
-## Core Claims (Reinforced in v3)
+## Quick Setup
 
-RLMs can successfully process inputs up to two o...
-  Source: data/raw/rlm_paper_v3_updates.md | Section: Core Claims (Reinforced in v3)
+`rlms` requires Python 3.11 or later. Install from PyPI:
+
+```
+pip install rlms
+```
+
+The default RLM client uses a REPL environment t...
+  Source: data/raw/rlm_core_paper_and_github.md | Section: REPL Environments
 
 
 
@@ -355,37 +361,34 @@ significant improvements over...
 
 ---
 
-## Query 10: What are the training insights for RLMs in paper v3?
+## Query 10: What is the original RAG approach from NeurIPS 2020?
 
-**Expected:** training environment, reinforcement learning, scaling
-
-
-Top-1: rlm_paper_v3_updates_chunk_002 | score: 0.5705
-  Text: y 2.2 MB, suggesting substantial new experimental results, additional benchmarks, or expanded theoretical analysis.
-
-## Core Claims (Reinforced in v3)
-
-RLMs can successfully process inputs up to two o...
-  Source: data/raw/rlm_paper_v3_updates.md | Section: Core Claims (Reinforced in v3)
+**Expected:** retrieval + generation pipeline, dense retrieval with DPR, knowledge-grounded dialogue
 
 
+Top-1: rag_survey_arxiv2024_chunk_011 | score: 0.4613
+  Text: tion VII mainly discusses the challenges that RAG currently faces and its future development directions. At last, the paper concludes in Section VIII.
 
-Top-2: rlm_paper_v3_updates_chunk_003 | score: 0.5501
-  Text: round the RLM paradigm. RLM-Qwen3-8B:
-- Outperforms the underlying Qwen3-8B model by **28.3%** on average
-- Approaches the quality of vanilla GPT-5 on
+II. OVERVIEW OF RAG
 
-three long-context tasks
-- Was trained on 1,000 ...
-  Source: data/raw/rlm_paper_v3_updates.md | Section: Key Insight for Training
+A typical application of RA...
+  Source: data/raw/rag_survey_arxiv2024.md | Section: General
 
 
 
-Top-3: rlm_core_paper_and_github_chunk_008 | score: 0.5244
-  Text: text Deep Research task constructed from BrowseComp-Plus, RLMs outperform other methods like ReAct + test-time indexing and retrieval over the prompt.
+Top-2: rag_survey_arxiv2024_chunk_009 | score: 0.4396
+  Text: we present a thorough and systematic review of the state-of-the-art RAG methods, delineating its evolution through paradigms including naive RAG.
 
-Surprisingly, RLMs do not degrade in performance...
-  Source: data/raw/rlm_core_paper_and_github.md | Section: Cost Comparison
+---
+
+advanced RAG, and modular RAG. This review conte...
+  Source: data/raw/rag_survey_arxiv2024.md | Section: General
+
+
+
+Top-3: rag_failure_points_arxiv2024_chunk_010 | score: 0.4261
+  Text: All question and answer pairs were then validated with OpenAI evals 111https://github.com/openai/evals. Manual inspection (all discrepancies, all flagged as incorrect, and a sample of correct labels) ...
+  Source: data/raw/rag_failure_points_arxiv2024.md | Section: Seven Failure Points When Engineering a Retrieval Augmented Generation System
 
 
 
