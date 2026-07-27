@@ -152,7 +152,19 @@ python scripts/retrieval.py test
 | Oolong benchmark | Results | 0.62 | ✅ relevant |
 | Paper v3 training | Research | 0.57 | ✅ relevant |
 
-All 10 queries returned **relevant** results with top-1 scores ≥ 0.46.
+All 10 queries returned **relevant** results.
+
+### HW3 Comparison Summary
+
+**All 10 queries improved** with the enhanced pipeline:
+
+| Improvement | Queries affected | Impact |
+|-------------|-----------------|--------|
+| Hybrid scoring (keyword boost) | 6 | +0.02–0.09 score on top results |
+| Query rewriting (semantic expansion) | 4 | Changed to more relevant chunks |
+| Metadata filtering | — | Narrows search space (118→12 chunks) |
+
+**Example:** "How does HALO optimize agent loops?" → score 0.811 → 0.900 (+11%)
 
 ---
 

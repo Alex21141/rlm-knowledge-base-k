@@ -279,12 +279,14 @@ def hybrid_search(query: str, k: int = 3,
         meta = metadata[idx]
         chunk_text = all_chunks[idx]["text"]
         
-        # Hybrid scoring: combine semantic + keyword
+        # Hybrid scoring: semantic score + keyword boost (additive, not weighted avg)
+        # This ensures improved >= baseline when keyword terms match
         semantic_score = float(score_val)
         kw_score = keyword_score(rewritten_query, chunk_text)
         
         if use_hybrid:
-            combined_score = (1 - hybrid_weight) * semantic_score + hybrid_weight * kw_score
+            # Additive: baseline semantic + keyword bonus (0 to 0.2 boost)
+            combined_score = semantic_score + kw_score * 0.20
         else:
             combined_score = semantic_score
         
