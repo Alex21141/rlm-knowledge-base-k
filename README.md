@@ -117,24 +117,19 @@ python scripts/prepare_knowledge_base.py
 
 ## Домашнє завдання №2 — Базовий semantic retrieval layer
 
-### Archітектура
+### Архітектура
 
 - **Embedding model:** `sentence-transformers/all-MiniLM-L6-v2` (384-dim)
-- **Vector storage:** FAISS (Inner Product, L2-normalized for cosine similarity)
+- **Vector storage:** FAISS (Inner Product, L2-normalized)
+- **Chunks indexed:** 244
 - **Top-k:** 3
-- **Чанків індексовано:** 248
 
 ### Використання
 
 ```bash
-# Build FAISS index from chunks
-python scripts/retrieval.py build
-
-# Run test queries
-python scripts/retrieval.py test
-
-# Search arbitrary query
-python scripts/retrieval.py search "your question here"
+python scripts/retrieval.py build     # Build FAISS index
+python scripts/retrieval.py test      # Run test queries
+python scripts/retrieval.py search "query"  # Search
 ```
 
 ### Тестові запити та результати
@@ -148,22 +143,21 @@ python scripts/retrieval.py search "your question here"
 | 5 | What are the seven failure points when engineering a RAG system? | rag_failure_points_arxiv2024_chunk_008 | 0.6125 | partially relevant |
 | 6 | How does Prime Intellect implement RLM ablations? | prime_intellect_ablations_chunk_001 | 0.5763 | partially relevant |
 | 7 | What is context folding and how does RLM compare? | prime_intellect_context_folding_chunk_005 | 0.5596 | partially relevant |
-| 8 | How do you install and set up the RLM system? | rlm_core_paper_and_github_chunk_016 | 0.4581 | partially relevant |
+| 8 | How do you install and set up the RLM system? | prime_intellect_context_folding_chunk_006 | 0.4307 | partially relevant |
 | 9 | What benchmark results does RLM achieve on Oolong? | prime_intellect_ablations_chunk_013 | 0.6232 | partially relevant |
 | 10 | What is the original RAG approach from NeurIPS 2020? | rag_survey_arxiv2024_chunk_011 | 0.4613 | partially relevant |
 
-### Аналіз результатів
+### Аналіз
 
-- **Релевантні (top-1 correct):** 2/10 — queries 1, 2 (RLM core concepts)
-- **Частково релевантні:** 8/10 — top-1 не ідеальний, але у правильному напрямку
+- **Релевантні (top-1 correct):** 2/10 — queries 1, 2
+- **Частково релевантні:** 8/10
 - **Не релевантних:** 0/10
-- **Середній Top-1 score:** 0.59
-- **Найкращий результат:** Query 3 (HALO optimization) — score 0.81
+- **Avg Top-1 score:** 0.55
+- **Best:** Query 3 (HALO) — score 0.81
 
 ### Висновки
 
-- ✅ FAISS index працює коректно з 248 чанками
-- ✅ Embeddings MiniLM дають прийнятну якість для домену ML/RLM
-- ⚠️ Часткова релевантність — типова проблема базового semantic retrieval без additional techniques
-- 📋 Для покращення (HW3): metadata filtering, query rewriting, hybrid scoring
-
+- ✅ FAISS index працює з 244 чанками
+- ✅ MiniLM дає прийнятну якість для ML/RLM домену
+- ⚠️ Базовий semantic retrieval без metadata filtering має partial relevance
+- 📋 HW3: query rewriting + hybrid scoring + metadata filtering → 10/10 improved

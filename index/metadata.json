@@ -1310,16 +1310,6 @@
     "document_type": "general"
   },
   {
-    "chunk_id": "rag_original_neurips2020_chunk_044",
-    "source_file": "data/raw/rag_original_neurips2020.md",
-    "document_id": "rag_original_neurips2020",
-    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
-    "section": "Appendix F Retrieval Collapse",
-    "chunk_index": 44,
-    "domain": "machine_learning",
-    "document_type": "general"
-  },
-  {
     "chunk_id": "rag_survey_arxiv2024_chunk_001",
     "source_file": "data/raw/rag_survey_arxiv2024.md",
     "document_id": "rag_survey_arxiv2024",
@@ -1980,16 +1970,6 @@
     "document_type": "research-paper"
   },
   {
-    "chunk_id": "rlm_core_paper_and_github_chunk_016",
-    "source_file": "data/raw/rlm_core_paper_and_github.md",
-    "document_id": "rlm_core_paper_and_github",
-    "title": "Recursive Language Models  --  Core Paper and Implementation",
-    "section": "RLMs in the Wild",
-    "chunk_index": 16,
-    "domain": "machine_learning",
-    "document_type": "research-paper"
-  },
-  {
     "chunk_id": "rlm_original_paper_chunk_001",
     "source_file": "data/raw/rlm_original_paper.md",
     "document_id": "rlm_original_paper",
@@ -2320,16 +2300,6 @@
     "document_type": "research-paper"
   },
   {
-    "chunk_id": "rlm_original_paper_chunk_034",
-    "source_file": "data/raw/rlm_original_paper.md",
-    "document_id": "rlm_original_paper",
-    "title": "Recursive Language Models  --  Original Paper (MIT CSAIL)",
-    "section": "Conclusion",
-    "chunk_index": 34,
-    "domain": "machine_learning",
-    "document_type": "research-paper"
-  },
-  {
     "chunk_id": "rlm_vs_rag_comparison_chunk_001",
     "source_file": "data/raw/rlm_vs_rag_comparison.md",
     "document_id": "rlm_vs_rag_comparison",
@@ -2466,16 +2436,6 @@
     "title": "RLM vs RAG: Two Approaches to the Long-Context Problem",
     "section": "References",
     "chunk_index": 14,
-    "domain": "ml-theory",
-    "document_type": "analysis"
-  },
-  {
-    "chunk_id": "rlm_vs_rag_comparison_chunk_015",
-    "source_file": "data/raw/rlm_vs_rag_comparison.md",
-    "document_id": "rlm_vs_rag_comparison",
-    "title": "RLM vs RAG: Two Approaches to the Long-Context Problem",
-    "section": "References",
-    "chunk_index": 15,
     "domain": "ml-theory",
     "document_type": "analysis"
   }
