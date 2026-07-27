@@ -91,7 +91,7 @@ TEST_QUERIES = [
     {"query": "How do RLMs handle arbitrarily long prompts?", "topic": "Core concept"},
     {"query": "What is context rot and why does it happen?", "topic": "Core concept"},
     {"query": "How does HALO optimize agent loops?", "topic": "HALO tool"},
-    {"query": "Compare RLM vs ReAct for agent workflows", "topic": "Comparison"},
+    {"query": "What are the key differences between RLM and ReAct?", "topic": "Comparison"},
     {"query": "What is the Griffin architecture used in RecurrentGemma?", "topic": "RecurrentGemma"},
     {"query": "How does Prime Intellect implement RLM ablations?", "topic": "Experiments"},
     {"query": "What is context folding and how does RLM compare?", "topic": "Comparison"},

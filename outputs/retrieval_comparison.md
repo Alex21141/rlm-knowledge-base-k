@@ -22,7 +22,7 @@
 
 | How does HALO optimize agent loops? | `halo_agent_optimizer_chunk_001` (0.811) | `halo_agent_optimizer_chunk_001` (0.899) | Score improved: 0.8106 → 0.8995 |
 
-| Compare RLM vs ReAct for agent workflows | `rlm_industry_analysis_chunk_003` (0.552) | `rlm_industry_analysis_chunk_003` (0.607) | Score improved: 0.5518 → 0.6074 |
+| What are the key differences between RLM and ReAct? | `rlm_industry_analysis_chunk_003` (0.565) | `rlm_industry_analysis_chunk_003` (0.632) | Score improved: 0.5649 → 0.6316 |
 
 | What is the Griffin architecture used in RecurrentGemma? | `recurrentgemma_griffin_architecture_chunk_002` (0.532) | `recurrentgemma_griffin_architecture_chunk_002` (0.621) | Score improved: 0.5325 → 0.6214 |
 

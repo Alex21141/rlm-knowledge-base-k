@@ -2,71 +2,51 @@
   "How do RLMs handle arbitrarily long prompts?": {
     "chunk_id": "rlm_original_paper_chunk_006",
     "score": 0.6195,
-    "text": "Text: general context about the REPL environment (e.g., the length of the string P), and permits it to write code that peeks into and decomposes P, and to iteratively observe any side effects from exe",
-    "source": "Source: data/raw/rlm_original_paper.md | Section: Introduction",
-    "topic": "Core concept"
+    "text": "Text: general context about the REPL environment (e.g., the length of the string P), and permits it to write code that peeks into and decomposes P, and to iteratively observe any side effects from exe"
   },
   "What is context rot and why does it happen?": {
     "chunk_id": "rlm_core_paper_and_github_chunk_004",
     "score": 0.6233,
-    "text": "Text: icult to characterize phenomenon in language models known as \"context rot\". Anthropic defines context rot as \"when the number of tokens in the context window increases, the model's ability to ac",
-    "source": "Source: data/raw/rlm_core_paper_and_github.md | Section: The Problem: Context Rot",
-    "topic": "Core concept"
+    "text": "Text: icult to characterize phenomenon in language models known as \"context rot\". Anthropic defines context rot as \"when the number of tokens in the context window increases, the model's ability to ac"
   },
   "How does HALO optimize agent loops?": {
     "chunk_id": "halo_agent_optimizer_chunk_001",
     "score": 0.8106,
-    "text": "Text: # HALO: Hierarchical Agent Loop Optimizer **Repository:** https://github.com/context-labs/halo **PyPI:** `halo-engine` **Tagline:** RLM-based agent optimizer using production traces ## What is H",
-    "source": "Source: data/raw/halo_agent_optimizer.md | Section: HALO: Hierarchical Agent Loop Optimizer",
-    "topic": "HALO tool"
+    "text": "Text: # HALO: Hierarchical Agent Loop Optimizer **Repository:** https://github.com/context-labs/halo **PyPI:** `halo-engine` **Tagline:** RLM-based agent optimizer using production traces ## What is H"
   },
-  "Compare RLM vs ReAct for agent workflows": {
+  "What are the key differences between RLM and ReAct?": {
     "chunk_id": "rlm_industry_analysis_chunk_003",
-    "score": 0.5518,
-    "text": "Text: Developers are exploring how to integrate RLM concepts into existing agent frameworks, particularly for applications requiring extremely long context lengths (10M+ tokens) and information-dense ",
-    "source": "Source: data/raw/rlm_industry_analysis.md | Section: Comparison with Other Paradigms",
-    "topic": "Comparison"
+    "score": 0.5649,
+    "text": "Text: Developers are exploring how to integrate RLM concepts into existing agent frameworks, particularly for applications requiring extremely long context lengths (10M+ tokens) and information-dense "
   },
   "What is the Griffin architecture used in RecurrentGemma?": {
     "chunk_id": "recurrentgemma_griffin_architecture_chunk_002",
     "score": 0.5325,
-    "text": "Text: We provide two sizes of models, containing 2B and 9B parameters, and provide pre-trained and instruction tuned variants for both. Our models achieve comparable performance to similarly-sized Gem",
-    "source": "Source: data/raw/recurrentgemma_griffin_architecture.md | Section: The Griffin Architecture",
-    "topic": "RecurrentGemma"
+    "text": "Text: We provide two sizes of models, containing 2B and 9B parameters, and provide pre-trained and instruction tuned variants for both. Our models achieve comparable performance to similarly-sized Gem"
   },
   "How does Prime Intellect implement RLM ablations?": {
     "chunk_id": "prime_intellect_ablations_chunk_001",
     "score": 0.5763,
-    "text": "Text: # Prime Intellect: Recursive Language Models Ablations",
-    "source": "**Source:** https://www.primeintellect.ai/blog/rlm",
-    "topic": "Experiments"
+    "text": "Text: # Prime Intellect: Recursive Language Models Ablations"
   },
   "What is context folding and how does RLM compare?": {
     "chunk_id": "prime_intellect_context_folding_chunk_005",
     "score": 0.5596,
-    "text": "Text: The RLM allows the model to actively manage its own context. This approach is more in line with The Bitter Lesson than the ones presented before; it enables training directly with the RLM scaffo",
-    "source": "Source: data/raw/prime_intellect_context_folding.md | Section: RLM Implementation at Prime Intellect",
-    "topic": "Comparison"
+    "text": "Text: The RLM allows the model to actively manage its own context. This approach is more in line with The Bitter Lesson than the ones presented before; it enables training directly with the RLM scaffo"
   },
   "How do you install and set up the RLM system?": {
     "chunk_id": "rlm_core_paper_and_github_chunk_016",
     "score": 0.4581,
-    "text": "Text: e many amazing demos and production-ready use cases of RLMs. Notable examples that explicitly use RLMs as a central piece of their design include HALO (Context Labs) and various agent optimizati",
-    "source": "Source: data/raw/rlm_core_paper_and_github.md | Section: RLMs in the Wild",
-    "topic": "Setup"
+    "text": "Text: e many amazing demos and production-ready use cases of RLMs. Notable examples that explicitly use RLMs as a central piece of their design include HALO (Context Labs) and various agent optimizati"
   },
   "What benchmark results does RLM achieve on Oolong?": {
     "chunk_id": "prime_intellect_ablations_chunk_013",
     "score": 0.6232,
-    "text": "Text: mation retrieval) - RLM performs best on Verbatim Copy (precise text reproduction) - Math Python shows RLM underperforming, suggesting the overhead of scaffolding may not be worth it for simple ",
-    "source": "Source: data/raw/prime_intellect_ablations.md | Section: Verbatim Copy",
-    "topic": "Results"
+    "text": "Text: mation retrieval) - RLM performs best on Verbatim Copy (precise text reproduction) - Math Python shows RLM underperforming, suggesting the overhead of scaffolding may not be worth it for simple "
   },
   "What are the training insights for RLMs in paper v3?": {
     "chunk_id": "rlm_paper_v3_updates_chunk_002",
     "score": 0.5705,
-    "text": "Text: y 2.2 MB, suggesting substantial new experimental results, additional benchmarks, or expanded theoretical analysis. ## Core Claims (Reinforced in v3) RLMs can successfully process inputs up to t",
-    "source": "Source: data/raw/rlm_paper_v3_updates.md | Section: Core Claims (Reinforced in v3)",
-    "topic": "Research"
+    "text": "Text: y 2.2 MB, suggesting substantial new experimental results, additional benchmarks, or expanded theoretical analysis. ## Core Claims (Reinforced in v3) RLMs can successfully process inputs up to t"
   }
 }
