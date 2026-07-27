@@ -1,62 +1,62 @@
-# Homework #1 — Knowledge Base Preparation
+# Домашнє завдання №1 — Підготовка knowledge base
 
-## Subject Area
+## Тема
 
-**Recursive Language Models (RLM) Research Assistant** — a chatbot designed to help ML researchers, engineers, and students understand recursive language model architectures, their implementation, training, and real-world applications. The knowledge base covers the full spectrum from foundational theory to production tooling, including complementary architectures like RecurrentGemma/Griffin.
+**Recursive Language Models (RLM) Research Assistant** — чат-бот для допомоги дослідникам ML, інженерам та студентам у розумінні архітектур рекурсивних мовних моделей, їх реалізації, навчання та практичного застосування. Knowledge base покриває повний спектр — від базової теорії до production-інструментів, включаючи додаткові архітектури на кшталт RecurrentGemma/Griffin.
 
-## Sources
+## Джерела
 
-All documents are derived from primary sources: official repositories, arXiv papers, and original blog posts.
+Всі документи отримані з першоджерел: офіційних репозиторіїв, статей на arXiv та оригінальних блог-постів.
 
-| # | Document | Source URL | Description |
-|---|----------|------------|-------------|
-| 1 | `rlm_core_paper_and_github.md` | [github.com/alexzhang13/rlm](https://github.com/alexzhang13/rlm) | Core paper (arXiv:2512.24601), full GitHub README, system prompts, REPL environments, model providers, training harness, trajectory logging, and visualizer setup |
-| 2 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Original academic paper by Alex Zhang, Tim Kraska, Omar Khattab (MIT CSAIL). Full text: abstract, introduction, methods, results, emergent patterns, related work, limitations, conclusion |
-| 3 | `halo_agent_optimizer.md` | [github.com/context-labs/halo](https://github.com/context-labs/halo) | HALO Desktop App — RLM-based agent optimizer using production traces. Engine architecture, CLI options, Python API, AppWorld benchmarks, and telemetry |
-| 4 | `prime_intellect_ablations.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Prime Intellect's experimental ablations across 4 environments (DeepDive, math-python, Oolong, verbatim-copy) with GPT-5-mini. Detailed environment tips and results |
-| 5 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Original blog post introducing RLMs. Context rot intuition, context-centric view, REPL environment design, and key results (OOLONG, BrowseComp-Plus, 10M+ tokens) |
-| 6 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Analysis of context folding alternatives (AgentFold, Agentic Context Engineering) and why RLM is the most flexible approach. Prime Intellect's implementation details |
-| 7 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | Google DeepMind's RecurrentGemma using the Griffin architecture. Linear recurrences + local attention, fixed-size state, inference performance, and safety evaluation |
-| 8 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601v3) | May 2026 update (v3, 10,181 KB). Expanded experimental results, training insights, and the RLM as a language model replacement paradigm |
-| 9 | `rlm_industry_analysis.md` | Medium analysis (2026) | Industry perspective: Prime Intellect's vision, Google Developer community response, comparison with CoT/ReAct/ToT/RAG, and open research questions |
+| # | Документ | URL джерела | Опис |
+|---|----------|-------------|------|
+| 1 | `rlm_core_paper_and_github.md` | [github.com/alexzhang13/rlm](https://github.com/alexzhang13/rlm) | Основна стаття (arXiv:2512.24601), повний GitHub README, system prompts, REPL environments, model providers, training harness, trajectory logging та налаштування візуалізатора |
+| 2 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Оригінальна академічна стаття Alex Zhang, Tim Kraska, Omar Khattab (MIT CSAIL). Повний текст: abstract, introduction, methods, results, emergent patterns, related work, limitations, conclusion |
+| 3 | `halo_agent_optimizer.md` | [github.com/context-labs/halo](https://github.com/context-labs/halo) | HALO Desktop App — RLM-базований оптимізатор агентів на основі production trace-ів. Архітектура engine, CLI options, Python API, AppWorld benchmarks та telemetry |
+| 4 | `prime_intellect_ablations.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Експериментальні абляції Prime Intellect у 4 середовищах (DeepDive, math-python, Oolong, verbatim-copy) з GPT-5-mini. Детальні tips для середовищ та результати |
+| 5 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Оригінальний блог-пост, що вводить RLMs. Інтуїція context rot, context-centric view, дизайн REPL environment та ключові результати (OOLONG, BrowseComp-Plus, 10M+ tokenів) |
+| 6 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Аналіз альтернатив context folding (AgentFold, Agentic Context Engineering) та чому RLM — найбільш гнучкий підхід. Деталі реалізації Prime Intellect |
+| 7 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | RecurrentGemma від Google DeepMind на архітектурі Griffin. Лінійні рекурренції + локальна увага, fixed-size state, інференс-продуктивність та safety evaluation |
+| 8 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601v3) | Оновлення травень 2026 (v3, 10,181 KB). Розширені експериментальні результати, інсайти для навчання та RLM як парадигма заміни мовних моделей |
+| 9 | `rlm_industry_analysis.md` | Medium аналіз (2026) | Промислова перспектива: візія Prime Intellect, відповідь Google Developer community, порівняння з CoT/ReAct/ToT/RAG та відкриті дослідницькі питання |
 
-## Metadata Structure
+## Структура метаданих
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `chunk_id` | string | Unique identifier: `{document_id}_chunk_{index}` |
-| `text` | string | The actual content of the chunk |
-| `metadata.document_id` | string | Identifier of the source document |
-| `metadata.source_file` | string | Path to the raw source file |
-| `metadata.source_type` | string | Format of the source (`markdown`) |
-| `metadata.title` | string | Human-readable document title |
-| `metadata.section` | string | Nearest section heading for context |
-| `metadata.chunk_index` | integer | Sequential index within the document |
-| `metadata.language` | string | Content language (`en`) |
-| `metadata.domain` | string | Subject domain (e.g., `machine_learning`, `agent-engineering`) |
-| `metadata.document_type` | string | Document category (`research-paper`, `tool`, `blog`, `experimental-report`, `analysis`, `overview`) |
+| Поле | Тип | Опис |
+|------|-----|------|
+| `chunk_id` | string | Унікальний ідентифікатор: `{document_id}_chunk_{index}` |
+| `text` | string | Фактичний вміст чанку |
+| `metadata.document_id` | string | Ідентифікатор вихідного документа |
+| `metadata.source_file` | string | Шлях до raw-джерела |
+| `metadata.source_type` | string | Формат джерела (`markdown`) |
+| `metadata.title` | string | Людський заголовок документа |
+| `metadata.section` | string | Найближчий заголовок секції для контексту |
+| `metadata.chunk_index` | integer | Послідовний індекс в межах документа |
+| `metadata.language` | string | Мова контенту (`en`) |
+| `metadata.domain` | string | Тема домену (напр. `machine_learning`, `agent-engineering`) |
+| `metadata.document_type` | string | Категорія документа (`research-paper`, `tool`, `blog`, `experimental-report`, `analysis`, `overview`) |
 
-## Chunking Strategy
+## Стратегія chunking
 
-- **Method:** Paragraph-based sliding window with semantic boundary preservation
-- **Chunk size:** ~900 characters (within the 500–1000 range)
-- **Overlap:** ~180 characters between consecutive chunks (within the 100–200 range)
-- **Special handling:** Code blocks, CLI option tables, architecture diagrams (as text), and mathematical notation are preserved intact and never split mid-block
-- **Boundary rules:** Chunks break at paragraph boundaries when possible; large paragraphs are split at sentence boundaries
+- **Метод:** Параграфний sliding window зі збереженням семантичних меж
+- **Розмір чанку:** ~900 символів (в межах 500–1000)
+- **Overlap:** ~180 символів між сусідніми чанками (в межах 100–200)
+- **Спеціальна обробка:** Code blocks, таблиці CLI options, діаграми архітектур (як текст) та математичні позначення зберігаються цілими і ніколи не розрізаються по середині
+- **Правила меж:** Чанки розриваються на межах параграфів коли можливо; великі параграфи розрізаються на межах речень
 
-### Chunk Size Statistics
+### Статистика розміру чанків
 
-- **Total chunks:** 125
-- **Average chunk size:** 798 characters
-- **Minimum chunk size:** 199 characters
-- **Maximum chunk size:** 850 characters
-- **Chunks outside 500–1000 range:** 2/125
-- **Unique sections:** 77
-- **Generic placeholders:** 0
+- **Всього чанків:** 125
+- **Середній розмір:** 798 символів
+- **Мінімум:** 199 символів
+- **Максимум:** 850 символів
+- **Чанків поза межами 500–1000:** 2/125
+- **Унікальних секцій:** 77
+- **Placeholder-ів:** 0
 
-## Chunk Examples
+## Приклади чанків
 
-### Example 1: `rlm_core_chunk_001`
+### Приклад 1: `rlm_core_chunk_001`
 
 ```json
 {
@@ -76,11 +76,11 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Recursive Language Models — Core Paper and Implementation (MIT)* covers the section **"Core Paper & GitHub Setup"**. It is self-contained and provides machine-learning-level detail suitable for answering queries about core paper and GitHub setup.
+**Аналіз:** Цей чанк з *Recursive Language Models — Core Paper and Implementation (MIT)* покриває секцію **"Core Paper & GitHub Setup"**. Він самодостатній і надає детальний опис для відповіді на запитання про основну статтю та налаштування GitHub.
 
 ---
 
-### Example 2: `halo_agent_optimizer_chunk_005`
+### Приклад 2: `halo_agent_optimizer_chunk_005`
 
 ```json
 {
@@ -100,11 +100,11 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *HALO: Hierarchical Agent Loop Optimizer* covers the section **"HALO: Hierarchical Agent Loop Optimizer"**. It is self-contained and provides agent-engineering-level detail suitable for answering queries about available tools for root LM and subagent tools.
+**Аналіз:** Цей чанк з *HALO: Hierarchical Agent Loop Optimizer* покриває секцію **"HALO: Hierarchical Agent Loop Optimizer"**. Він самодостатній і надає детальний опис для відповіді на запитання про доступні інструменти root LM та subagent tools.
 
 ---
 
-### Example 3: `prime_intellect_ablations_chunk_008`
+### Приклад 3: `prime_intellect_ablations_chunk_008`
 
 ```json
 {
@@ -124,11 +124,11 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Prime Intellect: Recursive Language Models Ablations* covers the section **"Prime Intellect: Recursive Language Models Ablations"**. It is self-contained and provides experimental-ml-level detail suitable for answering queries about DeepDive environment strategy and math-python problems.
+**Аналіз:** Цей чанк з *Prime Intellect: Recursive Language Models Ablations* покриває секцію **"Prime Intellect: Recursive Language Models Ablations"**. Він самодостатній і надає детальний опис для відповіді на запитання про стратегію DeepDive та math-python проблеми.
 
 ---
 
-### Example 4: `prime_intellect_context_folding_chunk_005`
+### Приклад 4: `prime_intellect_context_folding_chunk_005`
 
 ```json
 {
@@ -148,11 +148,11 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Context Folding and the RLM Paradigm* covers the section **"Context Folding and the RLM Paradigm"**. It is self-contained and provides ml-theory-level detail suitable for answering queries about RLM implementation and context folding approach.
+**Аналіз:** Цей чанк з *Context Folding and the RLM Paradigm* покриває секцію **"Context Folding and the RLM Paradigm"**. Він самодостатній і надає детальний опис для відповіді на запитання про реалізацію RLM та підхід context folding.
 
 ---
 
-### Example 5: `rlm_original_paper_chunk_001`
+### Приклад 5: `rlm_original_paper_chunk_001`
 
 ```json
 {
@@ -172,74 +172,74 @@ All documents are derived from primary sources: official repositories, arXiv pap
 }
 ```
 
-**Analysis:** This chunk from *Recursive Language Models — Original Paper (MIT CSAIL)* covers the section **"Original Academic Paper"**. It is self-contained and provides machine-learning-level detail suitable for answering queries about the original RLM paper abstract and core concepts.
+**Аналіз:** Цей чанк з *Recursive Language Models — Original Paper (MIT CSAIL)* покриває секцію **"Original Academic Paper"**. Він самодостатній і надає детальний опис для відповіді на запитання про abstract оригінальної статті RLM та ключові концепції.
 
 ---
 
-## Conclusion
+## Висновки
 
-### What went well
+### Що вдалося
 
-1. **Primary source fidelity:** Every document is derived directly from official sources — the MIT paper repository, Context Labs HALO repo, Prime Intellect blog, Alex Zhang's blog, Google DeepMind's RecurrentGemma paper, and arXiv v3 updates. This ensures factual accuracy and captures exact terminology, API signatures, and experimental numbers.
+1. **Вірність першоджерел:** Кожен документ отримано безпосередньо з офіційних джерел — репозиторій статті MIT, репозиторій HALO Context Labs, блог Prime Intellect, блог Alex Zhang, стаття RecurrentGemma Google DeepMind та оновлення arXiv v3. Це гарантує фактичну точність та точні терміни, API сигнатури та експериментальні числа.
 
-2. **Comprehensive coverage:** The 9 documents span the full research-to-production spectrum: theory (blog), core research (original paper + GitHub + v3 updates), production tooling (HALO), experimental validation (Prime Intellect ablations), comparative analysis (context folding), complementary architecture (RecurrentGemma/Griffin), and industry outlook.
+2. **Комплексне покриття:** 9 документів покривають повний спектр від дослідження до продукції: теорія (блог), основні дослідження (оригінальна стаття + GitHub + v3 оновлення), production-інструменти (HALO), експериментальна валідація (Prime Intellect ablations), порівняльний аналіз (context folding), додаткова архітектура (RecurrentGemma/Griffin) та промисловий огляд.
 
-3. **Semantic coherence:** Chunks preserve paragraph and code block boundaries. The HALO CLI options table, Prime Intellect's environment tips, and RecurrentGemma's hyperparameter tables are kept intact — critical for a research assistant where precise values matter.
+3. **Семантична цілісність:** Чанки зберігають межі параграфів та code blocks. Таблиця CLI options HALO, tips середовищ Prime Intellect та таблиці гіперпараметрів RecurrentGemma залишені цілими — критично важливо для research-асистента, де точні значення мають значення.
 
-4. **Rich metadata:** Domain-specific tags (`machine_learning`, `agent-engineering`, `experimental-ml`, `model-architecture`, `ml-theory`, `industry-analysis`) enable advanced filtering. A user querying "how to install HALO" routes to `halo_agent_optimizer` chunks; "what is Griffin" routes to `recurrentgemma_griffin_architecture`.
+4. **Багаті метадані:** Domain-специфічні теги (`machine_learning`, `agent-engineering`, `experimental-ml`, `model-architecture`, `ml-theory`, `industry-analysis`) дозволяють розширене фільтрування. Користувач, який запитує "how to install HALO" отримує чанки з `halo_agent_optimizer`; "what is Griffin" → `recurrentgemma_griffin_architecture`.
 
-5. **Overlap strategy:** The 180-character overlap ensures cross-paragraph concepts (e.g., "REPL environment → sub-LM calls → final answer") remain retrievable even at chunk boundaries.
+5. **Стратегія overlap:** 180-символьний overlap гарантує, що cross-paragraph концепти (напр. "REPL environment → sub-LM calls → final answer") залишаються retrievable навіть на межах чанків.
 
-6. **Zero generic placeholders:** All 125 chunks have meaningful section names — no "General" or "Overview" placeholders that would degrade retrieval quality.
+6. **Нуль placeholder-ів:** Всі 125 чанків мають змістовні назви секцій — жодних "General" чи "Overview" placeholder-ів, які б погіршили якість retrieval.
 
-7. **Actionable content:** Chunks contain concrete, copy-pasteable information: system prompts, CLI commands, Python API examples, benchmark numbers, environment tips, and architecture details. This makes the chatbot immediately useful for practitioners.
+7. **Практичний контент:** Чанки містять конкретну, копіювану інформацію: system prompts, CLI команди, приклади Python API, benchmark-числа, tips середовищ та деталі архітектур. Це робить чат-бота миттєво корисним для практиків.
 
-### What needs improvement
+### Що потребує покращення
 
-1. **Cross-references:** Some chunks reference concepts from other documents (e.g., the blog mentions the paper, HALO references the RLM paradigm, RecurrentGemma mentions context windows). Adding explicit `related_chunks` or `see_also` metadata would improve multi-document retrieval.
+1. **Крос-посилання:** Деякі чанки посилаються на концепти з інших документів (напр. блог згадує статтю, HALO посилається на RLM парадигму, RecurrentGemma згадує context windows). Додавання експліцитних `related_chunks` або `see_also` в метадані покращило б multi-document retrieval.
 
-2. **Temporal metadata:** Adding `publication_date` and `last_verified` fields would help the chatbot warn users when information may be outdated. The blog is from Oct 2025, the original paper from Dec 2025, the v3 paper from May 2026, and HALO is actively developed.
+2. **Темпоральні метадані:** Додавання `publication_date` та `last_verified` полів допомогло б чат-боту попереджати користувачів, коли інформація може бути застарілою. Блог від жовтня 2025, оригінальна стаття від грудня 2025, v3 стаття від травня 2026, HALO активно розробляється.
 
-3. **Code executability:** Many chunks contain code snippets (Python, Bash, CLI). A future improvement would be to tag code blocks with `language` and `tested` flags, and potentially include expected output.
+3. **Виконуваний код:** Багато чанків містять code snippets (Python, Bash, CLI). Майбутнє покращення — теги code blocks з `language` та `tested` прапорцями, потенційно з очікуваним output-ом.
 
-4. **Hierarchical metadata:** Adding parent/child section relationships (e.g., "REPL Environments → DockerREPL") would enable better hierarchical retrieval strategies.
+4. **Ієрархічні метадані:** Додавання parent/child зв'язків секцій (напр. "REPL Environments → DockerREPL") дозволило б кращі ієрархічні стратегії retrieval.
 
-5. **Chunk size uniformity:** Some introductory/overview chunks are shorter than 500 characters due to natural paragraph boundaries. A post-processing merge step could combine adjacent short chunks to improve embedding density.
+5. **Рівномірність розміру чанків:** Деякі introductory/overview чанки коротші за 500 символів через природні межі параграфів. Post-processing merge крок міг би об'єднати сусідні короткі чанки для покращення embedding density.
 
-6. **Missing visual content:** The original sources contain important diagrams (RLM architecture flowchart, HALO engine diagram, RecurrentGemma layer structure, benchmark charts). The text-based knowledge base cannot capture these. Adding image URLs or diagram descriptions would help.
+6. **Відсутній візуальний контент:** Оригінальні джерела містять важливі діаграми (архітектура RLM flowchart, діаграма HALO engine, структура шарів RecurrentGemma, benchmark charts). Text-based knowledge base не може їх зберегти. Додавання image URLs або описів діаграм допомогло б.
 
-7. **Version tracking:** HALO and the RLM library are actively developed. Adding `version` or `commit_hash` metadata would help users know which version of the API a chunk refers to.
+7. **Версійний трекінг:** HALO та RLM library активно розробляються. Додавання `version` або `commit_hash` в метадані допомогло б користувачам знати, яка версія API в чанку.
 
-8. **Multilingual support:** Currently all content is in English. For a global research community, adding translations or parallel corpus in other languages would expand accessibility.
+8. **Мульти-мовна підтримка:** Наразі весь контент англійською. Для глобальної дослідницької спільноти додавання перекладів або паралельних корпусів іншими мовами розширило б доступність.
 
-## Project Structure
+## Структура проєкту
 
 ```
 .
 ├── README.md
 ├── data/
 │   ├── raw/
-│   │   ├── rlm_core_paper_and_github.md      # MIT paper + GitHub
-│   │   ├── rlm_original_paper.md             # Original academic paper (PDF)
+│   │   ├── rlm_core_paper_and_github.md      # MIT стаття + GitHub
+│   │   ├── rlm_original_paper.md             # Оригінальна академічна стаття (PDF)
 │   │   ├── halo_agent_optimizer.md           # Context Labs HALO
-│   │   ├── prime_intellect_ablations.md      # Prime Intellect experiments
-│   │   ├── alexzhang_blog_context_rot.md     # Original blog post
-│   │   ├── prime_intellect_context_folding.md # Context folding analysis
+│   │   ├── prime_intellect_ablations.md      # Prime Intellect експерименти
+│   │   ├── alexzhang_blog_context_rot.md     # Оригінальний блог-пост
+│   │   ├── prime_intellect_context_folding.md # Аналіз context folding
 │   │   ├── recurrentgemma_griffin_architecture.md # Google DeepMind
-│   │   ├── rlm_paper_v3_updates.md           # May 2026 update
-│   │   └── rlm_industry_analysis.md          # Industry outlook
+│   │   ├── rlm_paper_v3_updates.md           # Оновлення травень 2026
+│   │   └── rlm_industry_analysis.md          # Промисловий огляд
 │   └── processed/
-│       └── chunks.jsonl                      # 125 chunks (99,751 chars)
+│       └── chunks.jsonl                      # 125 чанків (99,751 chars)
 └── scripts/
     └── prepare_knowledge_base.py             # Chunking pipeline
 ```
 
-## Usage
+## Використання
 
-To regenerate the knowledge base from raw sources:
+Для регенерації knowledge base з raw-джерел:
 
 ```bash
 python scripts/prepare_knowledge_base.py
 ```
 
-The script reads all Markdown files from `data/raw/` and produces `data/processed/chunks.jsonl`.
+Скрипт читає всі Markdown файли з `data/raw/` і генерує `data/processed/chunks.jsonl`.
