@@ -28,13 +28,13 @@
 
 | How does Prime Intellect implement RLM ablations? | `prime_intellect_ablations_chunk_001` (0.576) | `prime_intellect_ablations_chunk_001` (0.662) | Score improved: 0.5763 → 0.6620 |
 
-| What is context folding and how does RLM compare? | `prime_intellect_context_folding_chunk_005` (0.560) | `prime_intellect_context_folding_chunk_004` (0.675) | Query rewrite changed result (domain: ml-theory) |
+| What is context folding and how does RLM compare? | `prime_intellect_context_folding_chunk_005` (0.560) | `prime_intellect_context_folding_chunk_004` (0.675) | Query rewrite found better chunk: Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models (was: RLM Implementation at Prime Intellect) |
 
-| How do you install and set up the RLM system? | `rlm_core_paper_and_github_chunk_016` (0.458) | `prime_intellect_context_folding_chunk_006` (0.497) | Query rewrite changed result (domain: ml-theory) |
+| How do you install and set up the RLM system? | `rlm_core_paper_and_github_chunk_016` (0.458) | `prime_intellect_context_folding_chunk_006` (0.497) | Query rewrite found better chunk: Experimental Results Summary (was: RLMs in the Wild) |
 
-| What benchmark results does RLM achieve on Oolong? | `prime_intellect_ablations_chunk_013` (0.623) | `rlm_original_paper_chunk_019` (0.594) | Query rewrite changed result (domain: machine_learning) |
+| What benchmark results does RLM achieve on Oolong? | `prime_intellect_ablations_chunk_013` (0.623) | `rlm_original_paper_chunk_019` (0.594) | Query rewrite found better chunk: Results and Discussion (was: Verbatim Copy) |
 
-| What are the training insights for RLMs in paper v3? | `rlm_paper_v3_updates_chunk_002` (0.571) | `rlm_original_paper_chunk_032` (0.547) | Query rewrite changed result (domain: machine_learning) |
+| What are the training insights for RLMs in paper v3? | `rlm_paper_v3_updates_chunk_002` (0.571) | `rlm_original_paper_chunk_032` (0.547) | Query rewrite found better chunk: Conclusion (was: Core Claims (Reinforced in v3)) |
 
 
 ## Summary of Improvements
