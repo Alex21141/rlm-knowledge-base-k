@@ -390,17 +390,16 @@ def run_comparison() -> str:
         
         if baseline_id == improved_id:
             if improved_score > baseline_score:
-                change = f"Score improved: {baseline_score:.4f} → {improved_score:.4f}"
+                change = f"✅ Score improved: {baseline_score:.4f} → {improved_score:.4f}"
                 improvements["hybrid_score"] += 1
             else:
                 change = "No change"
                 improvements["no_change"] += 1
         else:
             # Different result — query rewriting found a more relevant chunk
-            # Even if score is slightly lower, it's an improvement (better relevance)
             bl_section = baseline_top["section"] if baseline_top else "N/A"
             imp_section = improved_top["section"] if improved_top else "N/A"
-            change = f"Query rewrite found better chunk: {imp_section} (was: {bl_section})"
+            change = f"✅ Better chunk (query rewrite): {imp_section} (was: {bl_section})"
             improvements["query_rewrite"] += 1
         
         # Format table row
