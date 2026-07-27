@@ -34,7 +34,7 @@
 
 | What benchmark results does RLM achieve on Oolong? | `prime_intellect_ablations_chunk_013` (0.623) | `rlm_original_paper_chunk_019` (0.594) | ✅ Better chunk (query rewrite): Results and Discussion (was: Verbatim Copy) |
 
-| What are the training insights for RLMs in paper v3? | `rlm_vs_rag_comparison_chunk_008` (0.544) | `rlm_original_paper_chunk_032` (0.547) | ✅ Better chunk (query rewrite): Conclusion (was: The completeness advantage) |
+| What are the training insights for RLMs in paper v3? | `rlm_comprehensive_guide_chunk_015` (0.531) | `rlm_original_paper_chunk_032` (0.547) | ✅ Better chunk (query rewrite): Conclusion (was: Post-Training: Making RLM-Qwen3-8B) |
 
 
 ## Summary of Improvements
