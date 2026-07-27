@@ -18,6 +18,8 @@
 | 6 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | RecurrentGemma від Google DeepMind на архітектурі Griffin. Лінійні рекурренції + локальна увага, fixed-size state, інференс-продуктивність та safety evaluation |
 | 7 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601v3) | Оновлення травень 2026 (v3, 10,181 KB). Розширені експериментальні результати, інсайти для навчання та RLM як парадигма заміни мовних моделей |
 | 8 | `rlm_industry_analysis.md` | Medium аналіз (2026) | Промислова перспектива: візія Prime Intellect, відповідь Google Developer community, порівняння з CoT/ReAct/ToT/RAG та відкриті дослідницькі питання |
+| 9 | `rlm_industry_analysis.md` | Medium аналіз (2026) | Промислова перспектива: візія Prime Intellect, відповідь Google Developer community, порівняння з CoT/ReAct/ToT/RAG та відкриті дослідницькі питання |
+| 10 | `rlm_vs_rag_comparison.md` | [rlm.md/blog](https://rlm.md/blog/rlm-vs-rag-retrieval-augmented-generation.html) | Детальне порівняння RLM vs RAG: архітектура, failure modes RAG (relevance gap, aggregation gap, completeness gap), completeness advantage RLM, cost/latency trade-offs, when to use each |
 | 9 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Оригінальна академічна стаття Alex Zhang, Tim Kraska, Omar Khattab (MIT CSAIL). Повний текст: abstract, introduction, methods, results, emergent patterns, related work, limitations, conclusion |
 
 ## Структура метаданих
@@ -46,11 +48,11 @@
 
 ### Статистика розміру чанків
 
-- **Всього чанків:** 118
-- **Середній розмір:** 792 символи
+- **Всього чанків:** 133
+- **Середній розмір:** 789 символів
 - **Мінімум:** 199 символів
 - **Максимум:** 852 символи
-- **Чанків у 500–1000:** 115/118 (97%)
+- **Чанків у 500–1000:** 129/133 (97%)
 
 ## Приклади чанків
 
@@ -194,13 +196,13 @@ python scripts/retrieval.py test
 │   │   ├── rlm_industry_analysis.md
 │   │   └── rlm_original_paper.md
 │   └── processed/
-│       └── chunks.jsonl            # 118 чанків
+│       └── chunks.jsonl            # 133 чанків
 ├── scripts/
 │   ├── prepare_knowledge_base.py   # HW1: chunking pipeline
 │   └── retrieval.py                # HW2: semantic retrieval
 ├── index/
 │   ├── faiss.index                 # FAISS vector index
-│   └── metadata.json               # Chunk metadata (118 entries)
+│   └── metadata.json               # Chunk metadata (133 entries)
 └── outputs/
     └── retrieval_examples.md       # 10 тестових запитів з результатами
 ```
