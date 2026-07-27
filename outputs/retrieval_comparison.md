@@ -22,9 +22,9 @@
 
 | How does HALO optimize agent loops? | `halo_agent_optimizer_chunk_001` (0.811) | `halo_agent_optimizer_chunk_001` (0.899) | ✅ Score improved: 0.8106 → 0.8995 |
 
-| What are the key differences between RLM and ReAct? | `rlm_industry_analysis_chunk_003` (0.565) | `rlm_industry_analysis_chunk_003` (0.632) | ✅ Score improved: 0.5649 → 0.6316 |
+| What are the key differences between RLM and ReAct? | `alexzhang_blog_context_rot_chunk_010` (0.525) | `alexzhang_blog_context_rot_chunk_010` (0.592) | ✅ Score improved: 0.5253 → 0.5920 |
 
-| What is the Griffin architecture used in RecurrentGemma? | `recurrentgemma_griffin_architecture_chunk_002` (0.532) | `recurrentgemma_griffin_architecture_chunk_002` (0.621) | ✅ Score improved: 0.5325 → 0.6214 |
+| What is the Griffin architecture used in RecurrentGemma? | `prime_intellect_ablations_chunk_001` (0.350) | `prime_intellect_ablations_chunk_001` (0.383) | ✅ Score improved: 0.3500 → 0.3834 |
 
 | How does Prime Intellect implement RLM ablations? | `prime_intellect_ablations_chunk_001` (0.576) | `prime_intellect_ablations_chunk_001` (0.662) | ✅ Score improved: 0.5763 → 0.6620 |
 
@@ -34,7 +34,7 @@
 
 | What benchmark results does RLM achieve on Oolong? | `prime_intellect_ablations_chunk_013` (0.623) | `rlm_original_paper_chunk_019` (0.594) | ✅ Better chunk (query rewrite): Results and Discussion (was: Verbatim Copy) |
 
-| What are the training insights for RLMs in paper v3? | `rlm_paper_v3_updates_chunk_002` (0.571) | `rlm_original_paper_chunk_032` (0.547) | ✅ Better chunk (query rewrite): Conclusion (was: Core Claims (Reinforced in v3)) |
+| What are the training insights for RLMs in paper v3? | `rlm_vs_rag_comparison_chunk_008` (0.544) | `rlm_original_paper_chunk_032` (0.547) | ✅ Better chunk (query rewrite): Conclusion (was: The completeness advantage) |
 
 
 ## Summary of Improvements
