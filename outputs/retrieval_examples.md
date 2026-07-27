@@ -4,7 +4,7 @@
 
 **Index:** FAISS (Inner Product, dim=384)
 
-**Chunks indexed:** 244
+**Chunks indexed:** 257
 
 **Top-k:** 3
 
@@ -141,7 +141,15 @@ ReAct models interleave reasoning and action. RL...
 
 
 
-Top-2: rlm_original_paper_chunk_017 | score: 0.4302
+Top-2: rlm_core_paper_and_github_chunk_016 | score: 0.4652
+  Text: e many amazing demos and production-ready use cases of RLMs. Notable examples that explicitly use RLMs as a central piece of their design include HALO
+
+(Context Labs) and various agent optimization to...
+  Source: data/raw/rlm_core_paper_and_github.md | Section: RLMs in the Wild
+
+
+
+Top-3: rlm_original_paper_chunk_017 | score: 0.4302
   Text: o for compaction and GPT-5 to provide the final
 answer.
 
@@ -150,16 +158,6 @@ that can execute
 
 code inside of a ReAct (Yao et al., 2023) loop. ...
   Source: data/raw/rlm_original_paper.md | Section: Results and Discussion
-
-
-
-Top-3: prime_intellect_context_folding_chunk_006 | score: 0.4263
-  Text: it is ready to be used in any environment. They provide several RLM-based environments on the Environments Hub, and support training with `prime-rl`.
-
-### Key Implementation Details
-
-- **Sub-LLM calls...
-  Source: data/raw/prime_intellect_context_folding.md | Section: Experimental Results Summary
 
 
 
@@ -282,7 +280,15 @@ Top-3: rlm_core_paper_and_github_chunk_007 | score: 0.5371
 **Expected:** pip install, REPL environments, Docker setup
 
 
-Top-1: prime_intellect_context_folding_chunk_006 | score: 0.4307
+Top-1: rlm_core_paper_and_github_chunk_016 | score: 0.4581
+  Text: e many amazing demos and production-ready use cases of RLMs. Notable examples that explicitly use RLMs as a central piece of their design include HALO
+
+(Context Labs) and various agent optimization to...
+  Source: data/raw/rlm_core_paper_and_github.md | Section: RLMs in the Wild
+
+
+
+Top-2: prime_intellect_context_folding_chunk_006 | score: 0.4307
   Text: it is ready to be used in any environment. They provide several RLM-based environments on the Environments Hub, and support training with `prime-rl`.
 
 ### Key Implementation Details
@@ -292,7 +298,7 @@ Top-1: prime_intellect_context_folding_chunk_006 | score: 0.4307
 
 
 
-Top-2: rlm_core_paper_and_github_chunk_011 | score: 0.3374
+Top-3: rlm_core_paper_and_github_chunk_011 | score: 0.3374
   Text: nswer the original query in your final answer.
 ```
 
@@ -306,12 +312,6 @@ pip install rlms
 
 The default RLM client uses a REPL environment t...
   Source: data/raw/rlm_core_paper_and_github.md | Section: REPL Environments
-
-
-
-Top-3: prime_intellect_context_folding_chunk_005 | score: 0.3283
-  Text: The RLM allows the model to actively manage its own context. This approach is more in line with The Bitter Lesson than the ones presented before; it enables training directly with the RLM scaffolding ...
-  Source: data/raw/prime_intellect_context_folding.md | Section: RLM Implementation at Prime Intellect
 
 
 
