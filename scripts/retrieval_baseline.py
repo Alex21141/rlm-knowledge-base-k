@@ -59,8 +59,8 @@ TEST_QUERIES = [
         "expect": "RLM is recursive, ReAct is reasoning+acting with tools",
     },
     {
-        "query": "What is the Griffin architecture used in RecurrentGemma?",
-        "expect": "linear recurrences, fixed-size state, local attention",
+        "query": "What are the seven failure points when engineering a RAG system?",
+        "expect": "indexing, querying, chunking, scoring, reranking, generation, evaluation",
     },
     {
         "query": "How does Prime Intellect implement RLM ablations?",
@@ -79,8 +79,8 @@ TEST_QUERIES = [
         "expect": "Oolong benchmark, multi-step reasoning, accuracy",
     },
     {
-        "query": "What are the training insights for RLMs in paper v3?",
-        "expect": "training environment, reinforcement learning, scaling",
+        "query": "What is the original RAG approach from NeurIPS 2020?",
+        "expect": "retrieval + generation pipeline, dense retrieval with DPR, knowledge-grounded dialogue",
     },
 ]
 
