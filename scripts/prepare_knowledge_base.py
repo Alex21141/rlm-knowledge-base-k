@@ -97,6 +97,39 @@ DOC_METADATA_MAP = {
         "document_type": "analysis",
         "source_type": "markdown",
     },
+
+    "rag_original_neurips2020.md": {
+        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
+        "section": "RAG Foundations",
+        "language": "en",
+        "domain": "retrieval-augmented-generation",
+        "document_type": "research-paper",
+        "source_type": "markdown",
+    },
+    "rag_failure_points_arxiv2024.md": {
+        "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., 2024)",
+        "section": "RAG Failure Points",
+        "language": "en",
+        "domain": "retrieval-augmented-generation",
+        "document_type": "analysis",
+        "source_type": "markdown",
+    },
+    "rlm_comprehensive_guide.md": {
+        "title": "RLM.md — Comprehensive Guide to Recursive Language Models",
+        "section": "RLM Comprehensive Guide",
+        "language": "en",
+        "domain": "recursive-language-models",
+        "document_type": "guide",
+        "source_type": "markdown",
+    },
+    "llm_reasoning_paradigms_evolution.md": {
+        "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems",
+        "section": "Reasoning Paradigms Evolution",
+        "language": "en",
+        "domain": "ml-reasoning",
+        "document_type": "analysis",
+        "source_type": "markdown",
+    },
 }
 
 
