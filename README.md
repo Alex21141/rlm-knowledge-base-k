@@ -14,12 +14,12 @@
 | 2 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Оригінальна академічна стаття Alex Zhang, Tim Kraska, Omar Khattab (MIT CSAIL). Повний текст: abstract, introduction, methods, results, emergent patterns, related work, limitations, conclusion |
 | 3 | `halo_agent_optimizer.md` | [github.com/context-labs/halo](https://github.com/context-labs/halo) | HALO Desktop App — RLM-базований оптимізатор агентів на основі production trace-ів. Архітектура engine, CLI options, Python API, AppWorld benchmarks та telemetry |
 | 4 | `prime_intellect_ablations.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Експериментальні абляції Prime Intellect у 4 середовищах (DeepDive, math-python, Oolong, verbatim-copy) з GPT-5-mini. Детальні tips для середовищ та результати |
-| 5 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Оригінальний блог-пост, що вводить RLMs. Інтуїція context rot, context-centric view, дизайн REPL environment та ключові результати (OOLONG, BrowseComp-Plus, 10M+ tokenів) |
-| 6 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Аналіз альтернатив context folding (AgentFold, Agentic Context Engineering) та чому RLM — найбільш гнучкий підхід. Деталі реалізації Prime Intellect |
-| 7 | `recurrentgemma_griffin_architecture.md` | [arXiv:2404.07839](https://arxiv.org/abs/2404.07839) | RecurrentGemma від Google DeepMind на архітектурі Griffin. Лінійні рекурренції + локальна увага, fixed-size state, інференс-продуктивність та safety evaluation |
-| 8 | `rlm_paper_v3_updates.md` | [arXiv:2512.24601v3](https://arxiv.org/abs/2512.24601v3) | Оновлення травень 2026 (v3, 10,181 KB). Розширені експериментальні результати, інсайти для навчання та RLM як парадигма заміни мовних моделей |
-| 9 | `rlm_industry_analysis.md` | Medium аналіз (2026) | Промислова перспектива: візія Prime Intellect, відповідь Google Developer community, порівняння з CoT/ReAct/ToT/RAG та відкриті дослідницькі питання |
-| 10 | `rlm_vs_rag_comparison.md` | [rlm.md/blog](https://rlm.md/blog/rlm-vs-rag-retrieval-augmented-generation.html) | Детальне порівняння RLM vs RAG: архітектура, failure modes RAG (relevance gap, aggregation gap, completeness gap), completeness advantage RLM, cost/latency trade-offs, when to use each |
+| 5 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Аналіз альтернатив context folding (AgentFold, Agentic Context Engineering) та чому RLM — найбільш гнучкий підхід. Деталі реалізації Prime Intellect |
+| 6 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Оригінальний блог-пост, що вводить RLMs. Інтуїція context rot, context-centric view, дизайн REPL environment та ключові результати (OOLONG, BrowseComp-Plus, 10M+ tokenів) |
+| 7 | `rlm_vs_rag_comparison.md` | [rlm.md/blog](https://rlm.md/blog/rlm-vs-rag-retrieval-augmented-generation.html) | Детальне порівняння RLM vs RAG: архітектура, failure modes RAG, completeness advantage RLM, cost/latency trade-offs, when to use each |
+| 8 | `rag_original_neurips2020.md` | [arXiv:2005.11401](https://arxiv.org/abs/2005.11401) | Original RAG paper (Lewis et al., NeurIPS 2020). Knowledge-intensive NLP tasks: retrieval + generation pipeline, dense retrieval with DPR, knowledge-grounded dialogue |
+| 9 | `rag_failure_points_arxiv2024.md` | [arXiv:2401.05856](https://arxiv.org/abs/2401.05856) | Seven Failure Points When Engineering a RAG System (Barnett et al., 2024). Practical failure modes: indexing, querying, chunking, scoring, reranking, generation, evaluation |
+| 10 | `rag_survey_arxiv2024.md` | [arXiv:2312.10997](https://arxiv.org/abs/2312.10997) | Retrieval-Augmented Generation for Large Language Models: A Survey (Gao et al., 2024). Comprehensive overview: taxonomy, methods, benchmarks, open challenges |
 
 ## Структура метаданих
 
@@ -231,7 +231,7 @@
 │   │   ├── rlm_industry_analysis.md          # Промисловий огляд
 │   │   └── rlm_vs_rag_comparison.md          # RLM vs RAG порівняння
 │   └── processed/
-│       └── chunks.jsonl                      # 133 чанків (104,994 chars)
+│       └── chunks.jsonl                      # 248 чанків
 └── scripts/
     └── prepare_knowledge_base.py             # Chunking pipeline
 ```
