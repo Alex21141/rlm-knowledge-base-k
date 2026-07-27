@@ -47,13 +47,13 @@
 
 ### Статистика розміру чанків
 
-- **Всього чанків:** 248
-- **Середній розмір:** 804 символів
-- **Мінімум:** 204 символів
-- **Максимум:** 852 символів
-- **В межах 500–1000:** 244/248 (98%)
-- **Коротших за 500:** 4/248
-- **Довших за 1000:** 0/248
+- **Всього чанків:** 244
+- **Середній розмір:** 812 символів
+- **Мінімум:** 531 символ
+- **Максимум:** 913 символ
+- **В межах 500–1000:** 244/244 (100%)
+- **Коротших за 500:** 0/244
+- **Довших за 1000:** 0/244
 - **Унікальних секцій:** 103
 - **Placeholder-ів:** 0
 
@@ -69,17 +69,17 @@
 
 4. **Багаті метадані:** Domain-теги (`machine_learning`, `agent-engineering`, `experimental-ml`, `ml-theory`, `analysis`, `survey`) для фільтрування. Напр. "install HALO" → `halo_agent_optimizer`; "RAG failure points" → `rag_failure_points`.
 
-5. **Zero oversized:** Всі 248 чанків ≤ 852 символів — жодних >1000, що погіршували б embedding quality.
+5. **Zero undersized:** Всі 244 чанків ≥ 531 символів — жодних <500, що забезпечує стабільні embedding quality.
+
+6. **Zero oversized:** Всі 244 чанків ≤ 913 символів — жодних >1000, що погіршували б embedding quality.
 
 ### Що потребує покращення
 
-1. **Крос-посилання:** Чанки посилаються на концепти з інших документів. `related_chunks` в метадани покращило б multi-document retrieval.
+1. **Крос-посилання:** Чанки посилаються на концепти з інших документів. `related_chunks` в метаданих покращило б multi-document retrieval.
 
 2. **Темпоральні метадані:** `publication_date` + `last_verified` для попередження про застарілу інформацію.
 
-3. **Рівномірність розміру:** 4 чанків <500 символів. Merge сусідніх коротких покращив би embedding density.
-
-4. **Візуальний контент:** Діаграми оригіналів (RLM flowchart, HALO engine) втрачені. Image URLs або описи допомогли б.
+3. **Візуальний контент:** Діаграми оригіналів (RLM flowchart, HALO engine) втрачені. Image URLs або описи допомогли б.
 
 ## Структура проєкту
 
@@ -88,21 +88,20 @@
 ├── README.md
 ├── data/
 │   ├── raw/
-│   ├── alexzhang_blog_context_rot.md
-│   ├── halo_agent_optimizer.md
-│   ├── prime_intellect_ablations.md
-│   ├── prime_intellect_context_folding.md
-│   ├── rag_failure_points_arxiv2024.md
-│   ├── rag_original_neurips2020.md
-│   ├── rag_survey_arxiv2024.md
-│   ├── rlm_core_paper_and_github.md
-│   ├── rlm_original_paper.md
-│   └── rlm_vs_rag_comparison.md
+│   │   ├── alexzhang_blog_context_rot.md
+│   │   ├── halo_agent_optimizer.md
+│   │   ├── prime_intellect_ablations.md
+│   │   ├── prime_intellect_context_folding.md
+│   │   ├── rag_failure_points_arxiv2024.md
+│   │   ├── rag_original_neurips2020.md
+│   │   ├── rag_survey_arxiv2024.md
+│   │   ├── rlm_core_paper_and_github.md
+│   │   ├── rlm_original_paper.md
+│   │   └── rlm_vs_rag_comparison.md
 │   └── processed/
-│       └── chunks.jsonl
+│       └── chunks.jsonl                      # 244 чанків
 └── scripts/
-    └── prepare_knowledge_base.py
-
+    └── prepare_knowledge_base.py             # Chunking pipeline
 ```
 
 ## Використання
