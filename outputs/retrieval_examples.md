@@ -4,7 +4,7 @@
 
 **Index:** FAISS (Inner Product, dim=384)
 
-**Chunks indexed:** 84
+**Chunks indexed:** 118
 
 **Top-k:** 3
 
@@ -16,7 +16,15 @@
 **Expected:** context-centric view, recursive decomposition, REPL environment
 
 
-Top-1: prime_intellect_ablations_chunk_005 | score: 0.6126
+Top-1: rlm_original_paper_chunk_006 | score: 0.6195
+  Text: general context about the REPL environment (e.g., the length
+of the string P), and permits it to write code that peeks into and decomposes
+P, and to iteratively observe any side effects from execution...
+  Source: data/raw/rlm_original_paper.md | Section: Introduction
+
+
+
+Top-2: prime_intellect_ablations_chunk_005 | score: 0.6126
   Text: This setup allows the model to generate its final answer via a form of diffusion, which occurs over the course of its reasoning chain.
 
 ### Input Data Handling
@@ -26,26 +34,18 @@ Both a prompt and extra input data can ...
 
 
 
-Top-2: rlm_core_paper_and_github_chunk_001 | score: 0.5235
-  Text: # Recursive Language Models  --  Core Paper and Implementation
+Top-3: rlm_original_paper_chunk_031 | score: 0.5552
+  Text: al., 2025) have explored deferring
+the choice of sub-LM calls to the LM. These techniques emphasize task
+decomposition through recursive LM calls, but
 
-**Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab (MIT CSAIL)
-**Paper:** arXiv:2512.24601 (Dec 31, 2025)
-**Code:** https://github.com...
-  Source: data/raw/rlm_core_paper_and_github.md | Section: Recursive Language Models  --  Core Paper and Implementation
-
-
-
-Top-3: rlm_core_paper_and_github_chunk_007 | score: 0.4859
-  Text: RLMs support configurable max recursion depths:
-- **Depth 0:** RLM without sub-calling capabilities (standard LM behavior).
-- **Depth 1:** Allows sub-calling LLMs on specific context snippets.
-- **Dep...
-  Source: data/raw/rlm_core_paper_and_github.md | Section: Experimental Results
+are unable to handle long context
+inputs beyond ...
+  Source: data/raw/rlm_original_paper.md | Section: Limitations and Future Work
 
 
 
-**Comment:** partially relevant
+**Comment:** relevant
 
 
 ---
@@ -217,22 +217,22 @@ Prim...
 
 
 
-Top-2: prime_intellect_ablations_chunk_003 | score: 0.4649
+Top-2: rlm_original_paper_chunk_021 | score: 0.4949
+  Text: lling is necessary. In §3.1, we see RLM(Qwen3-Coder) perform the
+necessary semantic transformation line-by-line through recursive sub-calls,
+while the
+
+ablation without subcalls is forced to use keywo...
+  Source: data/raw/rlm_original_paper.md | Section: Emergent Patterns in RLM Trajectories
+
+
+
+Top-3: prime_intellect_ablations_chunk_003 | score: 0.4649
   Text: nt input
 - It can use sub-LLMs  --  fresh instances of itself  --  to perform work for it, and programmatically pipe parts of the input data into them
 
 These skills combined make it a great candidate ...
   Source: data/raw/prime_intellect_ablations.md | Section: Prime Intellect's Implementation Details
-
-
-
-Top-3: prime_intellect_context_folding_chunk_006 | score: 0.4563
-  Text: it is ready to be used in any environment. They provide several RLM-based environments on the Environments Hub, and support training with `prime-rl`.
-
-### Key Implementation Details
-
-- **Sub-LLM calls...
-  Source: data/raw/prime_intellect_context_folding.md | Section: Experimental Results Summary
 
 
 
@@ -329,21 +329,24 @@ scaffolding may not be worth it for simple math ...
 
 
 
-Top-2: rlm_paper_v3_updates_chunk_002 | score: 0.5836
-  Text: y 2.2 MB, suggesting substantial new experimental results, additional benchmarks, or expanded theoretical analysis.
+Top-2: rlm_original_paper_chunk_021 | score: 0.6028
+  Text: lling is necessary. In §3.1, we see RLM(Qwen3-Coder) perform the
+necessary semantic transformation line-by-line through recursive sub-calls,
+while the
 
-## Core Claims (Reinforced in v3)
-
-RLMs can successfully process inputs up to two o...
-  Source: data/raw/rlm_paper_v3_updates.md | Section: Core Claims (Reinforced in v3)
+ablation without subcalls is forced to use keywo...
+  Source: data/raw/rlm_original_paper.md | Section: Emergent Patterns in RLM Trajectories
 
 
 
-Top-3: prime_intellect_ablations_chunk_010 | score: 0.5268
-  Text: sessions that were recorded and from which some information was extracted.
+Top-3: rlm_original_paper_chunk_019 | score: 0.5968
+  Text: of $0.99 and outperforms
+both the summarization and retrieval baselines by over 29%. Furthermore, on
+tasks where processing costs scale with the input
 
-Oolong is a complex, long-context eval that many models struggle with. The RLM has much promise because the long context is ...
-  Source: data/raw/prime_intellect_ablations.md | Section: Oolong
+context, RLMs make
+significant improvements over...
+  Source: data/raw/rlm_original_paper.md | Section: Results and Discussion
 
 
 

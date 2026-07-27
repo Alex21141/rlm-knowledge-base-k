@@ -45,11 +45,11 @@ All documents are derived from primary sources: official repositories, arXiv pap
 
 ### Chunk Size Statistics
 
-- **Total chunks:** 81
-- **Average chunk size:** 727 characters
-- **Minimum chunk size:** 125 characters
-- **Maximum chunk size:** 898 characters
-- **Chunks outside 500–1000 range:** 7/81
+- **Total chunks:** 118
+- **Average chunk size:** 792 characters
+- **Minimum chunk size:** 199 characters
+- **Maximum chunk size:** 852 characters
+- **Chunks in 500–1000 range:** 115/118 (97%)
 
 ## Chunk Examples
 
@@ -278,22 +278,22 @@ python scripts/retrieval.py test
 
 ### Test Results
 
-10 queries tested across all 8 source documents. Results saved to `outputs/retrieval_examples.md`.
+10 queries tested across all 9 source documents. Results saved to `outputs/retrieval_examples.md`.
 
 | Query | Topic | Top-1 Score | Relevance |
 |-------|-------|-------------|-----------|
-| RLM long prompts | Core concept | 0.78 | ✅ relevant |
-| Context rot | Core concept | 0.74 | ✅ relevant |
-| HALO agent optimization | Tool | 0.72 | ✅ relevant |
-| RLM vs ReAct | Comparison | 0.69 | ✅ relevant |
-| Griffin architecture | RecurrentGemma | 0.71 | ✅ relevant |
-| Prime Intellect ablations | Experiments | 0.68 | ✅ relevant |
-| Context folding vs RLM | Comparison | 0.73 | ✅ relevant |
-| RLM installation | Setup | 0.67 | ✅ relevant |
-| Oolong benchmark | Results | 0.70 | ✅ relevant |
-| Paper v3 training | Research | 0.76 | ✅ relevant |
+| RLM long prompts | Core concept | 0.62 | ✅ relevant |
+| Context rot | Core concept | 0.62 | ✅ relevant |
+| HALO agent optimization | Tool | 0.81 | ✅ relevant |
+| RLM vs ReAct | Comparison | 0.56 | ✅ relevant |
+| Griffin architecture | RecurrentGemma | 0.53 | ✅ relevant |
+| Prime Intellect ablations | Experiments | 0.58 | ✅ relevant |
+| Context folding vs RLM | Comparison | 0.56 | ✅ relevant |
+| RLM installation | Setup | 0.46 | ✅ relevant |
+| Oolong benchmark | Results | 0.62 | ✅ relevant |
+| Paper v3 training | Research | 0.57 | ✅ relevant |
 
-All 10 queries returned **relevant** results with top-1 scores ≥ 0.67.
+All 10 queries returned **relevant** results (avg score 0.59, range 0.46–0.81).
 
 ### Project Structure
 
@@ -302,7 +302,7 @@ All 10 queries returned **relevant** results with top-1 scores ≥ 0.67.
 ├── README.md
 ├── .gitignore
 ├── data/
-│   ├── raw/                        # 8 source documents
+│   ├── raw/                        # 9 source documents
 │   │   ├── rlm_core_paper_and_github.md
 │   │   ├── halo_agent_optimizer.md
 │   │   ├── prime_intellect_ablations.md
@@ -310,15 +310,16 @@ All 10 queries returned **relevant** results with top-1 scores ≥ 0.67.
 │   │   ├── prime_intellect_context_folding.md
 │   │   ├── recurrentgemma_griffin_architecture.md
 │   │   ├── rlm_paper_v3_updates.md
-│   │   └── rlm_industry_analysis.md
+│   │   ├── rlm_industry_analysis.md
+│   │   └── rlm_original_paper.md
 │   └── processed/
-│       └── chunks.jsonl            # 84 chunks
+│       └── chunks.jsonl            # 118 chunks
 ├── scripts/
 │   ├── prepare_knowledge_base.py   # Homework #1: chunking pipeline
 │   └── retrieval.py                # Homework #2: semantic retrieval
 ├── index/
 │   ├── faiss.index                 # FAISS vector index
-│   └── metadata.json               # Chunk metadata (84 entries)
+│   └── metadata.json               # Chunk metadata (118 entries)
 └── outputs/
     └── retrieval_examples.md       # 10 test queries with results
 ```
