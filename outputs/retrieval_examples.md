@@ -4,7 +4,7 @@
 
 **Index:** FAISS (Inner Product, dim=384)
 
-**Chunks indexed:** 257
+**Chunks indexed:** 253
 
 **Top-k:** 3
 
@@ -171,25 +171,29 @@ code inside of a ReAct (Yao et al., 2023) loop. ...
 **Expected:** indexing, querying, chunking, scoring, reranking, generation, evaluation
 
 
-Top-1: rag_failure_points_arxiv2024_chunk_008 | score: 0.6125
-  Text: advances for building RAG systems are constantly emerging (Lewis et al., [2020](https://arxiv.org/html/2401.05856v1#bib.bib13 ""); Hofstätter et al.,
+Top-1: rag_failure_points_arxiv2024_chunk_007 | score: 0.6955
+  Text: nces for building RAG systems are constantly emerging [8, 12] but how they relate and perform for a specific application context has to be discovered.
 
-[2023](https://arxiv.org/html/2401.05856v1#bib.bi...
-  Source: data/raw/rag_failure_points_arxiv2024.md | Section: 1\. Introduction
-
-
-
-Top-2: rag_failure_points_arxiv2024_chunk_010 | score: 0.6031
-  Text: All question and answer pairs were then validated with OpenAI evals 111https://github.com/openai/evals. Manual inspection (all discrepancies, all flagged as incorrect, and a sample of correct labels) ...
-  Source: data/raw/rag_failure_points_arxiv2024.md | Section: Seven Failure Points When Engineering a Retrieval Augmented Generation System
+In this work we present the lessons learned and ...
+  Source: data/raw/rag_failure_points_arxiv2024.md | Section: 1. INTRODUCTION
 
 
 
-Top-3: rag_failure_points_arxiv2024_chunk_023 | score: 0.5835
-  Text: multiple prompts to process questions and answers. This process ensures that questions relevant for the domain are returned. The use of large language
+Top-2: rag_failure_points_arxiv2024_chunk_003 | score: 0.5670
+  Text: an experience report on the failure points of RAG systems from three case studies from separate domains: research, education, and biomedical. We share
 
-models to answer real time questions from docume...
-  Source: data/raw/rag_failure_points_arxiv2024.md | Section: 4\. Case Studies
+the lessons learned and present 7 failure points...
+  Source: data/raw/rag_failure_points_arxiv2024.md | Section: 1. INTRODUCTION
+
+
+
+Top-3: rag_survey_arxiv2024_chunk_007 | score: 0.5444
+  Text: echniques.
+
+The burgeoning field of RAG has experienced swift growth, yet it has not been accompanied by a systematic synthesis that could clarify its
+
+broader trajectory. This survey endeavors to fil...
+  Source: data/raw/rag_survey_arxiv2024.md | Section: General
 
 
 
@@ -386,9 +390,13 @@ advanced RAG, and modular RAG. This review conte...
 
 
 
-Top-3: rag_failure_points_arxiv2024_chunk_010 | score: 0.4261
-  Text: All question and answer pairs were then validated with OpenAI evals 111https://github.com/openai/evals. Manual inspection (all discrepancies, all flagged as incorrect, and a sample of correct labels) ...
-  Source: data/raw/rag_failure_points_arxiv2024.md | Section: Seven Failure Points When Engineering a Retrieval Augmented Generation System
+Top-3: rag_survey_arxiv2024_chunk_007 | score: 0.4216
+  Text: echniques.
+
+The burgeoning field of RAG has experienced swift growth, yet it has not been accompanied by a systematic synthesis that could clarify its
+
+broader trajectory. This survey endeavors to fil...
+  Source: data/raw/rag_survey_arxiv2024.md | Section: General
 
 
 
