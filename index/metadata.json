@@ -230,6 +230,236 @@
     "document_type": "tool"
   },
   {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_001",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "chunk_index": 1,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_002",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Introduction: Why Reasoning Paradigms Matter More Than Ever",
+    "chunk_index": 2,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_003",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Introduction: Why Reasoning Paradigms Matter More Than Ever",
+    "chunk_index": 3,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_004",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Single-Prompt Reasoning: The Starting Point",
+    "chunk_index": 4,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_005",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Single-Prompt Reasoning: The Starting Point",
+    "chunk_index": 5,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_006",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Chain-of-Thought & Chain-of-Prompting",
+    "chunk_index": 6,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_007",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Chain-of-Thought & Chain-of-Prompting",
+    "chunk_index": 7,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_008",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Tool-Augmented Reasoning (ReAct, Code-Calling)",
+    "chunk_index": 8,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_009",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Retrieval-Augmented Generation (RAG)",
+    "chunk_index": 9,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_010",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Agent-Based Systems",
+    "chunk_index": 10,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_011",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Agent-Based Systems",
+    "chunk_index": 11,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_012",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Context Window Scaling",
+    "chunk_index": 12,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_013",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Inference-Time Scaling",
+    "chunk_index": 13,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_014",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Inference-Time Scaling",
+    "chunk_index": 14,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_015",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Recursive Language Models (RLMs): The Core Shift",
+    "chunk_index": 15,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_016",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Recursive Language Models (RLMs): The Core Shift",
+    "chunk_index": 16,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_017",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Mental Model Shift: Tokens → State → Systems",
+    "chunk_index": 17,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_018",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "RLMs vs Other Reasoning Paradigms",
+    "chunk_index": 18,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_019",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Mental Model Shift: Tokens → State → Systems",
+    "chunk_index": 19,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_020",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Practical Implications: When and Where RLMs Matter",
+    "chunk_index": 20,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_021",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Open Questions & Future Directions",
+    "chunk_index": 21,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_022",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Conclusion",
+    "chunk_index": 22,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
+    "chunk_id": "llm_reasoning_paradigms_evolution_chunk_023",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)",
+    "section": "Conclusion",
+    "chunk_index": 23,
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  },
+  {
     "chunk_id": "prime_intellect_ablations_chunk_001",
     "source_file": "data/raw/prime_intellect_ablations.md",
     "document_id": "prime_intellect_ablations",
@@ -456,8 +686,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "chunk_index": 1,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_002",
@@ -466,8 +696,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "ABSTRACT",
     "chunk_index": 2,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_003",
@@ -476,8 +706,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "1. INTRODUCTION",
     "chunk_index": 3,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_004",
@@ -486,8 +716,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "1. INTRODUCTION",
     "chunk_index": 4,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_005",
@@ -496,8 +726,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "1. INTRODUCTION",
     "chunk_index": 5,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_006",
@@ -506,8 +736,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "1. INTRODUCTION",
     "chunk_index": 6,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_007",
@@ -516,8 +746,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "1. INTRODUCTION",
     "chunk_index": 7,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_008",
@@ -526,8 +756,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "2. RELATED WORK",
     "chunk_index": 8,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_009",
@@ -536,8 +766,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "3. RETRIEVAL AUGMENTED GENERATION",
     "chunk_index": 9,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_010",
@@ -546,8 +776,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "3. RETRIEVAL AUGMENTED GENERATION",
     "chunk_index": 10,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_011",
@@ -556,8 +786,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "3.1 Index Process",
     "chunk_index": 11,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_012",
@@ -566,8 +796,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "3.2 Query Process",
     "chunk_index": 12,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_013",
@@ -576,8 +806,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "3.2 Query Process",
     "chunk_index": 13,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_014",
@@ -586,8 +816,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "3.2 Query Process",
     "chunk_index": 14,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_015",
@@ -596,8 +826,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "4.1 Cognitive Reviewer",
     "chunk_index": 15,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_016",
@@ -606,8 +836,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "4. CASE STUDIES",
     "chunk_index": 16,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_017",
@@ -616,8 +846,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "4.2 AI Tutor",
     "chunk_index": 17,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_018",
@@ -626,8 +856,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "4.3 BioASQ",
     "chunk_index": 18,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_019",
@@ -636,8 +866,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "4.3 BioASQ",
     "chunk_index": 19,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_020",
@@ -646,8 +876,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "FP5: Wrong Format",
     "chunk_index": 20,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_021",
@@ -656,8 +886,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "5. FAILURE POINTS OF RAG SYSTEMS",
     "chunk_index": 21,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_022",
@@ -666,8 +896,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "FP2: Missed the Top Ranked Documents",
     "chunk_index": 22,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_023",
@@ -676,8 +906,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "FP4: Not Extracted",
     "chunk_index": 23,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_024",
@@ -686,8 +916,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "FP6: Incorrect Specificity",
     "chunk_index": 24,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_025",
@@ -696,8 +926,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "6. LESSONS AND FUTURE RESEARCH DIRECTIONS",
     "chunk_index": 25,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_026",
@@ -706,8 +936,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "TABLE 2: Lessons Learned from Case Studies",
     "chunk_index": 26,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_027",
@@ -716,8 +946,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "6.2 RAG vs Finetuning",
     "chunk_index": 27,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_028",
@@ -726,8 +956,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "6.3 Testing and Monitoring RAG Systems",
     "chunk_index": 28,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_029",
@@ -736,8 +966,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "TABLE 2: Lessons Learned from Case Studies",
     "chunk_index": 29,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_030",
@@ -746,8 +976,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 30,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_031",
@@ -756,8 +986,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 31,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_032",
@@ -766,8 +996,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "7. CONCLUSION",
     "chunk_index": 32,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_033",
@@ -776,8 +1006,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 33,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_034",
@@ -786,8 +1016,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 34,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_035",
@@ -796,8 +1026,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 35,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_036",
@@ -806,8 +1036,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 36,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_037",
@@ -816,8 +1046,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 37,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_038",
@@ -826,8 +1056,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 38,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_failure_points_arxiv2024_chunk_039",
@@ -836,8 +1066,8 @@
     "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., CAIN 2024)",
     "section": "REFERENCES",
     "chunk_index": 39,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_001",
@@ -846,8 +1076,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "chunk_index": 1,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_002",
@@ -856,8 +1086,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Abstract",
     "chunk_index": 2,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_003",
@@ -866,8 +1096,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "1. Introduction",
     "chunk_index": 3,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_004",
@@ -876,8 +1106,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "1. Introduction",
     "chunk_index": 4,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_005",
@@ -886,8 +1116,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "1. Introduction",
     "chunk_index": 5,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_006",
@@ -896,8 +1126,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "1. Introduction",
     "chunk_index": 6,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_007",
@@ -906,8 +1136,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "1. Introduction",
     "chunk_index": 7,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_008",
@@ -916,8 +1146,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2. Methods",
     "chunk_index": 8,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_009",
@@ -926,8 +1156,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2. Methods",
     "chunk_index": 9,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_010",
@@ -936,8 +1166,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2.1 Models",
     "chunk_index": 10,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_011",
@@ -946,8 +1176,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2.2 Retriever: DPR",
     "chunk_index": 11,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_012",
@@ -956,8 +1186,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2.3 Generator: BART",
     "chunk_index": 12,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_013",
@@ -966,8 +1196,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2.3 Generator: BART",
     "chunk_index": 13,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_014",
@@ -976,8 +1206,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "2.4 Training",
     "chunk_index": 14,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_015",
@@ -986,8 +1216,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3. Experiments",
     "chunk_index": 15,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_016",
@@ -996,8 +1226,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3. Experiments",
     "chunk_index": 16,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_017",
@@ -1006,8 +1236,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3.1 Open-domain Question Answering",
     "chunk_index": 17,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_018",
@@ -1016,8 +1246,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3.2 Abstractive Question Answering",
     "chunk_index": 18,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_019",
@@ -1026,8 +1256,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3.3 Jeopardy Question Generation",
     "chunk_index": 19,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_020",
@@ -1036,8 +1266,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3.4 Fact Verification",
     "chunk_index": 20,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_021",
@@ -1046,8 +1276,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.1 Open-domain Question Answering",
     "chunk_index": 21,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_022",
@@ -1056,8 +1286,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "3.4 Fact Verification",
     "chunk_index": 22,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_023",
@@ -1066,8 +1296,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4. Results",
     "chunk_index": 23,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_024",
@@ -1076,8 +1306,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.3 Jeopardy Question Generation",
     "chunk_index": 24,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_025",
@@ -1086,8 +1316,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.2 Abstractive Question Answering",
     "chunk_index": 25,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_026",
@@ -1096,8 +1326,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.2 Abstractive Question Answering",
     "chunk_index": 26,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_027",
@@ -1106,8 +1336,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.5 Additional Results",
     "chunk_index": 27,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_028",
@@ -1116,8 +1346,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.4 Fact Verification",
     "chunk_index": 28,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_029",
@@ -1126,8 +1356,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "4.5 Additional Results",
     "chunk_index": 29,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_030",
@@ -1136,8 +1366,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "5. Related Work",
     "chunk_index": 30,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_031",
@@ -1146,8 +1376,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "5. Related Work",
     "chunk_index": 31,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_032",
@@ -1156,8 +1386,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "5. Related Work",
     "chunk_index": 32,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_033",
@@ -1166,8 +1396,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "6. Discussion",
     "chunk_index": 33,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_034",
@@ -1176,8 +1406,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Broader Impact",
     "chunk_index": 34,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_035",
@@ -1186,8 +1416,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Acknowledgments",
     "chunk_index": 35,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_036",
@@ -1196,8 +1426,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix B: Human Evaluation",
     "chunk_index": 36,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_037",
@@ -1206,8 +1436,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "6. Discussion",
     "chunk_index": 37,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_038",
@@ -1216,8 +1446,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix D: Further Details on Open-Domain QA",
     "chunk_index": 38,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_039",
@@ -1226,8 +1456,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Broader Impact",
     "chunk_index": 39,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_040",
@@ -1236,8 +1466,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Acknowledgments",
     "chunk_index": 40,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_041",
@@ -1246,8 +1476,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Acknowledgments",
     "chunk_index": 41,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_042",
@@ -1256,8 +1486,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix B: Human Evaluation",
     "chunk_index": 42,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_043",
@@ -1266,8 +1496,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix G: Parameter Counts",
     "chunk_index": 43,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_044",
@@ -1276,8 +1506,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix C: Training Setup Details",
     "chunk_index": 44,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_045",
@@ -1286,8 +1516,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix I: Number of Instances Per Dataset",
     "chunk_index": 45,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_046",
@@ -1296,8 +1526,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix I: Number of Instances Per Dataset",
     "chunk_index": 46,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_047",
@@ -1306,8 +1536,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix E: Further Details on FEVER",
     "chunk_index": 47,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_048",
@@ -1316,8 +1546,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix F: Null Document Probabilities",
     "chunk_index": 48,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_049",
@@ -1326,8 +1556,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix I: Number of Instances Per Dataset",
     "chunk_index": 49,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_050",
@@ -1336,8 +1566,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix G: Parameter Counts",
     "chunk_index": 50,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_051",
@@ -1346,8 +1576,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix H: Retrieval Collapse",
     "chunk_index": 51,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_052",
@@ -1356,8 +1586,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix I: Number of Instances Per Dataset",
     "chunk_index": 52,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rag_original_neurips2020_chunk_053",
@@ -1366,8 +1596,8 @@
     "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
     "section": "Appendix I: Number of Instances Per Dataset",
     "chunk_index": 53,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "retrieval-augmented-generation",
+    "document_type": "research-paper"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_001",
@@ -1376,8 +1606,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "chunk_index": 1,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_002",
@@ -1386,8 +1616,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "1. FUNDAMENTALS",
     "chunk_index": 2,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_003",
@@ -1396,8 +1626,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "How an RLM Actually Works",
     "chunk_index": 3,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_004",
@@ -1406,8 +1636,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "How an RLM Actually Works",
     "chunk_index": 4,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_005",
@@ -1416,8 +1646,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "The Recursive Call Pattern",
     "chunk_index": 5,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_006",
@@ -1426,8 +1656,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "The Recursive Call Pattern",
     "chunk_index": 6,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_007",
@@ -1436,8 +1666,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Three Design Choices That Make RLMs Different from \"Just Using Agents\"",
     "chunk_index": 7,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_008",
@@ -1446,8 +1676,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Complexity Classes",
     "chunk_index": 8,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_009",
@@ -1456,8 +1686,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Complexity Classes",
     "chunk_index": 9,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_010",
@@ -1466,8 +1696,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "2. TECHNIQUES",
     "chunk_index": 10,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_011",
@@ -1476,8 +1706,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Decomposition: How Models Slice Their Inputs",
     "chunk_index": 11,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_012",
@@ -1486,8 +1716,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Decomposition: How Models Slice Their Inputs",
     "chunk_index": 12,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_013",
@@ -1496,8 +1726,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Sub-calls: Recursive Self-Invocation",
     "chunk_index": 13,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_014",
@@ -1506,8 +1736,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Post-Training: Making RLM-Qwen3-8B",
     "chunk_index": 14,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_015",
@@ -1516,8 +1746,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Post-Training: Making RLM-Qwen3-8B",
     "chunk_index": 15,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_016",
@@ -1526,8 +1756,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "RLMs vs Everything Else",
     "chunk_index": 16,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_017",
@@ -1536,8 +1766,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "RLMs vs Everything Else",
     "chunk_index": 17,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_018",
@@ -1546,8 +1776,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Framework Support",
     "chunk_index": 18,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_019",
@@ -1556,8 +1786,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Sandbox Options",
     "chunk_index": 19,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_020",
@@ -1566,8 +1796,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Framework Support",
     "chunk_index": 20,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_021",
@@ -1576,8 +1806,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "The Bitter Lesson",
     "chunk_index": 21,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_022",
@@ -1586,8 +1816,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "The REPL",
     "chunk_index": 22,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_023",
@@ -1596,8 +1826,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "3. RESEARCH",
     "chunk_index": 23,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_024",
@@ -1606,8 +1836,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Four Tasks, Four Complexity Levels",
     "chunk_index": 24,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_025",
@@ -1616,8 +1846,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Four Tasks, Four Complexity Levels",
     "chunk_index": 25,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_026",
@@ -1626,8 +1856,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "Benchmark Results",
     "chunk_index": 26,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_comprehensive_guide_chunk_027",
@@ -1636,8 +1866,8 @@
     "title": "RLM.md  --  Comprehensive Guide to Recursive Language Models",
     "section": "The Ecosystem Is Moving",
     "chunk_index": 27,
-    "domain": "machine_learning",
-    "document_type": "general"
+    "domain": "recursive-language-models",
+    "document_type": "guide"
   },
   {
     "chunk_id": "rlm_core_paper_and_github_chunk_001",

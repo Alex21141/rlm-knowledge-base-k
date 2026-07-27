@@ -19,6 +19,7 @@
 | 7 | `rag_survey_arxiv2024.md` | [arXiv:2312.10997](https://arxiv.org/abs/2312.10997) | RAG Survey (Gao et al., 2024). Taxonomy, methods, benchmarks, open challenges |
 | 8 | `rlm_core_paper_and_github.md` | [github.com/alexzhang13/rlm](https://github.com/alexzhang13/rlm) | Основна стаття (arXiv:2512.24601), GitHub README, system prompts, REPL environments, model providers, training harness |
 | 9 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Оригінальна академічна стаття MIT CSAIL (Zhang, Kraska, Khattab). Abstract, intro, methods, results, limitations |
+| 10 | `llm_reasoning_paradigms_evolution.md` | [Medium, Deepan MN](https://medium.com/@mndeepan06/recursive-language-models-rlms-from-prompting-to-recursive-systems-how-llm-reasoning-is-evolving-b3865e273e0b) | Повна еволюція парадигм мислення LLM: Single-Prompt → CoT → Tool-Augmented → RAG → Agents → Context Scaling → RLMs |
 
 ## Структура метаданих
 
