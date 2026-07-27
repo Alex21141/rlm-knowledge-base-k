@@ -97,14 +97,6 @@ DOC_METADATA_MAP = {
         "document_type": "analysis",
         "source_type": "markdown",
     },
-    "rlm_vs_rag_comparison.md": {
-        "title": "RLM vs RAG: Two Approaches to the Long-Context Problem",
-        "section": "RLM vs RAG Comparison",
-        "language": "en",
-        "domain": "ml-theory",
-        "document_type": "analysis",
-        "source_type": "markdown",
-    },
 }
 
 
