@@ -1,241 +1,402 @@
-# Retrieval-Augmented Generation for Large Language Models: A Survey (Gao et al., 2024)
+# RLM.md — Comprehensive Guide to Recursive Language Models
 
-**Source:** arXiv:2312.10997
-**Authors:** Yutao Gao, Yile Wang, Yifan Yang, Da Yin, et al.
-**Published:** arXiv preprint (2023, updated 2024)
-
----
-
-Retrieval-Augmented Generation for Large Language Models: A Survey
-
-Yunfan Gaoᵃ, Yun Xiongᵇ, Xinyu Gaoᵇ, Kangxiang Jiaᵇ, Jinliu Panᵇ, Yuxi Biᵇ, Yi Daiᵇ, Jiawei Sunᵇ, Meng Wangᵇ, and Haofen Wang ᵇ
-
-aShanghai Research Institute for Intelligent Autonomous Systems, Tongji University
-bShanghai Key Laboratory of Data Science, School of Computer Science, Fudan University
-cCollege of Design and Innovation, Tongji University
-
-Abstract—Large Language Models (LLMs) showcase impressive capabilities but encounter challenges like hallucination, outdated knowledge, and non-transparent, intraclearing reasoning processes. Retrieval-Augmented Generation (RAG) has emerged as a promising solution by incorporating knowledge from external databases. This enhances the accuracy and credibility of the generation, particularly for knowledge-intensive tasks, and allows for continuous knowledge updates and integration of domain-specific information. RAG synergistically merges LMrs intrinsic knowledge with the vast, dynamic repositories of external databases. This comprehensive review paper offers a detailed examination of the progression of RAG paradigms, encompassing the Naive RAG, the Advanced RAG, and the Modular RAG. It meticulously scrutinizes the tripartite foundation of RAG frameworks, which includes the retrieval and augmentation techniques. The paper highlights the state-of-the-art technologies embedded in each of these critical components, providing a profound understanding of the advancements in RAG frameworks. Furthermore, this paper introduces apo-date framework and benchmark. At the end, this article delineates the challenges currently faced and points out prospective avenues for research and development.
-
-Index Terms—Large language model, retrieval-augmented generation, natural language processing, information retrieval
-
-I. INTRODUCTION
-
-LARGE language models (LLMs) have achieved remarkable success, though they still face significant limitations, especially in domain-specific or knowledge-intensive tasks [1], notably producing "halilucinations" [2] when handling queries beyond their training data or requiring current information. To overcome challenges, Retrieval-Augmented Generation (RAG) enhances LLMs by retrieving relevant document chunks from external knowledge base through semantic similarity calculation. By referencing external knowledge, RAG effectively reduces the problem of generating factually incorrect content. Its integration into LLMs has resulted in widespread adoption, establishing RAG as a key technology in advancing chatbots and enhancing the suitability of LLMs for real-world applications.
-
-RAG technology has rapidly developed in recent years, and the technology tree summarizing related research is shown
-
-Corresponding Author: Email:haofen.wang@tongji.edu.cn
-Resources are available at https://github.com/Tongji-GLLM/RAG-Survey
-
-in Figure 1. The development trajectory of RAG in the era of large models exhibits several distinct stage characteristics. Initially, RAG's inception coincided with the rise of the Transformer architecture, focusing on enhancing language models by incorporating additional knowledge through Pre-Training Models (PTM). This early stage was characterized by foundational work aimed at refining pre-training techniques [3]–[5]. The subsequent arrival of ChatGPT [6] marked a pivotal moment, with LLM demonstrating powerful in context learning (ICL) capabilities. RAG research shifted towards providing better information for LLMs to answer more complex and knowledge-intensive tasks during the inference stage, leading to rapid development in RAG studies. As research progressed, the enhancement of RAG was no longer limited to the inference stage but began to incorporate more with LLM fine-tuning techniques.
-
-The burgeoning field of RAG has experienced swift growth, yet it has not been accompanied by a systematic synthesis that could clarify its broader trajectory. This survey endeavors to fill this gap by mapping out the RAG process and charting its evolution and anticipated future paths, with a focus on the integration of RAG within LLMs. This paper considers both technical paradigms and research methods, summarizing three main research paradigms from over 100 RAG studies, and analyzing key technologies in the core stages of "Retrieval," "Generation," and "Augmentation." On the other hand, current research tends to focus more on methods, lacking analysis and summarization of how to evaluate RAG. This paper comprehensively reviews the downstream tasks, datasets, benchmarks, and evaluation tools applicable to RAG. Overall, this paper sets out meticulously compile and categorize the foundational technical concepts, historical progression, and the spectrum of RAG methodologies and applications that have emerged post-LLMs. It is designed to equip readers and professionals with a detailed and structured understanding of both large models and RAG. It aims to illuminate the evolution of retrieval augmentation techniques, assess the strengths and weaknesses of various approaches in their respective contexts, and speculate on upcoming trends and innovations.
-
-Our contributions are as follows:
-
-• In this survey, we present a thorough and systematic review of the state-of-the-art RAG methods, delineating its evolution through paradigms including naive RAG.
+**Source:** https://rlm.md (The Complete RLM Reference)
+**Authors:** Community-curated from rlm.md (based on MIT OASYS Lab research by Alex L. Zhang, Tim Kraska, Omar Khattab)
+**Paper:** "Recursive Language Models" — arXiv:2512.24601, Accepted at ICML 2025
 
 ---
 
-advanced RAG, and modular RAG. This review contextualizes the broader scope of RAG research within the landscape of LLMs.
+## INDEX: 6 Sections
 
-• We identify and discuss the central technologies integral to the RAG process, specifically focusing on the aspects of "Retrieval", "Generation" and "Augmentation", and delve into their synergies, elucidating how these components intricately collaborate to form a cohesive and effective RAG framework.
-
-• We have summarized the current assessment methods of RAG, covering 26 tasks, nearly 50 datasets, outlining the evaluation objectives and metrics, as well as the current evaluation benchmarks and tools. Additionally, we anticipate future directions for RAG, emphasizing potential enhancements to tackle current challenges.
-
-The paper unfolds as follows: Section II introduces the main concept and current paradigms of RAG. The following three sections explore core components—"Retrieval", "Generation" and "Augmentation", respectively. Section III focuses on optimization methods in retrieval, including indexing, query and embedding optimization. Section IV concentrates on post-retrieval tasks and LLM fine-tuning in generation. Section V analyzes the three augmentation processes. Section VI focuses on RAG's downstream tasks and evaluation system. Section VII mainly discusses the challenges that RAG currently faces and its future development directions. At last, the paper concludes in Section VIII.
-
-II. OVERVIEW OF RAG
-
-A typical application of RAG is illustrated in Figure 2. Here, a user poses a question to ChanGPT about a recent, widely discussed news. Given ChanGPT's reliance on pre-training data, it initially lacks the capacity to provide updates on recent developments. RAG bridges this information gap by sourcing and incorporating knowledge from external databases. In this case, itathers relevant news articles related to the user's query. These articles, combined with the original question, form a comprehensive prompt that empowers LLMs to generate a well-informed answer.
-
-The RAG research paradigm is continuously evolving, and we categorize it into three stages: Naive RAG, Advanced RAG, and Modular RAG, as shown in Figure 3. Despite RAG method are cost-effective and surpass the performance of the native LLM, they also exhibit several limitations. The development of Advanced RAG and Modular RAG is a response to these specific shortcomings in Naive RAG.
-
-A. Naive RAG
-
-The Naive RAG research paradigm represents the earliest methodology, which gained prominence shortly after widespread adoption of ChatGPT. The Naive RAG follows a traditional process that includes indexing, retrieval, and generation, which is also characterized as a "Retrieve-Read" framework [7].
-
-Indexing starts with the cleaning and extraction of raw data in diverse formats like PDF, HTML, Word, and Markdown, which is then converted into a uniform plain text format. To accommodate the context limitations of language models, text is segmented into larger, digestible chunks. Chunks are then encoded into vector representations using an embedding model and stored in vector database. This step is crucial for enabling efficient similarity searches in the subsequent retrieval phase.
-
-Retrieval. Upon receipt of a user query, the RAG system employs the same encoding model utilized during the indexing phase to transform the query into a vector representation. It then computes the similarity scores between the query vector and the vector of chunks within the indexed corpus. The system prioritizes and retrieves the top K chunks that demonstrate the greatest similarity to the query. These chunks are subsequently used as the expanded context in prompt.
-
-Generation. The posed query and selected documents are synthesized into a coherent prompt to which a large language model is tasked with formulating a response. The model's approach to answering may vary depending on task-specific criteria, allowing it to either draw upon its inherent parametric knowledge or restrict its responses to the information contained within the provided documents. In cases of ongoing dialogues, any existing conversational history can be integrated into the prompt, enabling the model to engage in multi-turn dialogue interactions effectively.
-
-However, Naive RAG encounters notable drawbacks:
-
-Retrieval Challenges. The retrieval phase often struggles with precision and recall, leading to the selection of misaligned or irrelevant chunks, and the missing of crucial information.
-
-Generation Difficulties. In generating responses, the model may face the issue of hallucination, where it produces content not supported by the retrieved context. This phase can also suffer from irrelevance, toxicity, or bias in the outputs, detracting from the quality and reliability of the responses.
-
-Augmentation Hurdles. Integrating retrieved information with the different task can be challenging, sometimes resulting in disjoint or incoherent outputs. The process may also encounter redundancy when similar information is retrieved from multiple sources, leading to repetitive responses. Determining the significance and relevance of various passages and ensuring stylistic and tonal consistency add further complexity. Facing complex issues, a single retrieval based on the original query may not suffice to acquire adequate context information.
-
-Moreover, there's a concern that generation models might overly rely on augmented information, leading to outputs that simply echo retrieved content without adding insightful or synthesized information.
-
-B. Advanced RAG
-
-Advanced RAG introduces specific improvements to overcome the limitations of Naive RAG. Focusing on enhancing retrieval quality, it employs pre-retrieval and post-retrieval strategies. To tackle the indexing issues, Advanced RAG refines its indexing techniques through the use of a sliding window approach, fine-grained segmentation, and the incorporation of metadata. Additionally, it incorporates several optimization methods to streamline the retrieval process [8].
+1. [Fundamentals](#1-fundamentals) — The decompose-recurse-aggregate pattern
+2. [Techniques](#2-techniques) — REPL, decomposition, sub-calls, post-training
+3. [Research](#3-research) — Paper deep dive, benchmark results, ablations
+4. [Applications](#4-applications) — Code analysis, legal, deep research, books
+5. [Comparison: LLM vs RLM](#5-comparison-llm-vs-rlm) — Two fundamentally different approaches
+6. [Summary](#6-summary) — When to use RLMs
 
 ---
 
-Fig. 3. Comparison between the three paradigms of RAG. (Left) Naive RAG mainly consists of three parts: indexing, retrieval and generation. (Middle) Advanced RAG proposes multiple optimization strategies around pre-retrieval and post-retrieval with a process similar to the Naive RAG, still following a chain-like structure. (Right) Modular RAG enhances the query paradigm, allowing greater flexibility overall. This is evident in the introduction of multiple specific functional modules and the replacement of existing modules. The overall process is not limited to sequential retrieval and generation; it includes methods such as iterative and adaptive retrieval.
+## 1. FUNDAMENTALS
 
-Pre-retrieval process. In this stage, the primary focus is on optimizing the indexing structure and the original query. The goal of optimizing indexing is to enhance the quality of the content being indexed. This involves strategies: enhancing data granularity, optimizing index structures, adding metadata, alignment optimization, and mixed retrieval. While the goal of query optimization is to make the user's original question clearer and more suitable for the retrieval task. Common methods include query rewriting query transformation, query expansion and other techniques [7], [9]–[11].
+### The Core Insight: Why Shoving Everything into Context Doesn't Work
 
-Post-Retrieval Process. Once relevant context is retrieved, it’s crucial to integrate it effectively with the query. The main methods in post-retrieval process include rerank chunks and context compressing. Re-ranking the retrieved information to relocate the most relevant content to the edges of the prompt is a key strategy. This concept has been implemented in frameworks such as Llamandex², LangChain¹, and HayStack [12]. Feeding all relevant documents directly into LLMs can lead to information overload, diluting the focus on key details with irrelevant content. To mitigate this, post-retrieval efforts concentrate on selecting the essential information, emphasizing critical sections, and shortening the context to be processed.
+Every LLM has a context window — a maximum number of tokens it can process at once. The industry keeps making these bigger: 128K, 272K, 1M. But size isn't the issue. **Quality is.**
 
-C. Modular RAG
+Even within their stated limits, models exhibit *context rot*: performance degrades as prompts get longer, especially on tasks that require reasoning over the entire input rather than just locating a specific fact. GPT-5 handles needle-in-a-haystack fine at 200K tokens. Ask it to aggregate information from every paragraph in a 200K-token document, and it falls apart.
 
-The modular RAG architecture advances beyond the former two RAG paradigms, offering enhanced adaptability and versatility. It incorporates diverse strategies for improving its components, such as adding a search module for similarity searches and refining the retriever through fine-tuning. Innovations like restructured RAG modules [13] and rearranged RAG pipelines [14] have been introduced to tackle specific challenges. The shift towards a modular RAG approach is becoming prevalent, supporting both sequential processing and integrated end-to-end training across its components. Despite its distinctiveness, Modular RAG builds upon the foundational principles of Advanced and Naive RAG, illustrating a progression and refinement within the RAG family.
+The degradation gets worse as task complexity increases:
 
-1. New Modules: The Modular RAG framework introduces additional specialized components to enhance retrieval and processing capabilities. The Search module adapts to specific scenarios, enabling direct searches across various data sources like search engines, databases, and knowledge graphs, using LLM-generated code and query languages [15]. RAG-Fusion addresses traditional search limitations by employing a multi-query strategy that expands user queries into diverse perspectives, utilizing parallel vector searches and intelligent re-ranking to uncover both explicit and transformative knowledge [16]. The Memory module leverages the LLM’s memory to guide retrieval, creating an unbounded memory pool that aligns the text more closely with data distribution through iterative self-enhancement [17], [18]. Routing in the RAG system navigates through diverse data sources, selecting the optimal pathway for a query, whether it involves summarization, specific database searches, or merging different information streams [19]. The Predict module aims to reduce redundancy and noise by generating context directly through the LLM, ensuring relevance and accuracy [13]. Lastly, the Task Adapter module tailors RAG to various downstream tasks, automating prompt retrieval for zero-shot inputs and creating task-specific retrievers through few-shot query generation [20], [21]. This comprehensive approach not only streamlines the retrieval process but also significantly improves the quality and relevance of the information retrieved catering to a wide array of tasks and queries, with enhanced precision and flexibility.
+- **Constant-complexity tasks** (find one thing) survive longer contexts
+- **Linear-complexity tasks** (process every chunk) degrade faster
+- **Quadratic-complexity tasks** (reason about pairs of chunks) collapse almost immediately
 
-2. New Patterns: Modular RAG offers remarkable adaptability by allowing module substitution or reconfiguration to address specific challenges. This goes beyond the fixed structures of Naive and Advanced RAG, characterized by a simple "Retrieve" and "Read" mechanism. Moreover, Modular RAG expands this flexibility by integrating new modules or adjusting interaction flow among existing ones, enhancing its applicability across different tasks.
+RLMs sidestep this entirely. The neural network never sees the full prompt. It only sees metadata about it — length, a short prefix, type information — and writes code to interact with it piece by piece.
 
-Innovations such as the Rewrite-Retrieve-Read [7] model leverage the LLM's capabilities to refine retrieval queries through a rewriting module and a LM-feedback mechanism to update rewriting model, improving task performance. Similarly, approaches like Generate-Read [13] replace traditional rewriting with LM-generated model, while Recite-Read [22] emphasizes the format model weight, enhancing the model's ability to handle knowledge-intensive tasks. Hybrid retrieval strategies integrate keyword, semantic, and vector searches to cater to diverse tasks. Additionally, employing sub-queries and hypothetical document embeddings (HyDE) [11] seeks to improve retrieval relevance by focusing on embedding similarities between generated answers and real documents.
+### How an RLM Actually Works
 
-Adjustments in module arrangement and interaction, such as the Demonstrate-Search-Predict (DSP) [23] framework and the iterative Retrieve-Retrieve-Read flow of ITER-RETGEN [14], showcase the dynamic use of module outputs to bolster another module's functionality, illustrating a sophisticated understanding of enhancing module synergy. The flexible cohesion of Modula RAG Flight shows the benefits of adaptive retrieval through techniques such as FLARE [24] and Self-RAG [25]. This approach transcends the fixed RAG retrieval process by evaluating the necessity of retrieval based on different scenarios. Another benefit of a flexible architecture is that the RAG system can more easily integrate with other technologies (such as fine-tuning or reinforcement learning) [26]. For example, this can involve fine-tuning the retriever for better retrieval results, fine-tuning the generator for more personalized outputs, or engaging in collaborative fine-tuning [27].
+An RLM wraps any base language model with an inference-time scaffold. The flow:
 
-D. RAG vs Fine-tuning
+1. **Initialize a REPL.** Given an arbitrary-length prompt P, the RLM starts a persistent programming environment (Python REPL). P is stored as a string variable inside this environment. The model also gets a function for invoking sub-RLM calls.
 
-The augmentation of LLMs has attracted considerable attention due to their growing prevalence. Among the optimization methods for LLMs, RAG is often compared with Fine-tuning (FT) and prompt engineering. Each method has distinct characteristics as illustrated in Figure 4. We used a quadrant chart to illustrate the differences among three methods in two dimensions: external knowledge requirements and model adaptation requirements. Prompt engineering leverages a model's inherent capabilities with minimum necessity for external knowledge and model adaptation. RAG can be likened to providing a model with a tailored textbook for information retrieval, ideal for precise information retrieval tasks. In contrast, FT is comparable to a student internalizing knowledge over time, suitable for scenarios requiring replication of specific structures, styles, or formats.
+2. **Provide metadata, not content.** The root model receives only constant-size metadata about P: its length, a short prefix, how to access slices of it. The full text of P never enters the model's context window.
 
-RAG excels in dynamic environments by offering real-time knowledge updates and effective utilization of external knowledge sources with high interpretability. However, it comes with higher latency and ethical considerations regarding data retrieval. On the other hand, FT is more static, requiring retraining for updates but enabling deep customization of the model's behavior and style. It demands significant computational resources for dataset preparation and training, and while it can reduce hallucinations, it may face challenges with unfamiliar data.
+3. **Model writes code.** The model generates code that peeks into P, slices it, transforms it, and launches sub-RLM calls on the slices. These sub-calls are themselves full RLMs that can recurse further.
 
-In multiple evaluations of their performance on various knowledge-intensive tasks across different topics, [28] revealed that while unsupervised fine-tuning shows some improvement, RAG consistently outperforms it, for both existing knowledge encountered during training and entirely new knowledge. Additionally, it was found that LLMs struggle to learn new factual information through unsupervised fine-tuning. The choice between RAG and FT depends on the specific needs for data dynamics, customization, and computational capabilities in the application context. RAG and FT are not mutually exclusive and can complement each other, enhancing a model's capabilities at different levels. In some instances, their combined use may lead to optimal performance. The optimization process involving RAG and FT may require multiple iterations to achieve satisfactory results.
+4. **Execute and observe.** The REPL runs the code, updates state, and returns only metadata about stdout back to the model. Intermediate results live as variables in the REPL, not in the model's context.
 
-III. RETRIEVAL
+5. **Aggregate and return.** When the model sets a special "Final" variable in the REPL, iteration stops and that value becomes the response.
 
-In the context of RAG, it is crucial to efficiently retrieve relevant documents from the data source. There are several key issues involved, such as the retrieval source, retrieval granularity, pre-processing of the retrieval, and selection of the corresponding embedding model.
+The key: at every level of recursion, the model's context window only contains constant-size turns. All the heavy data lives in REPL variables. This is what makes unbounded input processing possible.
 
-A. Retrieval Source
+### The Recursive Call Pattern
 
-RAG relies on external knowledge to enhance LLMs, while the type of retrieval source and the granularity of retrieval units both affect the final generation results.
+```
+User Prompt P (e.g., 10M tokens)
+    |
+    v
+[RLM Root] -- sees: len(P)=10M, P[:200]="The first..."
+    |
+    |-- writes: chunks = [P[i:i+8000] for i in range(0, len(P), 8000)]
+    |-- writes: results = [sub_rlm(f"Summarize: {c}") for c in chunks]
+    |                         |
+    |                         +--[Sub-RLM 1] processes chunk 1 (8K tokens)
+    |                         +--[Sub-RLM 2] processes chunk 2 (8K tokens)
+    |                         +--[Sub-RLM 3] processes chunk 3 (8K tokens)
+    |                         +-- ... (1,250 sub-calls for 10M tokens)
+    |
+    |-- writes: combined = "\n".join(results)
+    |-- writes: Final = sub_rlm(f"Given these summaries: {combined}, answer: ...")
+    |
+    v
+Response Y
+```
 
-1) Data Structure: Initially, text is the mainstream source of retrieval. Subsequently, the retrieval source expanded to include semi-structured data (PDF) and structured data (Knowledge Graph, KG) for enhancement. In addition to retrieving from original external sources, there is also a growing trend in recent researches towards utilizing content generated by LLMs themselves for retrieval and enhancement purposes.
+Each sub-RLM is itself a full RLM that can recurse further if its input is still too large. The recursion bottoms out when chunks fit comfortably in the base model's context window.
 
----
+### Three Design Choices That Make RLMs Different from "Just Using Agents"
 
-TABLE I
-SUMMARY OF RAG METHODS
+The paper identifies three specific design decisions that separate RLMs from existing agent scaffolds:
 
-Method Retrieval Source Retrieval Data Type Retrieval Granularity Agregation Stage Retrieval process
-CoG [29] Wikipedia Text Pharse Pre-training Iterative
-DenoX [30] FactodWiki Proposition Inference Once
-EAR [31] Dataset-base Text Sentence Tuning Once
-UPRISI [20] Dataset-base Text Sentence Tuning Once
-RAST [32] Dataset-base Text Sentence Tuning Once
-Self-Men [17] Dataset-base Text Sentence Tuning Iterative
-FLARE [24] Search Engine, Wikipedia Text Sentence Tuning Adaptive
-PGRA [33] Wikipedia Text Sentence Inference Once
-FILOC [34] Wikipedia Text Sentence Inference Once
-RADA [35] Database Text Sentence Inference Once
-Filter-erank [36] Synthesized dataset Text Sentence Inference Once
-R-RQA [37] Dataset-base Text Sentence Pair Tuning Adaptive
-LLAIR [38] Dataset-base Text Sentence Pair Tuning Iterative
-TIGER [39] Dataset-base Text Sentence Pair Tuning Once
-LM-Indexer [40] Dataset-base Text Item-base Tuning Once
-BEQUE [9] Dataset-base Text Item-base Tuning Once
-CTRAQ [41] Synthesized dataset Text Item-base Tuning Once
-Alas [42] Wikipedia, Common Crawl Chunk Pre-training Iterative
-RAVEN [43] Wikipedia Chunk Pre-training Once
-RETRO++ [44] Pre-training Corpus Chunk Pre-training Iterative
-INSTRUCTETRO [45] Pre-training corpus Chunk Pre-training Iterative
-RRR [7] Search Engine, Wikipedia Chunk Pre-training Iterative
-RA-e2e [46] Dataset-base Chunk Pre-training Once
-PROMPTAGATOR [21] BEIR Chunk Tuning Once
-AAR [47] MSMARCO Wikipedia Chunk Tuning Once
-RA-DIT [27] Common Crawl, Wikipedia Chunk Tuning Once
-RAG-Robust [48] Wikipedia Chunk Tuning Once
-RA-Long-Form [49] Wikipedia Chunk Tuning Once
-Csn [50] Wikipedia Chunk Tuning Once
-Self-RAG [25] Wikipedia Chunk Tuning Adaptive
-BGM [26] Wikipedia Chunk Tuning Inference Once
-CoQ [51] Wikipedia Chunk Inference Once
-Token-Elimination [52] Wikipedia Chunk Inference Iterative
-PaperQA [53] ArxivOnline Database, PubMed Chunk Inference Iterative
-NoiseRAG [54] FactodWiki Chunk Inference Once
-LAG [55] Search Engine, Wikipedia Chunk Inference Once
-NOMACL [56] Search Engine, Wikipedia Chunk Inference Once
-ToC [57] Search Engine, Wikipedia Chunk Inference Recursive
-SKR [58] Dataset-base Wikipedia Chunk Inference Adaptive
-ITRG [59] Wikipedia Chunk Inference Iterative
-RAG-Long-Form [60] Wikipedia Chunk Inference Iterative
-ITER-RETGEN [14] Wikipedia Chunk Inference Iterative
-IROC[61] Wikipedia Chunk Inference Recursive
-LLM-Knowledge-Boundary [62] Wikipedia Chunk Inference Once
+**1. The prompt is a variable, not context.** Coding agents and retrieval agents put the user prompt directly into the LLM's context window. An RLM stores it externally. This sounds trivial but it's the entire game — it means the model is never bounded by its context window with respect to user input.
 
-[... middle omitted — see footer ...]
+**2. Output is symbolic, not autoregressive.** Standard scaffolds ask the model to generate its final answer token-by-token into the context window, which means outputs are also bounded by the window. RLMs build up the response in REPL variables, enabling unbounded output length.
 
-135 — "Large language models as source planter for personal knowledge-grounded dialogue," aXiv preprint aXiv210.0804, 2012.
-135 X. Xu, Z. Gou, W. Wu, Z.-Y. Niu, H. Wu, H. Wang, and S. Wang, Long time no see open-domain conversation with long-term personal knowledge, and neural dialogue systems," aXiv preprint aXiv160.03532, 2016.
-137 T-H. Wen, M. Ules, D. Vandyk, and S. Yong, "Condition generation and neural dialogue systems," aXiv preprint aXiv160.03532, 2016.
-137 R. He and J. McAley, "Ups and downs: the visual evolution of fashion trends with one-class collaborative filtering," in Proceedings of the 22nd international conference on world wide web, 2016, pp 507-17.
-138 H. Ji, J. and J. Han, "Document-level event argument extraction by conditional grammar," aXiv preprint aXiv210.0951, 2012.
-138 S. Ehner, P. Xia, R. Culkin, K. Rawlings, and B. Van Durn, "Multi-sentence argument linking," aXiv preprint aXiv191.10769, 2019.
-138 H. F. Lentz, F. Lentz, K. Rawlings, and E. Simperl, "Trex: a large scalable alignment of knowledge with knowledge base triples," in Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018).
-138 O. Levy, M. Seo, E. Choi, and L. Zellentner, "Zeer-slot relation extraction via reading comprehension," aXiv preprint aXiv170.0415, 2017.
-138 R. Zellers, A. Holzman, Y. Bisk, A. Farfadi, and Y. Choi, "Helllawag can a machine really finish your sentence?" aXiv preprint aXiv200.0951, 2012.
-138 S. Kinn, S. J. Ioo, D. Kim, J. Kang, S. Ye, J. Shin, and M. Seo, "The cot collection: zero-shot and few-shot learning of language models via chain-of-thought fine-tuning," aXiv preprint aXiv200.0951, 2012.
-138 A. Saha, V. Puhla, M. Khapra, K.ankaranyarayan, and S. Chandur, "Complex sequential question answering: Towards learning to convey our knowledge of the AAAI conference on artificial intelligence, vol. 32, no. 1, 2018.
-138 D. Hendrycks, C. Burns, S. Bastan, A. Zou, M. Mazika, D. Song, and J. Seiuthain, "Massive-music multislanguage understanding," aXiv preprint aXiv200.0930, 2020.
-137 S. Meryt, C. Xiang, J. Bradbury, and R. Socher, "Poetter sentence mining," aXiv preprint aXiv200.0974, 2016.
-138 M. Gvea, D. Khasab, E. Segal, K. Dhot, R. Dhot, and J. Berant, "Did airtable use a laptop? answer benchmark with interspace alignment for Computational Linguistics, vol. 5, pp 346-361, 2021.
-139 J. Thorne, A. Vlachos, C. Christendropolus, and A. Mintel, "A feature airtable use in an interspace extraction and verification," aXiv preprint aXiv180.0355, 2018.
-140 N. Kotonya and F. Toni, "Explainable automated fact-checking for public health claims," aXiv preprint aXiv200.0992, 2020.
-140 S. Meryt, D. Kotonya, and M. Kotonya from structured data with application to the biography domain, aXiv preprint aXiv160.0377/1016, 2016.
-140 S. Meryt, S. Noyem, and M. Kotonya, "Dont give me the details, just the summary," topic-aware convolutional neural networks for extreme summarization," aXiv preprint aXiv180.0874, 2018.
-140 S. I. Ahmed, N. Mohammed, and M. Kotonya, "Dio- lens a novel dataset of abstract social network posts leading to different forms of language models," aXiv preprint aXiv180.0874, 2018.
-140 J. Li, D. and D. Roth, "Learning question classification in COLING 2012," The 19th International Conference on Computational Linguistics, 2002.
-140 R. Socher, A. Perelygin, J. Wu, J. Chuang, C. D. Manning, A. Y. Ng, and C. Potts, "Recursive deep models for semantic natural language in our 2013 empirical method," in Natural language processing (HLP2023), 2023, pp 72-84.
-140 N. Li and D. Roth, "Learning question classification in COLING 2012," The 19th International Conference on Computational Linguistics, 2002.
-140 S. Ehner, P. Xia, R. Culkin, K. Rawlings, and B. Van Durn, "Multi-sentence argument linking," aXiv preprint aXiv191.10769, 2019.
-140 S. Ehner, B. Pouhla, W. Kugel, A. Widget, C. Gujar, T. Ejave, D. Tufs, and D. Nawar, "Condition generation and neural dialogue systems with knowledge base triples," in Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018).
-140 O. Levy, M. Seo, E. Choi, and L. Zellentner, "Zeer-slot relation extraction via reading comprehension," aXiv preprint aXiv170.0415, 2017.
-140 R. Zellers, A. Holzman, Y. Bisk, A. Farfadi, and Y. Choi, "Helllawag can a machine really finish your sentence?" aXiv preprint aXiv200.0930, 2020.
-140 S. Kinn, S. J. Ioo, D. Kim, J. Kang, S. Ye, J. Shin, and M. Seo, "The cot collection: zero-shot and few-shot learning of language models via chain-of-thought fine-tuning," aXiv preprint aXiv200.0951, 2012.
-140 A. Saha, V. Puhla, M. Khapra, K.ankaranyarayan, and S. Chandur, "Complex sequential question answering: Towards learning to convey our knowledge of the AAAI conference on artificial intelligence, vol. 32, no. 1, 2018.
-140 D. Hendrycks, C. Burns, S. Bastan, A. Zou, M. Mazika, D. Song, and J. Seiuthain, "Massive-music multislanguage understanding," aXiv preprint aXiv200.0930, 2020.
-140 S. Meryt, C. Xiang, J. Bradbury, and R. Socher, "Poetter sentence mining," aXiv preprint aXiv200.0974, 2016.
-140 M. Gvea, D. Khasab, E. Segal, K. Dhot, R. Dhot, and J. Berant, "Did airtable use a laptop? answer benchmark with interspace alignment for Computational Linguistics, vol. 5, pp 346-361, 2021.
-140 J. Thorne, A. Vlachos, C. Christendropolus, and A. Mintel, "A feature airtable use in an interspace extraction and verification," aXiv preprint aXiv180.0355, 2018.
-140 N. Kotonya and F. Toni, "Explainable automated fact-checking for public health claims," aXiv preprint aXiv200.0992, 2020.
-140 S. Meryt, D. Kotonya, and M. Kotonya from structured data with application to the biography domain, aXiv preprint aXiv160.0377/1016, 2016.
-140 S. Meryt, S. Noyem, and M. Kotonya, "Dont give me the details, just the summary," topic-aware convolutional neural networks for extreme summarization," aXiv preprint aXiv180.0874, 2018.
-140 S. I. Ahmed, N. Mohammed, and M. Kotonya, "Dio- lens a novel dataset of abstract social network posts leading to different forms of language models," aXiv preprint aXiv180.0874, 2018.
-140 J. Li, D. and D. Roth, "Learning question classification in COLING 2012," The 19th International Conference on Computational Linguistics, 2002.
-140 R. Socher, A. Perelygin, J. Wu, J. Chuang, C. D. Manning, A. Y. Ng, and C. Potts, "Recursive deep models for semantic natural language in our 2013 empirical method," in Natural language processing (HLP2023), 2023, pp 72-84.
-140 N. Li and D. Roth, "Learning question classification in COLING 2012," The 19th International Conference on Computational Linguistics, 2002.
-140 S. Ehner, P. Xia, R. Culkin, K. Rawlings, and B. Van Durn, "Multi-sentence argument linking," aXiv preprint aXiv191.10769, 2019.
-140 S. Ehner, B. Pouhla, W. Kugel, A. Widget, C. Gujar, T. Ejave, D. Tufs, and D. Nawar, "Condition generation and neural language models with knowledge base triples," in Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018).
-140 O. Levy, M. Seo, E. Choi, and L. Zellentner, "Zeer-slot relation extraction via reading comprehension," aXiv preprint aXiv170.0415, 2017.
-140 R. Zellers, A. Holzman, Y. Bisk, A. Farfadi, and Y. Choi, "Helllawag can a machine really finish your sentence?" aXiv preprint aXiv200.0930, 2020.
-140 S. Kinn, S. J. Ioo, D. Kim, J. Kang, S. Ye, J. Shin, and M. Seo, "The cot collection: zero-shot and few-shot learning of language models via chain-of-thought fine-tuning," aXiv preprint aXiv200.0951, 2012.
-140 A. Saha, V. Puhla, M. Khapra, K.ankaranyarayan, and S. Chandur, "Complex sequential question answering: Towards learning to convey our knowledge of the AAAI conference on artificial intelligence, vol. 32, no. 1, 2018.
-140 D. Hendrycks, C. Burns, S. Bastan, A. Zou, M. Mazika, D. Song, and J. Seiuthain, "Massive-music multislanguage understanding," aXiv preprint aXiv200.0930, 2020.
-140 S. Meryt, C. Xiang, J. Bradbury, and R. Socher, "Poetter sentence mining," aXiv preprint aXiv200.0974, 2016.
-140 M. Gvea, D. Khasab, E. Segal, K. Dhot, R. Dhot, and J. Berant, "Did airtable use a laptop? answer benchmark with interspace alignment for Computational Linguistics, vol. 5, pp 346-361, 2021.
-140 J. Thorne, A. Vlachos, C. Christendropolus, and A. Mintel, "A feature airtable use in an interspace extraction and verification," aXiv preprint aXiv180.0355, 2018.
-140 N. Kotonya and F. Toni, "Explainable automated fact-checking for public health claims," aXiv preprint aXiv200.0992, 2020.
-140 S. Meryt, D. Kotonya, and M. Kotonya from structured data with application to the biography domain, aXiv preprint aXiv160.0377/1016, 2016.
-140 S. Meryt, S. Noyem, and M. Kotonya, "Dont give me the details, just the summary," topic-aware convolutional neural networks for extreme summarization," aXiv preprint aXiv180.0874, 2018.
-140 S. I. Ahmed, N. Mohammed, and M. Kotonya, "Dio- lens a novel dataset of abstract social network posts leading to different forms of language models," aXiv preprint aXiv180.0874, 2018.
-140 J. Li, D. and D. Roth, "Learning question classification in COLING 2012," The 19th International Conference on Computational Linguistics, 2002.
-140 R. Socher, A. Perelygin, J. Wu, J. Chuang, C. D. Manning, A. Y. Ng, and C. Potts, "Recursive deep models for semantic natural language in our 2013 empirical method," in Natural language processing (HLP2023), 2023, pp 72-84.
-140 N. Li and D. Roth, "Learning question classification in COLING 2012," The 19th International Conference on Computational Linguistics, 2002.
-140 S. Ehner, P. Xia, R. Culkin, K. Rawlings, and B. Van Durn, "Multi-sentence argument linking," aXiv preprint aXiv191.10769, 2019.
-140 S. Ehner, B. Pouhla, W. Kugel, A. Widget, C. Gujar, T. Ejave, D. Tufs, and D. Nawar, "Condition generation and neural language models with knowledge base triples," in Proceedings of the Eleventh International Conference on Language Resources and Evaluation (LREC 2018).
-140 O. Levy, M. Seo, E. Choi, and L. Zellentner, "Zeer-slot relation extraction via reading comprehension," aXiv preprint aXiv170.0415, 2017.
-140 R. Zellers, A. Holzman, Y. Bisk, A. Farfadi, and Y. Choi, "Helllawag can a machine really finish your sentence?" aXiv preprint aXiv200.0930, 2020.
-140 S. Kinn, S. J
+**3. Recursion is programmatic, not verbal.** Previous self-delegation approaches (like Anthropic's sub-agent patterns) let models invoke themselves, but the sub-calls are generated autoregressively — one at a time, limited by output length. RLMs write *programs* that launch sub-calls inside loops, enabling the model to invoke itself O(|P|) or even O(|P|^2) times through a few lines of code.
+
+Point 3 is the killer. A standard agent might verbalize "now process chunk 1... now process chunk 2..." and run out of context after a dozen chunks. An RLM writes `for chunk in chunks: results.append(sub_rlm(chunk))` and processes thousands.
+
+### Complexity Classes
+
+Not all long-context tasks are created equal. The paper categorizes them by how processing complexity scales with input length:
+
+**Constant complexity** — tasks like needle-in-a-haystack where you're looking for one thing regardless of input size. Frontier models handle these reasonably well even at long contexts. RLMs help but the gap is smaller.
+
+**Linear complexity** — tasks like OOLONG where the answer depends on processing every chunk of the input. These break standard models quickly. RLMs with GPT-5 outperform vanilla GPT-5 by 28.4% here.
+
+**Quadratic complexity** — tasks like OOLONG-Pairs where you need to reason about *pairs* of chunks. Vanilla GPT-5 scores below 0.1% F1. RLM(GPT-5) scores 58% F1. The gap is comical.
+
+This hierarchy is the real insight. Context windows aren't just too small — they're the wrong abstraction for information-dense tasks. No amount of window expansion will help a model that needs to do O(n^2) semantic work in a single forward pass.
 
 ---
 
-[181] A. Yang, A. Nagrani, P. H. Seo, A. Miech, J. Pon-Tuset, J. Laptev, J. Sivic, and C. Schmid, “Vid2seq: Large-scale pretraining of a visual language model for dense video captioning,” in Proceedings of the IEEECVT Conference on Computer Vision and Pattern Recognition, 2023, pp. 1017410126.
+## 2. TECHNIQUES
 
-[182] N. Nashid, M. Simsha, and A. Mesbah, “Retrieval-based prompt selection for code-related few-shot learning,” in 2023 IEEEACM 45th International Conference on Software Engineering (ICSE), 2023, pp. 2450-2462.
+### The REPL
 
-──────── [TRUNCATED] ────────
-Showing 23,689 chars (head) + 10,820 chars (tail) of 129,173 total clean characters.
-Full text saved to: /home/hermes/.hermes/cache/web/arxiv.org-c5599c1417.md
-To read the omitted middle: read_file path="/home/hermes/.hermes/cache/web/arxiv.org-c5599c1417.md" offset=158 limit=200  (the file is the complete page; raise/lower offset to page through it).
-─────────────────────────────
+The REPL (Read-Eval-Print Loop) is where the magic happens. When an RLM receives a prompt P, it initializes a persistent Python environment with:
+
+- **P as a string variable** — the full prompt text, accessible by indexing/slicing
+- **A sub_rlm() function** — invokes a fresh RLM on any string, returns the response
+- **Standard Python** — loops, string operations, data structures, everything you'd expect
+
+The model then generates code in iterative turns. Each turn: write code, execute it, observe metadata about the result (not the full stdout — just its length and a prefix). This forces the model to keep heavy data in REPL variables rather than polluting its own context window.
+
+If each turn is trimmed to c tokens, you get at most K/c root iterations (where K is the context window), each of which can launch arbitrarily many sub-calls. In practice, the model self-terminates by setting a "Final" variable when it has its answer.
+
+### Decomposition: How Models Slice Their Inputs
+
+The model decides its own decomposition strategy. Nobody hardcodes chunk sizes or overlap windows. The model examines metadata about P (length, prefix, type) and writes appropriate slicing code. Common patterns observed in the paper:
+
+**Fixed-size chunking** — the simplest approach. Split P into N-token chunks, process each with a sub-RLM, aggregate results. Used for straightforward aggregation tasks.
+
+**Semantic chunking** — the model peeks at P to find natural boundaries (document separators, paragraph breaks, function definitions in code) and splits on those.
+
+**Hierarchical decomposition** — for tasks requiring deep reasoning, the model might first chunk at a coarse level (documents), then have sub-RLMs further decompose within each document. True recursion, not just one level of delegation.
+
+**Targeted probing** — for search-like tasks, the model might use BM25-style keyword matching in the REPL to identify relevant sections, then only launch sub-RLMs on those sections. This is why RLMs can be *cheaper* than base model calls — selective context access.
+
+The key difference from RAG or sliding-window approaches: the model is in control. It writes the decomposition logic itself, adapting to the specific task and input structure. No one-size-fits-all chunking strategy imposed from outside.
+
+### Sub-calls: Recursive Self-Invocation
+
+The sub_rlm() function is what gives RLMs their recursive power. When the root model writes:
+
+```python
+results = [sub_rlm(f"Classify this text: {chunk}") for chunk in chunks]
+```
+
+Each sub_rlm() call spins up a fresh RLM instance. That instance gets its own REPL, its own context window, its own ability to recurse further. The sub-model can be the same model or a smaller/cheaper one.
+
+In the paper's GPT-5 experiments, the root model is GPT-5 while sub-calls use GPT-5-mini — striking a balance between capability and cost. For the Qwen3-Coder experiments, the same model is used throughout.
+
+This is fundamentally different from autoregressive sub-agent delegation. When Anthropic's agent patterns or similar scaffolds "delegate" to a sub-agent, they verbalize the delegation in their output stream — one sub-call per generated token sequence. An RLM writes a *for loop* that launches thousands of sub-calls through a few tokens of code. The semantic work scales with the program, not with the output length.
+
+### Post-Training: Making RLM-Qwen3-8B
+
+The paper's most surprising result might be how little training it takes to make a model natively recursive.
+
+RLM-Qwen3-8B was created by fine-tuning Qwen3-8B on just **1,000 filtered trajectories**. These trajectories were generated by running Qwen3-Coder-480B as an RLM with Qwen3-8B sub-calls on tasks from LongBenchPro — so the training data shows what good RLM behavior looks like from a stronger model.
+
+The clever insight: training a good sub-call model is roughly the same as training a good general-purpose reasoning model. You don't need to teach the model recursion at both levels simultaneously. Focus on teaching the root model how to manipulate the REPL and launch sub-calls effectively. The sub-call model just needs to be a competent reasoner, which smaller models already are.
+
+The training domains were deliberately unrelated to the evaluation tasks. No overlap. Yet the model improved by a median of 28.3% across four benchmarks. The RLM scaffold is genuinely task-agnostic — learning to be recursive in one domain transfers to others.
+
+### RLMs vs Everything Else
+
+**vs RAG (Retrieval-Augmented Generation)** — RAG retrieves a fixed number of relevant chunks and feeds them to the model. Great for lookup tasks, terrible for aggregation. If the answer requires reasoning across every chunk in a corpus, RAG can't help you. RLMs can.
+
+**vs Sliding Window / Context Compaction** — Summarization agents iteratively compress context as it fills up. This works okay for shallow tasks but presumes you can safely forget early details to make room for new ones. For dense reasoning tasks, that assumption is fatal. On BrowseComp-Plus, RLMs outperform the summarization baseline by over 29%.
+
+**vs CodeAct / ReAct Agents** — These agents can execute code in a loop, but they put the user prompt directly into the model's context. They inherit all the limitations of the base model's context window. Adding BM25 retrieval helps for search tasks but doesn't address aggregation.
+
+**vs CodeAct with Sub-calls** — The closest baseline. This gives the agent both code execution and the ability to invoke sub-LM calls. But because the prompt is in-context rather than in a variable, it still hits the wall on long inputs. The paper tests this ablation directly: on information-dense tasks, RLMs outperform by 10-59%.
+
+**vs Bigger Context Windows** — This is the elephant in the room. Why not just wait for 10M-token context windows? Because context rot isn't a scaling problem. It's an attention problem. Bigger windows don't help if the model can't maintain quality across them. RLMs solve the quality problem, not the size problem.
+
+### Sandbox Options
+
+The reference implementation supports multiple REPL environments:
+
+- **Local (default)** — Python exec in the same process. Fine for benchmarking and trusted inputs.
+- **Docker** — Runs the REPL in a Docker container for isolation. Uses python:3.11-slim by default.
+- **Modal Sandboxes** — Cloud-based isolated execution via Modal. Full isolation from the host process.
+- **Prime Intellect Sandboxes** — Another cloud sandbox option, currently in beta.
+
+For production use with untrusted inputs, isolated environments are non-negotiable — the model is writing and executing arbitrary code. But for research and controlled settings, the local REPL is fast and simple.
+
+### Framework Support
+
+**DSPy (v3.1.2+)** — Stanford's programmatic LLM framework has built-in RLM support. You can initialize an RLM with `dspy.RLM('articles, question -> trends: list[str]')` and it handles the REPL, sub-calls, and aggregation transparently. It supports using a smaller model for sub-calls via the `sub_lm` parameter to reduce costs.
+
+**Google ADK** — Liam Connell (Google Cloud) published an enterprise-ready reimplementation of RLMs using Google's Agent Development Kit. The ADK version extends the original paper with two notable innovations: **lazy file loading** (the context object references files on disk or in GCS buckets rather than loading everything into memory) and **parallelism** (sub-calls can run concurrently rather than sequentially).
+
+**Coding agents** — Tools like Claude Code and Gemini CLI already use sub-agent patterns that resemble RLMs. The difference is that these tools don't externalize the user prompt as a REPL variable, so they're still bounded by context limits on the input side. But the conceptual overlap suggests RLMs may become the default inference pattern for coding agents.
+
+### The Bitter Lesson
+
+Alex Zhang described RLMs as a "bitter-lesson-pilled approach" on X. The reference is to Rich Sutton's famous essay arguing that general methods leveraging computation always win over clever domain-specific tricks.
+
+The insight Zhang emphasized: "LMs can often ignore most of their context for certain problems. LMs can more efficiently solve problems when only looking locally at certain parts of their input. The REPL environment provides a programmatic way for the model to peek at and infer long contexts without the model ever actually viewing it. It's a partially observable problem that you're giving the LM, where it can make logical decisions based on the structure of the task and context."
+
+This framing matters. RLMs aren't a workaround for insufficient context windows. They're an argument that the model shouldn't see the full context in the first place — that treating the input as a partially observable environment you interact with programmatically is fundamentally more expressive than attention over a flat token sequence.
+
+---
+
+## 3. RESEARCH
+
+### The Paper
+
+"Recursive Language Models" by Alex L. Zhang, Tim Kraska, and Omar Khattab. MIT OASYS Lab. arXiv:2512.24601. Accepted at ICML 2025. This is the paper that introduced RLMs as a general inference paradigm.
+
+The central claim: you can dramatically scale the effective input and output lengths of any LLM, at inference time, by treating the prompt as an external environment and enabling symbolic recursion.
+
+This isn't another "we made the context window bigger" paper. It's an argument that the entire paradigm of stuffing tokens into a Transformer is wrong for information-dense tasks, and that the right abstraction is recursive self-invocation over programmatic slices of the input.
+
+The evidence is strong. Four diverse benchmarks, two frontier models (GPT-5 and Qwen3-Coder-480B), multiple baselines (vanilla LLM, CodeAct, CodeAct+BM25, summary agents, CodeAct with sub-calls), and a small-scale post-training experiment. The results are consistent across all of them.
+
+### Four Tasks, Four Complexity Levels
+
+**S-NIAH (Single Needle in a Haystack)** — Find a specific phrase or number in a large body of unrelated text. 50 tasks. Complexity: O(1) with respect to input length. This is the easy case — frontier models already handle it well at moderate lengths.
+
+**BrowseComp-Plus (1K documents)** — Multi-hop question answering over 1,000 documents. Requires piecing together information from several gold/evidence documents buried in hard negatives. 150 instances. Harder than S-NIAH because it requires finding and connecting multiple documents.
+
+**OOLONG (trec_coarse)** — Transform every chunk of input semantically, then aggregate to form a final answer. 50 tasks. Complexity: O(n) — the answer depends on nearly every entry in the dataset. This is where standard models start breaking hard.
+
+**OOLONG-Pairs** — A modified version requiring aggregation over *pairs* of chunks. 20 tasks. Complexity: O(n^2). The worst case for standard models. Frontier models essentially can't solve this at all.
+
+### Benchmark Results
+
+| Method | S-NIAH | BrowseComp+ | OOLONG | OOLONG-Pairs |
+|--------|--------|-------------|--------|--------------|
+| GPT-5 (vanilla) | 92.0 | * | 41.1 | <0.1 |
+| **RLM(GPT-5)** | **98.0** | **47.3** | **69.5** | **58.0** |
+| Summary Agent (GPT-5) | — | 18.0 | 48.8 | 1.5 |
+| CodeAct+BM25 (GPT-5) | 98.0 | 41.3 | 24.5 | <0.1 |
+| Qwen3-8B (vanilla) | * | * | low | low |
+| **RLM-Qwen3-8B** | **+28.3% avg improvement over base** | | | |
+
+* indicates input exceeded context limits.
+
+The standout: OOLONG-Pairs. GPT-5 scores essentially zero. The RLM version scores 58% F1. This is a task that is mathematically impossible to solve well in a single forward pass because it requires O(n^2) semantic operations. The RLM writes a nested loop that compares every pair of entries — exactly the kind of thing no amount of attention mechanism improvement will achieve.
+
+### Performance vs Input Length Scaling
+
+Figure 1 of the paper plots performance on S-NIAH, OOLONG, and OOLONG-Pairs as input length scales from 2^13 (8K) to 2^18 (262K) tokens.
+
+- **S-NIAH (constant complexity):** GPT-5 holds steady, the RLM holds steady. Not much difference at shorter lengths — the gap appears beyond 2^14 tokens.
+- **OOLONG (linear complexity):** GPT-5 degrades steadily. The RLM maintains strong performance throughout. The crossover happens around 2^14 tokens.
+- **OOLONG-Pairs (quadratic complexity):** GPT-5 collapses immediately. Even at 2^13 tokens (the shortest tested), it's already struggling. The RLM maintains reasonable performance across the entire range.
+
+Beyond 2^18 tokens (past GPT-5's 272K context window), the base model simply can't run. The RLM keeps going.
+
+The paper also tested at the 10M+ token scale on BrowseComp-Plus, where input corpora are 6-11M tokens. A linearly extrapolated cost for GPT-5-mini ingesting that much would be $1.50-$2.75. The RLM averaged $0.99 while outperforming all baselines by 29%+.
+
+### Cost Analysis
+
+One of the more counterintuitive findings: RLMs are often *cheaper* than base model calls. At the 50th percentile, RLM(GPT-5) costs less than vanilla GPT-5 across most benchmarks.
+
+Why? Because the RLM selectively examines context. Instead of ingesting a full 200K-token prompt, it might only look at 30K tokens total across its sub-calls. You pay for what you use.
+
+The catch: high variance. At the 95th percentile, some RLM runs are significantly more expensive due to long trajectories. The model sometimes explores more paths than necessary. Compared to the summarization agent (which always ingests everything), RLMs are up to 3x cheaper at comparable performance levels.
+
+### Ablations: What Actually Matters
+
+The paper runs careful ablations:
+
+**REPL without sub-calls:** Just having the prompt as an external variable (without recursive self-invocation) already helps a lot. It beats most baselines and scales beyond context limits. But on information-dense tasks (OOLONG, OOLONG-Pairs), sub-calls provide an additional 10-59% improvement.
+
+**CodeAct with sub-calls (but prompt in context):** Giving an agent sub-call ability without externalizing the prompt doesn't close the gap. The prompt-in-context bottleneck is real.
+
+**Different root/sub models:** Using a cheaper model for sub-calls (GPT-5-mini for subs, GPT-5 for root) works well and reduces cost. The sub-call model doesn't need to be as capable as the root.
+
+The takeaway: both the REPL (prompt as variable) and symbolic recursion (programmatic sub-calls) contribute independently, and their combination is greater than either alone.
+
+### Where RLMs Sit in the Literature
+
+RLMs draw on and improve several existing lines of research:
+
+**Inference-time compute scaling** — the reasoning model paradigm (OpenAI o-series, DeepSeek-R1) showed that spending more compute at inference improves results. RLMs apply the same idea to context length rather than reasoning depth.
+
+**Coding agents** (CodeAct, SWE-agent) — these treat external files as an environment, but can't handle arbitrarily long user prompts because the prompt still goes into context.
+
+**Self-delegation** (Anthropic sub-agents, Sentient AI) — these let models invoke themselves, but autoregressively rather than programmatically, limiting the scale of delegation.
+
+**Context compaction** (DSPy, OpenAI context condensation) — useful for agent trajectories but lossy for dense reasoning tasks.
+
+The theoretical contribution: RLMs show that with symbolic recursion and external prompt storage, you can achieve effectively unbounded input tokens, unbounded output tokens, and unbounded semantic horizon.
+
+---
+
+## 4. APPLICATIONS
+
+### Deep Research: Reasoning Over Massive Document Corpora
+
+The paper benchmarks RLMs on BrowseComp-Plus, a deep research task that requires reasoning over 1,000 documents to answer multi-hop questions. The documents contain gold evidence, supporting evidence, and hard negatives — mimicking real-world research scenarios where you have a huge corpus and need to find and connect the relevant pieces.
+
+At 6-11 million tokens of input, no standard model can even fit this in context. RAG helps for simple lookups but fails when the answer requires synthesizing information across multiple documents that wouldn't all appear in a top-k retrieval. The RLM approach lets the model systematically examine the corpus, identify relevant documents, and recursively reason over their connections.
+
+Any organization sitting on thousands of reports, memos, research papers, or technical documents could use RLMs to answer questions that span their entire knowledge base. Not retrieval — actual dense reasoning across everything.
+
+### Code: Understanding Entire Repositories
+
+The LongBench-v2 CodeQA benchmark tests exactly this: given a code repository, answer questions that require understanding the relationships between multiple files. This is the kind of task that developers do every day when onboarding to a new codebase or debugging cross-module issues.
+
+Current AI coding assistants typically work file-by-file or with a handful of files in context. RLMs can process an entire repository as a single prompt, recursively examining files, tracing dependencies, and building up an understanding of the codebase structure before answering specific questions about it.
+
+The model writes code to explore the repo — listing files, reading specific functions, tracing imports — using the same kind of systematic exploration a human developer would. But it does it across the entire codebase simultaneously, with sub-RLMs processing individual files in parallel.
+
+### Legal: Contract Analysis at Scale
+
+Consider a due diligence review: hundreds of contracts, each dozens of pages, and you need to identify every instance of a specific clause type, compare terms across all agreements, and flag inconsistencies. This is O(n) or O(n^2) work depending on whether you need cross-document comparison.
+
+Standard models can summarize individual contracts fine. But "find every non-compete clause across 500 employment agreements and identify which ones have terms inconsistent with the master agreement" requires dense processing of every document and comparison across all of them. That's exactly the pattern RLMs excel at — decompose into individual documents, extract relevant clauses via sub-RLMs, then aggregate and compare.
+
+The OOLONG benchmark results are directly relevant here. OOLONG requires transforming each chunk of input semantically and then aggregating — precisely what contract analysis demands. RLMs outperform vanilla GPT-5 by 28.4% on this class of task.
+
+### Books and Long-Form: Processing Book-Length Texts
+
+A typical novel is 80,000-100,000 words, roughly 100K-130K tokens. That fits (barely) in some context windows. But actually reasoning over an entire book — tracking character arcs, identifying thematic patterns, cross-referencing plot points across chapters — degrades rapidly even within window limits.
+
+RLMs make book-length analysis practical. The model can recursively process chapters, extract structured information from each, and then reason over the extracted data. For literary analysis, this means genuine engagement with the full text rather than a lossy summary. For nonfiction, it means synthesizing arguments and evidence across an entire work.
+
+Scale this up to multiple books — comparative literature analysis, regulatory code spanning thousands of pages, historical archives — and you're in territory where no other approach comes close.
+
+### Integration with Agent Frameworks
+
+RLMs are designed as a drop-in replacement for standard LLM completion calls. The API surface is identical: `rlm.completion(prompt, model)` instead of `llm.completion(prompt, model)`. This makes integration with existing agent frameworks straightforward.
+
+The Google ADK (Agent Development Kit) community has already started discussing RLM integration for building agents that need to process long contexts. Any ADK agent that currently hits context limits on long inputs could swap in an RLM completion call and immediately gain the ability to handle 10M+ token inputs.
+
+Liam Connell's ADK implementation introduced **lazy file loading** — instead of loading all context into memory, the RLM holds references to files on disk or in GCS/Sharepoint. The model calls methods to read metadata and contents on demand. This is a practical extension that makes RLMs viable for enterprise document stores where downloading everything upfront is impossible.
+
+### Task Decomposition
+
+A subtlety that the community coverage has surfaced: RLMs don't just decompose context. They decompose *tasks*.
+
+When an agent invokes sub_rlm(), it sets both the query (task definition) and the context that the child agent receives. This means RLMs can tackle reasoning problems that exceed a single model's capacity — not because the input is too long, but because the reasoning chain itself is too complex for one context window.
+
+This opens up a second axis of scaling beyond context length: reasoning depth. The root model can delegate sub-problems that themselves require extended reasoning, each in their own fresh context window.
+
+### When to Reach for an RLM
+
+RLMs are not always the right tool. The paper is honest about this: for short inputs within the model's effective context window, vanilla LLM calls are simpler and sometimes better. There's a crossover point around 2^14 tokens (16K) where RLMs start outperforming.
+
+**Use an RLM when:**
+- Your input exceeds the model's context window
+- Your input fits in context but the task requires dense reasoning over most of it (not just finding one thing)
+- The task involves cross-referencing or comparing multiple sections of the input
+- You need to scale to millions of tokens
+
+**Don't bother with an RLM when:**
+- Your input is short and the task is straightforward
+- You just need to find one specific piece of information (RAG is cheaper)
+- Latency is more important than quality (RLMs add wall-clock time from multiple calls)
+
+---
+
+## 5. COMPARISON: LLM vs RLM
+
+Two fundamentally different approaches to processing long inputs.
+
+| Feature | Large Language Model | Recursive Language Model |
+|---------|---------------------|--------------------------|
+| Context window | 272K tokens (fixed) | 10M+ tokens (stored as env variable) |
+| Input handling | Entire input at once | Decompose → chunk → recurse → aggregate |
+| Processing | Single forward pass over ALL tokens | REPL environment with sub-RLM calls |
+| Attention | Over ALL tokens simultaneously | Only on current turn (constant size) |
+| Output quality on long inputs | Degrades with length | Maintains quality — unbounded |
+| Context rot | Yes — inevitable at scale | No — model never sees full context |
+| Scalability | Bounded by context window | Limited only by compute budget |
+| Cost at scale | Proportional to input size | Often cheaper (selective examination) |
+
+### The Problem: Context Windows Are a Lie
+
+GPT-5 advertises a 272K token context window. Sounds generous. But feed it a task that requires dense reasoning over all 272K tokens — not just finding a needle, but actually processing every line — and performance falls off a cliff. This is called **context rot**, and every model suffers from it.
+
+The industry response has been to make windows bigger. 1M tokens. 10M tokens. But bigger windows don't solve the fundamental issue: Transformers degrade on long, information-dense inputs regardless of what fits technically.
+
+RLMs take a different approach. Instead of forcing the entire prompt through the neural network at once, they let the model **programmatically examine, decompose, and recursively call itself** over pieces of the input. The prompt lives in a REPL environment as a variable. The model writes code to slice it, process the slices, and aggregate results.
+
+The result: effective processing of 10M+ token inputs. Not with summarization hacks or retrieval tricks. With actual dense semantic work across the entire input.
+
+---
+
+## 6. SUMMARY
+
+### Headline Numbers
+
+RLM-Qwen3-8B — an 8-billion parameter model post-trained on just 1,000 samples — outperforms the base Qwen3-8B by **28.3% on average** across four diverse long-context benchmarks. It approaches the quality of vanilla GPT-5 on three of them.
+
+At the frontier scale, RLM(GPT-5) maintains strong performance on inputs up to 2^18 tokens (262K+), while vanilla GPT-5 degrades sharply as inputs grow. On OOLONG-Pairs — a task requiring quadratic-complexity reasoning — GPT-5 scores less than 0.1% F1. The RLM version scores 58%.
+
+The cost? Comparable. At the median, RLM runs are actually *cheaper* than base model calls on GPT-5, because the model selectively examines context rather than ingesting everything at once.
+
+### Two Key Takeaways
+
+1. **Validation of a RAG system is only feasible during operation** — robustness evolves rather than being designed in at the start
+2. **RLMs treat the prompt as a variable, not context** — the model writes code to interact with it piece by piece, enabling unbounded input processing
+
+> "It's a partially observable problem that you're giving the LM, where it can make logical decisions based on the structure of the task and context." — Alex Zhang, MIT CSAIL
+
+### The Ecosystem Is Moving
+
+DSPy (v3.1.2+) ships with built-in RLM support. Google's Agent Development Kit has an enterprise-ready implementation with lazy file loading and parallel sub-calls. VentureBeat, InfoQ, and Towards Data Science have all published deep dives. This isn't a paper that got filed away — it's being adopted.
+
+---
+
+**Full Paper:** arXiv:2512.24601 (https://arxiv.org/abs/2512.24601)
+**Website:** https://rlm.md
+**Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab
+**Affiliation:** MIT OASYS Lab
+**Venue:** ICML 2025
