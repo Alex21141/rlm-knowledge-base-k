@@ -160,4 +160,4 @@ python scripts/retrieval.py search "query"  # Search
 - ✅ FAISS index працює з 244 чанками
 - ✅ MiniLM дає прийнятну якість для ML/RLM домену
 - ⚠️ Базовий semantic retrieval без metadata filtering має partial relevance
-- 📋 HW3: query rewriting + hybrid scoring + metadata filtering → 10/10 improved
+- ⚠️ Рекомендація: для підвищення релевантності розглянути metadata filtering, query rewriting або reranking
