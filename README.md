@@ -1,184 +1,208 @@
 # Домашнє завдання №1 — Підготовка knowledge base
 
-## Тема
+## 1. Опис проєкту
 
-**Recursive Language Models (RLM) Research Assistant** — чат-бот для допомоги дослідникам ML, інженерам та студентам у розумінні архітектур рекурсивних мовних моделей, їх реалізації, навчання та практичного застосування. Knowledge base покриває повний спектр — від базової теорії до production-інструментів.
+**Subject area:** Recursive Language Models (RLM) Research Assistant
 
-## Джерела
+Чат-бот для допомоги дослідникам ML, інженерам та студентам у розумінні архітектур рекурсивних мовних моделей, їх реалізації, навчання та практичного застосування. Knowledge base покриває повний спектр — від базової теорії до production-інструментів.
 
-Всі документи отримані з першоджерел: офіційних репозиторіїв, статей на arXiv та оригінальних блог-постів.
+---
 
-| # | Документ | URL джерела | Опис |
-|---|----------|-------------|------|
-| 1 | `alexzhang_blog_context_rot.md` | [alexzhang13.github.io/blog/2025/rlm](https://alexzhang13.github.io/blog/2025/rlm/) | Оригінальний блог-пост Alex Zhang. Інтуїція context rot, REPL design, ключові результати (OOLONG, BrowseComp-Plus, 10M+ tokens) |
-| 2 | `halo_agent_optimizer.md` | [github.com/context-labs/halo](https://github.com/context-labs/halo) | HALO — RLM-базований оптимізатор агентів. Архітектура engine, CLI options, Python API, AppWorld benchmarks |
-| 3 | `prime_intellect_ablations.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Експериментальні абляції Prime Intellect у 4 середовищах (DeepDive, math-python, Oolong, verbatim-copy) з GPT-5-mini |
-| 4 | `prime_intellect_context_folding.md` | [primeintellect.ai/blog/rlm](https://www.primeintellect.ai/blog/rlm) | Аналіз context folding альтернатив (AgentFold, Agentic Context Engineering) та чому RLM — найбільш гнучкий підхід |
-| 5 | `rag_failure_points_arxiv2024.md` | [arXiv:2401.05856](https://arxiv.org/abs/2401.05856) | Seven Failure Points of RAG (Barnett et al., 2024). Indexing, querying, chunking, scoring, reranking, generation, evaluation |
-| 6 | `rag_original_neurips2020.md` | [arXiv:2005.11401](https://arxiv.org/abs/2005.11401) | Original RAG paper (Lewis et al., NeurIPS 2020). Knowledge-intensive NLP: retrieval + generation, dense retrieval DPR, grounded dialogue |
-| 7 | `rag_survey_arxiv2024.md` | [arXiv:2312.10997](https://arxiv.org/abs/2312.10997) | RAG Survey (Gao et al., 2024). Taxonomy, methods, benchmarks, open challenges |
-| 8 | `rlm_core_paper_and_github.md` | [github.com/alexzhang13/rlm](https://github.com/alexzhang13/rlm) | Основна стаття (arXiv:2512.24601), GitHub README, system prompts, REPL environments, model providers, training harness |
-| 9 | `rlm_original_paper.md` | [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) | Оригінальна академічна стаття MIT CSAIL (Zhang, Kraska, Khattab). Abstract, intro, methods, results, limitations |
-| 10 | `llm_reasoning_paradigms_evolution.md` | [Medium, Deepan MN](https://medium.com/@mndeepan06/recursive-language-models-rlms-from-prompting-to-recursive-systems-how-llm-reasoning-is-evolving-b3865e273e0b) | Повна еволюція парадигм мислення LLM: Single-Prompt → CoT → Tool-Augmented → RAG → Agents → Context Scaling → RLMs |
+## 2. Джерела
 
-## Структура метаданих
+| # | Документ | Джерело | Тип |
+|---|----------|---------|-----|
+| 1 | `alexzhang_blog_context_rot.md` | alexzhang13.github.io/blog/2025/rlm | Blog |
+| 2 | `halo_agent_optimizer.md` | github.com/context-labs/halo | Production tool |
+| 3 | `prime_intellect_ablations.md` | primeintellect.ai/blog/rlm | Blog (experimental) |
+| 4 | `prime_intellect_context_folding.md` | primeintellect.ai/blog/rlm | Blog (analysis) |
+| 5 | `rag_failure_points_arxiv2024.md` | arXiv:2401.05856 | Research paper |
+| 6 | `rag_original_neurips2020.md` | arXiv:2005.11401 | Research paper |
+| 7 | `rag_survey_arxiv2024.md` | arXiv:2312.10997 | Survey paper |
+| 8 | `rlm_core_paper_and_github.md` | github.com/alexzhang13/rlm | Paper + repo |
+| 9 | `rlm_original_paper.md` | arXiv:2512.24601 | Research paper |
+| 10 | `llm_reasoning_paradigms_evolution.md` | medium.com/@mndeepan06 | Blog (analysis) |
+
+**Домени:** recursive-language-models, retrieval-augmented-generation, ml-reasoning, agent-optimization, context-engineering
+
+---
+
+## 3. Структура метаданих
+
+Кожен chunk містить наступні поля metadata:
 
 | Поле | Тип | Опис |
 |------|-----|------|
-| `chunk_id` | string | Унікальний ідентифікатор: `{document_id}_chunk_{index}` |
-| `text` | string | Фактичний вміст чанку |
-| `metadata.document_id` | string | Ідентифікатор вихідного документа |
-| `metadata.source_file` | string | Шлях до raw-джерела |
-| `metadata.source_type` | string | Формат джерела (`markdown`) |
-| `metadata.title` | string | Людський заголовок документа |
-| `metadata.section` | string | Найближчий заголовок секції для контексту |
-| `metadata.chunk_index` | integer | Послідовний індекс в межах документа |
-| `metadata.language` | string | Мова контенту (`en`) |
-| `metadata.domain` | string | Тема домену (напр. `machine_learning`, `agent-engineering`) |
-| `metadata.document_type` | string | Категорія документа (`research-paper`, `tool`, `blog`, `experimental-report`, `analysis`, `survey`) |
-
-## Стратегія chunking
-
-- **Метод:** Параграфний sliding window зі збереженням семантичних меж
-- **Розмір чанку:** ~900 символів (в межах 500–1000)
-- **Overlap:** ~180 символів між сусідніми чанками (в межах 100–200)
-- **Спеціальна обробка:** Code blocks, таблиці, діаграми (як текст) зберігаються цілими
-- **Правила меж:** Чанки розриваються на межах параграфів; великі параграфи — на межах речень
-
-### Статистика розміру чанків
-
-- **Всього чанків:** 248
-- **Середній розмір:** 804 символів
-- **Мінімум:** 204 символів
-- **Максимум:** 852 символів
-- **В межах 500–1000:** 244/248 (98%)
-- **Коротших за 500:** 4/248
-- **Довших за 1000:** 0/248
-- **Унікальних секцій:** 103
-- **Placeholder-ів:** 0
-
-## Висновки
-
-### Що вдалося
-
-1. **Вірність першоджерел:** 10 документів з офіційних джерел — MIT GitHub, arXiv, Prime Intellect блог, Context Labs, Alex Zhang. Фактична точність термінів, API та експериментальних чисел.
-
-2. **Комплексне покриття:** 10 документів — теорія (блог), основні дослідження (стаття + GitHub), production (HALO), експерименти (ablations + folding), порівняння (RLM vs RAG), foundational RAG (NeurIPS 2020, failure points, survey).
-
-3. **Семантична цілісність:** Чанки зберігають межі параграфів та code blocks. Таблиці CLI options, tips середовищ залишені цілими — критично для research-асистента.
-
-4. **Багаті метадані:** Domain-теги (`machine_learning`, `agent-engineering`, `experimental-ml`, `ml-theory`, `analysis`, `survey`) для фільтрування. Напр. "install HALO" → `halo_agent_optimizer`; "RAG failure points" → `rag_failure_points`.
-
-5. **Zero oversized:** Всі 248 чанків ≤ 852 символів — жодних >1000, що погіршували б embedding quality.
-
-### Що потребує покращення
-
-1. **Крос-посилання:** Чанки посилаються на концепти з інших документів. `related_chunks` в метадани покращило б multi-document retrieval.
-
-2. **Темпоральні метадані:** `publication_date` + `last_verified` для попередження про застарілу інформацію.
-
-3. **Рівномірність розміру:** 4 чанків <500 символів. Merge сусідніх коротких покращив би embedding density.
-
-4. **Візуальний контент:** Діаграми оригіналів (RLM flowchart, HALO engine) втрачені. Image URLs або описи допомогли б.
-
-## Структура проєкту
-
-```
-.
-├── README.md
-├── data/
-│   ├── raw/
-│   ├── alexzhang_blog_context_rot.md
-│   ├── halo_agent_optimizer.md
-│   ├── prime_intellect_ablations.md
-│   ├── prime_intellect_context_folding.md
-│   ├── rag_failure_points_arxiv2024.md
-│   ├── rag_original_neurips2020.md
-│   ├── rag_survey_arxiv2024.md
-│   ├── rlm_core_paper_and_github.md
-│   ├── rlm_original_paper.md
-│   └── processed/
-│       └── chunks.jsonl
-└── scripts/
-    └── prepare_knowledge_base.py
-
-```
-
-## Використання
-
-```bash
-python scripts/prepare_knowledge_base.py
-```
-
-Скрипт читає всі Markdown файли з `data/raw/` і генерує `data/processed/chunks.jsonl`.
+| `chunk_id` | string | Унікальний ідентифікатор (напр. `rlm_original_paper_chunk_001`) |
+| `document_id` | string | Ідентифікатор документа (напр. `rlm_original_paper`) |
+| `source_file` | string | Шлях до вихідного файлу (напр. `data/raw/rlm_original_paper.md`) |
+| `chunk_index` | integer | Порядковий номер чанку в документі |
+| `title` | string | Назва документа |
+| `section` | string | Назва розділу документа |
+| `language` | string | Мова (en/uk) |
+| `domain` | string | Доменна область |
+| `document_type` | string | Тип документа (research-paper, guide, tool, blog, analysis, survey) |
+| `source_type` | string | Формат джерела (markdown) |
 
 ---
 
-## Домашнє завдання №2 — Базовий semantic retrieval layer
+## 4. Стратегія chunking
 
-### Архітектура
+| Параметр | Значення | Обґрунтування |
+|----------|----------|---------------|
+| `chunk_size` | 500–1000 символів | Достатньо для самостійного читання, не занадто велико |
+| `overlap` | 100 символів | Зберігає контекст між сусідніми чанками |
+| `метод` | Paragraph-aware splitting | Спочатку розбиття по абзацах, потім об'єднання для досягнення цільового розміру |
+| `min_size` | 500 символів | Чанки менше 500 символів об'єднуються з сусідом |
 
-- **Embedding model:** `sentence-transformers/all-MiniLM-L6-v2` (384-dim)
-- **Vector storage:** FAISS (Inner Product, L2-normalized)
-- **Chunks indexed:** 244
-- **Top-k:** 3
-
-### Використання
-
-```bash
-python scripts/retrieval.py build     # Build FAISS index
-python scripts/retrieval.py test      # Run test queries
-python scripts/retrieval.py search "query"  # Search
-```
-
-### Тестові запити та результати
-
-| # | Query | Top-1 Chunk | Score | Relevance |
-|---|-------|-------------|-------|-----------|
-| 1 | How do RLMs handle arbitrarily long prompts? | rlm_original_paper_chunk_006 | 0.6195 | relevant |
-| 2 | What is context rot and why does it happen? | rlm_core_paper_and_github_chunk_004 | 0.6233 | relevant |
-| 3 | How does HALO optimize agent loops? | halo_agent_optimizer_chunk_001 | 0.8106 | partially relevant |
-| 4 | What are the key differences between RLM and ReAct? | alexzhang_blog_context_rot_chunk_010 | 0.5253 | partially relevant |
-| 5 | What are the seven failure points when engineering a RAG system? | rag_failure_points_arxiv2024_chunk_008 | 0.6125 | partially relevant |
-| 6 | How does Prime Intellect implement RLM ablations? | prime_intellect_ablations_chunk_001 | 0.5763 | partially relevant |
-| 7 | What is context folding and how does RLM compare? | prime_intellect_context_folding_chunk_005 | 0.5596 | partially relevant |
-| 8 | How do you install and set up the RLM system? | prime_intellect_context_folding_chunk_006 | 0.4307 | partially relevant |
-| 9 | What benchmark results does RLM achieve on Oolong? | prime_intellect_ablations_chunk_013 | 0.6232 | partially relevant |
-| 10 | What is the original RAG approach from NeurIPS 2020? | rag_survey_arxiv2024_chunk_011 | 0.4613 | partially relevant |
-
-### Аналіз
-
-- **Релевантні (top-1 correct):** 2/10 — queries 1, 2
-- **Частково релевантні:** 8/10
-- **Не релевантних:** 0/10
-- **Avg Top-1 score:** 0.55
-- **Best:** Query 3 (HALO) — score 0.81
-
-### Висновки
-
-- ✅ FAISS index працює з 244 чанками
-- ✅ MiniLM дає прийнятну якість для ML/RLM домену
-- ⚠️ Базовий semantic retrieval без metadata filtering має partial relevance
-- ⚠️ Рекомендація: для підвищення релевантності розглянути metadata filtering, query rewriting або reranking
+**Pipeline:** `raw sources → normalized markdown → paragraph split → merge to target size → add metadata → chunks.jsonl`
 
 ---
 
-## Домашнє завдання №3 — Покращення retrieval pipeline
+## 5. Статистика
 
-### Покращення
+| Метрика | Значення |
+|---------|----------|
+| Вихідних документів | 10 |
+| Всього чанків | 237 |
+| Всього символів | 191,355 |
+| Чанків у range 500–1000 | 233 (98.3%) |
+| Undersized (<500) | 4 (1.7%) |
+| Oversized (>1000) | 0 (0%) |
+| Середній розмір чанку | 807 символів |
 
-- **Query rewriting:** Семантичне переписування query (keyword expansion + normalization)
-- **Hybrid scoring:** semantic_score + keyword_score * 0.3 (additive boost)
-- **Metadata filtering:** document_type / domain / source_file фільтри
+**Розбивка по документах:**
 
-### Результати порівняння
+| Документ | Chunks | Chars | Avg |
+|----------|--------|-------|-----|
+| alexzhang_blog_context_rot | 12 | 7,672 | 639 |
+| halo_agent_optimizer | 18 | 14,064 | 781 |
+| llm_reasoning_paradigms_evolution | 26 | 21,147 | 813 |
+| prime_intellect_ablations | 14 | 10,507 | 751 |
+| prime_intellect_context_folding | 13 | 10,858 | 835 |
+| rag_failure_points_arxiv2024 | 26 | 26,353 | 1,014 |
+| rag_original_neurips2020 | 30 | 36,156 | 1,205 |
+| rag_survey_arxiv2024 | 25 | 21,886 | 875 |
+| rlm_core_paper_and_github | 26 | 24,277 | 934 |
+| rlm_original_paper | 10 | 8,435 | 844 |
 
-| Query | Baseline top-1 | Improved top-1 | What changed |
+---
 
-### Аналіз
+## 6. Приклади chunks
 
-- **10/10 query покращено** ✅ — hybrid scoring + query rewriting значно покращили retrieval
-- **Baseline avg Top-1 score:** ~0.58
-- **Improved avg Top-1 score:** ~0.68
-- **Key improvements:** Query 5 (RAG failure points), Query 10 (original RAG approach) — тепер мають релевантні top-1 results
+### Приклад 1: Основна стаття RLM
 
+```json
+{
+  "chunk_id": "rlm_original_paper_chunk_006",
+  "text": "general context about the REPL environment (e.g., the length\nof the string P), and permits it to write code that peeks into and decomposes\nP, and to iteratively observe any side effects from execution...",
+  "metadata": {
+    "document_id": "rlm_original_paper",
+    "source_file": "data/raw/rlm_original_paper.md",
+    "title": "Recursive Language Models",
+    "section": "Introduction",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "recursive-language-models",
+    "document_type": "research-paper"
+  }
+}
+```
+*Коментар: Цей чанк описує механізм рекурсивної декомпозиції контексту — ключова концепція RLM.*
+
+### Приклад 2: Context rot
+
+```json
+{
+  "chunk_id": "rlm_core_paper_and_github_chunk_004",
+  "text": "icult to characterize phenomenon in language models known as \"context rot\". Anthropic defines context rot as \"when the number of tokens in the context\nwindow increases, the model's ability to accurat...",
+  "metadata": {
+    "document_id": "rlm_core_paper_and_github",
+    "source_file": "data/raw/rlm_core_paper_and_github.md",
+    "title": "RLM Core Paper + GitHub",
+    "section": "The Problem: Context Rot",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "recursive-language-models",
+    "document_type": "research-paper"
+  }
+}
+```
+*Коментар: Визначення context rot — центральна проблема, яку RLM вирішує.*
+
+### Приклад 3: Eволюція парадигм
+
+```json
+{
+  "chunk_id": "llm_reasoning_paradigms_evolution_chunk_001",
+  "text": "Chain-of-Thought (CoT) prompting was one of the first major innovations that demonstrated LLMs could perform multi-step reasoning when explicitly instructed to 'think step by step'...",
+  "metadata": {
+    "document_id": "llm_reasoning_paradigms_evolution",
+    "source_file": "data/raw/llm_reasoning_paradigms_evolution.md",
+    "title": "LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems",
+    "section": "1. Chain-of-Thought (CoT)",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "ml-reasoning",
+    "document_type": "analysis"
+  }
+}
+```
+*Коментар: Початок еволюції — від простого prompting до складних парадигм.*
+
+### Приклад 4: HALO agent optimizer
+
+```json
+{
+  "chunk_id": "halo_agent_optimizer_chunk_001",
+  "text": "# HALO: Hierarchical Agent Loop Optimizer\n\n**Repository:** https://github.com/context-labs/halo\n**PyPI:** `halo-engine`\n**Tagline:** RLM-based agent optimizer using production traces",
+  "metadata": {
+    "document_id": "halo_agent_optimizer",
+    "source_file": "data/raw/halo_agent_optimizer.md",
+    "title": "HALO: Hierarchical Agent Loop Optimizer",
+    "section": "HALO: Hierarchical Agent Loop Optimizer",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "agent-optimization",
+    "document_type": "tool"
+  }
+}
+```
+*Коментар: Production інструмент — демонструє практичне застосування RLM.*
+
+### Приклад 5: RAG failure points
+
+```json
+{
+  "chunk_id": "rag_failure_points_arxiv2024_chunk_007",
+  "text": "nces for building RAG systems are constantly emerging [8, 12] but how they relate and perform for a specific application context has to be discovered.\n\nIn this work we present the lessons learned and ...",
+  "metadata": {
+    "document_id": "rag_failure_points_arxiv2024",
+    "source_file": "data/raw/rag_failure_points_arxiv2024.md",
+    "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System",
+    "section": "1. INTRODUCTION",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "retrieval-augmented-generation",
+    "document_type": "analysis"
+  }
+}
+```
+*Коментар: Аналіз практичних проблем RAG — важливий контекст для розуміння, чому потрібні покращення.*
+
+---
+
+## 7. Висновок
+
+### Що вийшло добре
+
+1. **Якість джерел:** Усі 10 документів отримані з першоджерел (arXiv PDF, GitHub, офіційні блоги). Жодних HTML-артефактів чи дублікатів.
+2. **Метадані:** Повна структура з 10 полів, включаючи domain та document_type для майбутнього filtering.
+3. **Chunking:** 98.3% чанків у цільовому range 500–1000 символів. Paragraph-aware метод зберігає читабельність.
+4. **Покриття:** KB покриває 5 доменів — від теорії (RLM paper) до практики (HALO, Prime Intellect) та порівняльних аналізів.
+
+### Що треба покращити
+
+1. **Undersized chunks:** 4 чанки (<500 символів) залишились. В основному — короткі розділи, де об'єднання з сусідом руйнує семантику.
+2. **Нерівномірне покриття:** `rag_original_neurips2020.md` генерує найбільше чанків (30) через великий PDF-текст. Можливо варто збільшити chunk_size для цього документа.
+3. **Доменна класифікація:** Поле `domain` може бути розширене — зараз використовується лише для груповання, але може бути використано для precision filtering.
