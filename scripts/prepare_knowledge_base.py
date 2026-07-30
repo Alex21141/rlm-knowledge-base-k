@@ -81,12 +81,12 @@ DOC_METADATA_MAP = {
         "document_type": "blog",
         "source_type": "markdown",
     },
-    "rag_original_neurips2020.md": {
-        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
-        "section": "RAG Foundations",
+    "rlm_candemir_medium.md": {
+        "title": "Recursive Language Models: How LLMs Learned to Stop Memorizing and Start Searching (Can Demir, Medium 2026)",
+        "section": "RLM Beginner Guide",
         "language": "en",
-        "domain": "retrieval-augmented-generation",
-        "document_type": "research-paper",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
         "source_type": "markdown",
     },
     "rag_failure_points_arxiv2024.md": {

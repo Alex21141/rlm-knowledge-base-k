@@ -64,27 +64,27 @@
 | Метрика | Значення |
 |---------|----------|
 | Вихідних документів | 10 |
-| Всього чанків | 484 |
-| Всього символів | 338,132 |
-| Чанків 500-1000 chars | 476 (98.3%) ✅ |
-| Undersized (<500) | 5 (1.0%) |
-| Oversized (>1000) | 3 (0.6%) |
-| Середній розмір | 698 chars |
+| Всього чанків | 458 |
+| Всього символів | 320,308 |
+| Чанків 500-1000 chars | 450 (98.3%) ✅ |
+| Undersized (<500) | 5 (1.1%) |
+| Oversized (>1000) | 3 (0.7%) |
+| Середній розмір | 699 chars |
 
 **Per-document breakdown:**
 
 | Документ | Chunks | Chars | Avg |
 |----------|--------|-------|-----|
-| alexzhang_blog_context_rot | 63 | 50,737 | 805 |
-| halo_agent_optimizer | 12 | 9,528 | 794 |
-| llm_reasoning_paradigms_evolution | 23 | 18,828 | 819 |
-| prime_intellect_ablations | 68 | 54,037 | 795 |
-| rag_failure_points_arxiv2024 | 39 | 31,648 | 812 |
-| rag_original_neurips2020 | 53 | 43,377 | 818 |
-| rlm_comprehensive_guide | 27 | 21,628 | 801 |
-| rlm_deep_dive_towardsdatascience | 54 | 42,055 | 779 |
-| rlm_original_paper | 47 | 52,875 | 1125 |
-| rlm_production_zenml | 31 | 23,553 | 760 |
+| alexzhang_blog_context_rot | 73 | 48,575 | 665 |
+| halo_agent_optimizer | 14 | 9,180 | 655 |
+| llm_reasoning_paradigms_evolution | 27 | 17,661 | 654 |
+| prime_intellect_ablations | 80 | 53,620 | 670 |
+| rag_failure_points_arxiv2024 | 45 | 30,184 | 670 |
+| rlm_candemir_medium | 36 | 23,824 | 661 |
+| rlm_comprehensive_guide | 32 | 20,823 | 650 |
+| rlm_deep_dive_towardsdatascience | 62 | 41,060 | 662 |
+| rlm_original_paper | 54 | 51,814 | 959 |
+| rlm_production_zenml | 35 | 23,567 | 673 |
 
 ---
 
