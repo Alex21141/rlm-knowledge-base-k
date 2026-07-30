@@ -49,14 +49,6 @@ MAX_OVERLAP = 200
 
 # Metadata mapping: maps raw filenames to document metadata
 DOC_METADATA_MAP = {
-    "rlm_core_paper_and_github.md": {
-        "title": "Recursive Language Models — Core Paper and Implementation (MIT)",
-        "section": "Core Paper & GitHub Setup",
-        "language": "en",
-        "domain": "machine_learning",
-        "document_type": "research-paper",
-        "source_type": "markdown",
-    },
     "rlm_original_paper.md": {
         "title": "Recursive Language Models — Original Paper (MIT CSAIL)",
         "section": "Original Academic Paper",
@@ -89,15 +81,6 @@ DOC_METADATA_MAP = {
         "document_type": "blog",
         "source_type": "markdown",
     },
-    "prime_intellect_context_folding.md": {
-        "title": "Prime Intellect: Context Folding vs RLM Paradigm",
-        "section": "Context Folding Analysis",
-        "language": "en",
-        "domain": "ml-theory",
-        "document_type": "analysis",
-        "source_type": "markdown",
-    },
-
     "rag_original_neurips2020.md": {
         "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
         "section": "RAG Foundations",
@@ -128,6 +111,22 @@ DOC_METADATA_MAP = {
         "language": "en",
         "domain": "ml-reasoning",
         "document_type": "analysis",
+        "source_type": "markdown",
+    },
+    "rlm_deep_dive_towardsdatascience.md": {
+        "title": "Recursive Language Models: An All-in-One Deep Dive (Avishek Biswas)",
+        "section": "RLM Deep Dive",
+        "language": "en",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
+        "source_type": "markdown",
+    },
+    "rlm_production_zenml.md": {
+        "title": "RLMs in Production: What Happens After the Notebook (ZenML)",
+        "section": "RLM Production",
+        "language": "en",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
         "source_type": "markdown",
     },
 }
