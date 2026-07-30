@@ -1,12 +1,12 @@
 # RAG Answer Generation -- Test Results
 
-**Prompt version:** v1 (basic - no grounding rules)
+**Prompt version:** v3 (grounded + citation + fallback)
 
 **LLM:** qwen36-27b-awq via vLLM
 
 **Embedding:** sentence-transformers/all-MiniLM-L6-v2
 
-**Index:** FAISS FlatIP, 237 chunks
+**Index:** FAISS FlatIP, 467 chunks
 
 **Top-k:** 3
 
@@ -14,237 +14,233 @@
 
 ## Question 1: How do RLMs handle arbitrarily long prompts?
 
-**Type:** simple (Simple question - answer clearly in context)
+**Type:** simple (Core RLM concept — answer clearly in context)
 
 **Retrieved chunks:**
 
-  - rlm_original_paper_chunk_006 (score: 0.6195)
-  - prime_intellect_ablations_chunk_005 (score: 0.6126)
-  - rlm_comprehensive_guide_chunk_007 (score: 0.5921)
+  - rlm_deep_dive_towardsdatascience_chunk_022 (score: 0.6612)
+  - rlm_comprehensive_guide_chunk_004 (score: 0.6438)
+  - rlm_original_paper_chunk_009 (score: 0.6084)
 
 **Answer:**
 
 
 
-Based on the provided context, RLMs handle arbitrarily long prompts by **storing them externally as variables/objects** rather than placing them directly into the LLM's context window. The model then writes code to programmatically decompose the prompt into smaller sub-tasks or chunks and **recursively invokes itself** on them. This recursive breakdown continues until the resulting chunks are small enough to fit comfortably within the base model's context window.
+RLMs handle arbitrarily long prompts by treating them as part of an external environment rather than feeding them directly into the neural network [rlm_original_paper_chunk_009]. Instead, the model interacts with the prompt through an external programmable environment or REPL [rlm_deep_dive_towardsdatascience_chunk_022]. The neural network never sees the full prompt; it only receives metadata such as the prompt's length, a short prefix, and type information [rlm_comprehensive_guide_chunk_004]. Using this metadata, the LLM writes code to interact with the prompt piece by piece [rlm_comprehensive_guide_chunk_004]. This process begins by initializing a persistent programming environment (REPL) for the arbitrary-length prompt [rlm_comprehensive_guide_chunk_004].
 
-**Sources:** data/raw/rlm_original_paper.md, data/raw/prime_intellect_ablations.md, data/raw/rlm_comprehensive_guide.md
+**Sources:** data/raw/rlm_deep_dive_towardsdatascience.md, data/raw/rlm_comprehensive_guide.md, data/raw/rlm_original_paper.md
 
-**Comment:** WARN - No citations in answer - may not be fully grounded.
+**Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
 ## Question 2: What causes context rot in language models?
 
-**Type:** rephrased (Rephrased version of What is context rot)
+**Type:** rephrased (Rephrased: what is context rot?)
 
 **Retrieved chunks:**
 
-  - rlm_core_paper_and_github_chunk_004 (score: 0.7115)
-  - alexzhang_blog_context_rot_chunk_004 (score: 0.6685)
-  - alexzhang_blog_context_rot_chunk_003 (score: 0.6162)
+  - rlm_original_paper_chunk_004 (score: 0.7307)
+  - rlm_candemir_medium_chunk_003 (score: 0.7082)
+  - alexzhang_blog_context_rot_chunk_062 (score: 0.6693)
 
 **Answer:**
 
 
 
-Based on the provided context, context rot is described as a phenomenon where **a model's ability to accurately recall information decreases as the number of tokens in its context window increases**. 
+Context rot occurs because language models must hold the entire input context in their "working memory" simultaneously, causing recall and reasoning abilities to degrade as the text length increases [rlm_candemir_medium_chunk_003]. Additionally, the underlying bottlenecks contributing to these long-context limitations are described as a combination of model architecture challenges, systems constraints due to quadratic attention, and Mixture-of-Experts (MoE) layer bottlenecks [alexzhang_blog_context_rot_chunk_062].
 
-However, the context also notes that this definition is difficult to fully characterize and doesn't completely capture the issue. While models often score highly (90%+) on standard needle-in-a-haystack benchmarks, context rot frequently manifests in practical, real-world scenarios like bloated chat or code histories. The provided text does not specify a definitive underlying technical cause beyond this relationship between context length and recall degradation.
-
-**Sources:** data/raw/rlm_core_paper_and_github.md, data/raw/alexzhang_blog_context_rot.md
+**Sources:** data/raw/rlm_candemir_medium.md, data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_original_paper.md
 
 **Comment:** PASS - Rephrased question handled - model found relevant context.
 
 ---
 
-## Question 3: What is the difference between RLM and standard LLM?
+## Question 3: What is the difference between RLM and standard LLM for long-context tasks?
 
-**Type:** simple (Simple conceptual question)
+**Type:** simple (Simple conceptual comparison)
 
 **Retrieved chunks:**
 
-  - prime_intellect_context_folding_chunk_006 (score: 0.5704)
-  - llm_reasoning_paradigms_evolution_chunk_020 (score: 0.5479)
-  - rlm_comprehensive_guide_chunk_007 (score: 0.5211)
+  - rlm_comprehensive_guide_chunk_002 (score: 0.7152)
+  - prime_intellect_ablations_chunk_015 (score: 0.6980)
+  - llm_reasoning_paradigms_evolution_chunk_023 (score: 0.6868)
 
 **Answer:**
 
 
 
-Based on the provided context, the key differences between an RLM and a standard LLM are:
+For long-context tasks, RLMs and standard LLMs represent two fundamentally different approaches [rlm_comprehensive_guide_chunk_002]. Standard LLMs are constrained by a context window (a maximum number of tokens they can process), making it ineffective to simply shove all data into the context [rlm_comprehensive_guide_chunk_002]. In contrast, RLMs function as powerful long-context agents that are highly flexible and strong at tool-use, making them ideal for environments where context is a sparse resource [prime_intellect_ablations_chunk_015]. Instead of relying on expanding context windows or model parameters, RLMs treat reasoning as a system-level property, focusing on how the model orchestrates information across time and recursive calls [llm_reasoning_paradigms_evolution_chunk_023]. This shifts the primary bottleneck for long-context tasks from the model's context window to the overall system design [llm_reasoning_paradigms_evolution_chunk_023].
 
-* **Reasoning as a System Property:** RLMs treat reasoning as a **system-level property** that orchestrates interactions with information across time and recursive calls. Standard LLMs rely primarily on their internal parameters and context windows.
-* **Prompt Handling:** Standard LLMs and agents place the user prompt directly into the context window. RLMs store the prompt **externally as a variable**.
-* **Context Management & Bottleneck:** RLMs use recursive calls to break down large inputs until they comfortably fit within the base model's context window. This shifts the primary performance bottleneck from model size or context length to **system design**.
-* **Execution Architecture:** RLMs are structured to parallelize sub-LLM calls, assign tools specifically to sub-LLMs, and dynamically track installed packages, functioning as an orchestrated multi-component system rather than a single monolithic model.
+**Sources:** data/raw/prime_intellect_ablations.md, data/raw/rlm_comprehensive_guide.md, data/raw/llm_reasoning_paradigms_evolution.md
 
-**Sources:** data/raw/prime_intellect_context_folding.md, data/raw/llm_reasoning_paradigms_evolution.md, data/raw/rlm_comprehensive_guide.md
-
-**Comment:** WARN - No citations in answer - may not be fully grounded.
+**Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
 ## Question 4: How does HALO optimize agent loops using RLMs?
 
-**Type:** simple (Tool-specific question)
+**Type:** simple (Tool-specific question — HALO + RLM)
 
 **Retrieved chunks:**
 
-  - halo_agent_optimizer_chunk_001 (score: 0.8221)
-  - halo_agent_optimizer_chunk_003 (score: 0.6827)
-  - rlm_core_paper_and_github_chunk_016 (score: 0.6366)
+  - halo_agent_optimizer_chunk_001 (score: 0.8104)
+  - halo_agent_optimizer_chunk_002 (score: 0.7249)
+  - halo_agent_optimizer_chunk_004 (score: 0.6684)
 
 **Answer:**
 
 
 
-Based on the provided context, HALO optimizes agent loops by using RLMs to analyze production traces from agent executions. Instead of relying on general-purpose harnesses that struggle with extremely long traces and tend to overfit, HALO employs a specialized RLM-based toolkit to make observations about systemic agentic behavior. This enables it to effectively identify issues—particularly in high-variance traffic environments—and build recursively self-improving agent harnesses. The core optimization logic is implemented in the `halo-engine` Python package.
+HALO optimizes agent loops by implementing a methodology for building recursively self-improving agent harnesses using RLMs [halo_agent_optimizer_chunk_001]. The process follows a four-step loop:
 
-**Sources:** data/raw/halo_agent_optimizer.md, data/raw/rlm_core_paper_and_github.md
+1. Execution traces are collected from the agent harness using OpenTelemetry-compatible tracing [halo_agent_optimizer_chunk_002].
+2. The traces are fed into the HALO-RLM engine [halo_agent_optimizer_chunk_002].
+3. The engine decomposes the traces to identify common failure modes across harness executions and produces a findings report [halo_agent_optimizer_chunk_002].
+4. The report is fed into a coding agent like Cursor or Claude Code [halo_agent_optimizer_chunk_002].
 
-**Comment:** WARN - No citations in answer - may not be fully grounded.
+The HALO Engine utilizes a specialized RLM architecture that implements bounded recursion, per-depth parallelism, and persistent context items. This design prevents the system from overfitting to errors in individual traces and instead allows it to generalize to harness-level problems [halo_agent_optimizer_chunk_004].
+
+**Sources:** data/raw/halo_agent_optimizer.md
+
+**Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
-## Question 5: What are the seven failure points in RAG systems?
+## Question 5: How does RLM compare to context folding for long-context processing?
 
-**Type:** simple (List question - answer in context)
+**Type:** simple (Comparison: RLM vs context folding)
 
 **Retrieved chunks:**
 
-  - rag_failure_points_arxiv2024_chunk_007 (score: 0.6112)
-  - rag_failure_points_arxiv2024_chunk_003 (score: 0.5002)
-  - rag_failure_points_arxiv2024_chunk_009 (score: 0.4635)
+  - prime_intellect_ablations_chunk_078 (score: 0.7256)
+  - prime_intellect_ablations_chunk_007 (score: 0.7002)
+  - rlm_original_paper_chunk_014 (score: 0.6945)
 
 **Answer:**
 
 
 
-Based on the provided context, the specific seven failure points are not listed. The text only mentions that the paper presents seven failure points arising from three case studies, but it does not detail what they are. If you can provide additional sections from the paper, I would be happy to help identify them.
+Based on the provided context, context folding is not a separate method to compare against the RLM; rather, context folding is the Recursive Language Model (RLM) itself [prime_intellect_ablations_chunk_007]. For long-context processing, the RLM (context folding) demonstrates extremely strong performance, effectively handling scales of 10M+ tokens while exhibiting far less severe degradation for longer contexts compared to other approaches [rlm_original_paper_chunk_014].
 
-**Sources:** data/raw/rag_failure_points_arxiv2024.md
+**Sources:** data/raw/prime_intellect_ablations.md, data/raw/rlm_original_paper.md
 
-**Comment:** WARN - No citations in answer - may not be fully grounded.
+**Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
-## Question 6: How does RAG differ from fine-tuning for knowledge-intensive tasks?
+## Question 6: How does RL fine-tuning improve RLM behavior compared to prompting alone?
 
-**Type:** rephrased (Rephrased comparison question)
+**Type:** simple (RL training for RLMs)
 
 **Retrieved chunks:**
 
-  - rag_failure_points_arxiv2024_chunk_027 (score: 0.6291)
-  - llm_reasoning_paradigms_evolution_chunk_010 (score: 0.6157)
-  - rag_failure_points_arxiv2024_chunk_028 (score: 0.5813)
+  - rlm_rl_training_alphaxiv_chunk_002 (score: 0.6396)
+  - rlm_rl_training_alphaxiv_chunk_045 (score: 0.6200)
+  - rlm_rl_training_alphaxiv_chunk_047 (score: 0.6157)
 
 **Answer:**
 
 
 
-Based on the provided context, RAG differs from fine-tuning in the following key ways:
+Based on the provided context, RL fine-tuning improves RLM behavior compared to prompting alone by:
+- Enabling RLM behaviors that cannot be elicited through prompting or even supervised fine-tuning (SFT) [rlm_rl_training_alphaxiv_chunk_002].
+- Eliminating the need for extensive prompt tuning and lengthy system prompts (e.g., 1500 tokens) that are otherwise required to elicit consistent behavior from out-of-the-box models [rlm_rl_training_alphaxiv_chunk_002][rlm_rl_training_alphaxiv_chunk_045].
+- Acting as the ultimately necessary training method for inference scaling techniques, as prompting alone only yields limited improvements compared to the performance and training story driven by RL fine-tuning [rlm_rl_training_alphaxiv_chunk_047].
 
-* **Knowledge Updates:** Fine-tuning requires retraining the model to incorporate new or updated knowledge, along with managing the model serving infrastructure. RAG allows for easy updates to an external knowledge base without needing to retrain the model.
-* **Inference Mechanism:** RAG dynamically retrieves a small set of relevant documents or chunks from an external knowledge base and injects them into the model's context at inference time, rather than relying solely on the model's pre-trained or fine-tuned weights.
-* **Trade-offs:** RAG significantly reduces hallucinations and improves factual accuracy, but introduces latency from the retrieval process and its success depends heavily on retrieval quality. Fine-tuning bakes knowledge directly into the model, avoiding retrieval latency but lacking the flexibility for quick, retraining-free updates.
+**Sources:** data/raw/rlm_rl_training_alphaxiv.md
 
-**Sources:** data/raw/rag_failure_points_arxiv2024.md, data/raw/llm_reasoning_paradigms_evolution.md
-
-**Comment:** PASS - Rephrased question handled - model found relevant context.
+**Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
 ## Question 7: What is the stock price of Apple Inc in 2025?
 
-**Type:** insufficient (Insufficient context - should trigger fallback)
+**Type:** insufficient (Insufficient context — should trigger fallback)
 
 **Retrieved chunks:**
 
-  - rag_original_neurips2020_chunk_020 (score: 0.1087)
-  - rag_original_neurips2020_chunk_027 (score: 0.0896)
-  - rag_original_neurips2020_chunk_042 (score: 0.0873)
+  - rlm_candemir_medium_chunk_015 (score: 0.1768)
+  - rlm_original_paper_chunk_034 (score: 0.1528)
+  - alexzhang_blog_context_rot_chunk_053 (score: 0.1487)
 
 **Answer:**
 
 
 
-Based on the provided context, there is no information available to answer this question. The context exclusively discusses a research paper on Retrieval-Augmented Generation (RAG) and its performance on Jeopardy-style question generation tasks, and does not mention Apple Inc. or stock prices.
+I do not have enough information in the available documents to answer this question.
 
-**Sources:** data/raw/rag_original_neurips2020.md
+**Sources:** data/raw/rlm_candemir_medium.md, data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_original_paper.md
 
-**Comment:** WARN - Model did not trigger fallback - may be hallucinating.
+**Comment:** PASS - Fallback triggered correctly - model says it does not know.
 
 ---
 
 ## Question 8: How much does the RLM system cost to run in production?
 
-**Type:** insufficient (Insufficient context - no pricing info in KB)
+**Type:** insufficient (Insufficient context — no pricing info in KB)
 
 **Retrieved chunks:**
 
-  - rlm_core_paper_and_github_chunk_016 (score: 0.4931)
-  - prime_intellect_context_folding_chunk_006 (score: 0.4330)
-  - llm_reasoning_paradigms_evolution_chunk_020 (score: 0.4124)
+  - rlm_original_paper_chunk_036 (score: 0.4347)
+  - rlm_production_zenml_chunk_011 (score: 0.4271)
+  - alexzhang_blog_context_rot_chunk_066 (score: 0.4124)
 
 **Answer:**
 
 
 
-Based on the provided context, there is no information available regarding the cost of running an RLM system in production. The context focuses on production-ready use cases, implementation details, and the shift toward system-level design, but does not mention financial or computational costs.
+The provided context does not specify a fixed cost for running the RLM system in production. It reports an average benchmark cost of $0.99 per call for RLM(GPT-5) on BrowseComp-Plus [rlm_original_paper_chunk_036]. For production deployments, costs are managed via configuration knobs like `max_iterations` and `max_llm_calls` [rlm_production_zenml_chunk_011], but tracking exact per-chunk costs and overall spending is presented as an open challenge rather than a defined figure [rlm_production_zenml_chunk_011].
 
-**Sources:** data/raw/rlm_core_paper_and_github.md, data/raw/llm_reasoning_paradigms_evolution.md, data/raw/prime_intellect_context_folding.md
+**Sources:** data/raw/rlm_production_zenml.md, data/raw/rlm_original_paper.md, data/raw/alexzhang_blog_context_rot.md
 
 **Comment:** WARN - Model did not trigger fallback - may be hallucinating.
 
 ---
 
-## Question 9: What is Chain-of-Thought prompting and how does it compare to RLM?
+## Question 9: What are the key ablation results for RLM with versus without sub-calling?
 
-**Type:** simple (Paradigm comparison - answer in evolution doc)
+**Type:** simple (Experimental results — Prime Intellect ablations)
 
 **Retrieved chunks:**
 
-  - alexzhang_blog_context_rot_chunk_010 (score: 0.5971)
-  - rlm_original_paper_chunk_006 (score: 0.5613)
-  - llm_reasoning_paradigms_evolution_chunk_006 (score: 0.5298)
+  - prime_intellect_ablations_chunk_057 (score: 0.6014)
+  - prime_intellect_ablations_chunk_056 (score: 0.5110)
+  - rlm_rl_training_alphaxiv_chunk_045 (score: 0.4971)
 
 **Answer:**
 
 
 
-Based on the provided context:
+Based on the provided context, the key ablation results for RLM with sub-calling (sub-LLMs) are:
+- **Performance:** Using sub-LLMs for math tasks makes the GPT-5-mini model weaker [prime_intellect_ablations_chunk_057].
+- **Main Model Token Usage:** The approach barely reduces the main model's token usage, which remains significantly higher than that of a standard LLM [prime_intellect_ablations_chunk_057].
+- **Sub-LLM Token Overhead:** It adds sub-LLM tokens, but only minimally, because the GPT-5-mini RLM utilizes sub-LLMs very sparsely even with extra prompting [prime_intellect_ablations_chunk_057].
 
-**Chain-of-Thought (CoT) prompting** is a reasoning paradigm designed to address the lack of explicit reasoning steps in single-prompt approaches. Instead of forcing the model to solve a problem in one pass, CoT encourages the model to reason step-by-step, making intermediate reasoning explicit either within a single prompt or across multiple prompts.
+**Sources:** data/raw/prime_intellect_ablations.md, data/raw/rlm_rl_training_alphaxiv.md
 
-**Comparison to RLM (Recursive Language Models):**
-* **Structure:** CoT follows a **linear chain** of sequential reasoning steps. In contrast, RLMs allow the model to programmatically construct sub-tasks and invoke itself recursively, effectively creating a **tree of thought** rather than a linear chain.
-* **Flexibility & Power:** While CoT breaks down reasoning into explicit sequential steps, RLMs generalize this by interleaving reasoning with actions and enabling recursive sub-calls. This gives RLMs a significantly more powerful action space, allowing them to explore multiple reasoning paths in parallel and dynamically decompose complex tasks.
-
-**Sources:** data/raw/rlm_original_paper.md, data/raw/alexzhang_blog_context_rot.md, data/raw/llm_reasoning_paradigms_evolution.md
-
-**Comment:** WARN - No citations in answer - may not be fully grounded.
+**Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
 ## Question 10: Who invented the internet?
 
-**Type:** insufficient (Completely out of scope - should trigger fallback)
+**Type:** insufficient (Completely out of scope — should trigger fallback)
 
 **Retrieved chunks:**
 
-  - rag_original_neurips2020_chunk_039 (score: 0.1893)
-  - rag_original_neurips2020_chunk_040 (score: 0.1759)
-  - rag_failure_points_arxiv2024_chunk_018 (score: 0.1677)
+  - alexzhang_blog_context_rot_chunk_073 (score: 0.2375)
+  - prime_intellect_ablations_chunk_020 (score: 0.2052)
+  - rlm_rl_training_alphaxiv_chunk_054 (score: 0.1922)
 
 **Answer:**
 
 
 
-Based on the provided context, there is no information regarding who invented the internet. The context exclusively discusses Retrieval-Augmented Generation (RAG), its societal impacts, potential downsides, and an educational AI tutor application.
+I do not have enough information in the available documents to answer this question.
 
-**Sources:** data/raw/rag_original_neurips2020.md, data/raw/rag_failure_points_arxiv2024.md
+**Sources:** data/raw/prime_intellect_ablations.md, data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_rl_training_alphaxiv.md
 
-**Comment:** WARN - Model did not trigger fallback - may be hallucinating.
+**Comment:** PASS - Fallback triggered correctly - model says it does not know.
 
 ---

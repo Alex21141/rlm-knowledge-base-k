@@ -95,16 +95,16 @@ PROMPT_V3 = (
 PROMPT_VERSIONS = {1: PROMPT_V1, 2: PROMPT_V2, 3: PROMPT_V3}
 
 TEST_QUESTIONS = [
-    {"id": 1, "question": "How do RLMs handle arbitrarily long prompts?", "type": "simple", "desc": "Simple question - answer clearly in context"},
-    {"id": 2, "question": "What causes context rot in language models?", "type": "rephrased", "desc": "Rephrased version of What is context rot"},
-    {"id": 3, "question": "What is the difference between RLM and standard LLM?", "type": "simple", "desc": "Simple conceptual question"},
-    {"id": 4, "question": "How does HALO optimize agent loops using RLMs?", "type": "simple", "desc": "Tool-specific question"},
-    {"id": 5, "question": "What are the seven failure points in RAG systems?", "type": "simple", "desc": "List question - answer in context"},
-    {"id": 6, "question": "How does RAG differ from fine-tuning for knowledge-intensive tasks?", "type": "rephrased", "desc": "Rephrased comparison question"},
-    {"id": 7, "question": "What is the stock price of Apple Inc in 2025?", "type": "insufficient", "desc": "Insufficient context - should trigger fallback"},
-    {"id": 8, "question": "How much does the RLM system cost to run in production?", "type": "insufficient", "desc": "Insufficient context - no pricing info in KB"},
-    {"id": 9, "question": "What is Chain-of-Thought prompting and how does it compare to RLM?", "type": "simple", "desc": "Paradigm comparison - answer in evolution doc"},
-    {"id": 10, "question": "Who invented the internet?", "type": "insufficient", "desc": "Completely out of scope - should trigger fallback"},
+    {"id": 1, "question": "How do RLMs handle arbitrarily long prompts?", "type": "simple", "desc": "Core RLM concept — answer clearly in context"},
+    {"id": 2, "question": "What causes context rot in language models?", "type": "rephrased", "desc": "Rephrased: what is context rot?"},
+    {"id": 3, "question": "What is the difference between RLM and standard LLM for long-context tasks?", "type": "simple", "desc": "Simple conceptual comparison"},
+    {"id": 4, "question": "How does HALO optimize agent loops using RLMs?", "type": "simple", "desc": "Tool-specific question — HALO + RLM"},
+    {"id": 5, "question": "How does RLM compare to context folding for long-context processing?", "type": "simple", "desc": "Comparison: RLM vs context folding"},
+    {"id": 6, "question": "How does RL fine-tuning improve RLM behavior compared to prompting alone?", "type": "simple", "desc": "RL training for RLMs"},
+    {"id": 7, "question": "What is the stock price of Apple Inc in 2025?", "type": "insufficient", "desc": "Insufficient context — should trigger fallback"},
+    {"id": 8, "question": "How much does the RLM system cost to run in production?", "type": "insufficient", "desc": "Insufficient context — no pricing info in KB"},
+    {"id": 9, "question": "What are the key ablation results for RLM with versus without sub-calling?", "type": "simple", "desc": "Experimental results — Prime Intellect ablations"},
+    {"id": 10, "question": "Who invented the internet?", "type": "insufficient", "desc": "Completely out of scope — should trigger fallback"},
 ]
 
 
