@@ -377,17 +377,25 @@ def run_comparison() -> str:
         improved_score = improved_top["combined_score"] if improved_top else 0
         
         if baseline_id == improved_id:
-            if improved_score > baseline_score:
-                change = f"✅ Score improved: {baseline_score:.4f} → {improved_score:.4f}"
+            # Same chunk — show score delta (improved, unchanged, or degraded)
+            delta = improved_score - baseline_score
+            if delta > 0.005:
+                change = f"✅ Score improved: {baseline_score:.4f} → {improved_score:.4f} (+{delta:.4f})"
                 improvements["hybrid_score"] += 1
+            elif delta < -0.005:
+                change = f"⚠️ Score degraded: {baseline_score:.4f} → {improved_score:.4f} ({delta:.4f})"
+                improvements["no_change"] += 1
             else:
-                change = "No change"
+                change = f"No significant change: {baseline_score:.4f} → {improved_score:.4f}"
                 improvements["no_change"] += 1
         else:
-            # Different result — query rewriting found a more relevant chunk
-            bl_section = baseline_top["section"] if baseline_top else "N/A"
-            imp_section = improved_top["section"] if improved_top else "N/A"
-            change = f"✅ Better chunk (query rewrite): {imp_section} (was: {bl_section})"
+            # Different result — query rewriting found a different chunk
+            bl_section = baseline_top.get("section", "N/A") if baseline_top else "N/A"
+            imp_section = improved_top.get("section", "N/A") if improved_top else "N/A"
+            if improved_score > baseline_score:
+                change = f"✅ Better chunk (query rewrite): {improved_score:.4f} vs {baseline_score:.4f}"
+            else:
+                change = f"⚠️ Different chunk but lower score: {improved_score:.4f} vs {baseline_score:.4f}"
             improvements["query_rewrite"] += 1
         
         # Format table row

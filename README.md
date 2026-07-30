@@ -63,14 +63,14 @@
 
 | Query | Baseline top-1 | Improved top-1 | Що змінилось |
 |-------|---------------|----------------|-------------|
-| 1. Long prompts | \`rlm_original_paper_chunk_002\` (0.701) | \`rlm_original_paper_chunk_027\` (0.828) | ✅ Better chunk (query rewrite) |
-| 2. Context rot | \`rlm_candemir_medium_chunk_003\` (0.694) | \`rlm_original_paper_chunk_004\` (0.702) | ✅ Better chunk (query rewrite) |
+| 1. Long prompts | \`rlm_original_paper_chunk_002\` (0.701) | \`rlm_original_paper_chunk_027\` (0.828) | ✅ Better chunk (query rewrite): 0.8280 vs 0.7010 |
+| 2. Context rot | \`rlm_candemir_medium_chunk_003\` (0.694) | \`rlm_original_paper_chunk_004\` (0.702) | ✅ Better chunk (query rewrite): 0.7020 vs 0.6940 |
 | 3. Python REPL | \`alexzhang_blog_context_rot_chunk_013\` (0.660) | \`alexzhang_blog_context_rot_chunk_013\` (0.742) | ✅ Score improved: +0.082 (hybrid) |
 | 4. Benchmarks | \`rlm_original_paper_chunk_036\` (0.597) | \`rlm_original_paper_chunk_036\` (0.651) | ✅ Score improved: +0.054 (hybrid) |
-| 5. RLM vs base LLMs | \`rlm_comprehensive_guide_chunk_002\` (0.747) | \`rlm_original_paper_chunk_035\` (0.828) | ✅ Better chunk (query rewrite) |
+| 5. RLM vs base LLMs | \`rlm_comprehensive_guide_chunk_002\` (0.747) | \`rlm_original_paper_chunk_035\` (0.828) | ✅ Better chunk (query rewrite): 0.8280 vs 0.7470 |
 | 6. RLM vs RAG | \`rlm_candemir_medium_chunk_022\` (0.660) | \`rlm_candemir_medium_chunk_022\` (0.752) | ✅ Score improved: +0.092 (hybrid) |
-| 7. Context folding | \`prime_intellect_ablations_chunk_007\` (0.776) | \`prime_intellect_ablations_chunk_007\` (0.686) | No change (same chunk) |
-| 8. Ablation results | \`prime_intellect_ablations_chunk_057\` (0.601) | \`rlm_comprehensive_guide_chunk_002\` (0.635) | ✅ Better chunk (query rewrite) |
+| 7. Context folding | \`prime_intellect_ablations_chunk_007\` (0.776) | \`prime_intellect_ablations_chunk_007\` (0.686) | ⚠️ Score degraded: -0.090 |
+| 8. Ablation results | \`prime_intellect_ablations_chunk_057\` (0.601) | \`rlm_comprehensive_guide_chunk_002\` (0.635) | ✅ Better chunk (query rewrite): 0.6350 vs 0.6010 |
 | 9. HALO agent | \`halo_agent_optimizer_chunk_001\` (0.762) | \`halo_agent_optimizer_chunk_001\` (0.868) | ✅ Score improved: +0.106 (hybrid) |
 | 10. RL fine-tuning | \`rlm_rl_training_alphaxiv_chunk_002\` (0.666) | \`rlm_rl_training_alphaxiv_chunk_002\` (0.739) | ✅ Score improved: +0.073 (hybrid) |
 
@@ -80,7 +80,9 @@
 |---------|----------|----------|---|
 | Average score | 0.686 | 0.743 | +0.057 |
 | Queries improved | — | 9/10 | ✅ |
-| No change | — | 1/10 | — |
+| Queries degraded | — | 1/10 | ⚠️ |
+
+**Note:** Q7 (Context folding) має score degradation (-0.089) тому що rewritten query `context folding agentic context engineering AgentFold...` семантично віддалений від оригінального chunk. Це trade-off query rewriting — іноді знаходить кращий chunk, іноді погіршує match.
 
 ---
 
@@ -88,14 +90,14 @@
 
 ### ✅ Що вийшло добре
 
-1. **90% queries improved** — 9/10 запитів отримали кращі результати (4 через query rewriting, 5 через hybrid scoring)
+1. **8/10 queries improved** — 8 запитів отримали кращі результати (4 через query rewriting, 4 через hybrid scoring)
 2. **Query rewriting знайшов кращі chunks** — Q1 (0.701→0.828), Q5 (0.747→0.828), Q8 (0.601→0.635) — значне покращення
-3. **Hybrid scoring стабільний boost** — avg +0.073 для 5 query (HALO +0.107, RLM vs RAG +0.092, Python REPL +0.082)
+3. **Hybrid scoring стабільний boost** — avg +0.074 для 4 query (HALO +0.107, RLM vs RAG +0.092, Python REPL +0.082, RL fine-tuning +0.073)
 
 ### ⚠️ Trade-offs
 
-1. **Q7 (Context folding) — no change** — baseline вже знайшов оптимальний chunk (0.776), query rewriting не зміг покращити (0.686 — нижчий)
-2. **Metadata filtering мало використано** — 0 query отримали improvement через filter
-3. **No reranking** — cross-encoder reranker міг би покращити edge cases
+1. **Q7 (Context folding) degraded** — rewritten embedding далі від оригінального chunk (0.776→0.686), тому що rewriting додав зайві терміни (AgentFold, agentic, delegation)
+2. **Query rewriting не завжди покращує** — для точних, специфічних запитів rewriting може "розмити" семантичний фокус
+3. **Metadata filtering мало використано** — 0 query отримали improvement через filter (filter часто повертає 0 chunks)
 
 *Ці обмеження будуть частково вирішені в HW4 (RAG Answer Generation).*

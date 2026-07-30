@@ -16,25 +16,25 @@
 
 |-------|---------------|----------------|-------------|
 
-| How do recursive language models handle prompts larger than their context window? | `rlm_original_paper_chunk_002` (0.701) | `rlm_original_paper_chunk_027` (0.828) | ✅ Better chunk (query rewrite): Recursive Language Models (was: Recursive Language Models) |
+| How do recursive language models handle prompts larger than their context window? | `rlm_original_paper_chunk_002` (0.701) | `rlm_original_paper_chunk_027` (0.828) | ✅ Better chunk (query rewrite): 0.8284 vs 0.7014 |
 
-| What is context rot and why does performance degrade with longer inputs? | `rlm_candemir_medium_chunk_003` (0.694) | `rlm_original_paper_chunk_004` (0.702) | ✅ Better chunk (query rewrite): 2 Scaling Long Context Tasks (was: What Is Context Rot, Really?) |
+| What is context rot and why does performance degrade with longer inputs? | `rlm_candemir_medium_chunk_003` (0.694) | `rlm_original_paper_chunk_004` (0.702) | ✅ Better chunk (query rewrite): 0.7021 vs 0.6942 |
 
-| How does the Python REPL environment work in RLM architecture? | `alexzhang_blog_context_rot_chunk_013` (0.660) | `alexzhang_blog_context_rot_chunk_013` (0.742) | ✅ Score improved: 0.6600 → 0.7415 |
+| How does the Python REPL environment work in RLM architecture? | `alexzhang_blog_context_rot_chunk_013` (0.660) | `alexzhang_blog_context_rot_chunk_013` (0.742) | ✅ Score improved: 0.6600 → 0.7415 (+0.0815) |
 
-| What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG? | `rlm_original_paper_chunk_036` (0.597) | `rlm_original_paper_chunk_036` (0.651) | ✅ Score improved: 0.5973 → 0.6506 |
+| What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG? | `rlm_original_paper_chunk_036` (0.597) | `rlm_original_paper_chunk_036` (0.651) | ✅ Score improved: 0.5973 → 0.6506 (+0.0533) |
 
-| How does RLM performance compare to base LLMs on long-context tasks? | `rlm_comprehensive_guide_chunk_002` (0.747) | `rlm_original_paper_chunk_035` (0.828) | ✅ Better chunk (query rewrite): 3 Results and Discussion (was: 1. FUNDAMENTALS) |
+| How does RLM performance compare to base LLMs on long-context tasks? | `rlm_comprehensive_guide_chunk_002` (0.747) | `rlm_original_paper_chunk_035` (0.828) | ✅ Better chunk (query rewrite): 0.8276 vs 0.7470 |
 
-| What are the key differences between RLM and RAG for long-context processing? | `rlm_candemir_medium_chunk_022` (0.660) | `rlm_candemir_medium_chunk_022` (0.752) | ✅ Score improved: 0.6599 → 0.7522 |
+| What are the key differences between RLM and RAG for long-context processing? | `rlm_candemir_medium_chunk_022` (0.660) | `rlm_candemir_medium_chunk_022` (0.752) | ✅ Score improved: 0.6599 → 0.7522 (+0.0923) |
 
-| How does context folding relate to recursive language models? | `prime_intellect_ablations_chunk_007` (0.776) | `prime_intellect_ablations_chunk_007` (0.686) | No change |
+| How does context folding relate to recursive language models? | `prime_intellect_ablations_chunk_007` (0.776) | `prime_intellect_ablations_chunk_007` (0.686) | ⚠️ Score degraded: 0.7756 → 0.6863 (-0.0893) |
 
-| What are the key ablation results for RLM with versus without sub-calling? | `prime_intellect_ablations_chunk_057` (0.601) | `rlm_comprehensive_guide_chunk_002` (0.635) | ✅ Better chunk (query rewrite): 1. FUNDAMENTALS (was: The RLM) |
+| What are the key ablation results for RLM with versus without sub-calling? | `prime_intellect_ablations_chunk_057` (0.601) | `rlm_comprehensive_guide_chunk_002` (0.635) | ✅ Better chunk (query rewrite): 0.6346 vs 0.6014 |
 
-| How does the HALO agent optimizer use RLM-based loops? | `halo_agent_optimizer_chunk_001` (0.762) | `halo_agent_optimizer_chunk_001` (0.868) | ✅ Score improved: 0.7616 → 0.8682 |
+| How does the HALO agent optimizer use RLM-based loops? | `halo_agent_optimizer_chunk_001` (0.762) | `halo_agent_optimizer_chunk_001` (0.868) | ✅ Score improved: 0.7616 → 0.8682 (+0.1066) |
 
-| How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone? | `rlm_rl_training_alphaxiv_chunk_002` (0.666) | `rlm_rl_training_alphaxiv_chunk_002` (0.739) | ✅ Score improved: 0.6658 → 0.7385 |
+| How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone? | `rlm_rl_training_alphaxiv_chunk_002` (0.666) | `rlm_rl_training_alphaxiv_chunk_002` (0.739) | ✅ Score improved: 0.6658 → 0.7385 (+0.0727) |
 
 
 ## Summary of Improvements
