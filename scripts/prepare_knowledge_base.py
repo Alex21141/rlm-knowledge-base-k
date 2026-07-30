@@ -113,6 +113,22 @@ DOC_METADATA_MAP = {
         "document_type": "analysis",
         "source_type": "markdown",
     },
+    "rlm_deep_dive_towardsdatascience.md": {
+        "title": "Recursive Language Models: An All-in-One Deep Dive (Avishek Biswas)",
+        "section": "RLM Deep Dive",
+        "language": "en",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
+        "source_type": "markdown",
+    },
+    "rlm_production_zenml.md": {
+        "title": "RLMs in Production: What Happens After the Notebook (ZenML)",
+        "section": "RLM Production",
+        "language": "en",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
+        "source_type": "markdown",
+    },
 }
 
 
