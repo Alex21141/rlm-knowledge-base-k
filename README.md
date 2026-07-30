@@ -13,10 +13,10 @@
 | Параметр | Значення |
 |---------|----------|
 | Embedding model | `sentence-transformers/all-MiniLM-L6-v2` |
-| Index | FAISS IndexFlatIP, **297** vectors, dim=384 |
+| Index | FAISS IndexFlatIP, **349** vectors, dim=384 |
 | Top-k | 3 |
 | Score type | Semantic only (cosine similarity) |
-| KB | 10 docs, 297 chunks, 237,653 chars |
+| KB | 10 docs, 349 chunks, 279,792 chars |
 
 ---
 
@@ -29,7 +29,7 @@
 **Приклад:**
 - Query: "How does HALO optimize agent loops?"
 - Filter: `document_type=tool` → шукає тільки в `halo_agent_optimizer.md` (12 chunks)
-- **Результат:** Зменшує search space з 297 → 12 chunks (24x)
+- **Результат:** Зменшує search space з 349 → 12 chunks (24x)
 
 **Implementation:**
 ```python
@@ -112,7 +112,7 @@ final_score = α * dense_score + (1-α) * bm25_score
 | Метрика | Значення |
 |---------|----------|
 | Документів | **10** |
-| Чанків | **297** |
-| Всього символів | **237,653** |
+| Чанків | **349** |
+| Всього символів | **279,792** |
 
 **Джерела:** (див. HW1 README — ті ж 10 документів)
