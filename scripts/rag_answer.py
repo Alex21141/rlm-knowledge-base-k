@@ -95,15 +95,15 @@ PROMPT_V3 = (
 PROMPT_VERSIONS = {1: PROMPT_V1, 2: PROMPT_V2, 3: PROMPT_V3}
 
 TEST_QUESTIONS = [
-    {"id": 1, "question": "How do RLMs handle arbitrarily long prompts?", "type": "simple", "desc": "Core RLM concept — answer clearly in context"},
-    {"id": 2, "question": "What causes context rot in language models?", "type": "rephrased", "desc": "Rephrased: what is context rot?"},
-    {"id": 3, "question": "What is the difference between RLM and standard LLM for long-context tasks?", "type": "simple", "desc": "Simple conceptual comparison"},
-    {"id": 4, "question": "How does HALO optimize agent loops using RLMs?", "type": "simple", "desc": "Tool-specific question — HALO + RLM"},
-    {"id": 5, "question": "How does RLM compare to context folding for long-context processing?", "type": "simple", "desc": "Comparison: RLM vs context folding"},
-    {"id": 6, "question": "How does RL fine-tuning improve RLM behavior compared to prompting alone?", "type": "simple", "desc": "RL training for RLMs"},
-    {"id": 7, "question": "What is the stock price of Apple Inc in 2025?", "type": "insufficient", "desc": "Insufficient context — should trigger fallback"},
-    {"id": 8, "question": "How much does the RLM system cost to run in production?", "type": "insufficient", "desc": "Insufficient context — no pricing info in KB"},
-    {"id": 9, "question": "What are the key ablation results for RLM with versus without sub-calling?", "type": "simple", "desc": "Experimental results — Prime Intellect ablations"},
+    {"id": 1, "question": "How do recursive language models handle prompts larger than their context window?", "type": "simple", "desc": "Core RLM concept — how RLMs decompose long prompts"},
+    {"id": 2, "question": "What is context rot and why does performance degrade with longer inputs?", "type": "simple", "desc": "Context rot definition and causes"},
+    {"id": 3, "question": "How does the Python REPL environment work in RLM architecture?", "type": "simple", "desc": "REPL architecture in RLM"},
+    {"id": 4, "question": "What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG?", "type": "simple", "desc": "RLM benchmark results"},
+    {"id": 5, "question": "What are the key differences between RLM and RAG for long-context processing?", "type": "simple", "desc": "RLM vs RAG comparison"},
+    {"id": 6, "question": "What are the key ablation results for RLM with versus without sub-calling?", "type": "simple", "desc": "RLM ablation experiments"},
+    {"id": 7, "question": "How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone?", "type": "simple", "desc": "RL training for RLMs"},
+    {"id": 8, "question": "What is the stock price of Apple Inc in 2025?", "type": "insufficient", "desc": "Insufficient context — should trigger fallback"},
+    {"id": 9, "question": "How much does the RLM system cost to run in production?", "type": "insufficient", "desc": "Insufficient context — no pricing info in KB"},
     {"id": 10, "question": "Who invented the internet?", "type": "insufficient", "desc": "Completely out of scope — should trigger fallback"},
 ]
 

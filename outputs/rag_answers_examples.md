@@ -12,141 +12,162 @@
 
 ---
 
-## Question 1: How do RLMs handle arbitrarily long prompts?
+## Question 1: How do recursive language models handle prompts larger than their context window?
 
-**Type:** simple (Core RLM concept — answer clearly in context)
+**Type:** simple (Core RLM concept — how RLMs decompose long prompts)
 
 **Retrieved chunks:**
 
-  - rlm_deep_dive_towardsdatascience_chunk_022 (score: 0.6612)
-  - rlm_comprehensive_guide_chunk_004 (score: 0.6438)
-  - rlm_original_paper_chunk_009 (score: 0.6084)
+  - rlm_original_paper_chunk_002 (score: 0.7014)
+  - llm_reasoning_paradigms_evolution_chunk_019 (score: 0.6977)
+  - llm_reasoning_paradigms_evolution_chunk_005 (score: 0.6847)
 
 **Answer:**
 
 
 
-RLMs handle arbitrarily long prompts by treating them as part of an external environment rather than feeding them directly into the neural network [rlm_original_paper_chunk_009]. Instead, the model interacts with the prompt through an external programmable environment or REPL [rlm_deep_dive_towardsdatascience_chunk_022]. The neural network never sees the full prompt; it only receives metadata such as the prompt's length, a short prefix, and type information [rlm_comprehensive_guide_chunk_004]. Using this metadata, the LLM writes code to interact with the prompt piece by piece [rlm_comprehensive_guide_chunk_004]. This process begins by initializing a persistent programming environment (REPL) for the arbitrary-length prompt [rlm_comprehensive_guide_chunk_004].
+Recursive Language Models (RLMs) handle prompts larger than their context window by treating the context as a variable in an external environment rather than a fixed token sequence [llm_reasoning_paradigms_evolution_chunk_019]. Instead of receiving the entire context as tokens, the model receives a query and writes code to programmatically explore, filter, partition, examine, and decompose the context stored in a REPL environment [rlm_original_paper_chunk_002][llm_reasoning_paradigms_evolution_chunk_019]. It then recursively calls itself over snippets of the prompt [rlm_original_paper_chunk_002]. This strategy enables RLMs to successfully process inputs up to two orders of magnitude beyond their model context windows [rlm_original_paper_chunk_002].
 
-**Sources:** data/raw/rlm_deep_dive_towardsdatascience.md, data/raw/rlm_comprehensive_guide.md, data/raw/rlm_original_paper.md
+**Sources:** data/raw/rlm_original_paper.md, data/raw/llm_reasoning_paradigms_evolution.md
 
 **Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
-## Question 2: What causes context rot in language models?
+## Question 2: What is context rot and why does performance degrade with longer inputs?
 
-**Type:** rephrased (Rephrased: what is context rot?)
+**Type:** simple (Context rot definition and causes)
 
 **Retrieved chunks:**
 
-  - rlm_original_paper_chunk_004 (score: 0.7307)
-  - rlm_candemir_medium_chunk_003 (score: 0.7082)
-  - alexzhang_blog_context_rot_chunk_062 (score: 0.6693)
+  - rlm_candemir_medium_chunk_003 (score: 0.6942)
+  - rlm_original_paper_chunk_004 (score: 0.6717)
+  - rlm_production_zenml_chunk_005 (score: 0.6482)
 
 **Answer:**
 
 
 
-Context rot occurs because language models must hold the entire input context in their "working memory" simultaneously, causing recall and reasoning abilities to degrade as the text length increases [rlm_candemir_medium_chunk_003]. Additionally, the underlying bottlenecks contributing to these long-context limitations are described as a combination of model architecture challenges, systems constraints due to quadratic attention, and Mixture-of-Experts (MoE) layer bottlenecks [alexzhang_blog_context_rot_chunk_062].
+Context rot is a phenomenon where a language model's ability to recall and reason about text degrades, sometimes dramatically, as the amount of input text grows [rlm_candemir_medium_chunk_003]. Performance degrades with longer inputs because the model must hold the entire context in its "working memory" simultaneously, which becomes difficult to manage as text length increases [rlm_candemir_medium_chunk_003]. Additionally, many evaluation benchmarks reward lexical matching; when these lexical cues disappear in longer inputs, performance drops sharply [rlm_production_zenml_chunk_005].
 
-**Sources:** data/raw/rlm_candemir_medium.md, data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_original_paper.md
-
-**Comment:** PASS - Rephrased question handled - model found relevant context.
-
----
-
-## Question 3: What is the difference between RLM and standard LLM for long-context tasks?
-
-**Type:** simple (Simple conceptual comparison)
-
-**Retrieved chunks:**
-
-  - rlm_comprehensive_guide_chunk_002 (score: 0.7152)
-  - prime_intellect_ablations_chunk_015 (score: 0.6980)
-  - llm_reasoning_paradigms_evolution_chunk_023 (score: 0.6868)
-
-**Answer:**
-
-
-
-For long-context tasks, RLMs and standard LLMs represent two fundamentally different approaches [rlm_comprehensive_guide_chunk_002]. Standard LLMs are constrained by a context window (a maximum number of tokens they can process), making it ineffective to simply shove all data into the context [rlm_comprehensive_guide_chunk_002]. In contrast, RLMs function as powerful long-context agents that are highly flexible and strong at tool-use, making them ideal for environments where context is a sparse resource [prime_intellect_ablations_chunk_015]. Instead of relying on expanding context windows or model parameters, RLMs treat reasoning as a system-level property, focusing on how the model orchestrates information across time and recursive calls [llm_reasoning_paradigms_evolution_chunk_023]. This shifts the primary bottleneck for long-context tasks from the model's context window to the overall system design [llm_reasoning_paradigms_evolution_chunk_023].
-
-**Sources:** data/raw/prime_intellect_ablations.md, data/raw/rlm_comprehensive_guide.md, data/raw/llm_reasoning_paradigms_evolution.md
+**Sources:** data/raw/rlm_original_paper.md, data/raw/rlm_candemir_medium.md, data/raw/rlm_production_zenml.md
 
 **Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
-## Question 4: How does HALO optimize agent loops using RLMs?
+## Question 3: How does the Python REPL environment work in RLM architecture?
 
-**Type:** simple (Tool-specific question — HALO + RLM)
+**Type:** simple (REPL architecture in RLM)
 
 **Retrieved chunks:**
 
-  - halo_agent_optimizer_chunk_001 (score: 0.8104)
-  - halo_agent_optimizer_chunk_002 (score: 0.7249)
-  - halo_agent_optimizer_chunk_004 (score: 0.6684)
+  - alexzhang_blog_context_rot_chunk_013 (score: 0.6600)
+  - rlm_comprehensive_guide_chunk_005 (score: 0.6525)
+  - rlm_rl_training_alphaxiv_chunk_005 (score: 0.6516)
 
 **Answer:**
 
 
 
-HALO optimizes agent loops by implementing a methodology for building recursively self-improving agent harnesses using RLMs [halo_agent_optimizer_chunk_001]. The process follows a four-step loop:
+In the RLM architecture, the Python REPL environment serves as the primary interface for the model to inspect and transform data [rlm_rl_training_alphaxiv_chunk_005]. Rather than loading the full context into its window, the root model receives only constant-size metadata, such as the context's length, a short prefix, and instructions for accessing slices [rlm_comprehensive_guide_chunk_005]. During each turn, the model outputs code blocks to peek into, slice, or transform the context data [alexzhang_blog_context_rot_chunk_013][rlm_comprehensive_guide_chunk_005]. The REPL executes this code, updates the environment state, and returns a truncated version of the output back to the model's context [alexzhang_blog_context_rot_chunk_013][rlm_comprehensive_guide_chunk_005][rlm_rl_training_alphaxiv_chunk_005]. The model can also use the REPL to launch recursive sub-RLM calls on specific string slices or variables stored in the environment [alexzhang_blog_context_rot_chunk_013][rlm_comprehensive_guide_chunk_005]. Once the analysis is complete, the model outputs its final answer using `FINAL(…)` tags [alexzhang_blog_context_rot_chunk_013].
 
-1. Execution traces are collected from the agent harness using OpenTelemetry-compatible tracing [halo_agent_optimizer_chunk_002].
-2. The traces are fed into the HALO-RLM engine [halo_agent_optimizer_chunk_002].
-3. The engine decomposes the traces to identify common failure modes across harness executions and produces a findings report [halo_agent_optimizer_chunk_002].
-4. The report is fed into a coding agent like Cursor or Claude Code [halo_agent_optimizer_chunk_002].
-
-The HALO Engine utilizes a specialized RLM architecture that implements bounded recursion, per-depth parallelism, and persistent context items. This design prevents the system from overfitting to errors in individual traces and instead allows it to generalize to harness-level problems [halo_agent_optimizer_chunk_004].
-
-**Sources:** data/raw/halo_agent_optimizer.md
+**Sources:** data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_rl_training_alphaxiv.md, data/raw/rlm_comprehensive_guide.md
 
 **Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
-## Question 5: How does RLM compare to context folding for long-context processing?
+## Question 4: What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG?
 
-**Type:** simple (Comparison: RLM vs context folding)
+**Type:** simple (RLM benchmark results)
 
 **Retrieved chunks:**
 
-  - prime_intellect_ablations_chunk_078 (score: 0.7256)
-  - prime_intellect_ablations_chunk_007 (score: 0.7002)
-  - rlm_original_paper_chunk_014 (score: 0.6945)
+  - rlm_original_paper_chunk_036 (score: 0.5973)
+  - rlm_production_zenml_chunk_009 (score: 0.5848)
+  - prime_intellect_ablations_chunk_068 (score: 0.5750)
 
 **Answer:**
 
 
 
-Based on the provided context, context folding is not a separate method to compare against the RLM; rather, context folding is the Recursive Language Model (RLM) itself [prime_intellect_ablations_chunk_007]. For long-context processing, the RLM (context folding) demonstrates extremely strong performance, effectively handling scales of 10M+ tokens while exhibiting far less severe degradation for longer contexts compared to other approaches [rlm_original_paper_chunk_014].
+For BrowseComp-Plus, RLM(GPT-5) has an average cost of $0.99 and outperforms both summarization and retrieval baselines by over 29% [rlm_original_paper_chunk_036]. The provided context does not contain any benchmark results for OOLONG.
 
-**Sources:** data/raw/prime_intellect_ablations.md, data/raw/rlm_original_paper.md
+**Sources:** data/raw/rlm_original_paper.md, data/raw/rlm_production_zenml.md, data/raw/prime_intellect_ablations.md
 
 **Comment:** PASS - Citations present - answer is grounded.
 
 ---
 
-## Question 6: How does RL fine-tuning improve RLM behavior compared to prompting alone?
+## Question 5: What are the key differences between RLM and RAG for long-context processing?
+
+**Type:** simple (RLM vs RAG comparison)
+
+**Retrieved chunks:**
+
+  - rlm_candemir_medium_chunk_022 (score: 0.6599)
+  - rlm_production_zenml_chunk_010 (score: 0.5987)
+  - rlm_rl_training_alphaxiv_chunk_019 (score: 0.5788)
+
+**Answer:**
+
+
+
+Based on the provided context, the key differences between RLM and RAG for long-context processing are:
+
+- **Core Function:** RAG handles initial broad retrieval, whereas RLMs perform deeper, more adaptive analysis of the retrieved content [rlm_candemir_medium_chunk_022]. This is summarized as "RAG retrieves. RLMs investigate." [rlm_production_zenml_chunk_010].
+- **Context Management:** RLMs treat "what’s in context" as a first-class design problem, enabling the model to programmatically explore externalized context [rlm_production_zenml_chunk_010].
+- **Retrieval Flexibility:** RAG typically relies on a fixed-size top-k retrieval, while RLMs can dynamically return verbatim spans of varying lengths and counts [rlm_rl_training_alphaxiv_chunk_019].
+
+Despite these distinctions, the context emphasizes that RLMs and RAG are complementary rather than competing, and can be used together [rlm_candemir_medium_chunk_022], [rlm_rl_training_alphaxiv_chunk_019].
+
+**Sources:** data/raw/rlm_rl_training_alphaxiv.md, data/raw/rlm_candemir_medium.md, data/raw/rlm_production_zenml.md
+
+**Comment:** PASS - Citations present - answer is grounded.
+
+---
+
+## Question 6: What are the key ablation results for RLM with versus without sub-calling?
+
+**Type:** simple (RLM ablation experiments)
+
+**Retrieved chunks:**
+
+  - prime_intellect_ablations_chunk_057 (score: 0.6014)
+  - prime_intellect_ablations_chunk_056 (score: 0.5110)
+  - rlm_rl_training_alphaxiv_chunk_045 (score: 0.4971)
+
+**Answer:**
+
+
+
+Based on the provided context, the key ablation results for RLMs utilizing sub-calling (sub-LLMs) are:
+- Using sub-LLMs for math tasks makes the model weaker [prime_intellect_ablations_chunk_057].
+- It barely reduces the main model's token usage [prime_intellect_ablations_chunk_057].
+- It adds sub-LLM tokens, but only minimally, because the RLM uses sub-LLMs very sparsely even with additional prompting [prime_intellect_ablations_chunk_057].
+
+**Sources:** data/raw/rlm_rl_training_alphaxiv.md, data/raw/prime_intellect_ablations.md
+
+**Comment:** PASS - Citations present - answer is grounded.
+
+---
+
+## Question 7: How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone?
 
 **Type:** simple (RL training for RLMs)
 
 **Retrieved chunks:**
 
-  - rlm_rl_training_alphaxiv_chunk_002 (score: 0.6396)
-  - rlm_rl_training_alphaxiv_chunk_045 (score: 0.6200)
-  - rlm_rl_training_alphaxiv_chunk_047 (score: 0.6157)
+  - rlm_rl_training_alphaxiv_chunk_002 (score: 0.6658)
+  - rlm_rl_training_alphaxiv_chunk_020 (score: 0.6373)
+  - rlm_rl_training_alphaxiv_chunk_023 (score: 0.6046)
 
 **Answer:**
 
 
 
-Based on the provided context, RL fine-tuning improves RLM behavior compared to prompting alone by:
-- Enabling RLM behaviors that cannot be elicited through prompting or even supervised fine-tuning (SFT) [rlm_rl_training_alphaxiv_chunk_002].
-- Eliminating the need for extensive prompt tuning and lengthy system prompts (e.g., 1500 tokens) that are otherwise required to elicit consistent behavior from out-of-the-box models [rlm_rl_training_alphaxiv_chunk_002][rlm_rl_training_alphaxiv_chunk_045].
-- Acting as the ultimately necessary training method for inference scaling techniques, as prompting alone only yields limited improvements compared to the performance and training story driven by RL fine-tuning [rlm_rl_training_alphaxiv_chunk_047].
+RL fine-tuning can elicit RLM-specific behavior that cannot be achieved through prompting or even SFT alone [rlm_rl_training_alphaxiv_chunk_002]. While RLMs typically require extensive prompt tuning to elicit consistent behavior and can suffer from unpredictable latency, RL fine-tuning provides a robust method to improve model capabilities for specific tasks without the catastrophic forgetting associated with pure SFT-based approaches [rlm_rl_training_alphaxiv_chunk_002][rlm_rl_training_alphaxiv_chunk_020]. Additionally, SFT is primarily used to teach REPL navigation and RLM-specific syntax rather than training for specific tasks or datasets, making RL fine-tuning more effective for task-specific optimization [rlm_rl_training_alphaxiv_chunk_020].
 
 **Sources:** data/raw/rlm_rl_training_alphaxiv.md
 
@@ -154,7 +175,7 @@ Based on the provided context, RL fine-tuning improves RLM behavior compared to 
 
 ---
 
-## Question 7: What is the stock price of Apple Inc in 2025?
+## Question 8: What is the stock price of Apple Inc in 2025?
 
 **Type:** insufficient (Insufficient context — should trigger fallback)
 
@@ -170,13 +191,13 @@ Based on the provided context, RL fine-tuning improves RLM behavior compared to 
 
 I do not have enough information in the available documents to answer this question.
 
-**Sources:** data/raw/rlm_candemir_medium.md, data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_original_paper.md
+**Sources:** data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_original_paper.md, data/raw/rlm_candemir_medium.md
 
 **Comment:** PASS - Fallback triggered correctly - model says it does not know.
 
 ---
 
-## Question 8: How much does the RLM system cost to run in production?
+## Question 9: How much does the RLM system cost to run in production?
 
 **Type:** insufficient (Insufficient context — no pricing info in KB)
 
@@ -190,36 +211,11 @@ I do not have enough information in the available documents to answer this quest
 
 
 
-The provided context does not specify a fixed cost for running the RLM system in production. It reports an average benchmark cost of $0.99 per call for RLM(GPT-5) on BrowseComp-Plus [rlm_original_paper_chunk_036]. For production deployments, costs are managed via configuration knobs like `max_iterations` and `max_llm_calls` [rlm_production_zenml_chunk_011], but tracking exact per-chunk costs and overall spending is presented as an open challenge rather than a defined figure [rlm_production_zenml_chunk_011].
+I do not have enough information in the available documents to answer this question.
 
-**Sources:** data/raw/rlm_production_zenml.md, data/raw/rlm_original_paper.md, data/raw/alexzhang_blog_context_rot.md
+**Sources:** data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_original_paper.md, data/raw/rlm_production_zenml.md
 
-**Comment:** WARN - Model did not trigger fallback - may be hallucinating.
-
----
-
-## Question 9: What are the key ablation results for RLM with versus without sub-calling?
-
-**Type:** simple (Experimental results — Prime Intellect ablations)
-
-**Retrieved chunks:**
-
-  - prime_intellect_ablations_chunk_057 (score: 0.6014)
-  - prime_intellect_ablations_chunk_056 (score: 0.5110)
-  - rlm_rl_training_alphaxiv_chunk_045 (score: 0.4971)
-
-**Answer:**
-
-
-
-Based on the provided context, the key ablation results for RLM with sub-calling (sub-LLMs) are:
-- **Performance:** Using sub-LLMs for math tasks makes the GPT-5-mini model weaker [prime_intellect_ablations_chunk_057].
-- **Main Model Token Usage:** The approach barely reduces the main model's token usage, which remains significantly higher than that of a standard LLM [prime_intellect_ablations_chunk_057].
-- **Sub-LLM Token Overhead:** It adds sub-LLM tokens, but only minimally, because the GPT-5-mini RLM utilizes sub-LLMs very sparsely even with extra prompting [prime_intellect_ablations_chunk_057].
-
-**Sources:** data/raw/prime_intellect_ablations.md, data/raw/rlm_rl_training_alphaxiv.md
-
-**Comment:** PASS - Citations present - answer is grounded.
+**Comment:** PASS - Fallback triggered correctly - model says it does not know.
 
 ---
 
@@ -239,7 +235,7 @@ Based on the provided context, the key ablation results for RLM with sub-calling
 
 I do not have enough information in the available documents to answer this question.
 
-**Sources:** data/raw/prime_intellect_ablations.md, data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_rl_training_alphaxiv.md
+**Sources:** data/raw/alexzhang_blog_context_rot.md, data/raw/rlm_rl_training_alphaxiv.md, data/raw/prime_intellect_ablations.md
 
 **Comment:** PASS - Fallback triggered correctly - model says it does not know.
 
