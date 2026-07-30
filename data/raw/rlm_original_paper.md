@@ -1,5 +1,10 @@
 # Recursive Language Models
 
+**Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab (MIT CSAIL)
+**Paper:** arXiv:2512.24601 (v1, Dec 31, 2025) — https://arxiv.org/abs/2512.24601
+**Source:** https://arxiv.org/html/2512.24601v1
+**Code:** https://github.com/alexzhang13/rlm
+
 Alex L. Zhang
 
 MIT CSAIL
