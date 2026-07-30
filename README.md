@@ -8,7 +8,7 @@
 
 **LLM:** qwen36-27b-awq via vLLM (10.10.0.86:8002)
 **Embedding:** sentence-transformers/all-MiniLM-L6-v2
-**Index:** FAISS FlatIP, 237 chunks
+**Index:** FAISS FlatIP, 349 chunks
 
 ---
 
