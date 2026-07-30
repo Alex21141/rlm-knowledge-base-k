@@ -64,12 +64,12 @@
 | Метрика | Значення |
 |---------|----------|
 | Вихідних документів | 10 |
-| Всього чанків | 349 |
-| Всього символів | 279,792 |
-| Чанків 500-1000 chars | 343 (98.3%) ✅ |
-| Undersized (<500) | 6 (1.7%) |
+| Всього чанків | 404 |
+| Всього символів | 323,365 |
+| Чанків 500-1000 chars | 398 (98.5%) ✅ |
+| Undersized (<500) | 6 (1.5%) |
 | Oversized (>1000) | 0 (0.0%) ✅ |
-| Середній розмір | 802 chars |
+| Середній розмір | 800 chars |
 
 **Per-document breakdown:**
 
@@ -78,7 +78,7 @@
 | alexzhang_blog_context_rot | 63 | 50,737 | 805 |
 | halo_agent_optimizer | 12 | 9,528 | 794 |
 | llm_reasoning_paradigms_evolution | 23 | 18,828 | 819 |
-| prime_intellect_ablations | 13 | 10,464 | 805 |
+| prime_intellect_ablations | 68 | 54,037 | 795 |
 | rag_failure_points_arxiv2024 | 39 | 31,648 | 812 |
 | rag_original_neurips2020 | 53 | 43,377 | 818 |
 | rlm_comprehensive_guide | 27 | 21,628 | 801 |
