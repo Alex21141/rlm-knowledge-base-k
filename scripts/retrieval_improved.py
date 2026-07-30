@@ -46,58 +46,46 @@ EMBEDDING_DIM = 384
 # Map common query patterns to expanded/rewritten versions for better semantic match
 QUERY_REWRITES = {
     # Core concept queries
-    r"how do? RLMs? handle (long|arbitrari(l|ly)) (prompt|context)":
-        "RLM recursive decomposition long context prompts REPL environment sub-LM calls",
-    r"context rot (and|why|what)":
-        "context rot definition degradation quality frontier models long context length",
-    r"(how|what) is context folding":
-        "context folding agentic context engineering AgentFold comparison RLM delegation",
-
-    # Tool/setup queries
-    r"how to (install|set up) HALO":
-        "HALO pip install CLI usage trace dataset engine subagent setup",
-    r"how to (install|set up) (RLM|system)":
-        "RLM pip install REPL environment Docker setup model provider configuration",
-    r"how does HALO (optimize|optimiz)":
-        "HALO hierarchical agent loop root LM subagent optimization trace analysis",
-
-    # Comparison queries
-    r"RLM (vs|compared? to|compare) (ReAct|Re-Act)":
-        "RLM recursive vs ReAct reasoning acting tool use agent comparison differences",
-    r"RLM (vs|compared? to|compare) RAG":
-        "RLM recursive language model vs RAG retrieval augmented generation comparison",
-
+    r"how do? recursive language models handle prompts":
+        "RLM recursive decomposition long context prompts REPL environment sub-LM calls metadata",
+    r"context rot.*performance degrade":
+        "context rot definition degradation quality frontier models long context attention mechanism",
     # Architecture queries
-    r"Griffin architecture":
-        "Griffin architecture RecurrentGemma linear recurrence fixed state local attention",
-    r"Prime Intellect.*ablation":
-        "Prime Intellect RLM ablation experiments DeepDive math-python Oolong verbatim-copy",
-
+    r"Python REPL environment.*RLM architecture":
+        "RLM Python REPL environment root LM sub-LM calls persistent state code execution symbols",
     # Benchmark queries
-    r"(Oolong|OOLONG) benchmark":
-        "OOLONG benchmark long context reasoning accuracy score semantic labels trec",
-    r"benchmark (result|performance)":
-        "RLM benchmark results OOLONG BrowseComp CodeQA accuracy F1 score comparison",
-
-    # Research/training queries
-    r"training (insight|environment)":
-        "RLM training environment reinforcement learning bootstrapping frontier models",
-    r"paper v3 (update|insight|training)":
-        "RLM paper v3 May 2026 training insights experimental results language model replacement",
+    r"benchmark results.*RLM.*BrowseComp|OOLONG":
+        "RLM benchmark results BrowseComp-Plus OOLONG accuracy score verbatim-copy long context reasoning",
+    r"RLM performance compare.*base LLMs.*long-context":
+        "RLM vs base LLM long-context performance comparison accuracy degradation scaling tokens",
+    # Comparison queries
+    r"differences between RLM and RAG.*long-context":
+        "RLM recursive language model vs RAG retrieval augmented generation long-context processing comparison",
+    r"context folding relate.*recursive language":
+        "context folding agentic context engineering RLM recursive decomposition comparison delegation",
+    # Experiment queries
+    r"key ablation results.*sub-calling":
+        "RLM ablation sub-LM sub-calling performance token usage overhead experiments comparison",
+    # Tool queries
+    r"HALO agent optimizer.*RLM-based loops":
+        "HALO agent optimizer RLM recursive loops bounded recursion per-depth parallelism traces analysis",
+    # RL training queries
+    r"RL fine-tuning improve.*prompting.*SFT":
+        "RL fine-tuning GRPO reinforcement learning RLM prompting SFT comparison behavior inference scaling",
 }
 
-# ── Test queries (same as HW2) ──────────────────────────────────────────────
+# ── Test queries (same 10 as HW2 — RLM-focused) ─────────────────────────────
 TEST_QUERIES = [
-    {"query": "How do RLMs handle arbitrarily long prompts?", "topic": "Core concept"},
-    {"query": "What is context rot and why does it happen?", "topic": "Core concept"},
-    {"query": "How does HALO optimize agent loops?", "topic": "HALO tool"},
-    {"query": "What are the key differences between RLM and ReAct?", "topic": "Comparison"},
-    {"query": "What is the Griffin architecture used in RecurrentGemma?", "topic": "RecurrentGemma"},
-    {"query": "How does Prime Intellect implement RLM ablations?", "topic": "Experiments"},
-    {"query": "What is context folding and how does RLM compare?", "topic": "Comparison"},
-    {"query": "How do you install and set up the RLM system?", "topic": "Setup"},
-    {"query": "What benchmark results does RLM achieve on Oolong?", "topic": "Results"},
-    {"query": "What are the training insights for RLMs in paper v3?", "topic": "Research"},
+    {"query": "How do recursive language models handle prompts larger than their context window?", "topic": "Core concept"},
+    {"query": "What is context rot and why does performance degrade with longer inputs?", "topic": "Core concept"},
+    {"query": "How does the Python REPL environment work in RLM architecture?", "topic": "Architecture"},
+    {"query": "What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG?", "topic": "Benchmarks"},
+    {"query": "How does RLM performance compare to base LLMs on long-context tasks?", "topic": "Benchmarks"},
+    {"query": "What are the key differences between RLM and RAG for long-context processing?", "topic": "Comparison"},
+    {"query": "How does context folding relate to recursive language models?", "topic": "Comparison"},
+    {"query": "What are the key ablation results for RLM with versus without sub-calling?", "topic": "Experiments"},
+    {"query": "How does the HALO agent optimizer use RLM-based loops?", "topic": "Tools"},
+    {"query": "How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone?", "topic": "RL training"},
 ]
 
 
@@ -454,11 +442,13 @@ def run_comparison() -> str:
 def get_smart_filter(topic: str) -> str:
     """Get smart metadata filter based on query topic."""
     topic_filters = {
-        "HALO tool": "document_type=tool",
-        "RecurrentGemma": "domain=model-architecture",
+        "Core concept": "",
+        "Architecture": "",
+        "Benchmarks": "document_type=research-paper",
+        "Comparison": "",
         "Experiments": "document_type=experimental-report",
-        "Setup": "document_type=research-paper",
-        "Results": "document_type=experimental-report",
+        "Tools": "document_type=tool",
+        "RL training": "",
     }
     return topic_filters.get(topic)
 

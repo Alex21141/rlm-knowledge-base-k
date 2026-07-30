@@ -16,25 +16,25 @@
 
 |-------|---------------|----------------|-------------|
 
-| How do RLMs handle arbitrarily long prompts? | `rlm_deep_dive_towardsdatascience_chunk_022` (0.661) | `rlm_deep_dive_towardsdatascience_chunk_022` (0.706) | ✅ Score improved: 0.6612 → 0.7057 |
+| How do recursive language models handle prompts larger than their context window? | `rlm_original_paper_chunk_002` (0.701) | `rlm_original_paper_chunk_027` (0.828) | ✅ Better chunk (query rewrite): Recursive Language Models (was: Recursive Language Models) |
 
-| What is context rot and why does it happen? | `rlm_candemir_medium_chunk_003` (0.596) | `alexzhang_blog_context_rot_chunk_024` (0.679) | ✅ Better chunk (query rewrite): Some early (and very exciting) results! (was: What Is Context Rot, Really?) |
+| What is context rot and why does performance degrade with longer inputs? | `rlm_candemir_medium_chunk_003` (0.694) | `rlm_original_paper_chunk_004` (0.702) | ✅ Better chunk (query rewrite): 2 Scaling Long Context Tasks (was: What Is Context Rot, Really?) |
 
-| How does HALO optimize agent loops? | `halo_agent_optimizer_chunk_001` (0.786) | `halo_agent_optimizer_chunk_001` (0.875) | ✅ Score improved: 0.7861 → 0.8750 |
+| How does the Python REPL environment work in RLM architecture? | `alexzhang_blog_context_rot_chunk_013` (0.660) | `alexzhang_blog_context_rot_chunk_013` (0.742) | ✅ Score improved: 0.6600 → 0.7415 |
 
-| What are the key differences between RLM and ReAct? | `rlm_deep_dive_towardsdatascience_chunk_003` (0.527) | `rlm_deep_dive_towardsdatascience_chunk_003` (0.572) | ✅ Score improved: 0.5275 → 0.5719 |
+| What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG? | `rlm_original_paper_chunk_036` (0.597) | `rlm_original_paper_chunk_036` (0.651) | ✅ Score improved: 0.5973 → 0.6506 |
 
-| What is the Griffin architecture used in RecurrentGemma? | `alexzhang_blog_context_rot_chunk_059` (0.435) | `alexzhang_blog_context_rot_chunk_059` (0.469) | ✅ Score improved: 0.4352 → 0.4685 |
+| How does RLM performance compare to base LLMs on long-context tasks? | `rlm_comprehensive_guide_chunk_002` (0.747) | `rlm_original_paper_chunk_035` (0.828) | ✅ Better chunk (query rewrite): 3 Results and Discussion (was: 1. FUNDAMENTALS) |
 
-| How does Prime Intellect implement RLM ablations? | `prime_intellect_ablations_chunk_072` (0.490) | `prime_intellect_ablations_chunk_072` (0.566) | ✅ Score improved: 0.4898 → 0.5660 |
+| What are the key differences between RLM and RAG for long-context processing? | `rlm_candemir_medium_chunk_022` (0.660) | `rlm_candemir_medium_chunk_022` (0.752) | ✅ Score improved: 0.6599 → 0.7522 |
 
-| What is context folding and how does RLM compare? | `prime_intellect_ablations_chunk_007` (0.693) | `prime_intellect_ablations_chunk_004` (0.681) | ✅ Better chunk (query rewrite): How we plan to manage extremely long contexts (was: The RLM) |
+| How does context folding relate to recursive language models? | `prime_intellect_ablations_chunk_007` (0.776) | `prime_intellect_ablations_chunk_007` (0.686) | No change |
 
-| How do you install and set up the RLM system? | `rlm_deep_dive_towardsdatascience_chunk_043` (0.455) | `rlm_deep_dive_towardsdatascience_chunk_043` (0.547) | ✅ Score improved: 0.4554 → 0.5471 |
+| What are the key ablation results for RLM with versus without sub-calling? | `prime_intellect_ablations_chunk_057` (0.601) | `rlm_comprehensive_guide_chunk_002` (0.635) | ✅ Better chunk (query rewrite): 1. FUNDAMENTALS (was: The RLM) |
 
-| What benchmark results does RLM achieve on Oolong? | `prime_intellect_ablations_chunk_073` (0.659) | `rlm_rl_training_alphaxiv_chunk_044` (0.582) | ✅ Better chunk (query rewrite): [Jump to section](https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms\#rlm-with-sub-calls "Jump to section") RLM (with sub-calls) (was: Oolong) |
+| How does the HALO agent optimizer use RLM-based loops? | `halo_agent_optimizer_chunk_001` (0.762) | `halo_agent_optimizer_chunk_001` (0.868) | ✅ Score improved: 0.7616 → 0.8682 |
 
-| What are the training insights for RLMs in paper v3? | `rlm_rl_training_alphaxiv_chunk_050` (0.624) | `rlm_rl_training_alphaxiv_chunk_001` (0.571) | ✅ Better chunk (query rewrite): Reinforcing Recursive Language Models  --  alphaXiv Blog (was: [Jump to section](https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms\#rlm-with-sub-calls "Jump to section") RLM (with sub-calls)) |
+| How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone? | `rlm_rl_training_alphaxiv_chunk_002` (0.666) | `rlm_rl_training_alphaxiv_chunk_002` (0.739) | ✅ Score improved: 0.6658 → 0.7385 |
 
 
 ## Summary of Improvements
@@ -48,9 +48,9 @@
 
 | Metadata filtering | 0 | Smart domain-based filters narrowed search space |
 
-| Hybrid scoring | 6 | Keyword boost improved scores for exact matches |
+| Hybrid scoring | 5 | Keyword boost improved scores for exact matches |
 
-| No change | 0 | Baseline was already optimal |
+| No change | 1 | Baseline was already optimal |
 
 
 ## Detailed Analysis
@@ -59,7 +59,7 @@
 ### What worked best
 
 
-**Hybrid scoring** improved retrieval scores for 6 queries where the baseline already found the correct chunk. The keyword component boosted exact matches.
+**Hybrid scoring** improved retrieval scores for 5 queries where the baseline already found the correct chunk. The keyword component boosted exact matches.
 
 
 ### Conclusion
@@ -68,4 +68,4 @@
 The combination of **query rewriting** and **hybrid scoring** provides the best improvement. Query rewriting handles cases where the original query is too vague for semantic matching, while hybrid scoring boosts exact keyword matches that pure embedding models might miss.
 
 
-**Overall: 10 queries improved, 0 unchanged.**
+**Overall: 9 queries improved, 1 unchanged.**

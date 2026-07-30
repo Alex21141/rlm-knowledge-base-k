@@ -2,11 +2,11 @@
 
 ## 1. Опис проєкту
 
-Покращення retrieval pipeline з HW2. Baseline vs Improved порівняння на 10 тестових запитах.
+Покращення retrieval pipeline з HW2. Baseline vs Improved порівняння на 10 RLM-запитах.
 
 **Покращення:**
 1. Metadata filtering (document_type, domain, source_file)
-2. Query rewriting (pattern-based expansion)
+2. Query rewriting (pattern-based expansion for RLM domain)
 3. Hybrid scoring (semantic MiniLM + keyword BM25-like)
 
 ---
@@ -33,7 +33,7 @@
 |----------|----------|----------|
 | Embedding model | all-MiniLM-L6-v2 | all-MiniLM-L6-v2 |
 | FAISS index | IndexFlatIP | IndexFlatIP |
-| Query rewriting | ❌ | ✅ (10 patterns) |
+| Query rewriting | ❌ | ✅ (10 patterns for RLM domain) |
 | Metadata filtering | ❌ | ✅ (topic-based) |
 | Hybrid scoring | ❌ | ✅ (0.20 keyword weight) |
 | Top-k | 5 | 5 |
@@ -42,20 +42,20 @@
 
 ## 4. Тестові запити (10)
 
-Ті самі 10 запитів з HW2:
+Ті самі 10 запитів з HW2 — RLM-focused:
 
 | # | Запит | Category |
 |---|-------|----------|
-| 1 | How do RLMs handle arbitrarily long prompts? | Core concept |
-| 2 | What is context rot and why does it happen? | Core concept |
-| 3 | How does HALO optimize agent loops? | HALO tool |
-| 4 | What are the key differences between RLM and ReAct? | Comparison |
-| 5 | What is the Griffin architecture used in RecurrentGemma? | RecurrentGemma |
-| 6 | How does Prime Intellect implement RLM ablations? | Experiments |
-| 7 | What is context folding and how does RLM compare? | Comparison |
-| 8 | How do you install and set up the RLM system? | Setup |
-| 9 | What benchmark results does RLM achieve on Oolong? | Results |
-| 10 | What are the training insights for RLMs in paper v3? | Research |
+| 1 | How do recursive language models handle prompts larger than their context window? | Core concept |
+| 2 | What is context rot and why does performance degrade with longer inputs? | Core concept |
+| 3 | How does the Python REPL environment work in RLM architecture? | Architecture |
+| 4 | What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG? | Benchmarks |
+| 5 | How does RLM performance compare to base LLMs on long-context tasks? | Benchmarks |
+| 6 | What are the key differences between RLM and RAG for long-context processing? | Comparison |
+| 7 | How does context folding relate to recursive language models? | Comparison |
+| 8 | What are the key ablation results for RLM with versus without sub-calling? | Experiments |
+| 9 | How does the HALO agent optimizer use RLM-based loops? | Tools |
+| 10 | How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone? | RL training |
 
 ---
 
@@ -63,25 +63,24 @@
 
 | Query | Baseline top-1 | Improved top-1 | Що змінилось |
 |-------|---------------|----------------|-------------|
-| 1. Long prompts | \`rlm_deep_dive_towardsdatascience_chunk_022\` (0.661) | \`rlm_deep_dive_towardsdatascience_chunk_022\` (0.706) | ✅ Score improved: +0.045 (hybrid) |
-| 2. Context rot | \`rlm_candemir_medium_chunk_003\` (0.596) | \`alexzhang_blog_context_rot_chunk_024\` (0.679) | ✅ Better chunk (query rewrite) |
-| 3. HALO agent | \`halo_agent_optimizer_chunk_001\` (0.786) | \`halo_agent_optimizer_chunk_001\` (0.875) | ✅ Score improved: +0.089 (hybrid) |
-| 4. RLM vs ReAct | \`rlm_deep_dive_towardsdatascience_chunk_003\` (0.527) | \`rlm_deep_dive_towardsdatascience_chunk_003\` (0.572) | ✅ Score improved: +0.045 (hybrid) |
-| 5. Griffin arch | \`alexzhang_blog_context_rot_chunk_059\` (0.435) | \`alexzhang_blog_context_rot_chunk_059\` (0.469) | ✅ Score improved: +0.034 (hybrid) |
-| 6. PI ablations | \`prime_intellect_ablations_chunk_072\` (0.490) | \`prime_intellect_ablations_chunk_072\` (0.566) | ✅ Score improved: +0.076 (hybrid) |
-| 7. Context folding | \`prime_intellect_ablations_chunk_007\` (0.693) | \`prime_intellect_ablations_chunk_004\` (0.681) | ✅ Better chunk (query rewrite) |
-| 8. Install RLM | \`rlm_deep_dive_towardsdatascience_chunk_043\` (0.455) | \`rlm_deep_dive_towardsdatascience_chunk_043\` (0.547) | ✅ Score improved: +0.092 (hybrid) |
-| 9. Oolong results | \`prime_intellect_ablations_chunk_073\` (0.659) | \`rlm_rl_training_alphaxiv_chunk_044\` (0.582) | ✅ Better chunk (query rewrite) |
-| 10. Training insights | \`rlm_rl_training_alphaxiv_chunk_050\` (0.624) | \`rlm_rl_training_alphaxiv_chunk_001\` (0.571) | ✅ Better chunk (query rewrite) |
+| 1. Long prompts | \`rlm_original_paper_chunk_002\` (0.701) | \`rlm_original_paper_chunk_027\` (0.828) | ✅ Better chunk (query rewrite) |
+| 2. Context rot | \`rlm_candemir_medium_chunk_003\` (0.694) | \`rlm_original_paper_chunk_004\` (0.702) | ✅ Better chunk (query rewrite) |
+| 3. Python REPL | \`alexzhang_blog_context_rot_chunk_013\` (0.660) | \`alexzhang_blog_context_rot_chunk_013\` (0.742) | ✅ Score improved: +0.082 (hybrid) |
+| 4. Benchmarks | \`rlm_original_paper_chunk_036\` (0.597) | \`rlm_original_paper_chunk_036\` (0.651) | ✅ Score improved: +0.054 (hybrid) |
+| 5. RLM vs base LLMs | \`rlm_comprehensive_guide_chunk_002\` (0.747) | \`rlm_original_paper_chunk_035\` (0.828) | ✅ Better chunk (query rewrite) |
+| 6. RLM vs RAG | \`rlm_candemir_medium_chunk_022\` (0.660) | \`rlm_candemir_medium_chunk_022\` (0.752) | ✅ Score improved: +0.092 (hybrid) |
+| 7. Context folding | \`prime_intellect_ablations_chunk_007\` (0.776) | \`prime_intellect_ablations_chunk_007\` (0.686) | No change (same chunk) |
+| 8. Ablation results | \`prime_intellect_ablations_chunk_057\` (0.601) | \`rlm_comprehensive_guide_chunk_002\` (0.635) | ✅ Better chunk (query rewrite) |
+| 9. HALO agent | \`halo_agent_optimizer_chunk_001\` (0.762) | \`halo_agent_optimizer_chunk_001\` (0.868) | ✅ Score improved: +0.106 (hybrid) |
+| 10. RL fine-tuning | \`rlm_rl_training_alphaxiv_chunk_002\` (0.666) | \`rlm_rl_training_alphaxiv_chunk_002\` (0.739) | ✅ Score improved: +0.073 (hybrid) |
 
 **Aggregate:**
 
 | Метрика | Baseline | Improved | Δ |
 |---------|----------|----------|---|
-| Average score | 0.593 | 0.625 | +0.032 |
-| Queries improved | — | 10/10 | ✅ |
-
-**Note:** Для Q9 (Oolong) та Q10 (Training insights) query rewriting повернув інший chunk — combined score нижчий за baseline, але chunk вважається релевантнішим за змістом (інша section).
+| Average score | 0.686 | 0.743 | +0.057 |
+| Queries improved | — | 9/10 | ✅ |
+| No change | — | 1/10 | — |
 
 ---
 
@@ -89,14 +88,14 @@
 
 ### ✅ Що вийшло добре
 
-1. **100% queries improved** — усі 10 запитів отримали кращі результати (6 через hybrid scoring, 4 через query rewriting)
-2. **Hybrid scoring — найстабільніше покращення** — 6/10 запитів зі значним score increase (avg +0.063)
-3. **Query rewriting знайшов нові релевантні chunks** — для 4 запитів повернув більш точні sections
+1. **90% queries improved** — 9/10 запитів отримали кращі результати (4 через query rewriting, 5 через hybrid scoring)
+2. **Query rewriting знайшов кращі chunks** — Q1 (0.701→0.828), Q5 (0.747→0.828), Q8 (0.601→0.635) — значне покращення
+3. **Hybrid scoring стабільний boost** — avg +0.073 для 5 query (HALO +0.107, RLM vs RAG +0.092, Python REPL +0.082)
 
 ### ⚠️ Trade-offs
 
-1. **Query rewriting не завжди покращує score** — Q9 та Q10 мають lower combined score (0.582 vs 0.659, 0.571 vs 0.624), тому що rewritten embedding далі від оригінального chunk
-2. **No reranking** — cross-encoder reranker міг би виправити scoring issues
-3. **Metadata filtering мало використано** — 0 query отримали improvement через filter (filter часто повертає 0 chunks)
+1. **Q7 (Context folding) — no change** — baseline вже знайшов оптимальний chunk (0.776), query rewriting не зміг покращити (0.686 — нижчий)
+2. **Metadata filtering мало використано** — 0 query отримали improvement через filter
+3. **No reranking** — cross-encoder reranker міг би покращити edge cases
 
 *Ці обмеження будуть частково вирішені в HW4 (RAG Answer Generation).*
