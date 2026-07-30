@@ -38,8 +38,8 @@ logger = logging.getLogger(__name__)
 # ──────────────────────────────────────────────────────────────
 # Configuration defaults
 # ──────────────────────────────────────────────────────────────
-DEFAULT_CHUNK_SIZE = 700        # characters per chunk
-DEFAULT_OVERLAP = 150           # character overlap between chunks
+DEFAULT_CHUNK_SIZE = 600        # characters per chunk
+DEFAULT_OVERLAP = 100           # character overlap between chunks
 DEFAULT_INPUT_DIR = "data/raw"
 DEFAULT_OUTPUT_FILE = "data/processed/chunks.jsonl"
 MIN_CHUNK_SIZE = 500
