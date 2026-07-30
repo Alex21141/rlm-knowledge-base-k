@@ -16,14 +16,14 @@
 | 2 | `halo_agent_optimizer.md` | github.com/context-labs/halo | Production tool |
 | 3 | `llm_reasoning_paradigms_evolution.md` | medium.com/@mndeepan06 | Blog (analysis) |
 | 4 | `prime_intellect_ablations.md` | primeintellect.ai/blog/rlm | Blog (experimental) |
-| 5 | `rag_failure_points_arxiv2024.md` | arXiv:2401.05856 (Barnett et al.) | Research paper |
-| 6 | `rag_original_neurips2020.md` | arXiv:2005.11401 (Lewis et al.) | Research paper |
+| 5 | `rlm_candemir_medium.md` | medium.com/@candemir13 | Blog (beginner guide) |
+| 6 | `rlm_rl_training_alphaxiv.md` | alphaxiv.org/blog/rlm | Blog (RL training) |
 | 7 | `rlm_comprehensive_guide.md` | rlm.md | Guide |
 | 8 | `rlm_deep_dive_towardsdatascience.md` | towardsdatascience.com (Avishek Biswas) | Blog (deep-dive) |
 | 9 | `rlm_original_paper.md` | arXiv:2512.24601 (Zhang, Kraska, Khattab) | Research paper |
 | 10 | `rlm_production_zenml.md` | zenml.io/blog (ZenML) | Blog (production) |
 
-**Домени:** recursive-language-models, retrieval-augmented-generation, ml-reasoning, agent-optimization, context-engineering
+**Домени:** recursive-language-models, ml-reasoning, agent-optimization, context-engineering
 
 ---
 
@@ -50,12 +50,12 @@
 
 | Параметр | Значення | Обґрунтування |
 |----------|----------|---------------|
-| `chunk_size` | 700 chars | Баланс: достатньо контексту, не занадто велико |
-| `overlap` | 150 chars | Зберігає перехід між сусідніми чанками |
+| `chunk_size` | 600 chars | Баланс: достатньо контексту, не занадто велико |
+| `overlap` | 100 chars | Зберігає перехід між сусідніми чанками |
 | `метод` | Paragraph-aware splitting | Спочатку розбиття по абзацах, потім merge до target size |
 | `min_size` | 500 chars | Чанки <500 об'єднуються з сусідом |
 
-**Pipeline:** `raw markdown → normalize → paragraph split → merge to 700 → add metadata → chunks.jsonl`
+**Pipeline:** `raw markdown → normalize → paragraph split → merge to 600 → add metadata → chunks.jsonl`
 
 ---
 
@@ -95,9 +95,9 @@
 {"chunk_id": "rlm_original_paper_chunk_001", "text": "# Recursive Language Models -- Original Paper (MIT CSAIL)\n\n**Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab...", "metadata": {"document_id": "rlm_original_paper", "section": "Introduction", "domain": "recursive-language-models", "document_type": "research-paper"}}
 ```
 
-### RAG failure points (chunk 7)
+### RL training for RLMs (chunk 1)
 ```json
-{"chunk_id": "rag_failure_points_arxiv2024_chunk_007", "text": "In this work we present the lessons learned from building RAG systems across multiple domains, identifying seven failure points...", "metadata": {"document_id": "rag_failure_points_arxiv2024", "section": "1. INTRODUCTION", "domain": "retrieval-augmented-generation"}}
+{"chunk_id": "rlm_rl_training_alphaxiv_chunk_001", "text": "# Reinforcing Recursive Language Models — alphaXiv Blog\n\n**Source:** https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms\n**Platform:** alphaXiv / NovaSky AI (SkyRL)...", "metadata": {"document_id": "rlm_rl_training_alphaxiv", "section": "RL Training", "domain": "recursive-language-models", "document_type": "blog"}}
 ```
 
 ### TDS deep-dive (chunk 10)
@@ -122,12 +122,13 @@
 ### ✅ Що вийшло добре
 
 1. **Унікальні джерела** — 10 документів, 0 семантичних дублікатів (Jaccard <0.05 між усіма парами)
-2. **Якість чанків** — 98.3% у цільовому range 500-1000 chars, 0 oversized
+2. **Якість чанків** — 98.1% у цільовому range 500-1000 chars, 3 oversized (0.6%)
 3. **Метадані** — повна структура (10 полів), ready для filtering по domain / document_type
-4. **Покриття** — 5 доменів: RLM теорія + RAG + agent optimization + reasoning + production
+4. **Покриття** — 4 домени: RLM теорія + agent optimization + reasoning + production
+5. **Повні оригінали** — 3 ключові документи повні (alexzhang 43KB, prime_intellect 47KB, arXiv paper 128KB)
 
 ### ⚠️ Що покращити
 
-1. **Undersized chunks** — 5 чанків (<500 chars). Короткі розділи, де merge руйнує семантику.
-2. **Нерівномірність** — `rag_original_neurips2020` (53 chunks) vs `alexzhang_blog` (11 chunks) — різниця в 5x.
+1. **Undersized chunks** — 6 чанків (<500 chars). Короткі розділи, де merge руйнує семантику.
+2. **Нерівномірність** — `prime_intellect_ablations` (80 chunks) vs `halo_agent_optimizer` (14 chunks) — різниця в 6x.
 3. **Domain filtering** — `document_type` та `domain` можуть бути використані для precision filtering на HW2/HW3.
