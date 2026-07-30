@@ -355,12 +355,12 @@ Two fundamentally different approaches to processing long inputs.
 | Input handling | Entire input at once | Decompose → chunk → recurse → aggregate |
 | Processing | Single forward pass over ALL tokens | REPL environment with sub-RLM calls |
 | Attention | Over ALL tokens simultaneously | Only on current turn (constant size) |
-| Output quality on long inputs | ⚠️ Degrades with length | Maintains quality — unbounded |
+| Output quality on long inputs | Degrades with length | Maintains quality — unbounded |
 | Context rot | Yes — inevitable at scale | No — model never sees full context |
 | Scalability | Bounded by context window | Limited only by compute budget |
 | Cost at scale | Proportional to input size | Often cheaper (selective examination) |
 
-### The Problem Context Windows Are a Lie
+### The Problem: Context Windows Are a Lie
 
 GPT-5 advertises a 272K token context window. Sounds generous. But feed it a task that requires dense reasoning over all 272K tokens — not just finding a needle, but actually processing every line — and performance falls off a cliff. This is called **context rot**, and every model suffers from it.
 

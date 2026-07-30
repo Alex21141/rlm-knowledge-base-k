@@ -38,8 +38,8 @@ logger = logging.getLogger(__name__)
 # ──────────────────────────────────────────────────────────────
 # Configuration defaults
 # ──────────────────────────────────────────────────────────────
-DEFAULT_CHUNK_SIZE = 700        # characters per chunk
-DEFAULT_OVERLAP = 150           # character overlap between chunks
+DEFAULT_CHUNK_SIZE = 600        # characters per chunk
+DEFAULT_OVERLAP = 100           # character overlap between chunks
 DEFAULT_INPUT_DIR = "data/raw"
 DEFAULT_OUTPUT_FILE = "data/processed/chunks.jsonl"
 MIN_CHUNK_SIZE = 500
@@ -81,20 +81,20 @@ DOC_METADATA_MAP = {
         "document_type": "blog",
         "source_type": "markdown",
     },
-    "rag_original_neurips2020.md": {
-        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., NeurIPS 2020)",
-        "section": "RAG Foundations",
+    "rlm_candemir_medium.md": {
+        "title": "Recursive Language Models: How LLMs Learned to Stop Memorizing and Start Searching (Can Demir, Medium 2026)",
+        "section": "RLM Beginner Guide",
         "language": "en",
-        "domain": "retrieval-augmented-generation",
-        "document_type": "research-paper",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
         "source_type": "markdown",
     },
-    "rag_failure_points_arxiv2024.md": {
-        "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., 2024)",
-        "section": "RAG Failure Points",
+    "rlm_rl_training_alphaxiv.md": {
+        "title": "Reinforcing Recursive Language Models — RL Training for RLMs (alphaXiv)",
+        "section": "RLM RL Training",
         "language": "en",
-        "domain": "retrieval-augmented-generation",
-        "document_type": "analysis",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
         "source_type": "markdown",
     },
     "rlm_comprehensive_guide.md": {
