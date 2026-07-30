@@ -89,12 +89,12 @@ DOC_METADATA_MAP = {
         "document_type": "blog",
         "source_type": "markdown",
     },
-    "rag_failure_points_arxiv2024.md": {
-        "title": "Seven Failure Points When Engineering a Retrieval Augmented Generation System (Barnett et al., 2024)",
-        "section": "RAG Failure Points",
+    "rlm_rl_training_alphaxiv.md": {
+        "title": "Reinforcing Recursive Language Models — RL Training for RLMs (alphaXiv)",
+        "section": "RLM RL Training",
         "language": "en",
-        "domain": "retrieval-augmented-generation",
-        "document_type": "analysis",
+        "domain": "recursive-language-models",
+        "document_type": "blog",
         "source_type": "markdown",
     },
     "rlm_comprehensive_guide.md": {
