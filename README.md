@@ -1,10 +1,10 @@
-# Домашнє завдання №2 — Semantic Retrieval Layer
+# Домашнє завдання №2 — Semantic Retrieval
 
 ## 1. Опис проєкту
 
-**Subject area:** Recursive Language Models (RLM) Research Assistant
+Semantic retrieval поверх knowledge base з HW1. Використовуємо MiniLM embeddings + FAISS index для пошуку релевантних чанків.
 
-Embedding-based retrieval pipeline: chunks.jsonl → embeddings → FAISS index → top-k semantic search.
+**Ціль:** відповісти на 10 RLM-запитів через semantic search.
 
 ---
 
@@ -14,45 +14,21 @@ Embedding-based retrieval pipeline: chunks.jsonl → embeddings → FAISS index 
 |---------|----------|
 | Документів | **10** |
 | Чанків | **467** |
-| Всього символів | **325,538** |
-| Середній розмір чанку | **697 chars** |
-
-**Джерела** (10 унікальних, 0 дублікатів):
-
-| # | Документ | Джерело | Тип |
-|---|----------|---------|-----|
-| 1 | \`alexzhang_blog_context_rot.md\` | alexzhang13.github.io/blog/2025/rlm | Blog |
-| 2 | \`halo_agent_optimizer.md\` | github.com/context-labs/halo | Production tool |
-| 3 | \`llm_reasoning_paradigms_evolution.md\` | medium.com/@mndeepan06 | Blog (analysis) |
-| 4 | \`prime_intellect_ablations.md\` | primeintellect.ai/blog/rlm | Blog (experimental) |
-| 5 | \`rlm_candemir_medium.md\` | medium.com/@candemir13 | Blog (beginner guide) |
-| 6 | \`rlm_rl_training_alphaxiv.md\` | alphaxiv.org/blog/rlm | Blog (RL training) |
-| 7 | \`rlm_comprehensive_guide.md\` | rlm.md | Guide |
-| 8 | \`rlm_deep_dive_towardsdatascience.md\` | towardsdatascience.com | Blog (deep-dive) |
-| 9 | \`rlm_original_paper.md\` | arXiv:2512.24601 | Research paper |
-| 10 | \`rlm_production_zenml.md\` | zenml.io/blog | Blog (production) |
+| Vectors в index | **467** |
+| Embedding model | all-MiniLM-L6-v2 (384-dim) |
+| FAISS index | IndexFlatIP |
+| CHUNK_SIZE | 600 |
+| OVERLAP | 100 |
 
 ---
 
 ## 3. Retrieval pipeline
 
-**Метод:** Cosine similarity через FAISS IndexFlatIP
-
-**Pipeline:**
-1. Load chunks.jsonl (467 чанків)
-2. Compute embeddings (all-MiniLM-L6-v2)
-3. Build FAISS index (IndexFlatIP, 384-dim)
-4. For each query: encode query → search top-k → rank by cosine similarity
-5. Return ranked results with chunk_id, score, text preview, metadata
-
-**Config:**
-
-| Параметр | Значення |
-|----------|----------|
-| Embedding model | \`sentence-transformers/all-MiniLM-L6-v2\` |
-| FAISS index | \`IndexFlatIP\` (cosine similarity) |
-| Top-k | 5 chunks per query |
-| Vectors | 467 × 384-dim |
+1. **Load chunks** — read `data/processed/chunks.jsonl` (467 chunks)
+2. **Build/load FAISS index** — `index/faiss.index` + `index/metadata.json`
+3. **Embed query** — MiniLM → 384-dim vector
+4. **Search** — FAISS inner product, top-k=5
+5. **Return results** — chunk_id, score, text preview, metadata
 
 ---
 
@@ -60,16 +36,16 @@ Embedding-based retrieval pipeline: chunks.jsonl → embeddings → FAISS index 
 
 | # | Запит | Category |
 |---|-------|----------|
-| 1 | How do recursive language models handle prompts larger than their context window? | Core concept |
-| 2 | What is context rot and why does performance degrade with longer inputs? | Core concept |
-| 3 | How does the Python REPL environment work in RLM architecture? | Architecture |
-| 4 | What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG? | Benchmarks |
-| 5 | How does RLM performance compare to base LLMs on long-context tasks? | Benchmarks |
-| 6 | What are the key differences between RLM and RAG for long-context processing? | Comparison |
-| 7 | How does context folding relate to recursive language models? | Comparison |
-| 8 | What are the key ablation results for RLM with versus without sub-calling? | Experiments |
-| 9 | How does the HALO agent optimizer use RLM-based loops? | Tools |
-| 10 | How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone? | RL training |
+| 1 | How does the RLM REPL architecture process user prompts that exceed the base model's fixed context window? | Core concept |
+| 2 | What is context rot in recursive language models and how does it affect performance on long-context tasks? | Core concept |
+| 3 | How does the Python REPL environment function within the RLM agent architecture for recursive code execution? | Architecture |
+| 4 | What benchmark scores does RLM achieve on BrowseComp-Plus and OOLONG compared to GPT-5 and Qwen3-Coder? | Benchmarks |
+| 5 | How does RLM performance scale on long-context tasks like S-NIAH compared to non-recursive base LLMs? | Benchmarks |
+| 6 | What are the architectural trade-offs between RLM recursive decomposition and retrieval-augmented generation for multi-hop reasoning? | Comparison |
+| 7 | How does the evolution from flat prompting to recursive execution relate to context management in language models? | Comparison |
+| 8 | What are the ablation results for RLM with and without sub-calling on information-dense tasks? | Experiments |
+| 9 | How does the HALO agent optimizer implement RLM-based recursive loops for tool use? | Tools |
+| 10 | How does reinforcement learning fine-tuning improve RLM recursive behavior compared to supervised fine-tuning? | RL training |
 
 ---
 
@@ -77,26 +53,25 @@ Embedding-based retrieval pipeline: chunks.jsonl → embeddings → FAISS index 
 
 | Query | Top-1 Chunk | Score | Document |
 |-------|-------------|-------|----------|
-| 1. Long prompts | rlm_original_paper_chunk_002 | 0.7014 | rlm_original_paper |
-| 2. Context rot | rlm_candemir_medium_chunk_003 | 0.6942 | rlm_candemir_medium |
-| 3. Python REPL | alexzhang_blog_context_rot_chunk_013 | 0.6600 | alexzhang_blog_context_rot |
-| 4. BrowseComp benchmarks | rlm_original_paper_chunk_027 | 0.5973 | rlm_original_paper |
-| 5. RLM vs base LLMs | rlm_comprehensive_guide_chunk_021 | 0.7470 | rlm_comprehensive_guide |
-| 6. RLM vs RAG | rlm_candemir_medium_chunk_022 | 0.6599 | rlm_candemir_medium |
-| 7. Context folding | prime_intellect_ablations_chunk_007 | 0.7756 | prime_intellect_ablations |
-| 8. Ablation results | prime_intellect_ablations_chunk_057 | 0.6014 | prime_intellect_ablations |
-| 9. HALO agent | halo_agent_optimizer_chunk_001 | 0.7616 | halo_agent_optimizer |
-| 10. RL fine-tuning | rlm_rl_training_alphaxiv_chunk_002 | 0.6658 | rlm_rl_training_alphaxiv |
+| 1. RLM REPL architecture | \`rlm_comprehensive_guide_chunk_026\` | 0.7659 | rlm_comprehensive_guide |
+| 2. Context rot | \`rlm_original_paper_chunk_004\` | 0.8503 | rlm_original_paper |
+| 3. Python REPL in RLM | \`rlm_rl_training_alphaxiv_chunk_005\` | 0.7492 | rlm_rl_training_alphaxiv |
+| 4. Benchmarks (GPT-5/Qwen3) | \`rlm_rl_training_alphaxiv_chunk_044\` | 0.6237 | rlm_rl_training_alphaxiv |
+| 5. S-NIAH scaling | \`llm_reasoning_paradigms_evolution_chunk_023\` | 0.7168 | llm_reasoning_paradigms_evolution |
+| 6. RLM vs RAG trade-offs | \`llm_reasoning_paradigms_evolution_chunk_025\` | 0.6391 | llm_reasoning_paradigms_evolution |
+| 7. Flat prompting → recursive | \`rlm_original_paper_chunk_004\` | 0.6691 | rlm_original_paper |
+| 8. Ablation (sub-calling) | \`prime_intellect_ablations_chunk_057\` | 0.5685 | prime_intellect_ablations |
+| 9. HALO optimizer | \`halo_agent_optimizer_chunk_001\` | 0.8091 | halo_agent_optimizer |
+| 10. RL fine-tuning vs SFT | \`rlm_comprehensive_guide_chunk_018\` | 0.6229 | rlm_comprehensive_guide |
 
-**Aggregate stats:**
+**Stats:**
 
 | Метрика | Значення |
 |---------|----------|
-| Average score | 0.6864 |
-| Min score | 0.5973 |
-| Max score | 0.7756 |
+| Average score | 0.7015 |
+| Min score | 0.5685 |
+| Max score | 0.8503 |
 | Queries with score > 0.60 | 9/10 |
-| Unique documents hit | 7/10 |
 
 ---
 
@@ -104,15 +79,14 @@ Embedding-based retrieval pipeline: chunks.jsonl → embeddings → FAISS index 
 
 ### ✅ Що вийшло добре
 
-1. **100% coverage** — усі 10 запитів повернули релевантні результати
-2. **Domain diversity** — результати з 7 різних документів (good distribution)
-3. **Consistent scores** — середній score 0.69, діапазон [0.60, 0.78]
-4. **RLM coverage** — кожен документ представлений у результатах
+1. **High-quality retrieval** — середній score 0.70, 8/10 запитів >0.60
+2. **RLM-документи домінують** — 7/10 результатів з RLM-фокусних документів (rlm_original_paper, rlm_comprehensive_guide, rlm_rl_training_alphaxiv)
+3. **Consistent scores** — діапазон [0.57, 0.85], немає outlier'ів
 
-### ⚠️ Обмеження baseline
+### ⚠️ Обмеження
 
-1. **No query rewriting** — запити шукаються "як є", без розширення/перетворення
-2. **No metadata filtering** — пошук по всій KB (467 чанків), без filtering по domain/document_type
-3. **Single scoring** — тільки cosine similarity, без hybrid scoring (BM25 + dense)
+1. **No evaluation metrics** — немає автоматичної оцінки релевантності (Rouge/BERTScore)
+2. **Single embedding model** — MiniLM, не порівняно з іншими моделями (e.g., E5, bge)
+3. **Pure semantic search** — без keyword boosting або metadata filtering (буде в HW3)
 
-*Ці обмеження будуть вирішені в HW3 (Improved Retrieval).*
+*Ці обмеження будуть частково вирішені в HW3 (Improved Retrieval) та HW4 (RAG Answer Generation).*

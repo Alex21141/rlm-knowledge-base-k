@@ -36,24 +36,24 @@ TOP_K = 5
 # ── 10 RLM-focused test queries ───────────────────────
 TEST_QUERIES = [
     # Core RLM concepts
-    "How do recursive language models handle prompts larger than their context window?",
-    "What is context rot and why does performance degrade with longer inputs?",
-    "How does the Python REPL environment work in RLM architecture?",
+    "How does the RLM REPL architecture process user prompts that exceed the base model's fixed context window?",
+    "What is context rot in recursive language models and how does it affect performance on long-context tasks?",
+    "How does the Python REPL environment function within the RLM agent architecture for recursive code execution?",
 
     # Results & benchmarks
-    "What benchmark results does RLM achieve on BrowseComp-Plus and OOLONG?",
-    "How does RLM performance compare to base LLMs on long-context tasks?",
+    "What benchmark scores does RLM achieve on BrowseComp-Plus and OOLONG compared to GPT-5 and Qwen3-Coder?",
+    "How does RLM performance scale on long-context tasks like S-NIAH compared to non-recursive base LLMs?",
 
     # Comparisons
-    "What are the key differences between RLM and RAG for long-context processing?",
-    "How does context folding relate to recursive language models?",
+    "What are the architectural trade-offs between RLM recursive decomposition and retrieval-augmented generation for multi-hop reasoning?",
+    "How does the evolution from flat prompting to recursive execution relate to context management in language models?",
 
     # Implementation & tools
-    "What are the key ablation results for RLM with versus without sub-calling?",
-    "How does the HALO agent optimizer use RLM-based loops?",
+    "What are the ablation results for RLM with and without sub-calling on information-dense tasks?",
+    "How does the HALO agent optimizer implement RLM-based recursive loops for tool use?",
 
-    # RL training (new doc coverage)
-    "How does RL fine-tuning improve RLM behavior compared to prompting or SFT alone?",
+    # RL training
+    "How does reinforcement learning fine-tuning improve RLM recursive behavior compared to supervised fine-tuning?",
 ]
 
 
