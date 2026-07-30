@@ -4,7 +4,7 @@
 
 **Subject area:** Recursive Language Models (RLM) Research Assistant
 
-Базовий retrieval pipeline: embedding-based similarity search по knowledge base з 297 чанків. FAISS IndexFlatIP для cosine similarity.
+Базовий retrieval pipeline: embedding-based similarity search по knowledge base з **349** чанків. FAISS IndexFlatIP для cosine similarity.
 
 ---
 
@@ -13,9 +13,9 @@
 | Метрика | Значення |
 |---------|----------|
 | Документів | **10** |
-| Чанків | **297** |
-| Всього символів | **237,653** |
-| Середній розмір чанку | **800 chars** |
+| Чанків | **349** |
+| Всього символів | **279,792** |
+| Середній розмір чанку | **802 chars** |
 
 **Джерела** (10 унікальних, 0 дублікатів):
 
