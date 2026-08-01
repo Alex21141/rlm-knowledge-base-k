@@ -80,27 +80,27 @@ Top-5: rlm_deep_dive_towardsdatascience_chunk_003 | score: 0.629
 
 ---
 
-Query: What benchmark scores does RLM achieve on BrowseComp-Plus and OOLONG compared to GPT-5 and Qwen3-Coder?
+Query: How does the HALO hierarchical agent loop optimizer improve agent performance using production traces?
 
-Top-1: rlm_rl_training_alphaxiv_chunk_044 | score: 0.6237
-  Text: t 4.6Qwen3.5-4B(ours)Gemini-3-FlashGPT-5.4-minimodel0.100.200.300.400.500.600.700.6070.5830.5660.533  Average rubric eval score on the multi-paper evidence-selection task. The RL fine-tuned Qwen3.5-4B
-  Source: data/raw/rlm_rl_training_alphaxiv.md
+Top-1: halo_agent_optimizer_chunk_001 | score: 0.8012
+  Text: # HALO: Hierarchical Agent Loop Optimizer  **Repository:** https://github.com/context-labs/halo **PyPI:** `halo-engine` **Tagline:** RLM-based agent optimizer using production traces  ## What is HALO?
+  Source: data/raw/halo_agent_optimizer.md
 
-Top-2: rlm_original_paper_chunk_036 | score: 0.6069
-  Text: costs. Notably, RLMs scale well to the theoretical costs of extending a base model’s context window  -  on BrowseComp-Plus (1K), the cost of GPT-5-mini ingesting 6-11M input tokens is $​1.50−$​2.75\\m
-  Source: data/raw/rlm_original_paper.md
+Top-2: halo_agent_optimizer_chunk_002 | score: 0.7047
+  Text: examples applying HALO to popular agent benchmarks (View AppWorld)  ## HALO Loop  The core HALO loop is surprisingly simple:  1. **Collect execution traces** from your agent harness. HALO uses OpenTel
+  Source: data/raw/halo_agent_optimizer.md
 
-Top-3: prime_intellect_ablations_chunk_073 | score: 0.6019
-  Text: ### INTELLECT-3: Oolong  `uv run environments/oolong/plot_results.py -m prime-intellect/intellect-3`  Like with GPT-5-mini, the RLM performs better than the pure LLM, though INTELLECT-3 benefits from 
-  Source: data/raw/prime_intellect_ablations.md
+Top-3: halo_agent_optimizer_chunk_004 | score: 0.6378
+  Text: c agentic behavior. We noticed in our testing that harnesses like CC would often overfit to an error  present in a single/few traces rather than generalize to harness-level problems. This led us to cr
+  Source: data/raw/halo_agent_optimizer.md
 
-Top-4: prime_intellect_ablations_chunk_044 | score: 0.5877
-  Text: ts.py -m gpt-5-mini -I lift`):  The RLM tends to increase final reward. The exceptions are two-fold:  For math-python, the reward is significantly lower with than without the RLM. Because the RLM allo
-  Source: data/raw/prime_intellect_ablations.md
+Top-4: halo_agent_optimizer_chunk_003 | score: 0.6353
+  Text: ur harness. 5. **The harness is then re-deployed**, more traces are gathered, and the cycle repeats.  HALO is great at finding issues in production agent deployments. We find high-traffic environments
+  Source: data/raw/halo_agent_optimizer.md
 
-Top-5: rlm_production_zenml_chunk_008 | score: 0.5848
-  Text: scaffold, across the paper’s four long-context evaluation tasks. - On three tasks where the paper reports a meaningful direct GPT-5 baseline (CodeQA, OOLONG, OOLONG-Pairs), RLM-Qwen3-8B closes much of
-  Source: data/raw/rlm_production_zenml.md
+Top-5: rlm_deep_dive_towardsdatascience_chunk_016 | score: 0.5584
+  Text: - The **main agent loads these outputs straight into context** and performs the next unit of action  Understanding ALL of what I said above is integral to understanding the RLM architecture (coming up
+  Source: data/raw/rlm_deep_dive_towardsdatascience.md
 
 ---
 

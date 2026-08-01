@@ -41,7 +41,7 @@ TEST_QUERIES = [
     "How does the Python REPL environment function within the RLM agent architecture for recursive code execution?",
 
     # Results & benchmarks
-    "What benchmark scores does RLM achieve on BrowseComp-Plus and OOLONG compared to GPT-5 and Qwen3-Coder?",
+    "How does the HALO hierarchical agent loop optimizer improve agent performance using production traces?",
     "How does RLM performance scale on long-context tasks like S-NIAH compared to non-recursive base LLMs?",
 
     # Comparisons
