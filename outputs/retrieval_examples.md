@@ -176,27 +176,27 @@ Top-5: llm_reasoning_paradigms_evolution_chunk_026 | score: 0.6437
 
 ---
 
-Query: What are the ablation results for RLM with and without sub-calling on information-dense tasks?
+Query: What are the advantages and disadvantages of RLM versus other reasoning paradigms?
 
-Top-1: prime_intellect_ablations_chunk_057 | score: 0.5685
-  Text: tested on the same 50 prompts.  Below, we plot the most important statistics about these ablations:  `uv run environments/math_python/plot_results.py -m gpt-5-mini -I ablation`  We quickly see three r
-  Source: data/raw/prime_intellect_ablations.md
-
-Top-2: rlm_rl_training_alphaxiv_chunk_045 | score: 0.512
-  Text: not share the same prefix. Additionally, we maintain lengthy prompts that describe the strategy in detail. While this was necessary to get good results for models out-of-the-box that were not trained 
+Top-1: rlm_rl_training_alphaxiv_chunk_050 | score: 0.6584
+  Text: models. Traditional reasoning models for math or coding are trained without supplementing them with  tips and strategies, so why should we include them with RLMs? The big unlock with RLMs will be when
   Source: data/raw/rlm_rl_training_alphaxiv.md
 
-Top-3: prime_intellect_ablations_chunk_040 | score: 0.5048
-  Text: tim-copy  - `content_type = "all"` - `target_length = 500` - `mean_fragment_length = 20`  ### Models  We run our main ablations with GPT-5-mini. The reason is that initial experiments show that it is 
-  Source: data/raw/prime_intellect_ablations.md
+Top-2: llm_reasoning_paradigms_evolution_chunk_025 | score: 0.6506
+  Text: ing where each paradigm breaks  --  and choosing accordingly.  ## Open Questions & Future Directions  Several open questions remain: How should RLMs be trained? Current approaches rely on prompt engin
+  Source: data/raw/llm_reasoning_paradigms_evolution.md
 
-Top-4: prime_intellect_ablations_chunk_067 | score: 0.504
-  Text: What this plot shows is that there is no clear relationship between fragment length and reward; this  modification seems to not make a big difference; at least not for the RLM! For the standard LLM, f
-  Source: data/raw/prime_intellect_ablations.md
+Top-3: llm_reasoning_paradigms_evolution_chunk_020 | score: 0.6253
+  Text: ely call itself or other models on partitions of the context. Each recursive call also operates on a  small context window, processing a subset of the input. The model orchestrates its own reasoning o
+  Source: data/raw/llm_reasoning_paradigms_evolution.md
 
-Top-5: rlm_comprehensive_guide_chunk_021 | score: 0.4904
-  Text: they put the user prompt directly into the model's context. They inherit all the limitations of the  base model's context window. Adding BM25 retrieval helps for search tasks but doesn't address aggre
-  Source: data/raw/rlm_comprehensive_guide.md
+Top-4: rlm_candemir_medium_chunk_018 | score: 0.6135
+  Text: is designed to go deeper when needed, and this is where things get exciting for future development.  Think of it like delegation in an organization. The CEO doesn't read every email. She asks departme
+  Source: data/raw/rlm_candemir_medium.md
+
+Top-5: rlm_candemir_medium_chunk_029 | score: 0.6015
+  Text: r simple tasks, while others couldn't even use the correct function-calling format. The framework is  model-agnostic in principle, but model capability matters enormously in practice.  ## The Bigger P
+  Source: data/raw/rlm_candemir_medium.md
 
 ---
 

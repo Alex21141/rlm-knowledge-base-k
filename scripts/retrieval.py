@@ -48,8 +48,8 @@ TEST_QUERIES = [
     "What are the architectural trade-offs between RLM recursive decomposition and retrieval-augmented generation for multi-hop reasoning?",
     "How does the evolution from flat prompting to recursive execution relate to context management in language models?",
 
-    # Implementation & tools
-    "What are the ablation results for RLM with and without sub-calling on information-dense tasks?",
+    # Comparison
+    "What are the advantages and disadvantages of RLM versus other reasoning paradigms?",
     "How does the HALO agent optimizer implement RLM-based recursive loops for tool use?",
 
     # RL training
