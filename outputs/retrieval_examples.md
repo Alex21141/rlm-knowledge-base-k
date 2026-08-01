@@ -80,27 +80,27 @@ Top-5: rlm_deep_dive_towardsdatascience_chunk_003 | score: 0.629
 
 ---
 
-Query: How does the HALO hierarchical agent loop optimizer improve agent performance using production traces?
+Query: How does RLM recursive reasoning compare to retrieval-augmented generation?
 
-Top-1: halo_agent_optimizer_chunk_001 | score: 0.8012
-  Text: # HALO: Hierarchical Agent Loop Optimizer  **Repository:** https://github.com/context-labs/halo **PyPI:** `halo-engine` **Tagline:** RLM-based agent optimizer using production traces  ## What is HALO?
-  Source: data/raw/halo_agent_optimizer.md
+Top-1: rlm_candemir_medium_chunk_021 | score: 0.6711
+  Text: etrieval-Augmented Generation (RAG), you might be wondering: isn't this just a fancy version of RAG?  There's a meaningful distinction. RAG systems use pre-built indexes (often vector embeddings) to r
+  Source: data/raw/rlm_candemir_medium.md
 
-Top-2: halo_agent_optimizer_chunk_002 | score: 0.7047
-  Text: examples applying HALO to popular agent benchmarks (View AppWorld)  ## HALO Loop  The core HALO loop is surprisingly simple:  1. **Collect execution traces** from your agent harness. HALO uses OpenTel
-  Source: data/raw/halo_agent_optimizer.md
+Top-2: rlm_rl_training_alphaxiv_chunk_021 | score: 0.6424
+  Text: xiv.org/blog/reinforcement-learning-for-rlms\#rlm-no-sub-calls "Jump to section") RLM (no sub-calls)  Before considering the recursive element of RLMs, we want to first confirm we can RL fine-tune Qwe
+  Source: data/raw/rlm_rl_training_alphaxiv.md
 
-Top-3: halo_agent_optimizer_chunk_004 | score: 0.6378
-  Text: c agentic behavior. We noticed in our testing that harnesses like CC would often overfit to an error  present in a single/few traces rather than generalize to harness-level problems. This led us to cr
-  Source: data/raw/halo_agent_optimizer.md
+Top-3: llm_reasoning_paradigms_evolution_chunk_001 | score: 0.6361
+  Text: # LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)  **Source:** https://medium.com/@mndeepan06/recursive-language-models-rlms-from-prompting-to-recur
+  Source: data/raw/llm_reasoning_paradigms_evolution.md
 
-Top-4: halo_agent_optimizer_chunk_003 | score: 0.6353
-  Text: ur harness. 5. **The harness is then re-deployed**, more traces are gathered, and the cycle repeats.  HALO is great at finding issues in production agent deployments. We find high-traffic environments
-  Source: data/raw/halo_agent_optimizer.md
-
-Top-5: rlm_deep_dive_towardsdatascience_chunk_016 | score: 0.5584
-  Text: - The **main agent loads these outputs straight into context** and performs the next unit of action  Understanding ALL of what I said above is integral to understanding the RLM architecture (coming up
+Top-4: rlm_deep_dive_towardsdatascience_chunk_003 | score: 0.6347
+  Text: _Side note: Unless specified, all images used in this article were produced by the author. Free licensing._  The main reason Recursive Language Models feel inaccessible to a lot of the audience is tha
   Source: data/raw/rlm_deep_dive_towardsdatascience.md
+
+Top-5: alexzhang_blog_context_rot_chunk_019 | score: 0.6304
+  Text: ecution and recursive LM calls are a means of understanding this context efficiently. Lastly, in our  experiments we only consider a recursive depth of 1  --  i.e. the root LM can only call LMs, not o
+  Source: data/raw/alexzhang_blog_context_rot.md
 
 ---
 
