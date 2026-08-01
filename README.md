@@ -39,7 +39,7 @@ Semantic retrieval поверх knowledge base з HW1. Використовує�
 | 1 | How does the RLM REPL architecture process user prompts that exceed the base model's fixed context window? | Core concept |
 | 2 | What is context rot in recursive language models and how does it affect performance on long-context tasks? | Core concept |
 | 3 | How does the Python REPL environment function within the RLM agent architecture for recursive code execution? | Architecture |
-| 4 | How does RLM recursive reasoning compare to retrieval-augmented generation? | Benchmarks |
+| 4 | How does RLM recursive reasoning compare to retrieval-augmented generation? | Comparison |
 | 5 | How does RLM performance scale on long-context tasks like S-NIAH compared to non-recursive base LLMs? | Benchmarks |
 | 6 | What are the architectural trade-offs between RLM recursive decomposition and retrieval-augmented generation for multi-hop reasoning? | Comparison |
 | 7 | How does the evolution from flat prompting to recursive execution relate to context management in language models? | Comparison |
@@ -56,7 +56,7 @@ Semantic retrieval поверх knowledge base з HW1. Використовує�
 | 1. RLM REPL architecture | \`rlm_comprehensive_guide_chunk_026\` | 0.7659 | rlm_comprehensive_guide |
 | 2. Context rot | \`rlm_original_paper_chunk_004\` | 0.8503 | rlm_original_paper |
 | 3. Python REPL in RLM | \`rlm_rl_training_alphaxiv_chunk_005\` | 0.7492 | rlm_rl_training_alphaxiv |
-| 4. RLM recursive reasoning vs RAG | `rlm_candemir_medium_chunk_021` | 0.6711 | rlm_candemir_medium |
+| 4. RLM recursive reasoning vs RAG | \`rlm_candemir_medium_chunk_021\` | 0.6711 | rlm_candemir_medium |
 | 5. S-NIAH scaling | \`llm_reasoning_paradigms_evolution_chunk_023\` | 0.7168 | llm_reasoning_paradigms_evolution |
 | 6. RLM vs RAG trade-offs | \`llm_reasoning_paradigms_evolution_chunk_025\` | 0.6391 | llm_reasoning_paradigms_evolution |
 | 7. Flat prompting → recursive | \`rlm_original_paper_chunk_004\` | 0.6691 | rlm_original_paper |
