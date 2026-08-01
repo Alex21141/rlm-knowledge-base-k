@@ -39,7 +39,7 @@ Semantic retrieval поверх knowledge base з HW1. Використовує�
 | 1 | How does the RLM REPL architecture process user prompts that exceed the base model's fixed context window? | Core concept |
 | 2 | What is context rot in recursive language models and how does it affect performance on long-context tasks? | Core concept |
 | 3 | How does the Python REPL environment function within the RLM agent architecture for recursive code execution? | Architecture |
-| 4 | What benchmark scores does RLM achieve on BrowseComp-Plus and OOLONG compared to GPT-5 and Qwen3-Coder? | Benchmarks |
+| 4 | How does RLM recursive reasoning compare to retrieval-augmented generation? | Benchmarks |
 | 5 | How does RLM performance scale on long-context tasks like S-NIAH compared to non-recursive base LLMs? | Benchmarks |
 | 6 | What are the architectural trade-offs between RLM recursive decomposition and retrieval-augmented generation for multi-hop reasoning? | Comparison |
 | 7 | How does the evolution from flat prompting to recursive execution relate to context management in language models? | Comparison |
@@ -56,7 +56,7 @@ Semantic retrieval поверх knowledge base з HW1. Використовує�
 | 1. RLM REPL architecture | \`rlm_comprehensive_guide_chunk_026\` | 0.7659 | rlm_comprehensive_guide |
 | 2. Context rot | \`rlm_original_paper_chunk_004\` | 0.8503 | rlm_original_paper |
 | 3. Python REPL in RLM | \`rlm_rl_training_alphaxiv_chunk_005\` | 0.7492 | rlm_rl_training_alphaxiv |
-| 4. Benchmarks (GPT-5/Qwen3) | \`rlm_rl_training_alphaxiv_chunk_044\` | 0.6237 | rlm_rl_training_alphaxiv |
+| 4. RLM recursive reasoning vs RAG | `rlm_candemir_medium_chunk_021` | 0.6711 | rlm_candemir_medium |
 | 5. S-NIAH scaling | \`llm_reasoning_paradigms_evolution_chunk_023\` | 0.7168 | llm_reasoning_paradigms_evolution |
 | 6. RLM vs RAG trade-offs | \`llm_reasoning_paradigms_evolution_chunk_025\` | 0.6391 | llm_reasoning_paradigms_evolution |
 | 7. Flat prompting → recursive | \`rlm_original_paper_chunk_004\` | 0.6691 | rlm_original_paper |
@@ -68,7 +68,7 @@ Semantic retrieval поверх knowledge base з HW1. Використовує�
 
 | Метрика | Значення |
 |---------|----------|
-| Average score | 0.7015 |
+| Average score | 0.7062 |
 | Min score | 0.5685 |
 | Max score | 0.8503 |
 | Queries with score > 0.60 | 9/10 |
@@ -79,8 +79,8 @@ Semantic retrieval поверх knowledge base з HW1. Використовує�
 
 ### ✅ Що вийшло добре
 
-1. **High-quality retrieval** — середній score 0.70, 8/10 запитів >0.60
-2. **RLM-документи домінують** — 7/10 результатів з RLM-фокусних документів (rlm_original_paper, rlm_comprehensive_guide, rlm_rl_training_alphaxiv)
+1. **High-quality retrieval** — середній score 0.71, 9/10 запитів >0.60
+2. **RLM-документи домінують** — 6/10 результатів з RLM-фокусних документів (rlm_original_paper, rlm_comprehensive_guide, rlm_rl_training_alphaxiv, rlm_candemir_medium)
 3. **Consistent scores** — діапазон [0.57, 0.85], немає outlier'ів
 
 ### ⚠️ Обмеження
