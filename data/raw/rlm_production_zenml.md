@@ -1,17 +1,17 @@
 # RLMs in Production: What Happens After the Notebook (ZenML Blog)
 
-**Source:** https://www.zenml.io/blog/rlms-in-production-what-happens-after-the-notebook
+**Source:** 
 **Author:** Alex Strick van Linschoten
 **Date:** February 20, 2026
 **Tags:** RLM, production, orchestration, LLMOps, dynamic pipelines, cost tracking
 
 # RLMs in Production: What Happens After the Notebook
 
-[Alex Strick van Linschoten](https://www.zenml.io/author/alex-strick-van-linschoten)
+Alex Strick van Linschoten
 
 On this page
 
-Recursive Language Models are having a moment. The [original paper by Zhang, Kraska, and Khattab](https://arxiv.org/abs/2512.24601) showed that instead of cramming documents into ever-longer context windows, you can let an LLM _programmatically explore_ its data, calling tools, delegating sub-tasks, and iterating until it finds what it needs. DSPy’s [experimental dspy.RLM module](https://dspy.ai/api/modules/RLM/) brought the pattern to a broader audience. Viral posts about [auditing codebases for 87 cents](https://kmad.ai/Recursive-Language-Models-Security-Audit) caught everyone’s attention (worth noting: even that experiment frames itself as a demo, not a replacement for a real security audit, and reruns catch different issues). Prime Intellect called RLMs [“the paradigm of 2026.”](https://www.primeintellect.ai/blog/rlm)
+Recursive Language Models are having a moment. The original paper by Zhang, Kraska, and Khattab showed that instead of cramming documents into ever-longer context windows, you can let an LLM _programmatically explore_ its data, calling tools, delegating sub-tasks, and iterating until it finds what it needs. DSPy’s experimental dspy.RLM module brought the pattern to a broader audience. Viral posts about auditing codebases for 87 cents caught everyone’s attention (worth noting: even that experiment frames itself as a demo, not a replacement for a real security audit, and reruns catch different issues). Prime Intellect called RLMs “the paradigm of 2026.”
 
 We agree. We’ve been running RLM-style workflows in production using ZenML’s dynamic pipelines, and we wanted to share what we learned about making them observable, debuggable, and cost-controlled.
 
@@ -25,7 +25,7 @@ If you’ve heard the buzz but haven’t read the paper, here’s the short vers
 
 When you stuff massive documents into an LLM’s context window, performance degrades. Even models with 200K+ token windows lose accuracy as the prompt grows. This is a measured phenomenon, not just vibes.
 
-Long context windows do not guarantee long-context _competence_. Controlled studies show models can be [sensitive to where the relevant information sits](https://arxiv.org/abs/2307.03172) (“lost in the middle”), and that popular “needle in a haystack” tests can [overstate real performance because they reward lexical matching](https://arxiv.org/abs/2502.05167). When lexical cues disappear, performance drops sharply with longer inputs, even for models marketed as long-context. Chroma’s [“context rot” report](https://research.trychroma.com/context-rot) shows that even with simple, controlled tasks, performance degrades with increased input length, and NIAH is not representative of real workloads.
+Long context windows do not guarantee long-context _competence_. Controlled studies show models can be sensitive to where the relevant information sits (“lost in the middle”), and that popular “needle in a haystack” tests can overstate real performance because they reward lexical matching. When lexical cues disappear, performance drops sharply with longer inputs, even for models marketed as long-context. Chroma’s “context rot” report shows that even with simple, controlled tasks, performance degrades with increased input length, and NIAH is not representative of real workloads.
 
 A helpful way to think about why long context fails is: **how much work must the model do as the prompt grows?** Some tasks are essentially constant-complexity (find one needle). But many real problems scale with the amount of information. You need to scan most items (linear), or compare many pairs (quadratic). The RLM paper uses this exact ladder in its evaluation, and it explains why models can look great on needle tests yet collapse on aggregation-heavy tasks.
 
@@ -61,7 +61,7 @@ People sometimes confuse these. They’re quite different:
 
 RAG retrieves. RLMs investigate.
 
-RLMs are also part of a broader pattern: systems that treat “what’s in context” as a first-class design problem. Recent work on [context folding](https://arxiv.org/abs/2510.11967) and [proactive context management](https://arxiv.org/abs/2510.24699) explores different approaches. RLMs push this further by letting the model programmatically explore externalized context instead of compressing it into a single prompt.
+RLMs are also part of a broader pattern: systems that treat “what’s in context” as a first-class design problem. Recent work on context folding and proactive context management explores different approaches. RLMs push this further by letting the model programmatically explore externalized context instead of compressing it into a single prompt.
 
 ## The Production Gap
 
@@ -94,40 +94,40 @@ Here’s the core of the dynamic fan-out, straight from the pipeline code:
 ```
 @pipeline(dynamic=True, enable_cache=True)
 def rlm_analysis_pipeline(
-    source_path: str = "data/sample_emails.json",
-    query: str = "What financial irregularities or concerns are discussed?",
-    max_chunks: int = 4,
-    max_iterations: int = 6,
+ source_path: str = "data/sample_emails.json",
+ query: str = "What financial irregularities or concerns are discussed?",
+ max_chunks: int = 4,
+ max_iterations: int = 6,
 ):
-    # Clamp budgets to prevent resource exhaustion
-    max_chunks = min(max(max_chunks, 1), 10)
-    max_iterations = min(max(max_iterations, 2), 12)
+ # Clamp budgets to prevent resource exhaustion
+ max_chunks = min(max(max_chunks, 1), 10)
+ max_iterations = min(max(max_iterations, 2), 12)
 
-    # Step 1: Load and summarize the corpus
-    documents, doc_summary = load_documents(source_path=source_path)
+ # Step 1: Load and summarize the corpus
+ documents, doc_summary = load_documents(source_path=source_path)
 
-    # Step 2: Decompose into chunk specs
-    chunk_specs = plan_decomposition(
-        doc_summary=doc_summary, query=query, max_chunks=max_chunks
-    )
+ # Step 2: Decompose into chunk specs
+ chunk_specs = plan_decomposition(
+ doc_summary=doc_summary, query=query, max_chunks=max_chunks
+ )
 
-    # Step 3: Dynamic fan-out — one process_chunk step per chunk
-    process_step = process_chunk.with_options(
-        parameters={"query": query, "max_iterations": max_iterations}
-    )
+ # Step 3: Dynamic fan-out — one process_chunk step per chunk
+ process_step = process_chunk.with_options(
+ parameters={"query": query, "max_iterations": max_iterations}
+ )
 
-    chunk_specs_data = chunk_specs.load()  # Materialize for control flow
-    chunk_results, chunk_trajectories = [], []
-    for idx in range(len(chunk_specs_data)):
-        result, trajectory = process_step(
-            documents=documents,
-            chunk_spec=chunk_specs.chunk(index=idx),  # DAG edge per chunk
-        )
-        chunk_results.append(result)
-        chunk_trajectories.append(trajectory)
+ chunk_specs_data = chunk_specs.load() # Materialize for control flow
+ chunk_results, chunk_trajectories = [], []
+ for idx in range(len(chunk_specs_data):
+ result, trajectory = process_step(
+ documents=documents,
+ chunk_spec=chunk_specs.chunk(index=idx), # DAG edge per chunk
+ )
+ chunk_results.append(result)
+ chunk_trajectories.append(trajectory)
 
-    # Step 4: Synthesize all chunk findings
-    return aggregate_results(chunk_results, chunk_trajectories, query)
+ # Step 4: Synthesize all chunk findings
+ return aggregate_results(chunk_results, chunk_trajectories, query)
 ```
 
 Two ZenML-specific APIs are doing the heavy lifting here, and they’re easy to confuse:
@@ -144,8 +144,8 @@ Here’s the practical comparison:
 | Recursive sub-calls | Yes (in-process) | Yes (each is a visible step) |
 | Per-chunk observability | Manual logging | Built-in: metadata, artifacts, logs |
 | Cost tracking per chunk | DIY | `log_metadata` per step |
-| Caching unchanged chunks | No | [Artifact caching](https://docs.zenml.io/concepts/steps_and_pipelines/advanced_features) |
-| Retries on failed chunks | DIY | [Step-level retries](https://docs.zenml.io/concepts/steps_and_pipelines/advanced_features) |
+| Caching unchanged chunks | No | Artifact caching |
+| Retries on failed chunks | DIY | Step-level retries |
 | Visual DAG | No | Dashboard shows runtime shape |
 | Run on K8s/Vertex/SageMaker | Manual infra | Stack abstraction |
 
@@ -162,22 +162,22 @@ Each plan+reflect iteration costs 2 LLM calls. The final summarize costs 1. So `
 One clarification on terminology: in the original RLM paper, “recursive” refers to symbolic recursion inside a REPL, where the model writes code that can programmatically invoke sub-model calls over slices or transformations of the input and store intermediate results as variables. A reflect step is a useful control mechanism for deciding whether to keep searching, but recursion in the RLM sense is about those programmatic sub-calls inside the environment, not reflection alone. In the code, this looks like:
 
 ```
-while llm_calls < max_iterations - 1:  # Reserve 1 call for summarize
-    # PLAN: LLM decides which tools to use
-    plan_response = llm_call(SEARCH_PLAN_SYSTEM, plan_prompt, json_mode=True)
-    llm_calls += 1
+while llm_calls < max_iterations - 1: # Reserve 1 call for summarize
+ # PLAN: LLM decides which tools to use
+ plan_response = llm_call(SEARCH_PLAN_SYSTEM, plan_prompt, json_mode=True)
+ llm_calls += 1
 
-    # SEARCH: Execute the planned tools (no LLM calls)
-    for search in searches:
-        result = _execute_search(chunk_emails, search)
+ # SEARCH: Execute the planned tools (no LLM calls)
+ for search in searches:
+ result = _execute_search(chunk_emails, search)
 
-    # REFLECT: Is the evidence sufficient?
-    reflect_response = llm_call(REFLECT_SYSTEM, reflect_prompt, json_mode=True)
-    llm_calls += 1
+ # REFLECT: Is the evidence sufficient?
+ reflect_response = llm_call(REFLECT_SYSTEM, reflect_prompt, json_mode=True)
+ llm_calls += 1
 
-    if sufficient:
-        break  # Move to summarize
-    # else: loop back with reflect_feedback guiding the next plan
+ if sufficient:
+ break # Move to summarize
+ # else: loop back with reflect_feedback guiding the next plan
 
 # SUMMARIZE: Final synthesis
 summary = llm_call(SUMMARIZE_SYSTEM, summarize_prompt, json_mode=True)
@@ -189,15 +189,15 @@ Instead of giving the model a full REPL where it can write arbitrary Python, thi
 
 ```
 TOOL_DESCRIPTIONS = {
-    "grep":      "grep_emails(pattern) - Search email bodies/subjects by regex",
-    "sender":    "filter_by_sender(sender) - Filter by sender name/email",
-    "recipient": "filter_by_recipient(recipient) - Filter by recipient",
-    "date":      "filter_by_date(start, end) - Filter by ISO date range",
-    "count":     "count_matches(pattern) - Count regex matches across emails",
+ "grep": "grep_emails(pattern) - Search email bodies/subjects by regex",
+ "sender": "filter_by_sender(sender) - Filter by sender name/email",
+ "recipient": "filter_by_recipient(recipient) - Filter by recipient",
+ "date": "filter_by_date(start, end) - Filter by ISO date range",
+ "count": "count_matches(pattern) - Count regex matches across emails",
 }
 ```
 
-This is a deliberate design choice. The original RLM paper gives the model a full REPL, and DSPy’s dspy.RLM defaults to executing code in a local sandbox (Deno + Pyodide), and can be configured with different interpreters depending on your security and dependency requirements. In production, though, sandboxing alone doesn’t cover the whole story. You also want to constrain the agent’s _action space_ so runs are auditable, deterministic where possible, and resistant to prompt injection and “excessive agency” style failures. This aligns with the [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) categories: prompt injection (LLM01), insecure output handling (LLM02), model denial of service via runaway computation (LLM04), and excessive agency (LLM08).
+This is a deliberate design choice. The original RLM paper gives the model a full REPL, and DSPy’s dspy.RLM defaults to executing code in a local sandbox (Deno + Pyodide), and can be configured with different interpreters depending on your security and dependency requirements. In production, though, sandboxing alone doesn’t cover the whole story. You also want to constrain the agent’s _action space_ so runs are auditable, deterministic where possible, and resistant to prompt injection and “excessive agency” style failures. This aligns with the OWASP LLM Top 10 categories: prompt injection (LLM01), insecure output handling (LLM02), model denial of service via runaway computation (LLM04), and excessive agency (LLM08).
 
 We made this trade-off deliberately. In production, you want to know exactly what the model _can_ do, not hope it writes safe code. You lose some generality but gain safety, auditability, and consistent trajectory events.
 
@@ -225,15 +225,15 @@ Every action in the RLM loop gets logged to a trajectory artifact. Here’s what
 
 ```
 [\
-  {"step": "preview", "action": "Examined 15 emails", "output": "Chunk contains 15 emails, Date range: 2001-01..."},\
-  {"step": "plan", "iteration": 1, "action": "Planned 3 searches", "searches": [{"tool": "grep", "reason": "Search for LJM references"}]},\
-  {"step": "search", "iteration": 1, "tool": "grep", "args": {"pattern": "LJM"}, "match_count": 7},\
-  {"step": "extract", "iteration": 1, "new_matches": 7, "total_matches": 7},\
-  {"step": "reflect", "iteration": 1, "sufficient": false, "reasoning": "Found LJM mentions but need dates to establish timeline..."},\
-  {"step": "plan", "iteration": 2, "action": "Planned 1 searches", "searches": [{"tool": "date", "reason": "Filter to early 2001"}]},\
-  {"step": "search", "iteration": 2, "tool": "date", "args": {"start": "2001-01-01", "end": "2001-06-30"}, "match_count": 4},\
-  {"step": "reflect", "iteration": 2, "sufficient": true, "reasoning": "Have enough evidence about LJM timeline"},\
-  {"step": "summarize", "finding_preview": "4 emails from early 2001 discuss LJM unwinding...", "confidence": "high", "total_iterations": 2, "total_llm_calls": 5}\
+ {"step": "preview", "action": "Examined 15 emails", "output": "Chunk contains 15 emails, Date range: 2001-01"},\
+ {"step": "plan", "iteration": 1, "action": "Planned 3 searches", "searches": [{"tool": "grep", "reason": "Search for LJM references"}]},\
+ {"step": "search", "iteration": 1, "tool": "grep", "args": {"pattern": "LJM"}, "match_count": 7},\
+ {"step": "extract", "iteration": 1, "new_matches": 7, "total_matches": 7},\
+ {"step": "reflect", "iteration": 1, "sufficient": false, "reasoning": "Found LJM mentions but need dates to establish timeline"},\
+ {"step": "plan", "iteration": 2, "action": "Planned 1 searches", "searches": [{"tool": "date", "reason": "Filter to early 2001"}]},\
+ {"step": "search", "iteration": 2, "tool": "date", "args": {"start": "2001-01-01", "end": "2001-06-30"}, "match_count": 4},\
+ {"step": "reflect", "iteration": 2, "sufficient": true, "reasoning": "Have enough evidence about LJM timeline"},\
+ {"step": "summarize", "finding_preview": "4 emails from early 2001 discuss LJM unwinding", "confidence": "high", "total_iterations": 2, "total_llm_calls": 5}\
 ]
 ```
 
@@ -245,27 +245,27 @@ This matters for three reasons:
 
 ```
 log_metadata(
-    metadata={
-        "chunk_range": f"{start_idx}-{end_idx}",
-        "chunk_size": len(chunk_emails),
-        "llm_calls": llm_calls,
-        "iterations": iteration,
-        "matches_found": len(all_matches),
-        "duration_s": duration,
-    }
+ metadata={
+ "chunk_range": f"{start_idx}-{end_idx}",
+ "chunk_size": len(chunk_emails),
+ "llm_calls": llm_calls,
+ "iterations": iteration,
+ "matches_found": len(all_matches),
+ "duration_s": duration,
+ }
 )
 ```
 
 **Reproducibility.** Trajectory + artifacts = you can reconstruct exactly what happened in any chunk, months later. This is the same instinct behind good experiment tracking, applied to LLM reasoning.
 
-A trajectory is basically a structured trace: a sequence of decisions, tool calls, and evidence. That framing is becoming standard. [OpenTelemetry now defines GenAI semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) for events and spans, including model name, token usage, and opt-in capture of inputs and outputs. Thinking of trajectories as traces makes it easier to plug RLM workloads into existing observability practices.
+A trajectory is basically a structured trace: a sequence of decisions, tool calls, and evidence. That framing is becoming standard. OpenTelemetry now defines GenAI semantic conventions for events and spans, including model name, token usage, and opt-in capture of inputs and outputs. Thinking of trajectories as traces makes it easier to plug RLM workloads into existing observability practices.
 
 ## Try It Yourself
 
 The full example is in the ZenML repo and runs locally with just an OpenAI API key:
 
 ```
-git clone https://github.com/zenml-io/zenml.git
+git clone 
 cd zenml/examples/rlm_document_analysis
 pip install -r requirements.txt
 export OPENAI_API_KEY="your-key"
@@ -284,17 +284,17 @@ The pipeline works without an API key too (it falls back to keyword matching), s
 A few things to note:
 
 - The dynamic DAG is visible in the ZenML dashboard. Each `process_chunk` is a separate step you can click into.
-- The example includes a [deployable UI](https://github.com/zenml-io/zenml/tree/main/examples/rlm_document_analysis/ui) for running queries interactively.
-- For Kubernetes deployment, it's a [stack configuration](https://docs.zenml.io/concepts/steps_and_pipelines/dynamic_pipelines) change, not a code rewrite.
+- The example includes a deployable UI for running queries interactively.
+- For Kubernetes deployment, it's a stack configuration change, not a code rewrite.
 
 **Practical notes:** Dynamic pipelines are experimental and have orchestrator-specific support for isolated parallel steps. Also, `.load()` is synchronous: use it for control flow, but avoid loading large artifacts unnecessarily. Parallel logging can be noisy today because logs from concurrent steps may interleave.
 
 **Links:**
 
-- [The example code](https://github.com/zenml-io/zenml/tree/main/examples/rlm_document_analysis)
-- [ZenML dynamic pipelines documentation](https://docs.zenml.io/concepts/steps_and_pipelines/dynamic_pipelines)
-- [The RLM paper (Zhang, Kraska, Khattab)](https://arxiv.org/abs/2512.24601)
-- [DSPy RLM module](https://dspy.ai/api/modules/RLM/)
+- The example code
+- ZenML dynamic pipelines documentation
+- The RLM paper (Zhang, Kraska, Khattab)
+- DSPy RLM module
 
 ## What’s Next
 
@@ -306,18 +306,18 @@ There are several natural extensions we’re excited about:
 
 **dspy.RLM inside steps.** You can drop `dspy.RLM` directly into the `process_chunk` step as the reasoning engine while keeping ZenML as the orchestration layer. The trajectory output plugs right in. DSPy builds the LLM programs. ZenML runs them in production.
 
-**Community contributions welcome.** If you extend this for your own use case, we’d love to hear about it. The [example is on GitHub](https://github.com/zenml-io/zenml/tree/main/examples/rlm_document_analysis) and the pipeline structure is designed to be adapted.
+**Community contributions welcome.** If you extend this for your own use case, we’d love to hear about it. The example is on GitHub and the pipeline structure is designed to be adapted.
 
-[llm](https://www.zenml.io/tags/llm) [agents](https://www.zenml.io/tags/agents) [production](https://www.zenml.io/tags/production) [LLMOps](https://www.zenml.io/tags/llmops)
+llm agents production LLMOps
 
-[Alex Strick van Linschoten](https://www.zenml.io/author/alex-strick-van-linschoten)
+Alex Strick van Linschoten
 
-[View all posts →](https://www.zenml.io/author/alex-strick-van-linschoten)
+View all posts →
 
-[← PreviousYour Agents Are Not Microservices](https://www.zenml.io/blog/agents-are-not-microservices) [Next →Dynamic Pipelines: A Skeptic's Guide](https://www.zenml.io/blog/dynamic-pipelines-a-skeptics-guide)
+← PreviousYour Agents Are Not Microservices Next →Dynamic Pipelines: A Skeptic's Guide
 
 ## Start deploying AI workflows in production today
 
 Enterprise-grade AI platform trusted by thousands of companies in production
 
-[Book a demo](https://www.zenml.io/book-your-demo) [Read Docs](https://www.zenml.io/docs)
+Book a demo Read Docs

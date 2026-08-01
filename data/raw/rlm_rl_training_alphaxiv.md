@@ -1,14 +1,14 @@
 # Reinforcing Recursive Language Models — alphaXiv Blog
 
-**Source:** https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms
+**Source:** 
 **Platform:** alphaXiv / NovaSky AI (SkyRL)
 **Date:** 2026
 **Authors:** alphaXiv team
-**Code:** https://github.com/NovaSky-AI/SkyRL (RLM environment + training scripts)
+**Code:** (RLM environment + training scripts)
 
 ---
 
-_We RL fine-tune small (4B) models to behave as native recursive language models (RLMs) by training parent and child RLMs under a single, shared policy. With RL, small models can learn task-specific, RLM behavior that cannot be elicited through prompting or even SFT. This blog assumes a basic level of familiarity with RLMs. A great resource for learning about them is the [original RLM blog post](https://alexzhang13.github.io/blog/2025/rlm/)._
+_We RL fine-tune small (4B) models to behave as native recursive language models (RLMs) by training parent and child RLMs under a single, shared policy. With RL, small models can learn task-specific, RLM behavior that cannot be elicited through prompting or even SFT. This blog assumes a basic level of familiarity with RLMs. A great resource for learning about them is the original RLM blog post._
 
 We investigate RL fine-tuning 4B models to be used as RLMs in production settings. While RLMs are a powerful inference strategy, they can have unpredictable latency and can require extensive prompt tuning to elicit consistent behavior. RL fine-tuning allows us to train purpose-built RLMs that are cheap to deploy.
 
@@ -16,17 +16,17 @@ Rather than training separate policy models for parent and child RLMs, we train 
 
 On an evidence selection task over several scientific documents, we show that an RL fine-tuned 4B model performs just as well as Claude Sonnet 4.6 with an identical RLM harness and REPL environment, all while being a fraction of the size and cost.
 
-[Our code](https://github.com/NovaSky-AI/SkyRL/pull/1596), which includes training scripts, our implementation of the RLM scaffold, and our evidence selection environment, is available on [SkyRL](https://github.com/NovaSky-AI/SkyRL).
+Our code, which includes training scripts, our implementation of the RLM scaffold, and our evidence selection environment, is available on SkyRL.
 
 RLMs \[1\] spawn language models (LMs) inside a programmatic environment that stores long user prompts (context), which are traditionally fed directly into the context window of an LM. In this environment, the context is an external object that the LM can inspect through programmatic operations and decompose by recursively calling itself with the ultimate goal of answering some user query about the context.
 
 Like the original RLM paper, we use a Python Read-Eval-Print-Loop (REPL) as our environment. Rather than treating code execution as just another tool, RLMs in a REPL make code the primary interface through which the model inspects and transforms data. Every turn, the model writes code it wants to execute, the REPL executes the code, and the RLM orchestrator returns the results of the executed code (primarily `print()` statements) as a user message back to the model for the next turn.
 
-RLMs interact with their context inside of a Python REPL environment. They can recursively call themselves to decompose large prompts. Figure from [\[1\]](https://www.alphaxiv.org/abs/2512.24601).
+RLMs interact with their context inside of a Python REPL environment. They can recursively call themselves to decompose large prompts. Figure from [\[1\]]().
 
 The REPL exposes a set of built-in functions to the model:
 
-- **`FINAL(answer)`** / **`FINAL_VAR(variable_name)`** — Marks the end of the rollout: `FINAL(...)` returns the literal string as the final answer, while `FINAL_VAR(...)` looks up an existing REPL variable by name and returns its value.
+- **`FINAL(answer)`** / **`FINAL_VAR(variable_name)`** — Marks the end of the rollout: `FINAL()` returns the literal string as the final answer, while `FINAL_VAR()` looks up an existing REPL variable by name and returns its value.
 - **`rlm_query(prompt, context=None)`** — Spawns a single child RLM rollout with the given prompt (and optional context override), running a fresh agent loop under the same policy, and returns the child's final answer string back into the parent's REPL.
 - **`rlm_query_batched(prompts, context_list=None)`** — Same as `rlm_query` but dispatches multiple children in parallel (one per prompt, paired with the corresponding context) and returns a list of their final answers in order.
 
@@ -39,13 +39,13 @@ The golden snippets we would like the RLM to return for the question: “What ba
 ```
 step 1 · search the paper1hits = search("baseline")
 step 2 · look at a slice2hits[:3]
-   ↳ [(p.4, "...CodeAct (+ BM25)..."),\
-      (p.6, "...applying this strategy..."),\
-      (p.7, "...vs. ReAct baseline...")]
+ ↳ [(p.4, "CodeAct (+ BM25)"),\
+ (p.6, "applying this strategy"),\
+ (p.7, "vs. ReAct baseline")]
 step 3 · save a span3ev = []
-   ev.append(extract_section(hits[1]))
+ ev.append(extract_section(hits[1])
 step 4 · sanity-check the variable4len(ev), ev[0][:48]
-   ↳ (1, "We compare CodeAct (+ BM25) against...")
+ ↳ (1, "We compare CodeAct (+ BM25) against")
 step 5 · mark the answer5FINAL_VAR(ev)
 ```
 
@@ -59,9 +59,9 @@ parent · REPLdepth 0RLM
 
 ```
 # ctx: {paper_id → full_text}
-ids = list(ctx.keys())
+ids = list(ctx.keys()
 titles = [ctx[id].title for id in ids]
-relevant = triage(titles, q)   ↳ [0, 2, 5]
+relevant = triage(titles, q) ↳ [0, 2, 5]
 
 # dispatch a child RLM per paper
 evidence = [rlm(ctx[ids[i]], q) for i in relevant]
@@ -77,9 +77,9 @@ own REPLev = \[\]
 
 hits = search("baseline")
 
-ev.append(extract\_section(hits\[1\]))
+ev.append(extract\_section(hits\[1\])
 
-ev.append(extract\_section(hits\[2\]))
+ev.append(extract\_section(hits\[2\])
 
 **FINAL\_VAR**(ev)
 
@@ -95,9 +95,9 @@ own REPLev = \[\]
 
 hits = search("baseline")
 
-ev.append(extract\_section(hits\[0\]))
+ev.append(extract\_section(hits\[0\])
 
-ev.append(extract\_section(hits\[3\]))
+ev.append(extract\_section(hits\[3\])
 
 **FINAL\_VAR**(ev)
 
@@ -110,7 +110,7 @@ parent · aggregatedepth 0RLM
 ```
 evidence = [[…2 spans…], […1 span…], […2 spans…]]
 flattened_evidence = flatten(evidence)
-FINAL_VAR(flattened_evidence)   ↳ 5 spans · 1 113 tok
+FINAL_VAR(flattened_evidence) ↳ 5 spans · 1 113 tok
 ```
 
 dispatch (paper + question)
@@ -160,7 +160,7 @@ The original RLM paper SFTs Qwen3-8B with RLM-like reasoning trajectories from Q
 
 For reasoning models and traditional agent harnesses, RL has proven to be a robust way to improve the capabilities of a model for a specific task without the catastrophic forgetting that accompanies pure SFT-based approaches. How can we extend this to RLMs?
 
-### [Jump to section](https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms\#rlm-no-sub-calls "Jump to section") RLM (no sub-calls)
+### Jump to section RLM (no sub-calls)
 
 Before considering the recursive element of RLMs, we want to first confirm we can RL fine-tune Qwen3.5-4B on the single-paper variant of our evidence selection task, which doesn't involve spawning child RLMs. There are a couple of takeaways from these initial runs that are worth sharing.
 
@@ -262,9 +262,9 @@ a₃
 
 Each turn is rebuilt fresh as `sys + repl history + user q + new action`. The user prompt sits after the REPL history (it's re-appended every turn, not pinned at the front), and only the new action contributes gradient. One trajectory yields n short log-prob arrays, all sharing the final advantage A.
 
-Because the per-turn user prompt is rewritten rather than accumulated, you cannot use a rollout as a single training example. Each turn has to be a separate training sample, so a rollout of N turns produces N samples. For advantage calculation, only rollouts corresponding to the last step of trajectories are included in the GRPO group, and the advantage is broadcast to rollouts from previous turns. See more about step-wise RL training [here](https://github.com/NovaSky-AI/SkyRL/issues/1278).
+Because the per-turn user prompt is rewritten rather than accumulated, you cannot use a rollout as a single training example. Each turn has to be a separate training sample, so a rollout of N turns produces N samples. For advantage calculation, only rollouts corresponding to the last step of trajectories are included in the GRPO group, and the advantage is broadcast to rollouts from previous turns. See more about step-wise RL training here.
 
-**LLM Judges.** We use rubric-based LLM judges for reward assignment. We initially tried verifiable rewards like F1 of selected snippets, but this proved to be very noisy. Questions like "Which method scores the best on X baseline?" could be answered with several selections of text, some of which weren't included in our labels. We experienced a similar issue in our [previous work on retrieval agents](https://www.alphaxiv.org/blog/training-retrieval-agents-for-arxiv-search). To circumvent this, we used rubric-based LLM judges that were provided with the original query, the ground truth text, and the predicted text. Rubric-based judges have been shown to be more robust to reward hacking \[6\]\[7\]. A great overview of rubric-based rewards by Cameron Wolfe can be found [here](https://cameronrwolfe.substack.com/p/rubric-rl).
+**LLM Judges.** We use rubric-based LLM judges for reward assignment. We initially tried verifiable rewards like F1 of selected snippets, but this proved to be very noisy. Questions like "Which method scores the best on X baseline?" could be answered with several selections of text, some of which weren't included in our labels. We experienced a similar issue in our previous work on retrieval agents. To circumvent this, we used rubric-based LLM judges that were provided with the original query, the ground truth text, and the predicted text. Rubric-based judges have been shown to be more robust to reward hacking \[6\]\[7\]. A great overview of rubric-based rewards by Cameron Wolfe can be found here.
 
 With these considerations, RL fine-tuning yields significant improvements on the single-paper task, with eval judge scores jumping from around 0.6 to 0.8 with Qwen3.5-4B.
 
@@ -280,7 +280,7 @@ Eval reward over 95 training steps for a Qwen-3.5-4B agent on the single-paper e
 
 Note that because we RL on top of an SFT model, training begins at 0.6 reward rather than zero, demonstrating the importance of a cold-start SFT phase.
 
-### [Jump to section](https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms\#rlm-with-sub-calls "Jump to section") RLM (with sub-calls)
+### Jump to section RLM (with sub-calls)
 
 Now let's consider the multi-paper case, which requires a true RLM with recursive sub-calls. We want the root RLM to identify which papers are worth dispatching child RLMs to, and child RLMs should extract the relevant passages from their assigned paper.
 
@@ -319,9 +319,9 @@ J(θ)=Ex,{yg},{yg,i}\[1G∑g=1G(Lgroot(θ)⏟root rollout+1kg∑i=1kgLg,ichild(
 
 where each per-rollout clipped surrogate is
 
-Lgroot(θ)=1∣yg∣∑t=1∣yg∣min⁡(ρθ(yg(t))Ag,clip(ρθ(yg(t)),1−ϵ,1+ϵ)Ag)\\mathcal{L}\_g^{\\text{root}}(\\theta) = \\dfrac{1}{\|y\_g\|} \\sum\\limits\_{t=1}^{\|y\_g\|} \\min\\Big( \\rho\_\\theta(y\_g^{(t)}) A\_g, \\; \\text{clip}(\\rho\_\\theta(y\_g^{(t)}), 1-\\epsilon, 1+\\epsilon) A\_g \\Big)Lgroot​(θ)=∣yg​∣1​t=1∑∣yg​∣​min(ρθ​(yg(t)​)Ag​,clip(ρθ​(yg(t)​),1−ϵ,1+ϵ)Ag​)
+Lgroot(θ)=1∣yg∣∑t=1∣yg∣min⁡(ρθ(yg(t)Ag,clip(ρθ(yg(t),1−ϵ,1+ϵ)Ag)\\mathcal{L}\_g^{\\text{root}}(\\theta) = \\dfrac{1}{\|y\_g\|} \\sum\\limits\_{t=1}^{\|y\_g\|} \\min\\Big( \\rho\_\\theta(y\_g^{(t)}) A\_g, \\; \\text{clip}(\\rho\_\\theta(y\_g^{(t)}), 1-\\epsilon, 1+\\epsilon) A\_g \\Big)Lgroot​(θ)=∣yg​∣1​t=1∑∣yg​∣​min(ρθ​(yg(t)​)Ag​,clip(ρθ​(yg(t)​),1−ϵ,1+ϵ)Ag​)
 
-Lg,ichild(θ)=1∣yg,i∣∑t=1∣yg,i∣min⁡(ρθ(yg,i(t))Ag,i,clip(ρθ(yg,i(t)),1−ϵ,1+ϵ)Ag,i)\\mathcal{L}\_{g,i}^{\\text{child}}(\\theta) = \\dfrac{1}{\|y\_{g,i}\|} \\sum\\limits\_{t=1}^{\|y\_{g,i}\|} \\min\\Big( \\rho\_\\theta(y\_{g,i}^{(t)}) A\_{g,i}, \\; \\text{clip}(\\rho\_\\theta(y\_{g,i}^{(t)}), 1-\\epsilon, 1+\\epsilon) A\_{g,i} \\Big)Lg,ichild​(θ)=∣yg,i​∣1​t=1∑∣yg,i​∣​min(ρθ​(yg,i(t)​)Ag,i​,clip(ρθ​(yg,i(t)​),1−ϵ,1+ϵ)Ag,i​)
+Lg,ichild(θ)=1∣yg,i∣∑t=1∣yg,i∣min⁡(ρθ(yg,i(t)Ag,i,clip(ρθ(yg,i(t),1−ϵ,1+ϵ)Ag,i)\\mathcal{L}\_{g,i}^{\\text{child}}(\\theta) = \\dfrac{1}{\|y\_{g,i}\|} \\sum\\limits\_{t=1}^{\|y\_{g,i}\|} \\min\\Big( \\rho\_\\theta(y\_{g,i}^{(t)}) A\_{g,i}, \\; \\text{clip}(\\rho\_\\theta(y\_{g,i}^{(t)}), 1-\\epsilon, 1+\\epsilon) A\_{g,i} \\Big)Lg,ichild​(θ)=∣yg,i​∣1​t=1∑∣yg,i​∣​min(ρθ​(yg,i(t)​)Ag,i​,clip(ρθ​(yg,i(t)​),1−ϵ,1+ϵ)Ag,i​)
 
 Note that we add a normalization term 1kg\\frac{1}{k\_{g}}kg​1​ when summing the loss contributions of the child RLM rollouts. This is to ensure that the contribution across all depths of the RLM is balanced. Without normalization, child rollouts dominate the gradient update when kg≫1k\_g \\gg 1kg​≫1.
 
@@ -375,21 +375,21 @@ Training with this setup converges slightly below the original run and is genera
 
 **Reward Assignment.** We have chosen to have children RLM rollouts inherit the advantage of their parents. While this is an effective estimator, more fine-grained credit assignment can lead to faster convergence. For our given evidence selection task, we could score root RLM rollouts by the F1 score of the papers they select to dispatch child RLMs to and score child RLMs with LM judges based on the snippets they select. While reward assignment depends heavily on the specific task, we would like to do more experiments with multi-tiered reward calculations across the RLM tree.
 
-**Strategy Discovery & Scale.** One limitation that we've assumed about RLMs in this blog post is that they need an explicit task strategy detailed in the system prompt. For various datasets and tasks, RLMs are typically deployed with environment-specific tips that explain how the RLM should decompose its context and formulate its answer. [\[10\]](https://www.primeintellect.ai/blog/rlm)
+**Strategy Discovery & Scale.** One limitation that we've assumed about RLMs in this blog post is that they need an explicit task strategy detailed in the system prompt. For various datasets and tasks, RLMs are typically deployed with environment-specific tips that explain how the RLM should decompose its context and formulate its answer. [\[10\]]()
 
 However, explicitly providing a strategy may be a hindrance when training larger, more capable RLM-native models. Traditional reasoning models for math or coding are trained without supplementing them with tips and strategies, so why should we include them with RLMs? The big unlock with RLMs will be when they themselves discover new strategies that humans would have not come up with for decomposing and solving truly difficult, long-context problems. Scaling RLMs to model sizes where strategy discovery, not execution, is the main task of training will be the next big milestone for RLMs.
 
-You can find the [training configs](https://github.com/NovaSky-AI/SkyRL/blob/main/examples/train/rlm/run_multi_paper_rlm.sh) we used in the official [SkyRL repo](https://github.com/NovaSky-AI/SkyRL). We've added an [RLM environment](https://github.com/NovaSky-AI/SkyRL/blob/main/skyrl-gym/skyrl_gym/envs/rlm/env.py) and encourage you to play around with it and try it on other tasks. Most training was done with an 8xH200 node.
+You can find the training configs we used in the official SkyRL repo. We've added an RLM environment and encourage you to play around with it and try it on other tasks. Most training was done with an 8xH200 node.
 
-We'd like to thank [Sumanth Hegde](https://sumanthrh.com/) and [Charlie Ruan](https://www.charlieruan.com/) from the SkyRL team for their responsiveness in resolving issues and for providing an amazing RL library for the community. We'd also like to thank [Alex Zhang](https://alexzhang13.github.io/) for his work on the original RLM paper as well as for providing feedback throughout this project!
+We'd like to thank Sumanth Hegde and Charlie Ruan from the SkyRL team for their responsiveness in resolving issues and for providing an amazing RL library for the community. We'd also like to thank Alex Zhang for his work on the original RLM paper as well as for providing feedback throughout this project!
 
-01. \[1\][Recursive Language Models](https://www.alphaxiv.org/abs/2512.24601) — Zhang et al.
-02. \[2\][Native Parallel Reasoner: Reasoning in Parallelism via Self-Distilled Reinforcement Learning](https://www.alphaxiv.org/abs/2512.07461) — Wu et al.
-03. \[3\][On the Interplay of Pre-Training, Mid-Training, and RL on Reasoning Language Models](https://www.alphaxiv.org/abs/2512.07783) — Zhang et al.
-04. \[4\][Scalpel vs. Hammer: GRPO Amplifies Existing Capabilities, SFT Replaces Them](https://www.alphaxiv.org/abs/2507.10616) — Rajani et al.
-05. \[5\][Learning While Staying Curious: Entropy-Preserving Supervised Fine-Tuning via Adaptive Self-Distillation for Large Reasoning Models](https://www.alphaxiv.org/abs/2602.02244) — Wang et al.
-06. \[6\][Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards](https://www.alphaxiv.org/abs/2510.07774) — Yuan et al.
-07. \[7\][Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains](https://www.alphaxiv.org/abs/2507.17746) — Gunjal et al.
-08. \[8\][Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://www.alphaxiv.org/abs/2201.11903) — Wei et al.
-09. \[9\][DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning](https://www.alphaxiv.org/abs/2501.12948) — DeepSeek-AI et al.
-10. \[10\][Recursive Language Models: the paradigm of 2026](https://www.primeintellect.ai/blog/rlm) — Prime Intellect
+01. \[1\]Recursive Language Models — Zhang et al.
+02. \[2\]Native Parallel Reasoner: Reasoning in Parallelism via Self-Distilled Reinforcement Learning — Wu et al.
+03. \[3\]On the Interplay of Pre-Training, Mid-Training, and RL on Reasoning Language Models — Zhang et al.
+04. \[4\]Scalpel vs. Hammer: GRPO Amplifies Existing Capabilities, SFT Replaces Them — Rajani et al.
+05. \[5\]Learning While Staying Curious: Entropy-Preserving Supervised Fine-Tuning via Adaptive Self-Distillation for Large Reasoning Models — Wang et al.
+06. \[6\]Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards — Yuan et al.
+07. \[7\]Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains — Gunjal et al.
+08. \[8\]Chain-of-Thought Prompting Elicits Reasoning in Large Language Models — Wei et al.
+09. \[9\]DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning — DeepSeek-AI et al.
+10. \[10\]Recursive Language Models: the paradigm of 2026 — Prime Intellect

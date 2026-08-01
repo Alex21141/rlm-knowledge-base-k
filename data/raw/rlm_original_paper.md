@@ -158,7 +158,7 @@ This research is partially supported by the Laude Institute. We thank Noah Ziems
 ## References
 
 - Anthropic (2025)Claude code: subagents — modular ai workflows with isolated agent contexts.
-External Links: [Link]( "")Cited by: [§D.2],
+External Links: LinkCited by: [§D.2],
 [§1],
 [§4].
 
@@ -216,7 +216,7 @@ External Links: 2402.01680,
 [Link]Cited by: [§4].
 
 - K. Hong, A. Troynikov, and J. Huber (2025)Context rot: how context degradation affects llm performance.
-External Links: [Link]( "")Cited by: [§1],
+External Links: LinkCited by: [§1],
 [§2].
 
 - C. Hsieh, S. Sun, S. Kriman, S. Acharya, D. Rekesh, F. Jia, Y. Zhang, and B. Ginsburg (2024)RULER: what’s the real context size of your long-context language models?.
@@ -242,13 +242,13 @@ External Links: 2412.16720,
 [Link]Cited by: [§5].
 
 - OpenAI (2025a)Codex cli: a lightweight coding agent for your terminal.
-External Links: [Link]( "")Cited by: [§1].
+External Links: LinkCited by: [§1].
 
 - OpenAI (2025b)Deep research.
-Note: AI-powered research assistant toolExternal Links: [Link]( "")Cited by: [§2.1].
+Note: AI-powered research assistant toolExternal Links: LinkCited by: [§2.1].
 
 - OpenAI (2025c)GPT-5 system card.
-Note: Online; August 7, 2025External Links: [Link]( "")Cited by: [§1],
+Note: Online; August 7, 2025External Links: LinkCited by: [§1],
 [§2.2].
 
 - C. Packer, S. Wooders, K. Lin, V. Fang, S. G. Patil, I. Stoica, and J. E. Gonzalez (2024)MemGPT: towards llms as operating systems.
@@ -266,8 +266,8 @@ External Links: 1804.02767,
 - S. Robertson and H. Zaragoza (2009)The probabilistic relevance framework: bm25 and beyond.
 Found. Trends Inf. Retr.3 (4), pp. 333–389.
 External Links: ISSN 1554-0669,
-[Link]( ""),
-[Document]( "")Cited by: [§2.2].
+Link,
+DocumentCited by: [§2.2].
 
 - P. Schroeder, N. Morgan, H. Luo, and J. Glass (2025)THREAD: thinking deeper with recursive spawning.
 External Links: 2405.17402,
@@ -276,10 +276,10 @@ External Links: 2405.17402,
 
 - Sentient (2025)ROMA: the backbone for open-source meta-agents.
 Sentient.
-Note: Accessed: 2025-12-20External Links: [Link]( "")Cited by: [§1].
+Note: Accessed: 2025-12-20External Links: LinkCited by: [§1].
 
 - C. Smith (2025)OpenHands context condensensation for more efficient ai agents.
-External Links: [Link]( "")Cited by: [§1].
+External Links: LinkCited by: [§1].
 
 - W. Sun, M. Lu, Z. Ling, K. Liu, X. Yao, Y. Yang, and J. Chen (2025)Scaling long-horizon llm agent via context-folding.
 External Links: 2510.11967,
@@ -597,7 +597,7 @@ print(f"Totalwordswith2r’s:{count}")
 
 ‘‘‘
 
-\[Codeexecutionresultsreturned...\]
+\[Codeexecutionresultsreturned\]
 
 Examplewithsearch:
 
@@ -607,7 +607,7 @@ SEARCH(machinelearning)
 
 ‘‘‘
 
-\[Searchresultsreturned...\]
+\[Searchresultsreturned\]
 
 \-\-\-
 
@@ -665,7 +665,7 @@ print(f"Totalwordswith2r’s:{count}")
 
 ‘‘‘
 
-\[Codeexecutionresultsreturned...\]
+\[Codeexecutionresultsreturned\]
 
 Answer:4
 

@@ -2,9 +2,9 @@
 
 **Authors:** Alex L. Zhang, Omar Khattab (MIT CSAIL)
 **Published:** October 15, 2025
-**Source:** https://alexzhang13.github.io/blog/2025/rlm/
-**Paper:** https://arxiv.org/abs/2512.24601 (alphaXiv)
-**Code:** https://github.com/alexzhang13/rlm
+**Source:** 
+**Paper:** (alphaXiv)
+**Code:** 
 
 # Recursive Language Models
 
@@ -26,9 +26,9 @@ MIT CSAIL
 
 Oct. 15, 2025
 
-_The full paper is now available here: https://www.alphaxiv.org/abs/2512.24601 https://www.alphaxiv.org/abs/2512.24601._
+_The full paper is now available here: 
 
-You can find the official codebase for Recursive Language Models (RLMs) here: https://github.com/alexzhang13/rlm https://github.com/alexzhang13/rlm
+You can find the official codebase for Recursive Language Models (RLMs) here: 
 
 ## tl;dr
 
@@ -38,7 +38,7 @@ We propose **Recursive Language Models**, or **RLM**s, a general inference strat
 
 We demonstrate that an **RLM using GPT-5-mini outperforms GPT-5** on a split of the most difficult long-context benchmark we got our hands on (OOLONG
 
-- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]](https://openreview.net/forum?id=lrDr6dmXOX)
+- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]]()
 
 Anonymous.
 
@@ -48,7 +48,7 @@ Submitted to The Fourteenth International Conference on Learning Representations
 
 ) by more than **double** the number of correct answers, and is **cheaper** per query on average! We also construct a new long-context Deep Research task from BrowseComp-Plus
 
-- **BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent** [\[PDF\]](http://arxiv.org/pdf/2508.06600.pdf)
+- **BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent** [\[PDF\]]()
 
 Z. Chen, X. Ma, S. Zhuang, P. Nie, K. Zou, A. Liu, J. Green, K. Patel, R. Meng, M. Su, S. Sharifymoghaddam, Y. Li, H. Hong, X. Shi, X. Liu, N. Thakur, C. Zhang, L. Gao, W. Chen, J. Lin.
 
@@ -60,19 +60,19 @@ Z. Chen, X. Ma, S. Zhuang, P. Nie, K. Zou, A. Liu, J. Green, K. Patel, R. Meng, 
 
 We are excited to share these very early results, as well as argue that RLMs will be a powerful paradigm very soon. We think that RLMs trained explicitly to recursively reason are likely to represent the next milestone in **general-purpose inference-time scaling** after CoT-style reasoning models and ReAct-style agent models.
 
-We have a compressed summary in the original tweet: https://x.com/a1zhang/status/1978469116542337259 https://x.com/a1zhang/status/1978469116542337259
+We have a compressed summary in the original tweet: 
 
-We also now have a minimal implementation for people to build on top of: https://github.com/alexzhang13/rlm-minimal https://github.com/alexzhang13/rlm-minimal
+We also now have a minimal implementation for people to build on top of: 
 
 **Figure 1.** An example of a recursive language model (RLM) call, which acts as a mapping from text → text, but is more flexible than a standard language model call and can scale to near-infinite context lengths. An RLM allows a language model to interact with an environment (in this instance, a REPL environment) that stores the (potentially huge) context, where it can recursively sub-query “itself”, other LM calls, or other RLM calls, to efficiently parse this context and provide a final response.
 
 ## Prelude: Why is “long-context” research so unsatisfactory?
 
-There is this well-known but difficult to characterize phenomenon in language models (LMs) known as “context rot”. Anthropic defines context rot https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents as “\[when\] the number of tokens in the context window increases, the model’s ability to accurately recall information from that context decreases”, but many researchers in the community know this definition doesn’t _fully_ hit the mark. For example, if we look at popular needle-in-the-haystack benchmarks like RULER https://arxiv.org/abs/2404.06654, most frontier models actually do extremely well (90%+ on 1-year old models).
+There is this well-known but difficult to characterize phenomenon in language models (LMs) known as “context rot”. Anthropic defines context rot as “\[when\] the number of tokens in the context window increases, the model’s ability to accurately recall information from that context decreases”, but many researchers in the community know this definition doesn’t _fully_ hit the mark. For example, if we look at popular needle-in-the-haystack benchmarks like RULER most frontier models actually do extremely well (90%+ on 1-year old models).
 
 _I asked my LM to finish carving the pumpkin joke it started yesterday. It said, “Pumpkin? What pumpkin?” — the context completely rotted._
 
-But people have noticed https://x.com/kwindla/status/1962230672082497866 that context rot is this weird thing that happens when your Claude Code history gets bloated, or you chat with ChatGPT for a long time — it’s almost like, as the conversation goes on, the model gets…dumber? It’s sort of this well-known but hard to describe failure mode that we don’t talk about in our papers because we can’t benchmark it. The natural solution is something along the lines of, “well maybe if I split the context into two model calls, then combine them in a third model call, I’d avoid this degradation issue”. We take this intuition as the basis for a recursive language model.
+But people have noticed that context rot is this weird thing that happens when your Claude Code history gets bloated, or you chat with ChatGPT for a long time — it’s almost like, as the conversation goes on, the model gets…dumber? It’s sort of this well-known but hard to describe failure mode that we don’t talk about in our papers because we can’t benchmark it. The natural solution is something along the lines of, “well maybe if I split the context into two model calls, then combine them in a third model call, I’d avoid this degradation issue”. We take this intuition as the basis for a recursive language model.
 
 ## **Recursive Language Models (RLMs).**
 
@@ -100,7 +100,7 @@ This setup yields several benefits that are visible in practice:
 
 We were excited by the design of CodeAct
 
-- **Executable Code Actions Elicit Better LLM Agents** [\[link\]](https://openreview.net/forum?id=jJ9BoXAfFa)
+- **Executable Code Actions Elicit Better LLM Agents** [\[link\]]()
 
 X. Wang, Y. Chen, L. Yuan, Y. Zhang, Y. Li, H. Peng, H. Ji.
 
@@ -141,13 +141,13 @@ q, C and returns the model output as the final answer.
 
 We’ve been looking around for benchmarks that reflect natural long-context tasks, e.g. long multi-turn Claude Code sessions. We namely were looking to highlight two properties that limit modern frontier models: 1) the context rot phenomenon, where model performance degrades as a function of context length, and 2) the system-level limitations of handling an enormous context.
 
-We found in practice that many long-context benchmarks offer contexts that are not really that long and which were already solvable by the latest generation (or two) of models. In fact, we found some where **models could often answer queries without the context**! We luckily quickly found two benchmarks where modern frontier LLMs struggle to perform well, but we are actively seeking https://x.com/lateinteraction/status/1976964409139642716 any other good benchmark recommendations to try.
+We found in practice that many long-context benchmarks offer contexts that are not really that long and which were already solvable by the latest generation (or two) of models. In fact, we found some where **models could often answer queries without the context**! We luckily quickly found two benchmarks where modern frontier LLMs struggle to perform well, but we are actively seeking any other good benchmark recommendations to try.
 
 ### **Exciting Result \#1 — Dealing with Context Rot.**
 
 The **OOLONG** benchmark
 
-- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]](https://openreview.net/forum?id=lrDr6dmXOX)
+- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]]()
 
 Anonymous.
 
@@ -168,7 +168,7 @@ Date: Dec 12, 2022 || User: 63685 || Instance: How many years old is Benny Carte
 Date: Dec 30, 2024 || User: 35875 || Instance: What war saw battles at Parrot 's Beak and Black Virgin ?
 Date: Apr 13, 2024 || User: 80726 || Instance: What Metropolis landmark was first introduced in the Superman cartoons of the 1940 's ?
 Date: Feb 29, 2024 || User: 59320 || Instance: When was Calypso music invented?
-...
+
 ```
 
 The score is computed as the number of queries answered correctly by the model, with the caveat that for numerical / counting problems, they use a continuous scoring metric. This benchmark is extremely hard for both frontier models and agents because they have to **semantically** map and associate thousands of pieces of information in a single query, and cannot compute things a-priori! We evaluate the following models / agents:
@@ -193,9 +193,9 @@ Great! So we’re making huge progress in solving goal (1), where GPT-5 has _jus
 
 ### **Exciting Result \#2 — Ridiculously Large Contexts**
 
-My advisor Omar is a superstar in the world of information retrieval (IR) https://arxiv.org/abs/2004.12832, so naturally we also wanted to explore whether RLMs scale properly when given thousands (or more!) of documents. OOLONG
+My advisor Omar is a superstar in the world of information retrieval (IR) so naturally we also wanted to explore whether RLMs scale properly when given thousands (or more!) of documents. OOLONG
 
-- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]](https://openreview.net/forum?id=lrDr6dmXOX)
+- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]]()
 
 Anonymous.
 
@@ -203,11 +203,11 @@ Submitted to The Fourteenth International Conference on Learning Representations
 
 \[1\]
 
-provides a giant block of text that is difficult to index and therefore difficult to compare to retrieval methods, so we looked into DeepResearch https://openai.com/index/introducing-deep-research/-like benchmarks that evaluate answering queries over documents.
+provides a giant block of text that is difficult to index and therefore difficult to compare to retrieval methods, so we looked into DeepResearch benchmarks that evaluate answering queries over documents.
 
-**Retrieval over huge offline corpuses.** We initially were interested in BrowseComp https://openai.com/index/browsecomp/
+**Retrieval over huge offline corpuses.** We initially were interested in BrowseComp 
 
-- **BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents** [\[PDF\]](http://arxiv.org/pdf/2504.12516.pdf)
+- **BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents** [\[PDF\]]()
 
 J. Wei, Z. Sun, S. Papay, S. McKinney, J. Han, I. Fulford, H.W. Chung, A.T. Passos, W. Fedus, A. Glaese.
 
@@ -215,9 +215,9 @@ J. Wei, Z. Sun, S. Papay, S. McKinney, J. Han, I. Fulford, H.W. Chung, A.T. Pass
 
 \[4\]
 
-, which evaluates agents on multi-hop, web-search queries, where agents have to find the relevant documents online. We later found the BrowseComp-Plus https://arxiv.org/abs/2508.06600
+, which evaluates agents on multi-hop, web-search queries, where agents have to find the relevant documents online. We later found the BrowseComp-Plus 
 
-- **BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent** [\[PDF\]](http://arxiv.org/pdf/2508.06600.pdf)
+- **BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent** [\[PDF\]]()
 
 Z. Chen, X. Ma, S. Zhuang, P. Nie, K. Zou, A. Liu, J. Green, K. Patel, R. Meng, M. Su, S. Sharifymoghaddam, Y. Li, H. Hong, X. Shi, X. Liu, N. Thakur, C. Zhang, L. Gao, W. Chen, J. Lin.
 
@@ -225,7 +225,7 @@ Z. Chen, X. Ma, S. Zhuang, P. Nie, K. Zou, A. Liu, J. Green, K. Patel, R. Meng, 
 
 \[2\]
 
-benchmark, which pre-downloads all possible relevant documents for all queries in the original benchmark, and just provides a list of ~100K documents (~5k words on average) where the answer to a query is scattered across this list. For benchmarking RLMs, this benchmark is perfect to see if we can just throw ridiculously large amount of context into a single `chat.completion(...)` RLM call instead of building an agent!
+benchmark, which pre-downloads all possible relevant documents for all queries in the original benchmark, and just provides a list of ~100K documents (~5k words on average) where the answer to a query is scattered across this list. For benchmarking RLMs, this benchmark is perfect to see if we can just throw ridiculously large amount of context into a single `chat.completion()` RLM call instead of building an agent!
 
 **Setup.** We explore how scaling the # documents in context affects the performance of various common approaches to dealing with text corpuses, as well as RLMs. Queries on the BrowseComp-Plus benchmark are multi-hop in the sense that they require associating information across several different documents to answer the query. What this implies is that even if you retrieve the document with the correct answer, you won’t know it’s correct until you figure out the other associations. For example, query `984` on the benchmark is the following:
 
@@ -246,7 +246,7 @@ For our experiments, we explore the performance of each model / agent / RLM give
 
 There are a few things to observe here — notably, `RLM(GPT-5)` is the only model / agent able to achieve and maintain perfect performance at the 1000 document scale, with the ablation (no recursion) able to similarly achieve 90%. The base `GPT-5` model approaches, regardless of how they are conditioned, show clear signs of performance dropoff as the number of documents increase. Unlike OOLONG
 
-- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]](https://openreview.net/forum?id=lrDr6dmXOX)
+- **Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities** [\[link\]]()
 
 Anonymous.
 
@@ -274,7 +274,7 @@ A strong benefit of the RLM framework is the ability to roughly interpret what i
 
 **Summarization.** RLMs are a natural generalization of summarization-based strategies commonly used for managing the context window of LMs. RLMs commonly summarize information over subsets of the context for the outer LM to make decisions.
 
-**Long-input, long-output**. A particularly interesting and expensive case where LMs fail is in tasks that require long output generations. For example, you might give ChatGPT your list of papers and ask it to generate the BibTeX for all of them. Similar to huge multiplication problems, some people may argue that a model should not be expected to solve these programmatic tasks flawlessly — in these instances, RLMs with REPL environments should one-shot these tasks! An example is the **LoCoDiff** https://abanteai.github.io/LoCoDiff-bench/
+**Long-input, long-output**. A particularly interesting and expensive case where LMs fail is in tasks that require long output generations. For example, you might give ChatGPT your list of papers and ask it to generate the BibTeX for all of them. Similar to huge multiplication problems, some people may argue that a model should not be expected to solve these programmatic tasks flawlessly — in these instances, RLMs with REPL environments should one-shot these tasks! An example is the **LoCoDiff** 
 
 - **LoCoDiff Benchmark**
 
@@ -288,16 +288,16 @@ benchmark, where language models are tasked with tracking a long `git diff` hist
 
 ```python
 > git log -p \
-    --cc \
-    --reverse \
-    --topo-order \
-    -- shopping_list.txt
+ --cc \
+ --reverse \
+ --topo-order \
+ -- shopping_list.txt
 
 commit 008db723cd371b87c8b1e3df08cec4b4672e581b
 Author: Example User
-Date:   Wed May 7 21:12:52 2025 +0000
+Date: Wed May 7 21:12:52 2025 +0000
 
-    Initial shopping list
+ Initial shopping list
 
 diff --git a/shopping_list.txt b/shopping_list.txt
 new file mode 100644
@@ -314,9 +314,9 @@ index 0000000..868d98c
 
 commit b6d826ab1b332fe4ca1dc8f67a00f220a8469e48
 Author: Example User
-Date:   Wed May 7 21:12:52 2025 +0000
+Date: Wed May 7 21:12:52 2025 +0000
 
-    Change apples to oranges and add cheese
+ Change apples to oranges and add cheese
 
 diff --git a/shopping_list.txt b/shopping_list.txt
 index 868d98c..7c335bb 100644
@@ -331,7 +331,7 @@ index 868d98c..7c335bb 100644
  eggs
  coffee
 +cheese
-...
+
 ```
 
 \> git log -p \
@@ -378,7 +378,7 @@ bread
 eggs
 coffee
 +cheese
-...
+
 
 We tried **RLM(GPT-5)** to probe what would happen, and found in some instances that it chooses to one-shot the task by programmatically processing the sequence of diffs! There are many benchmark-able abilities of LMs to perform programmatic tasks (e.g. huge multiplication, diff tracking, etc.), but RLMs offer a framework for avoiding the need for such abilities altogether.
 
@@ -386,13 +386,13 @@ We tried **RLM(GPT-5)** to probe what would happen, and found in some instances 
 
 ### Limitations.
 
-We did not optimize our implementation of RLMs for speed, meaning each recursive LM call is both blocking and does not take advantage of any kind of prefix caching! Depending on the partition strategy employed by the RLM’s root LM, the **lack of asynchrony** can cause each query to range from a few seconds to several minutes. Furthermore, while we can control the length / “thinking time” of an RLM by increasing the maximum number of iterations, we do not currently have strong guarantees about controlling either the total API cost or the total runtime of each call. For those in the systems community ( _cough cough_, especially the GPU MODE https://www.youtube.com/@GPUMODE community), this is amazing news! There’s so much low hanging fruit to optimize here, and getting RLMs to work at scale requires re-thinking our design of inference engines.
+We did not optimize our implementation of RLMs for speed, meaning each recursive LM call is both blocking and does not take advantage of any kind of prefix caching! Depending on the partition strategy employed by the RLM’s root LM, the **lack of asynchrony** can cause each query to range from a few seconds to several minutes. Furthermore, while we can control the length / “thinking time” of an RLM by increasing the maximum number of iterations, we do not currently have strong guarantees about controlling either the total API cost or the total runtime of each call. For those in the systems community ( _cough cough_, especially the GPU MODE community), this is amazing news! There’s so much low hanging fruit to optimize here, and getting RLMs to work at scale requires re-thinking our design of inference engines.
 
 ### Related Works
 
 **Scaffolds for long input context management.** RLMs defer the choice of context management to the LM / REPL environment, but most prior works do not. MemGPT
 
-- **MemGPT: Towards LLMs as Operating Systems** [\[PDF\]](http://arxiv.org/pdf/2310.08560.pdf)
+- **MemGPT: Towards LLMs as Operating Systems** [\[PDF\]]()
 
 C. Packer, S. Wooders, K. Lin, V. Fang, S.G. Patil, I. Stoica, J.E. Gonzalez.
 
@@ -402,7 +402,7 @@ C. Packer, S. Wooders, K. Lin, V. Fang, S.G. Patil, I. Stoica, J.E. Gonzalez.
 
 similarly defers the choice to the model, but builds on a single context that an LM will eventually call to return a response. MemWalker
 
-- **Walking Down the Memory Maze: Beyond Context Limit through Interactive Reading** [\[PDF\]](http://arxiv.org/pdf/2310.05029.pdf)
+- **Walking Down the Memory Maze: Beyond Context Limit through Interactive Reading** [\[PDF\]]()
 
 H. Chen, R. Pasunuru, J. Weston, A. Celikyilmaz.
 
@@ -412,7 +412,7 @@ H. Chen, R. Pasunuru, J. Weston, A. Celikyilmaz.
 
 imposes a tree-like structure to order how a LM summarizes context. LADDER
 
-- **LADDER: Self-Improving LLMs Through Recursive Problem Decomposition** [\[PDF\]](http://arxiv.org/pdf/2503.00735.pdf)
+- **LADDER: Self-Improving LLMs Through Recursive Problem Decomposition** [\[PDF\]]()
 
 T. Simonds, A. Yoshiyama. 2025.
 
@@ -422,25 +422,25 @@ breaks down context from the perspective of problem decomposition, which does no
 
 **Other (pretty different) recursive proposals.** There’s plenty of work that invokes forking threads or doing recursion in the context of deep learning, but none have the structure required for general-purpose decomposition. THREAD
 
-- **THREAD: Thinking Deeper with Recursive Spawning** [\[link\]](https://aclanthology.org/2025.naacl-long.427/)
+- **THREAD: Thinking Deeper with Recursive Spawning** [\[link\]]()
 
 P. Schroeder, N.W. Morgan, H. Luo, J.R. Glass.
 
 Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pp. 8418--8442. Association for Computational Linguistics. 2025.
 
-DOI: 10.18653/v1/2025.naacl-long.427 https://doi.org/10.18653/v1/2025.naacl-long.427
+DOI: 10.18653/v1/2025.naacl-long.427 
 
 \[9\]
 
 modifies the output generation process of a model call to spawn child threads that write to the output. Tiny Recursive Model (TRM)
 
-- **Less is More: Recursive Reasoning with Tiny Networks** [\[PDF\]](http://arxiv.org/pdf/2510.04871.pdf)
+- **Less is More: Recursive Reasoning with Tiny Networks** [\[PDF\]]()
 
 A. Jolicoeur-Martineau. 2025.
 
 \[10\]
 
-is a cool idea for iteratively improving the answer of a (not necessarily language) model in its latents. Recursive LLM Prompts https://andykonwinski.com/2023/03/20/recursive-llm.html was an early experiment on treating the prompt as a state that evolves when you query a model. Recursive Self-Aggregation (RSA) https://rsa-llm.github.io/ is a recent work that combines test-time inference sampling methods over a set of candidate responses.
+is a cool idea for iteratively improving the answer of a (not necessarily language) model in its latents. Recursive LLM Prompts was an early experiment on treating the prompt as a state that evolves when you query a model. Recursive Self-Aggregation (RSA) is a recent work that combines test-time inference sampling methods over a set of candidate responses.
 
 ## What We’re Thinking Now & for the Future.
 
@@ -448,7 +448,7 @@ Long-context capabilities in language models used to be a model architecture pro
 
 **Do we have to solve context rot?** There are several reasonable explanations for “context rot”; to me, the most plausible is that longer sequences are out of distribution for model training distributions due to lack of natural occurrence and higher entropy of long sequences. The goal of RLMs has been to propose a framework for issuing LM calls without ever needing to directly solve this problem — while the idea was initially just a framework, we were very surprised with the strong results on modern LMs, and are optimistic that they will continue to scale well.
 
-**RLMs are not agents, nor are they just summarization.** The idea of multiple LM calls in a single system is not new — in a broad sense, this is what most agentic scaffolds do. The closest idea we’ve seen in the wild is the ROMA agent that decomposes a problem and runs multiple sub-agents to solve each problem https://github.com/sentient-agi/ROMA. Another common example is code assistants like Cursor and Claude Code that either summarize or prune context histories as they get longer and longer. These approaches generally view multiple LM calls as decomposition **from the perspective of a task or problem**. We retain the view that LM calls can be decomposed by the context, and the choice of decomposition should purely be the choice of an LM.
+**RLMs are not agents, nor are they just summarization.** The idea of multiple LM calls in a single system is not new — in a broad sense, this is what most agentic scaffolds do. The closest idea we’ve seen in the wild is the ROMA agent that decomposes a problem and runs multiple sub-agents to solve each problem Another common example is code assistants like Cursor and Claude Code that either summarize or prune context histories as they get longer and longer. These approaches generally view multiple LM calls as decomposition **from the perspective of a task or problem**. We retain the view that LM calls can be decomposed by the context, and the choice of decomposition should purely be the choice of an LM.
 
 **The value of a fixed format for scaling laws.** We’ve learned as a field from ideas like CoT, ReAct, instruction-tuning, reasoning models, etc. that presenting data to a model in predictable or fixed formats are important for improving performance. The basic idea is that we can reduce the structure of our training data to formats that model expects, we can greatly increase the performance of models with a reasonable amount of data. We are excited to see how we can apply these ideas to improve the performance of RLMs as another axis of scale.
 
@@ -472,11 +472,11 @@ You can cite this blog (before the full paper is released) here:
 
 ```plaintext
 @article{zhang2025rlm,
-  title   = "Recursive Language Models",
-  author  = "Zhang, Alex and Khattab, Omar",
-  year    = "2025",
-  month   = "October",
-  url     = "https://alexzhang13.github.io/blog/2025/rlm/"
+ title = "Recursive Language Models",
+ author = "Zhang, Alex and Khattab, Omar",
+ year = "2025",
+ month = "October",
+ url = "
 }
 ```
 
@@ -484,33 +484,33 @@ You can cite this blog (before the full paper is released) here:
 
 ### References
 
-01. Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities [\[link\]](https://openreview.net/forum?id=lrDr6dmXOX)
+01. Oolong: Evaluating Long Context Reasoning and Aggregation Capabilities [\[link\]]()
 
-    Anonymous,, 2025. Submitted to The Fourteenth International Conference on Learning Representations.
-02. BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent [\[PDF\]](http://arxiv.org/pdf/2508.06600.pdf)
+ Anonymous,, 2025. Submitted to The Fourteenth International Conference on Learning Representations.
+02. BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent [\[PDF\]]()
 
-    Chen, Z., Ma, X., Zhuang, S., Nie, P., Zou, K., Liu, A., Green, J., Patel, K., Meng, R., Su, M., Sharifymoghaddam, S., Li, Y., Hong, H., Shi, X., Liu, X., Thakur, N., Zhang, C., Gao, L., Chen, W. and Lin, J., 2025.
-03. Executable Code Actions Elicit Better LLM Agents [\[link\]](https://openreview.net/forum?id=jJ9BoXAfFa)
+ Chen, Z., Ma, X., Zhuang, S., Nie, P., Zou, K., Liu, A., Green, J., Patel, K., Meng, R., Su, M., Sharifymoghaddam, S., Li, Y., Hong, H., Shi, X., Liu, X., Thakur, N., Zhang, C., Gao, L., Chen, W. and Lin, J., 2025.
+03. Executable Code Actions Elicit Better LLM Agents [\[link\]]()
 
-    Wang, X., Chen, Y., Yuan, L., Zhang, Y., Li, Y., Peng, H. and Ji, H., 2024. Forty-first International Conference on Machine Learning.
-04. BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents [\[PDF\]](http://arxiv.org/pdf/2504.12516.pdf)
+ Wang, X., Chen, Y., Yuan, L., Zhang, Y., Li, Y., Peng, H. and Ji, H., 2024. Forty-first International Conference on Machine Learning.
+04. BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents [\[PDF\]]()
 
-    Wei, J., Sun, Z., Papay, S., McKinney, S., Han, J., Fulford, I., Chung, H.W., Passos, A.T., Fedus, W. and Glaese, A., 2025.
+ Wei, J., Sun, Z., Papay, S., McKinney, S., Han, J., Fulford, I., Chung, H.W., Passos, A.T., Fedus, W. and Glaese, A., 2025.
 05. LoCoDiff Benchmark
 
-    MentatAI, and AbanteAI,, 2025.
-06. MemGPT: Towards LLMs as Operating Systems [\[PDF\]](http://arxiv.org/pdf/2310.08560.pdf)
+ MentatAI, and AbanteAI,, 2025.
+06. MemGPT: Towards LLMs as Operating Systems [\[PDF\]]()
 
-    Packer, C., Wooders, S., Lin, K., Fang, V., Patil, S.G., Stoica, I. and Gonzalez, J.E., 2024.
-07. Walking Down the Memory Maze: Beyond Context Limit through Interactive Reading [\[PDF\]](http://arxiv.org/pdf/2310.05029.pdf)
+ Packer, C., Wooders, S., Lin, K., Fang, V., Patil, S.G., Stoica, I. and Gonzalez, J.E., 2024.
+07. Walking Down the Memory Maze: Beyond Context Limit through Interactive Reading [\[PDF\]]()
 
-    Chen, H., Pasunuru, R., Weston, J. and Celikyilmaz, A., 2023.
-08. LADDER: Self-Improving LLMs Through Recursive Problem Decomposition [\[PDF\]](http://arxiv.org/pdf/2503.00735.pdf)
+ Chen, H., Pasunuru, R., Weston, J. and Celikyilmaz, A., 2023.
+08. LADDER: Self-Improving LLMs Through Recursive Problem Decomposition [\[PDF\]]()
 
-    Simonds, T. and Yoshiyama, A., 2025.
-09. THREAD: Thinking Deeper with Recursive Spawning [\[link\]](https://aclanthology.org/2025.naacl-long.427/)
+ Simonds, T. and Yoshiyama, A., 2025.
+09. THREAD: Thinking Deeper with Recursive Spawning [\[link\]]()
 
-    Schroeder, P., Morgan, N.W., Luo, H. and Glass, J.R., 2025. Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pp. 8418--8442. Association for Computational Linguistics. DOI: 10.18653/v1/2025.naacl-long.427 https://doi.org/10.18653/v1/2025.naacl-long.427
-10. Less is More: Recursive Reasoning with Tiny Networks [\[PDF\]](http://arxiv.org/pdf/2510.04871.pdf)
+ Schroeder, P., Morgan, N.W., Luo, H. and Glass, J.R., 2025. Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pp. 8418--8442. Association for Computational Linguistics. DOI: 10.18653/v1/2025.naacl-long.427 
+10. Less is More: Recursive Reasoning with Tiny Networks [\[PDF\]]()
 
-    Jolicoeur-Martineau, A., 2025.
+ Jolicoeur-Martineau, A., 2025.

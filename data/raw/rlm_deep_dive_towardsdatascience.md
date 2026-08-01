@@ -1,6 +1,6 @@
 # Recursive Language Models: An All-in-One Deep Dive (Avishek Biswas, Towards Data Science, May 2026)
 
-**Source:** https://towardsdatascience.com/recursive-language-models-one-example-deep-dive-that-explains-everything/
+**Source:** 
 **Author:** Avishek Biswas
 **Date:** May 16, 2026
 **Tags:** RLM, ReAct, CodeAct, Subagents, REPL, Pass-by-Reference
@@ -9,7 +9,7 @@
 
 Exactly how does it differ from ReAct, CodeAct, Self-Loops, and Subagents?
 
-[Avishek Biswas](https://towardsdatascience.com/author/neural-avb/)
+Avishek Biswas
 
 May 16, 2026
 
@@ -42,7 +42,7 @@ And a more advanced variation (let’s call it Problem 2):
 For problem 1, the expected output is something like:
 
 ```json
-{"strawberry": 3, "berry": 2, ... "grape": 1}
+{"strawberry": 3, "berry": 2, "grape": 1}
 ```
 
 And for problem 2, it is something like:
@@ -50,9 +50,9 @@ And for problem 2, it is something like:
 ```json
 
 {
-  "fruits": {"strawberry": 3, "berry": 2, ... "grape": 1, ...},
-  "countries": {"united states of america": 1, "russia": 1, ...},
-  "animals": {"kangaroo": 1, "tiger": 1", ... "deer": 1, ...}
+ "fruits": {"strawberry": 3, "berry": 2, "grape": 1, },
+ "countries": {"united states of america": 1, "russia": 1, },
+ "animals": {"kangaroo": 1, "tiger": 1", "deer": 1, }
 }
 ```
 
@@ -62,7 +62,7 @@ I know it is a silly problem, but the way an RLM solves it is fundamentally diff
 
 Let’s begin!
 
-### 2\. The Agentic Landscape    2.1 Direct Generation
+### 2\. The Agentic Landscape 2.1 Direct Generation
 
 The first method is just direct generation. The LLM “thinks” about the user’s request and auto-regressively generates a dictionary.
 
@@ -94,7 +94,7 @@ Using the above idea, the ReAct agent will be able to do the following:
 Generate a dictionary with 50 fruits and the number of 'r' in each
 
 # Assistant
-<think> 50 fruit names are: strawberry, berry, grape, ... </think>
+<think> 50 fruit names are: strawberry, berry, grape, </think>
 
 # Assistant
 count_alphabets_in_word("strawberry", "r")
@@ -103,7 +103,7 @@ count_alphabets_in_word("strawberry", "r")
 3
 
 # Assistant
-count_alphabets_in_word("berry", "r")  ## Tool call executed!
+count_alphabets_in_word("berry", "r") ## Tool call executed!
 
 # Tool_Out(executes our function)
 2
@@ -112,7 +112,7 @@ count_alphabets_in_word("berry", "r")  ## Tool call executed!
 # Assistant
 <think> I now have everything I need in my message history,
 let's construct that dictionary </think>
-{ "strawberry": 3, "berry": 2, .... }
+{ "strawberry": 3, "berry": 2, . }
 ```
 
 You see what the problems are, right? First, you have to define a function _`count_alphabet_in_r`_ beforehand for this specific use-case. If you don’t define a function, the agent just falls back to the old way (i.e. straight generation of alphabet counts)!
@@ -145,18 +145,18 @@ Generate a dictionary with 50 fruits and the number of 'r' in each
 <think> Okay let's write some python code for this. </think>
 
 python -c '
-fruits = [ 'strawberry', 'berry' 'grape', .... ]
+fruits = [ 'strawberry', 'berry' 'grape', . ]
 count_r = { k: sum(1 for c in fruit if c == 'r') for k, f in fruits }
-print("Number of fruits: ", len(fruits)) print("Counts: " , count_r) '
+print("Number of fruits: ", len(fruits) print("Counts: " , count_r) '
 
 # Tool Output (Terminal Output)
 Number of fruits: 50
-Counts are: {"strawberry": 3, "berry": 2 ....}
+Counts are: {"strawberry": 3, "berry": 2 .}
 
 # Assistant
 <think> Okay, I have read the terminal output,
 let me return write it down again to return the output </think>
-{ "strawberry": 3, "berry": 2, .... }
+{ "strawberry": 3, "berry": 2, . }
 ```
 
 So how CodeAct works is like:
@@ -208,26 +208,26 @@ Generate a dictionary of different categories: fruits, countries, animals. For e
 call_subagent("Return a dictionary of 50 fruit names and number of r in them")
 
 # Subagent (A new code-act module)
-{"strawberry": 3, "berry": 2 ....}
+{"strawberry": 3, "berry": 2 .}
 
 # Assistant
 call_subagent("Return a dictionary of 50 countries names and number of r in them")
 
 # Subagent
-{"france": 1, "russia": 1 ....}
+{"france": 1, "russia": 1 .}
 
 # Assistant
 call_subagent("Return a dictionary of 50 animals names and number of r in them")
 
 # Subagent
-{"kangaroo": 1, "deer": 1 ....}
+{"kangaroo": 1, "deer": 1 .}
 
 # Assistant
 <think> I have responses from all subagents, now I will write the final JSON </think>
 {
-"fruits": { "strawberry": 3, "berry": 2, .... },
-"countries": { "france": 1, "russia": 1 .... }
-"animals": { "kangaroo": 1, "deer": 1 .... }
+"fruits": { "strawberry": 3, "berry": 2, . },
+"countries": { "france": 1, "russia": 1 . }
+"animals": { "kangaroo": 1, "deer": 1 . }
 }
 ```
 
@@ -270,7 +270,7 @@ That is what RLMs do.
 
 RLMs are a scaffold that calls LLMs a certain way to make them achieve tasks. Remember, a scaffold is an external system that prompts the LLMs in specific ways to make it do things, manage it’s context, and step by step achieve a larger more complex task.
 
-From the RLM paper ( [https://arxiv.org/abs/2512.24601](https://arxiv.org/abs/2512.24601))
+From the RLM paper ( )
 
 These are 4 points that explain what RLMs do:
 
@@ -305,7 +305,7 @@ Your task is stored in a variable called `context`.
 You can issue print statements.
 Print displays truncated sections of the variable (upto 200 words).
 Find out what the task is about.
-Generate your code inside ```repl ... blocks
+Generate your code inside ```repl blocks
 When ready to answer, submit your result using: FINAL(answer)
 
 # Assistant
@@ -353,9 +353,9 @@ print(context[300:600])
 The LLM can also issue regex, find, and any other transformation code to extract information and store it in a variable. Remember, variables persist across execution calls because that is what an REPL does – it’s a persistent Python runtime (imagine how Jupyter Notebook/ipykernel works)
 
 ```python
-x = re.match(....)
+x = re.match(.)
 y = context[30:90].split(",")
-print(len(y))
+print(len(y)
 ```
 
 - The LLM’s prompt contains instructions to explore the prompt space and think about how it can wrangle the data to do it’s task.
@@ -369,9 +369,9 @@ Here is an example of RLM analyzing transcripts from Lex Fridman podcasts:
 >
 > I passed in a CSV containing transcripts of 320 episodes of the Lex Fridman podcast and asked it to find what his first 10 ML guests had to say about AGI.
 >
-> The context had… [pic.twitter.com/P3SOtFJC24](https://t.co/P3SOtFJC24)
+> The context had… pic.twitter.com/P3SOtFJC24
 >
-> — AVB (@neural\_avb) [February 16, 2026](https://twitter.com/neural_avb/status/2023387617891582018?ref_src=twsrc%5Etfw)
+> — AVB (@neural\_avb) February 16, 2026
 
 Example explorations or transformations of context can be:
 
@@ -396,8 +396,8 @@ count the number of r in each
 <think>okay I need to generate 50 fruit names</think>
 
 ```repl
-FRUIT_NAMES = ['grape', 'strawberry', 'berry', ....]
-print(len(FRUIT_NAMES)) # let's check if it is 50
+FRUIT_NAMES = ['grape', 'strawberry', 'berry', .]
+print(len(FRUIT_NAMES) # let's check if it is 50
 ```
 
 # REPL Output
@@ -453,7 +453,7 @@ To understand all this, let’s take Problem 2from above.
 
 ````markdown
 # System
- .... # everything as before, plus
+ . # everything as before, plus
 You are given a new function called llm_query
 llm_query invokes new subagents to perform tasks
 Your subagents are quite strong and can handle long tasks well!
@@ -478,19 +478,19 @@ And then execute the code below:
 
 ```python
 FRUIT_DICT = llm_query("generate a dictionary of 50 fruits
-                        and the number of times r occured")
+ and the number of times r occured")
 COUNTRY_DICT = llm_query("generate a dictionary of 50 countries
-                        and the number of times r occured")
+ and the number of times r occured")
 ANIMAL_DICT = llm_query("generate a dictionary of 50 animals
-                        and the number of times r occured")
+ and the number of times r occured")
 
 for dictionary in [FRUIT_DICT, COUNTRY_DICT, ANIMAL_DICT]:
-      assert isinstance(dictionary, dict) and len(dictionary) == 50
+ assert isinstance(dictionary, dict) and len(dictionary) == 50
 
 answer = {
-    "fruits": FRUIT_DICT,
-    "countries": COUNTRY_DICT,
-    "animals": ANIMAL_DICT
+ "fruits": FRUIT_DICT,
+ "countries": COUNTRY_DICT,
+ "animals": ANIMAL_DICT
 }
 
 FINAL(answer)
@@ -578,7 +578,7 @@ The REPL environment is initialized with:
 
 1. A \`context\` variable that contains extremely important information about your query. You should check the content of the \`context\` variable to understand what you are working with. Make sure you look through it sufficiently as you answer your query.
 
-2. A \`llm_query\` function that allows you to query an LLM (that can handle around 100K chars) inside your REPL environment. This function is asynchronous, so you must use \`await llm_query(...)\`. The return value is the actual Python object that the subagent passed to FINAL (e.g. a list, dict, string, etc.).
+2. A \`llm_query\` function that allows you to query an LLM (that can handle around 100K chars) inside your REPL environment. This function is asynchronous, so you must use \`await llm_query()\`. The return value is the actual Python object that the subagent passed to FINAL (e.g. a list, dict, string, etc.).
 
 Do NOT wrap the result in eval() or json.loads(); use it directly. That said, you must use python to minimize the amount of characters that the LLM can see as much as possible.
 
@@ -634,7 +634,7 @@ When you want to execute Python code in the REPL environment, wrap it in triple 
 *** SLOWNESS ***
 - The biggest reason why programs are slow is if you run subagents one-after-the-other.
 - Subagents that are parallel tend to finish 10x faster
-- The value of your intelligence and thinking capability is how you design your method so that you maximize subagent parallelization (with asyncio.gather(*tasks))
+- The value of your intelligence and thinking capability is how you design your method so that you maximize subagent parallelization (with asyncio.gather(*tasks)
 
 \`\`\`repl
 chunk = context[: 10000]
@@ -647,12 +647,12 @@ As an example, suppose you're trying to answer a question about a book. You can 
 \`\`\`repl
 query = "In Harry Potter and the Sorcerer's Stone, did Gryffindor win the House Cup because they led?"
 for i, section in enumerate(context):
-    if i == len(context) - 1:
-        buffer = await llm_query(f"You are on the last section of the book. So far you know that: {buffers}. Gather from this last section to answer {query}. Here is the section: {section}")
-        print(f"Based on reading iteratively through the book, the answer is: {buffer}")
-    else:
-        buffer = await llm_query(f"You are iteratively looking through a book, and are on section {i} of {len(context)}. Gather information to help answer {query}. Here is the section: {section}")
-        print(f"After section {i} of {len(context)}, you have tracked: {buffer}")
+ if i == len(context) - 1:
+ buffer = await llm_query(f"You are on the last section of the book. So far you know that: {buffers}. Gather from this last section to answer {query}. Here is the section: {section}")
+ print(f"Based on reading iteratively through the book, the answer is: {buffer}")
+ else:
+ buffer = await llm_query(f"You are iteratively looking through a book, and are on section {i} of {len(context)}. Gather information to help answer {query}. Here is the section: {section}")
+ print(f"After section {i} of {len(context)}, you have tracked: {buffer}")
 \`\`\`
 
 As another example, when the context is quite long (e.g. >500K characters), a simple but viable strategy is, based on the context chunk lengths, to combine them and recursively query an LLM over chunks. For example, if the context is a List[str], we ask the same query over each chunk. You can also run these queries in parallel using \`asyncio.gather\`:
@@ -665,19 +665,19 @@ query = 'A man became famous for his book "The Great Gatsby". How many jobs did 
 chunk_size = len(context) // 10
 tasks = []
 for i in range(10):
-    if i < 9:
-        chunk_str = "\\n".join(context[i * chunk_size: (i + 1) * chunk_size])
-    else:
-        chunk_str = "\\n".join(context[i * chunk_size:])
+ if i < 9:
+ chunk_str = "\\n".join(context[i * chunk_size: (i + 1) * chunk_size])
+ else:
+ chunk_str = "\\n".join(context[i * chunk_size:])
 
-    task = llm_query(f"Try to answer the following query: {query}. Here are the documents:\\n{chunk_str}. Only answer if you are confident in your answer based on the evidence.")
-    tasks.append(task)
+ task = llm_query(f"Try to answer the following query: {query}. Here are the documents:\\n{chunk_str}. Only answer if you are confident in your answer based on the evidence.")
+ tasks.append(task)
 
 answers = await asyncio.gather(*tasks)
 for i, answer in enumerate(answers):
-    print(f"I got the answer from chunk {i}: {answer}")
+ print(f"I got the answer from chunk {i}: {answer}")
 
-final_answer = await llm_query(f"Aggregating all the answers per chunk, answer the original query about total number of jobs: {query}\\n\\nAnswers: \\n" + "\\n".join(answers))
+final_answer = await llm_query(f"Aggregating all the answers per chunk, answer the original query about total number of jobs: {query}\\n\\nAnswers: \\n" + "\\n".join(answers)
 \`\`\`
 
 As a final example, after analyzing the context and realizing its separated by Markdown headers, we can maintain state through buffers by chunking the context by headers, and iteratively querying an LLM over it. Do note that this pattern is slow, so only do it if ABSOLUTELY necessary:
@@ -688,12 +688,12 @@ import re
 sections = re.split(r'### (.+)', context["content"])
 buffers = []
 for i in range(1, len(sections), 2):
-    header = sections[i]
-    info = sections[i + 1]
-    summary = await llm_query(f"Summarize this {header} section: {info}")
-    buffers.append(f"{header}: {summary}")
+ header = sections[i]
+ info = sections[i + 1]
+ summary = await llm_query(f"Summarize this {header} section: {info}")
+ buffers.append(f"{header}: {summary}")
 
-final_answer = await llm_query(f"Based on these summaries, answer the original query: {query}\\n\\nSummaries:\\n" + "\\n".join(buffers))
+final_answer = await llm_query(f"Based on these summaries, answer the original query: {query}\\n\\nSummaries:\\n" + "\\n".join(buffers)
 \`\`\`
 
 In the next step, we can return FINAL(final_answer).
@@ -718,15 +718,15 @@ You must think and plan before you generate the code. Your expected response sho
 
 \`\`\`repl
 Your working python code
-FINAL(...)
+FINAL()
 \`\`\`
 
-Do not output multiple code blocks. All your code must be inside a single \`\`\`repl ... \`\`\` block.
+Do not output multiple code blocks. All your code must be inside a single \`\`\`repl \`\`\` block.
 ```
 
-You can study the full paper here: [https://arxiv.org/abs/2512.24601](https://arxiv.org/abs/2512.24601)
+You can study the full paper here: 
 
-Or with an AI: [https://paperbreakdown.com/abs/2512.24601](https://paperbreakdown.com/abs/2512.24601)
+Or with an AI: 
 
 ## 4\. Why does this work so well?
 
@@ -766,18 +766,18 @@ Written By
 
 Avishek Biswas
 
-[See all from Avishek Biswas](https://towardsdatascience.com/author/neural-avb/)
+See all from Avishek Biswas
 
-[Agentic Ai](https://towardsdatascience.com/tag/agentic-ai/), [Artificial Intelligence](https://towardsdatascience.com/tag/artificial-intelligence/), [Deep Dives](https://towardsdatascience.com/tag/deep-dives/), [Llm](https://towardsdatascience.com/tag/llm/), [Recursive](https://towardsdatascience.com/tag/recursive/)
+Agentic Ai, Artificial Intelligence, Deep Dives, Llm, Recursive
 
 Share This Article
 
-- [Share on Facebook](https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftowardsdatascience.com%2Frecursive-language-models-one-example-deep-dive-that-explains-everything%2F&title=Recursive%20Language%20Models%3A%20An%20All-in-One%20Deep%20Dive)
-- [Share on LinkedIn](https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Ftowardsdatascience.com%2Frecursive-language-models-one-example-deep-dive-that-explains-everything%2F&title=Recursive%20Language%20Models%3A%20An%20All-in-One%20Deep%20Dive)
-- [Share on X](https://x.com/share?url=https%3A%2F%2Ftowardsdatascience.com%2Frecursive-language-models-one-example-deep-dive-that-explains-everything%2F&text=Recursive%20Language%20Models%3A%20An%20All-in-One%20Deep%20Dive)
+- Share on Facebook
+- Share on LinkedIn
+- Share on X
 
 Towards Data Science is a community publication. Submit your insights to
 reach our global audience and earn through the TDS Author Payment
 Program.
 
-[Write for TDS](https://towardsdatascience.com/questions-96667b06af5/)
+Write for TDS

@@ -1,6 +1,6 @@
 # RLM.md — Comprehensive Guide to Recursive Language Models
 
-**Source:** https://rlm.md (The Complete RLM Reference)
+**Source:** (The Complete RLM Reference)
 **Authors:** Community-curated from rlm.md (based on MIT OASYS Lab research by Alex L. Zhang, Tim Kraska, Omar Khattab)
 **Paper:** "Recursive Language Models" — arXiv:2512.24601, Accepted at ICML 2025
 
@@ -8,12 +8,12 @@
 
 ## INDEX: 6 Sections
 
-1. [Fundamentals](#1-fundamentals) — The decompose-recurse-aggregate pattern
-2. [Techniques](#2-techniques) — REPL, decomposition, sub-calls, post-training
-3. [Research](#3-research) — Paper deep dive, benchmark results, ablations
-4. [Applications](#4-applications) — Code analysis, legal, deep research, books
-5. [Comparison: LLM vs RLM](#5-comparison-llm-vs-rlm) — Two fundamentally different approaches
-6. [Summary](#6-summary) — When to use RLMs
+1. Fundamentals — The decompose-recurse-aggregate pattern
+2. Techniques — REPL, decomposition, sub-calls, post-training
+3. Research — Paper deep dive, benchmark results, ablations
+4. Applications — Code analysis, legal, deep research, books
+5. Comparison: LLM vs RLM — Two fundamentally different approaches
+6. Summary — When to use RLMs
 
 ---
 
@@ -53,22 +53,22 @@ The key: at every level of recursion, the model's context window only contains c
 
 ```
 User Prompt P (e.g., 10M tokens)
-    |
-    v
-[RLM Root] -- sees: len(P)=10M, P[:200]="The first..."
-    |
-    |-- writes: chunks = [P[i:i+8000] for i in range(0, len(P), 8000)]
-    |-- writes: results = [sub_rlm(f"Summarize: {c}") for c in chunks]
-    |                         |
-    |                         +--[Sub-RLM 1] processes chunk 1 (8K tokens)
-    |                         +--[Sub-RLM 2] processes chunk 2 (8K tokens)
-    |                         +--[Sub-RLM 3] processes chunk 3 (8K tokens)
-    |                         +-- ... (1,250 sub-calls for 10M tokens)
-    |
-    |-- writes: combined = "\n".join(results)
-    |-- writes: Final = sub_rlm(f"Given these summaries: {combined}, answer: ...")
-    |
-    v
+ |
+ v
+[RLM Root] -- sees: len(P)=10M, P[:200]="The first"
+ |
+ |-- writes: chunks = [P[i:i+8000] for i in range(0, len(P), 8000)]
+ |-- writes: results = [sub_rlm(f"Summarize: {c}") for c in chunks]
+ | |
+ | +--[Sub-RLM 1] processes chunk 1 (8K tokens)
+ | +--[Sub-RLM 2] processes chunk 2 (8K tokens)
+ | +--[Sub-RLM 3] processes chunk 3 (8K tokens)
+ | +-- (1,250 sub-calls for 10M tokens)
+ |
+ |-- writes: combined = "\n".join(results)
+ |-- writes: Final = sub_rlm(f"Given these summaries: {combined}, answer: ")
+ |
+ v
 Response Y
 ```
 
@@ -84,7 +84,7 @@ The paper identifies three specific design decisions that separate RLMs from exi
 
 **3. Recursion is programmatic, not verbal.** Previous self-delegation approaches (like Anthropic's sub-agent patterns) let models invoke themselves, but the sub-calls are generated autoregressively — one at a time, limited by output length. RLMs write *programs* that launch sub-calls inside loops, enabling the model to invoke itself O(|P|) or even O(|P|^2) times through a few lines of code.
 
-Point 3 is the killer. A standard agent might verbalize "now process chunk 1... now process chunk 2..." and run out of context after a dozen chunks. An RLM writes `for chunk in chunks: results.append(sub_rlm(chunk))` and processes thousands.
+Point 3 is the killer. A standard agent might verbalize "now process chunk 1 now process chunk 2" and run out of context after a dozen chunks. An RLM writes `for chunk in chunks: results.append(sub_rlm(chunk)` and processes thousands.
 
 ### Complexity Classes
 
@@ -393,8 +393,8 @@ DSPy (v3.1.2+) ships with built-in RLM support. Google's Agent Development Kit h
 
 ---
 
-**Full Paper:** arXiv:2512.24601 (https://arxiv.org/abs/2512.24601)
-**Website:** https://rlm.md
+**Full Paper:** arXiv:2512.24601 ()
+**Website:** 
 **Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab
 **Affiliation:** MIT OASYS Lab
 **Venue:** ICML 2025

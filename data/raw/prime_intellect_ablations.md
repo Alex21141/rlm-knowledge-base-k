@@ -1,6 +1,6 @@
 # Recursive Language Models: the paradigm of 2026 (Prime Intellect)
 
-**Source:** https://www.primeintellect.ai/blog/rlm
+**Source:** 
 **Authors:** Prime Intellect team (Sebastian)
 **Date:** March 2026 (estimated)
 **Tags:** RLM, context folding, ablations, GPT-5-mini, INTELLECT-3, DeepDive, Oolong, verbatim copy
@@ -15,19 +15,19 @@ LLM agents have become significantly more useful over the course of this year. T
 
 These capabilities require the use of vast numbers of tokens.
 
-But that, in turn, is difficult for current LLMs: per-token costs rise linearly with the context length, while [the performance of even the best models drops with it](https://nrehiew.github.io/blog/long_context/). A well-known phenomenon at this point is [context rot](https://research.trychroma.com/context-rot), the reduction of LLM capabilities as contexts grow in size. And even though changes to architecture and training data have caused, and will continue to cause, much progress to address these challenges, there is one thing that is complementary to both, and has consistently been a huge multiplier to LLMs’ effective context length: scaffolding.
+But that, in turn, is difficult for current LLMs: per-token costs rise linearly with the context length, while the performance of even the best models drops with it. A well-known phenomenon at this point is context rot, the reduction of LLM capabilities as contexts grow in size. And even though changes to architecture and training data have caused, and will continue to cause, much progress to address these challenges, there is one thing that is complementary to both, and has consistently been a huge multiplier to LLMs’ effective context length: scaffolding.
 
 Claude Code, OpenAI's Codex, and similar TUI systems tend to use file-systems and context compression by LLM summarization at regular intervals as the basis of their scaffolding. This effectively leads to a succession of agents, all connected to each other by a prompt and the state of some set of files.
 
 A different approach to the context problem is "context folding". Its goal is to have a continual, growing rollout, while managing the context window itself (instead of external files) in order to keep it short. This is compatible with the file-based scaffolding, as an LLM using context folding looks just like a normal LLM from the outside, and thus, it is a way to further prevent context rot and manage costs. Some examples are:
 
-- [Scaling Long-Horizon LLM Agent via Context-Folding](http://arxiv.org/abs/2510.11967): the agent can actively `branch` its rollout, and `return` from the branch; within the branch, it retains the full previous context, but after returning, only a self-chosen summary of the branch remains in the context window
-- [AgentFold: Long-Horizon Web Agents with Proactive Context Management](http://arxiv.org/abs/2510.24699): every one of the agent's actions produces both a result, and a summary of the action and the reasoning that led to it. These summaries can be hierarchical, consolidating the lessons from multiple actions into a single point, or retaining per-action summaries
-- [Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models](http://arxiv.org/abs/2510.04618): a three-agent system with a Generator that uses the current knowledge base for creating the rollout, a Reflector which takes lessons and information about the generation and about the current state of the knowledge base, and a Curator for taking the Reflector's lessons and adapting the knowledge base with them in a structured manner
+- Scaling Long-Horizon LLM Agent via Context-Folding: the agent can actively `branch` its rollout, and `return` from the branch; within the branch, it retains the full previous context, but after returning, only a self-chosen summary of the branch remains in the context window
+- AgentFold: Long-Horizon Web Agents with Proactive Context Management: every one of the agent's actions produces both a result, and a summary of the action and the reasoning that led to it. These summaries can be hierarchical, consolidating the lessons from multiple actions into a single point, or retaining per-action summaries
+- Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models: a three-agent system with a Generator that uses the current knowledge base for creating the rollout, a Reflector which takes lessons and information about the generation and about the current state of the knowledge base, and a Curator for taking the Reflector's lessons and adapting the knowledge base with them in a structured manner
 
-However, we at [Prime Intellect](https://www.primeintellect.ai/) believe that the simplest, most flexible method for context folding is the Recursive Language Model (RLM), introduced by Alex Zhang in October 2025 as a [blog post](https://alexzhang13.github.io/blog/2025/rlm/), and now available as a full paper: [https://arxiv.org/abs/2512.24601](https://arxiv.org/abs/2512.24601). It is now a major focus of our research.
+However, we at Prime Intellect believe that the simplest, most flexible method for context folding is the Recursive Language Model (RLM), introduced by Alex Zhang in October 2025 as a blog post, and now available as a full paper: It is now a major focus of our research.
 
-The RLM allows the model to actively manage its own context. This approach is more in line with [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) than the ones presented before; it enables training directly with the RLM scaffolding and getting better and better, learned context folding; and it never actually summarizes context, which leads to information loss. Instead, it pro-actively delegates context to Python scripts and sub-LLMs.
+The RLM allows the model to actively manage its own context. This approach is more in line with The Bitter Lesson than the ones presented before; it enables training directly with the RLM scaffolding and getting better and better, learned context folding; and it never actually summarizes context, which leads to information loss. Instead, it pro-actively delegates context to Python scripts and sub-LLMs.
 
 We believe that teaching models to manage their own context end-to-end through reinforcement learning will be the next major breakthrough, enabling agents to solve long-horizon tasks spanning weeks to months.
 
@@ -45,27 +45,27 @@ This enables several nice capabilities:
 
 These skills combined make it a great candidate for situations that typically require large context sizes.
 
-We at Prime Intellect have implemented our version of the RLM in [verifiers](https://github.com/PrimeIntellect-ai/verifiers/) so that it is ready to be used in any environment—we do provide [several RLM-based environments on the Environments Hub](https://app.primeintellect.ai/dashboard/environments?ex_sort=by_sections&ex_q=rlm)—and for training with [prime-rl](https://github.com/PrimeIntellect-ai/prime-rl). It is still an experimental work-in-progress, but we have already added our own flavor to it.
+We at Prime Intellect have implemented our version of the RLM in verifiers so that it is ready to be used in any environment—we do provide several RLM-based environments on the Environments Hub—and for training with prime-rl. It is still an experimental work-in-progress, but we have already added our own flavor to it.
 
 The two most important changes required to understand the rest of the article are (1) that tools beyond the Python REPL can be used, but only by sub-LLMs; and (2) that the model can only provide its answer via an environment variable. The details are as follows:
 
 - The sub-LLM calls can be parallelized
-  - The model has an `llm_batch` function available in the REPL, through which it can process a batch of prompts in parallel
+ - The model has an `llm_batch` function available in the REPL, through which it can process a batch of prompts in parallel
 - The sub-LLMs can be given tools
-  - In fact, any tools you give the environment will only be usable by the sub-LLMs
-  - This decision was made because many tools produce a lot of tokens. Now, the main RLM doesn't have to see those tokens, and can instead delegate the work that requires tools
-  - As shown below, this strategy is very successful in our tests
+ - In fact, any tools you give the environment will only be usable by the sub-LLMs
+ - This decision was made because many tools produce a lot of tokens. Now, the main RLM doesn't have to see those tokens, and can instead delegate the work that requires tools
+ - As shown below, this strategy is very successful in our tests
 - Any pip package can be installed
-  - The RLM is made aware of which packages are installed
-  - In math-python, for example, `numpy`, `scipy`, and `sympy` were installed
-  - The standard library is always available
-  - Code execution happens in isolated [Sandboxes](https://docs.primeintellect.ai/sandboxes/overview)
+ - The RLM is made aware of which packages are installed
+ - In math-python, for example, `numpy`, `scipy`, and `sympy` were installed
+ - The standard library is always available
+ - Code execution happens in isolated Sandboxes
 - The RLM only ever provides an answer in a Python variable
-  - An `answer` variable is initialized at the start of each Sandbox running the Python code; it's a dictionary with two keys:
-    - `"content"`: The LLM can write into this as often as it wants, and it can delete or edit the content over multiple turns
-    - `"ready"`: Only when this is set to `True` will the rollout end, and the answer be extracted from `"content"`
-  - At the start of each rollout, `answer = {"content": "", ready: False}`
-  - This setup allows the model to generate its final answer via a form of diffusion, which occurs over the course of its reasoning chain
+ - An `answer` variable is initialized at the start of each Sandbox running the Python code; it's a dictionary with two keys:
+ - `"content"`: The LLM can write into this as often as it wants, and it can delete or edit the content over multiple turns
+ - `"ready"`: Only when this is set to `True` will the rollout end, and the answer be extracted from `"content"`
+ - At the start of each rollout, `answer = {"content": "", ready: False}`
+ - This setup allows the model to generate its final answer via a form of diffusion, which occurs over the course of its reasoning chain
 
 In our current implementation, both a prompt and extra input data can be given. The prompt is put directly into the RLM's context window, while the extra input data is available only programmatically. The only way for the RLM to view that data is to print it in the REPL. But since we limit the number of output characters from the REPL output that will be shown to the RLM in each turn (to 8192 by default, user-adjustable), the RLM is forced to make use of Python and sub-LLMs to work with input data.
 
@@ -98,10 +98,10 @@ Let's go through what they do and why we looked at them one by one.
 
 ### DeepDive
 
-[DeepDive](http://arxiv.org/abs/2509.10446) is a method for gathering data for Deep Research tasks by walking open knowledge graphs to create complex questions and verifiable answers, then obfuscating the questions via LLM re-formulation. A [GitHub repo](https://github.com/THUDM/DeepDive) and a [HuggingFace dataset](https://huggingface.co/datasets/zai-org/DeepDive) exist.
+DeepDive is a method for gathering data for Deep Research tasks by walking open knowledge graphs to create complex questions and verifiable answers, then obfuscating the questions via LLM re-formulation. A GitHub repo and a HuggingFace dataset exist.
 
-- [The version of DeepDive used for these experiments](https://github.com/PrimeIntellect-ai/verifiers/tree/sebastian/experiment/rlm/environments/deepdive)
-- [deepdive-rlm on the Environments Hub](https://app.primeintellect.ai/dashboard/environments/primeintellect/deepdive-rlm)
+- The version of DeepDive used for these experiments
+- deepdive-rlm on the Environments Hub
 
 Some examples:
 
@@ -112,7 +112,7 @@ Some examples:
 
 To solve such problems, the models have three tools available to them:
 
-- `search(query: str)`; use Google via [Serper](https://serper.dev/). Returns an enumerated list of Google results and the corresponding URL
+- `search(query: str)`; use Google via Serper. Returns an enumerated list of Google results and the corresponding URL
 - `click(index: int)`; "click" on one of the results from the previous search by providing the list-index
 - `open(url: str)`; open the given URL
 
@@ -159,8 +159,8 @@ We don't ablate settings for DeepDive, meaning that no specific default settings
 
 math-python poses difficult math problems, and gives an LLM a Python tool to solve those problems.
 
-- [The version of math-python used for these experiments](https://github.com/PrimeIntellect-ai/verifiers/tree/sebastian/experiment/rlm/environments/math_python)
-- [math-env-rlm on the Environments Hub](https://app.primeintellect.ai/dashboard/environments/primeintellect/math-env-rlm)
+- The version of math-python used for these experiments
+- math-env-rlm on the Environments Hub
 
 Examples:
 
@@ -191,19 +191,19 @@ Like in DeepDive, we simply use the environment defaults.
 
 ### Oolong
 
-[Oolong](http://arxiv.org/abs/2511.02817) is a long-context eval with both a [GitHub page](https://github.com/abertsch72/oolong) and a [HuggingFace dataset](https://huggingface.co/oolongbench/datasets).
+Oolong is a long-context eval with both a GitHub page and a HuggingFace dataset.
 
-- [The version of Oolong used for this article](https://github.com/PrimeIntellect-ai/verifiers/tree/sebastian/experiment/rlm/environments/oolong)
-- [oolong-rlm on the Environments Hub](https://app.primeintellect.ai/dashboard/environments/primeintellect/oolong-rlm)
+- The version of Oolong used for this article
+- oolong-rlm on the Environments Hub
 
 The dataset is split into _synth_, _synth-with-labels_, and _real_:
 
 - The _synth_ data is constructed by aggregating multiple existing classification prompts into one bigger prompt and asking the model to aggregate some quantity
-  - For example: take a dataset for classifying mails into "spam" and "no spam"; throw many of the example inputs into one prompt; and ask the model to count how many spam mails are contained within the prompt
+ - For example: take a dataset for classifying mails into "spam" and "no spam"; throw many of the example inputs into one prompt; and ask the model to count how many spam mails are contained within the prompt
 - The _synth-with-labels_ data is the _synth_ data, but the classification (for example, "spam" or "no spam") is provided for each sub-prompt from which the data is created
 - The _real_ dataset is constructed from real D&D playing sessions that were recorded and from which some information was extracted
-  - For example: how often was xyz spell cast?
-  - For example: when did xyz happen?
+ - For example: how often was xyz spell cast?
+ - For example: when did xyz happen?
 
 Both the _synth_ and _real_ subsets involve many instances of classification and data extraction per prompt, followed by aggregation of the results. _synth-with-labels_ only requires aggregation. The most important dataset is _real_, which we therefore choose for our default setting.
 
@@ -236,25 +236,25 @@ _Default settings for Oolong_
 
 LLMs often struggle to repeat complex texts verbatim. This is both a result of training, and an inherent limitation from sampling-based generation. To test this, we developed the verbatim copy environment.
 
-- [The version of verbatim-copy used for this article](https://github.com/PrimeIntellect-ai/verifiers/tree/sebastian/experiment/rlm/environments/verbatim_copy)
-- [verbatim-copy-rlm on the Environments Hub](https://app.primeintellect.ai/dashboard/environments/primeintellect/verbatim-copy-rlm)
+- The version of verbatim-copy used for this article
+- verbatim-copy-rlm on the Environments Hub
 
 It auto-generates data for the model to copy, and has several knobs to turn:
 
 - `content_type`: how the data is generated
-  - "words": English word sequences
-  - "json": JSON formatted data
-  - "csv": CSV tabular data
-  - "codes": UUIDs and alphanumeric codes
-  - "mixed": combination of all types in one prompt (see `mean_fragment_length` below to see how this is implemented)
-  - "all": balanced mix across all types; each prompt has a random content type
+ - "words": English word sequences
+ - "json": JSON formatted data
+ - "csv": CSV tabular data
+ - "codes": UUIDs and alphanumeric codes
+ - "mixed": combination of all types in one prompt (see `mean_fragment_length` below to see how this is implemented)
+ - "all": balanced mix across all types; each prompt has a random content type
 - `target_length`: the length of each repeatable sequence in characters. Achieved by over-generating and then truncating to the desired length
 - `mean_fragment_length`: the mean length of fragments
-  - We oversample the data for each prompt by generating a much larger batch than requested
-  - Say we have 4 initial prompts per final prompt
-  - Then, we take a random slice from each of those 4 prompts and put them together
-  - `mean_fragment_length` controls the mean size of those slices (which randomly vary by ±50%)
-  - The nice thing is that if we have "mixed" data, the prompt will be made up of slices from different data-types, which could lead to strange tokenization and weird texts; though even with a single data-type, it can have advantages like breaking json syntax in strange ways
+ - We oversample the data for each prompt by generating a much larger batch than requested
+ - Say we have 4 initial prompts per final prompt
+ - Then, we take a random slice from each of those 4 prompts and put them together
+ - `mean_fragment_length` controls the mean size of those slices (which randomly vary by ±50%)
+ - The nice thing is that if we have "mixed" data, the prompt will be made up of slices from different data-types, which could lead to strange tokenization and weird texts; though even with a single data-type, it can have advantages like breaking json syntax in strange ways
 
 All randomness is controllable via a seed, which we keep the same across experiments.
 
@@ -303,7 +303,7 @@ We will present the results in three sections:
 - Within environments, shining more light on the behavior of some specific environments (GPT-5-mini only)
 - For different models
 
-Every plot will be paired with the command with which it can be replicated from [verifiers](https://github.com/PrimeIntellect-ai/verifiers) [sebastian/experiment/rlm branch](https://github.com/PrimeIntellect-ai/verifiers/tree/sebastian/experiment/rlm), from the root verifiers directory.
+Every plot will be paired with the command with which it can be replicated from verifiers sebastian/experiment/rlm branch, from the root verifiers directory.
 
 ### Results across environments
 
@@ -528,7 +528,7 @@ We believe that both efficient attention and context folding are needed for true
 
 Scaffolding to handle extremely long contexts is becoming more and more important to LLMs, and context folding is a promising approach in that direction. We currently believe that the Recursive Language Model is the best method for context folding, due to its simplicity and, at the same time, great flexibility and extensibility.
 
-We implement a variation of the RLM in [verifiers](https://github.com/PrimeIntellect-ai/verifiers) as the experimental [RLMEnv](https://github.com/PrimeIntellect-ai/verifiers/blob/main/verifiers/envs/experimental/rlm_env.py), enabling plug-and-play usage in any verifiers environment. We ablate it with GPT-5-mini on four environments, and find that the RLM helps with long context problems and token-intense tool-usage. We validate our design decisions and find great promise for future training of the RLM.
+We implement a variation of the RLM in verifiers as the experimental RLMEnv, enabling plug-and-play usage in any verifiers environment. We ablate it with GPT-5-mini on four environments, and find that the RLM helps with long context problems and token-intense tool-usage. We validate our design decisions and find great promise for future training of the RLM.
 
 We observe that the RLM scaffold doesn’t necessarily improve baseline on all benchmark, we hypothesis that the true potential of RLM and context folding will be unleashed after being train via RL.
 

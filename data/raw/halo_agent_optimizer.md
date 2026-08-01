@@ -1,6 +1,6 @@
 # HALO: Hierarchical Agent Loop Optimizer
 
-**Repository:** https://github.com/context-labs/halo
+**Repository:** 
 **PyPI:** `halo-engine`
 **Tagline:** RLM-based agent optimizer using production traces
 
@@ -74,14 +74,14 @@ halo --help
 ### CLI Usage
 
 ```
-export OPENAI_API_KEY=...
+export OPENAI_API_KEY=
 # Optional: point HALO at another OpenAI-compatible provider.
-export OPENAI_BASE_URL=https://openrouter.ai/api/v1
+export OPENAI_BASE_URL=
 
 halo path_to_your_traces.jsonl -p "Diagnose errors you find and suggest fixes"
 ```
 
-HALO uses the canonical OpenAI env vars: `OPENAI_API_KEY` for credentials and `OPENAI_BASE_URL` for OpenAI-compatible providers. If `OPENAI_BASE_URL` is unset, HALO uses `https://api.openai.com/v1`.
+HALO uses the canonical OpenAI env vars: `OPENAI_API_KEY` for credentials and `OPENAI_BASE_URL` for OpenAI-compatible providers. If `OPENAI_BASE_URL` is unset, HALO uses `
 
 ### CLI Options
 
@@ -121,7 +121,7 @@ The engine exposes four entry points from `engine.main`:
 from engine.main import stream_engine_output_async
 
 async for item in stream_engine_output_async(messages, cfg, trace_path):
-    logger.info("step", extra={"sequence": item.sequence, "agent": item.agent_name})
+ logger.info("step", extra={"sequence": item.sequence, "agent": item.agent_name})
 ```
 
 ## Benchmarks
