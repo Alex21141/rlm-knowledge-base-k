@@ -310,8 +310,6 @@ There are several natural extensions we’re excited about:
 
 [llm](https://www.zenml.io/tags/llm) [agents](https://www.zenml.io/tags/agents) [production](https://www.zenml.io/tags/production) [LLMOps](https://www.zenml.io/tags/llmops)
 
-[](https://www.zenml.io/author/alex-strick-van-linschoten)
-
 [Alex Strick van Linschoten](https://www.zenml.io/author/alex-strick-van-linschoten)
 
 [View all posts →](https://www.zenml.io/author/alex-strick-van-linschoten)

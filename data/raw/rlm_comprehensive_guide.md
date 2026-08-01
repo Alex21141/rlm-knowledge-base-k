@@ -218,7 +218,6 @@ The evidence is strong. Four diverse benchmarks, two frontier models (GPT-5 and 
 ### Benchmark Results
 
 | Method | S-NIAH | BrowseComp+ | OOLONG | OOLONG-Pairs |
-|--------|--------|-------------|--------|--------------|
 | GPT-5 (vanilla) | 92.0 | * | 41.1 | <0.1 |
 | **RLM(GPT-5)** | **98.0** | **47.3** | **69.5** | **58.0** |
 | Summary Agent (GPT-5) | — | 18.0 | 48.8 | 1.5 |
@@ -350,7 +349,6 @@ RLMs are not always the right tool. The paper is honest about this: for short in
 Two fundamentally different approaches to processing long inputs.
 
 | Feature | Large Language Model | Recursive Language Model |
-|---------|---------------------|--------------------------|
 | Context window | 272K tokens (fixed) | 10M+ tokens (stored as env variable) |
 | Input handling | Entire input at once | Decompose → chunk → recurse → aggregate |
 | Processing | Single forward pass over ALL tokens | REPL environment with sub-RLM calls |

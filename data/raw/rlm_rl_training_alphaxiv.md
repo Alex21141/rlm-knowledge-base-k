@@ -22,7 +22,7 @@ RLMs \[1\] spawn language models (LMs) inside a programmatic environment that st
 
 Like the original RLM paper, we use a Python Read-Eval-Print-Loop (REPL) as our environment. Rather than treating code execution as just another tool, RLMs in a REPL make code the primary interface through which the model inspects and transforms data. Every turn, the model writes code it wants to execute, the REPL executes the code, and the RLM orchestrator returns the results of the executed code (primarily `print()` statements) as a user message back to the model for the next turn.
 
-![IMAGE: Overview of how a Recursive Language Model (RLM) works: the parent decomposes a task into sub-queries dispatched to child RLMs, each running in its own REPL environment]RLMs interact with their context inside of a Python REPL environment. They can recursively call themselves to decompose large prompts. Figure from [\[1\]](https://www.alphaxiv.org/abs/2512.24601).
+RLMs interact with their context inside of a Python REPL environment. They can recursively call themselves to decompose large prompts. Figure from [\[1\]](https://www.alphaxiv.org/abs/2512.24601).
 
 The REPL exposes a set of built-in functions to the model:
 
@@ -34,7 +34,7 @@ The ability to interact with context programmatically and spawn sub-RLMs or sub-
 
 For this blog, we'll focus on the task of evidence selection from scientific documents. Given a question and a set of arXiv papers, the objective is to return snippets from the papers that answer the question. The context that is stored in the REPL for this task is the full text of all of the papers in the set for a given question.
 
-![IMAGE: Example evidence selection from a paper]The golden snippets we would like the RLM to return for the question: “What baselines are used for this paper?”
+The golden snippets we would like the RLM to return for the question: “What baselines are used for this paper?”
 
 ```
 step 1 · search the paper1hits = search("baseline")

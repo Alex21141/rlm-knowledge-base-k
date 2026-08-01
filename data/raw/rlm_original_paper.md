@@ -27,14 +27,15 @@ We study allowing large language models (LLMs) to process arbitrarily long promp
 
 ## 1 Introduction
 
-![IMAGE: Refer to caption]Figure 1: A comparison of GPT-5 and a corresponding RLM on three long-context tasks of increasing complexity: S-NIAH, OOLONG, and OOLONG-Pairs. For each task, we scale the input length from 2132^{13} to 2182^{18}. GPT-5 performance degrades significantly as a function of both input length and task complexity, while the RLM maintains strong performance.
+Figure 1: A comparison of GPT-5 and a corresponding RLM on three long-context tasks of increasing complexity: S-NIAH, OOLONG, and OOLONG-Pairs. For each task, we scale the input length from 2132^{13} to 2182^{18}. GPT-5 performance degrades significantly as a function of both input length and task complexity, while the RLM maintains strong performance.
+
 Inputs beyond the red region do not fit in GPT-5’s context window of 272K tokens, but the RLM handles them effectively. Additional experiments across other models, methods, and benchmarks are in § [2](https://arxiv.org/html/2512.24601v1#S2 "2 Scaling Long Context Tasks ‣ Recursive Language Models").
 
 Despite rapid progress in reasoning and tool use, modern language models still have limited context lengths and, even within these limits, appear to inevitably exhibit context rot(Hong et al., [2025](https://arxiv.org/html/2512.24601v1#bib.bib38 "Context rot: how context degradation affects llm performance")), the phenomenon illustrated in the left-hand side of Figure [1](https://arxiv.org/html/2512.24601v1#S1.F1 "Figure 1 ‣ 1 Introduction ‣ Recursive Language Models") where the quality of even frontier models like GPT-5 degrades quickly as context gets longer. Though we expect context lengths to steadily rise through improvements to training, architecture, and infrastructure, we are interested in whether it possible to dramatically scale the context size of general-purpose LLMs by orders of magnitude. This is increasingly urgent as LLMs begin to be widely adopted for long-horizon tasks, in which they must routinely process tens if not hundreds of millions of tokens.
 
 We study this question through the lens of scaling inference-time compute. We draw broad inspiration from out-of-core algorithms, in which data-processing systems with a small but fast main memory can process far larger datasets by cleverly managing how data is fetched into memory. Inference-time methods for dealing with what are in essence long-context problems are very common, though typically task-specific. One general and increasingly popular inference-time approach in this space is context condensation or compaction (Khattab et al., [2021](https://arxiv.org/html/2512.24601v1#bib.bib16 "Baleen: robust multi-hop reasoning at scale via condensed retrieval"); Smith, [2025](https://arxiv.org/html/2512.24601v1#bib.bib17 "OpenHands context condensensation for more efficient ai agents"); OpenAI, [2025a](https://arxiv.org/html/2512.24601v1#bib.bib21 "Codex cli: a lightweight coding agent for your terminal"); Wu et al., [2025](https://arxiv.org/html/2512.24601v1#bib.bib5 "ReSum: unlocking long-horizon search intelligence via context summarization")), in which the context is repeatedly summarized once it exceeds a length threshold. Unfortunately, compaction is rarely expressive enough for tasks that require dense access to many parts of the prompt, as it presumes in effect that some details that appear early in the prompt can safely be forgotten to make room for new content.
 
-![IMAGE: Refer to caption]Figure 2: A Recursive Language Model (RLM) treats prompts as part of the environment. It loads the input prompt as a variable inside a Python REPL environment ℰ\\mathcal{E} and writes code to peek into, decompose, and invoke itself recursively over programmatic snippets of the variable.
+Figure 2: A Recursive Language Model (RLM) treats prompts as part of the environment. It loads the input prompt as a variable inside a Python REPL environment ℰ\\mathcal{E} and writes code to peek into, decompose, and invoke itself recursively over programmatic snippets of the variable.
 
 We introduce Recursive Language Models (RLMs), a general-purpose inference paradigm for dramatically scaling the effective input and output lengths of modern LLMs. The key insight is that long prompts should not be fed into the neural network (e.g., Transformer) directly but should instead be treated as part of the environment that the LLM can symbolically interact with.
 
@@ -106,7 +107,7 @@ Observation 2: The REPL environment is necessary for handling long inputs, while
 
 On information-dense tasks like OOLONG or OOLONG-Pairs, we observed several cases where recursive LM sub-calling is necessary. In § [3.1](https://arxiv.org/html/2512.24601v1#S3.SS1 "3.1 Emergent Patterns in RLM Trajectories ‣ 3 Results and Discussion ‣ Recursive Language Models"), we see RLM(Qwen3-Coder) perform the necessary semantic transformation line-by-line through recursive sub-calls, while the ablation without sub-calls is forced to use keyword heuristics to solve these tasks. Across all information-dense tasks, RLMs outperform the ablation without sub-calling by 10%10\\%-59%59\\%.
 
-![IMAGE: Refer to caption]Figure 3: Cost of RLM and baselines described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models") plotted at the 25th, 50th, 75th, and 95th percentile of total API cost. We observe comparable or even lower costs for RLMs at the 50th percentile, but sharp increases at the tail end due to potentially long RLM trajectories.
+Figure 3: Cost of RLM and baselines described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models") plotted at the 25th, 50th, 75th, and 95th percentile of total API cost. We observe comparable or even lower costs for RLMs at the 50th percentile, but sharp increases at the tail end due to potentially long RLM trajectories.
 
 Observation 3: LM performance degrades as a function of input length and problem complexity, while RLM performance scales better. The benchmarks S-NIAH, OOLONG, and OOLONG-Pairs contain a fixed number of tasks over a context with lengths ranging from 2132^{13} to 2182^{18}. Furthermore, each benchmark can be loosely categorized by different processing costs of the input context with respect to length (roughly constant, linear, and quadratic respectively). In Figure [1](https://arxiv.org/html/2512.24601v1#S1.F1 "Figure 1 ‣ 1 Introduction ‣ Recursive Language Models"), we directly compare an RLM using GPT-5 to base GPT-5 on each task – we find that GPT-5 performance degrades significantly faster for more complex tasks, while RLM performance degrades but at a much slower rate, which aligns with the findings of  Goldman et al. ( [2025](https://arxiv.org/html/2512.24601v1#bib.bib23 "Is it really long context if all you need is retrieval? towards genuinely difficult long context nlp")). For context lengths beyond 2142^{14}, the RLM consistently outperforms GPT-5.
 
@@ -124,7 +125,7 @@ We note that the RLM system prompt is fixed for each model across all experiment
 
 Even without explicit training, RLMs exhibit interesting context management and problem decomposition behavior. We select several examples of snippets from RLM trajectories to understand how they solve long context problems and where they can improve. We discuss particular examples of interesting behavior here, with additional examples in Appendix [B](https://arxiv.org/html/2512.24601v1#A2 "Appendix B Additional RLM Trajectories ‣ Recursive Language Models").
 
-![IMAGE: Refer to caption]Figure 4: RLMs have common patterns in their trajectories when solving tasks. (a) We frequently observed RLMs filtering and interacting with their context through code like regex queries. (b) We found that RLMs can effectively decompose their context through recursive sub-calls (c) On long-output tasks, RLMs are able to solve sub-problems using recursive sub-LM calls and stitch their outputs to form a final output.
+Figure 4: RLMs have common patterns in their trajectories when solving tasks. (a) We frequently observed RLMs filtering and interacting with their context through code like regex queries. (b) We found that RLMs can effectively decompose their context through recursive sub-calls (c) On long-output tasks, RLMs are able to solve sub-problems using recursive sub-LM calls and stitch their outputs to form a final output.
 
 Filtering input information using code execution based on model priors. A key intuition for why the RLM abstraction can maintain strong performance on huge inputs without exploding costs is the LM’s ability to filter input context without explicitly seeing it. Furthermore, model priors enable the RLM to narrow the search space and process fewer input tokens. As an example, in Figure [4](https://arxiv.org/html/2512.24601v1#S3.F4 "Figure 4 ‣ 3.1 Emergent Patterns in RLM Trajectories ‣ 3 Results and Discussion ‣ Recursive Language Models") a, we observed RLM(GPT-5) using regex queries search for chunks containing keywords in the original prompt (e.g. “festival”) and phrases it has a prior about (e.g. “La Union”). Across most trajectories, a common strategy we observed was probing the context by printing a few lines back to the root LM, then filtering based on its observations.
 
@@ -342,7 +343,6 @@ External Links: 2506.07398,
 arXiv preprint arXiv:2408.02248.
 Cited by: [§4](https://arxiv.org/html/2512.24601v1#S4.p2.1 "4 Related Works ‣ Recursive Language Models").
 
-
 ## Appendix A Negative Results: Things we Tried that Did Not Work.
 
 Drawing inspiration from  Redmon and Farhadi ( [2018](https://arxiv.org/html/2512.24601v1#bib.bib45 "YOLOv3: an incremental improvement")), we try to be descriptive about what tricks, quirks, and other relevant things failed and succeeded in a concise manner. Some observations are based on longer supplementary experiments, while others are based on small samples of results.
@@ -367,55 +367,27 @@ A few noticeable properties of these trajectories are that RLMs often make non-o
 
 The total cost of this trajectory was $0.079. In this task, the agent must find the answer to the following multi-hop query given a corpus of 1000 unique documents ( 8.3M total tokens) that contain evidence documents and negatives:
 
-[⬇](data:text/plain;base64,VGhpcyB2ZWdldGFibGUgc3RldyB1c2VzIGZpc2gsIGJ1dCBhZGRpbmcgbWVhdCBpcyBwb3NzaWJsZS4gSXQgYWxzbyB1c2VzIGEgc2FsdHkgYW5kIGludGVuc2UgY29uZGltZW50LCB3aGljaCBpcyB0aGUgY3JpdGljYWwgaW5ncmVkaWVudCBvZiB0aGUgZGlzaC4gQXMgb2YgMjAyMywgYSB0b3duc2hpcCBob2xkcyBhIGNlbGVicmF0aW9uIG5hbWVkIGFmdGVyIHRoaXMgc3Rldy4gQmV0d2VlbiAxOTk1IGFuZCAyMDA1IGluY2x1c2l2ZSwgdGhpcyBmZXN0aXZpdHkgYmVnYW4gYWZ0ZXIgYXV0aG9yaXRpZXMgc2hpZnRlZCB0aGUgaGlnaGxpZ2h0IGFuZCBzdWJqZWN0IG9mIHRoZWlyIGV2ZW50IHRvIHNldCB0aGVtIGFwYXJ0IGZyb20gb3RoZXIgYXJlYXMgaW4gdGhlIHJlZ2lvbiB0aGF0IHVzZSB0aGUgc2FtZSBwcm9kdWN0IGluIHRoZWlyIGNlbGVicmF0aW9ucy4gVGhpcyB0b3duIGhvbGRzIHRoZSBldmVudCBldmVyeSB5ZWFyIGFmdGVyIEZlYnJ1YXJ5IGJ1dCBiZWZvcmUgU2VwdGVtYmVyLiBEdXJpbmcgaXRzIHRoaXJ0ZWVudGggYW5uaXZlcnNhcnksIGl0IGNvbmR1Y3RlZCBhIGNvbXBldGl0aW9uIHRoYXQgc2hvd2Nhc2VkIHRvd24gYW5kIHByb3ZpbmNpYWwgZmVzdGl2aXRpZXMgaW4gdGhlIHJlZ2lvbiwgd2hlcmUgYWxsIHRocmVlIHdpbm5lcnMgY2FtZSBmcm9tIHRoZSBzYW1lIHByb3ZpbmNlLiBBIGJlYXV0eSBwYWdlYW50IHdhcyBhbHNvIGEgcGFydCBvZiB0aGUgY2VsZWJyYXRpb24uIFdoYXQgYXJlIHRoZSBmaXJzdCBhbmQgbGFzdCBuYW1lcyBvZiB0aGUgcGVyc29uIHdobyB3b24gdGhhdCBjb250ZXN0IHRoYXQgeWVhcj8=)
-
-Thisvegetablestewusesfish,butaddingmeatispossible.Italsousesasaltyandintensecondiment,whichisthecriticalingredientofthedish.Asof2023,atownshipholdsacelebrationnamedafterthisstew.Between1995and2005inclusive,thisfestivitybeganafterauthoritiesshiftedthehighlightandsubjectoftheireventtosetthemapartfromotherareasintheregionthatusethesameproductintheircelebrations.ThistownholdstheeventeveryyearafterFebruarybutbeforeSeptember.Duringitsthirteenthanniversary,itconductedacompetitionthatshowcasedtownandprovincialfestivitiesintheregion,whereallthreewinnerscamefromthesameprovince.Abeautypageantwasalsoapartofthecelebration.Whatarethefirstandlastnamesofthepersonwhowonthatcontestthatyear?
-
 Step 1. GPT-5 (as the root LM) first decides to probe at the 1000 document list with regex queries. It has some priors about these events (as shown from its particular choice of words it looks for), but it also looks for specific keywords in the prompt like “beauty pagent” and “festival”.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/bcp-74_1.png)
 
 Step 2. After running its regex queries, the root LM finds an interesting snippet on the chunk at index 6, so it launches a recursive LM call over this snippet to look for information relevant to the original query. The RLM is able to both store this information in a variable answer6, as well as print this information out for the root LM to see. The sub-LM call finds the answer is likely ‘Maria Dalmacio‘ and stores this information back in the root LM’s environment.
 
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/bcp-74_2-1.png)
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/bcp-74_2-2.png)
-
 Step 3. After checking the information above, the root LM reasons that it has enough information to answer the query. The root LM chooses to check its answer again with two additional recursive LM calls to confirm that its answer aligns with this check. Finally, the root LM returns its final answer as ‘Maria Dalmacio‘, which is the correct answer.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/bcp-74_3.png)
 
 ### B.2 RLM(Qwen3-Coder) on OOLONG-Pairs-Query\_3
 
 The total cost of this trajectory was $1.12. In this task, the agent must output all pairs of user IDs satisfying some set of properties given a list of entries ( 32k tokens total). This is both an information dense long input as well as long output task, making it particularly challenging for current LMs.
 
-[⬇](data:text/plain;base64,QW5zd2VyIHRoZSBmb2xsb3dpbmc6IEluIHRoZSBhYm92ZSBkYXRhLCBsaXN0IGFsbCBwYWlycyBvZiB1c2VyIElEcyAobm8gZHVwbGljYXRlIHBhaXJzLCBsaXN0IGxvd2VyIElEIGZpcnN0KSB3aGVyZSBib3RoIHVzZXJzIGhhdmUgYXQgbGVhc3Qgb25lIGluc3RhbmNlIHdpdGggYSBkZXNjcmlwdGlvbiBhbmQgYWJzdHJhY3QgY29uY2VwdCBvciBhYmJyZXZpYXRpb24uIEVhY2ggb2YgdGhlIHF1ZXN0aW9ucyBjYW4gYmUgbGFiZWxsZWQgYXMgb25lIG9mIHRoZSBsYWJlbHMgKHRoZSBkYXRhIGRvZXMgbm90IHByb3ZpZGUgdGhlIGxhYmVscywgeW91IG5lZWQgdG8gZmlndXJlIG91dCB0aGUgbGFiZWwgZnJvbSB0aGUgc2VtYW50aWNzIG9mIHRoZSBxdWVzdGlvbik6IGRlc2NyaXB0aW9uIGFuZCBhYnN0cmFjdCBjb25jZXB0LCBlbnRpdHksIGh1bWFuIGJlaW5nLCBudW1lcmljIHZhbHVlLCBsb2NhdGlvbiwgYWJicmV2aWF0aW9uLiBJbiB5b3VyIGFuc3dlciwgbGlzdCBhbGwgcGFpcnMgaW4gdGhlIGZvcm1hdCAodXNlcl9pZF8xLCB1c2VyX2lkXzIpLCBzZXBhcmF0ZWQgYnkgbmV3bGluZXMuIFlvdXIgYW5zd2VyIG11c3QgYmUgc29ydGVkIGJ5IGZpcnN0IHVzZXIgSUQuIEZvciBleGFtcGxlLCBpZiB0aGUgYW5zd2VyIGlzIHRoZSBJbnN0YW5jZSBJRCBwYWlycyAoMjI3NDAsIDM1ODM5KSBhbmQgKDM1ODM5LCA1MjAzMiksIHlvdSBzaG91bGQgcmV0dXJuIGAoMjI3NDAsIDM1ODM5KSwgKDM1ODM5LCA1MjAzMilgLiBJZiB0aGVyZSBpcyBubyBhbnN3ZXIsIHJldHVybiBhbiBlbXB0eSBsaXN0IFtdLg==)
-
-Answerthefollowing:Intheabovedata,listallpairsofuserIDs(noduplicatepairs,listlowerIDfirst)wherebothusershaveatleastoneinstancewithadescriptionandabstractconceptorabbreviation.Eachofthequestionscanbelabelledasoneofthelabels(thedatadoesnotprovidethelabels,youneedtofigureoutthelabelfromthesemanticsofthequestion):descriptionandabstractconcept,entity,humanbeing,numericvalue,location,abbreviation.Inyouranswer,listallpairsintheformat(user\_id\_1,user\_id\_2),separatedbynewlines.YouranswermustbesortedbyfirstuserID.Forexample,iftheansweristheInstanceIDpairs(22740,35839)and(35839,52032),youshouldreturn‘(22740,35839),(35839,52032)‘.Ifthereisnoanswer,returnanemptylist\[\].
-
 Step 1. The model begins by probing the context with various code snippets, including printing out the first few characters and printing out the first few lines. We noticed in particular that Qwen3-Coder-480B-A35B tends to output multiple code blocks in a single step unlike GPT-5, which makes outputs in a more iterative fashion.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/op-3_1.png)
 
 The model continues probing by splitting the input context by newline characters and checking roughly what the data format looks like.
 
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/op3_2.png)
-
 From the given format, the model chooses to first semantically classify the data using sub-LM calls over smaller chunks of the input (to avoid context rot and mistakes in larger contexts) and provides a sample back to the root LM of what it observed during this process.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/op3_3.png)
 
 Using these classifications outputted by recursive LM calls, the model passes this variable into a function to categorize each programmatically. From here, the root LM is choosing to answer the rest of the question programmatically rather than by trying to output all pairs through model generaetions.
 
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/op3_4.png)
-
 The root LM specifically looks for instances satisfying the query (the user in the pair has to have at least one instance with a description and abstraction concept or abbreviation) and adds them to a variable of target users.
 
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/op3_5.png)
-
 The root LM forms a list of unique pairs with this loop, and is essentially now able to answer the question.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/op3_6.png)
 
 The model has stored these pairs in a variable to be outputted at the end. At this stage, the model has the answer (assuming the sub-LM calls were entirely correct) ready in a variable to be returned.
 
@@ -433,23 +405,11 @@ Step 6 - 11. The model repeats its process in Step 1 with slight difference and 
 
 The total cost of this trajectory was $0.38. In this task, the agent must answer an aggregate query over a set of entries in a list of questions. The query is always about aggregating some kind of semantic transformation over the entries, meaning rule-based syntax rules are unable to perform these transformations programmatically. In this example, the RLM is answering the following question:
 
-[⬇](data:text/plain;base64,VGhlIGZvbGxvd2luZyBsaW5lcyBjb250YWluIHRob3VzYW5kcyBvZiBnZW5lcmFsLWtub3dsZWRnZSBxdWVzdGlvbnMsIG9uZSBwZXIgbGluZS4gRWFjaCBsaW5lIGhhcyBhIFVzZXIgSUQsIHdoaWNoIGlzIG5vdCBuZWNlc3NhcmlseSB1bmlxdWUsIGkuZS4gZWFjaCBVc2VyIElEIGNhbiBiZSBhc3NvY2lhdGVkIHdpdGggbXVsdGlwbGUgcXVlc3Rpb25zLiBFYWNoIHF1ZXN0aW9uIGhhcyBhbiBhbnN3ZXIgdGhhdCBjYW4gYmUgZGVzY3JpYmVkIGFzIG9uZSBvZiA2IGNhdGVnb3JpZXM6ICdudW1lcmljIHZhbHVlJywgJ2VudGl0eScsICdsb2NhdGlvbicsICdkZXNjcmlwdGlvbiBhbmQgYWJzdHJhY3QgY29uY2VwdCcsICdhYmJyZXZpYXRpb24nLCAnaHVtYW4gYmVpbmcnIC0tIHJlbWVtYmVyIHRoYXQgdGhleSBhcmUgbm90IGV4cGxpY2l0bHkgbGFiZWxlZCwgc28geW91IG5lZWQgdG8gZmlndXJlIG91dCB0aGUgbGFiZWwgZnJvbSB0aGUgc2VtYW50aWNzIG9mIHRoZSBxdWVzdGlvbi4gWW91IHdpbGwgYmUgYXNrZWQgdG8gYW5zd2VyIHF1ZXN0aW9ucyBhYm91dCB0aGUgYWdncmVnYXRlIGxhYmVsIHN0YXRpc3RpY3MgYWNyb3NzIGFsbCBleGFtcGxlcyBpbiB0aGlzIGRhdGFzZXQuIERvIG5vdCB0cnkgdG8gZ3Vlc3MsIGVzdGltYXRlLCBvciBhcHByb3hpbWF0ZSB0aGUgcmVzdWx0LiBBbnN3ZXIgdGhlIGZvbGxvd2luZzogSW4gdGhlIGFib3ZlIGRhdGEsIGlzIGxhYmVsICdkZXNjcmlwdGlvbiBhbmQgYWJzdHJhY3QgY29uY2VwdCcgbW9yZSBjb21tb24sIGxlc3MgY29tbW9uLCBvciB0aGUgc2FtZSBmcmVxdWVuY3kgYXMgbGFiZWwgJ251bWVyaWMgdmFsdWUnPyBHaXZlIHlvdXIgZmluYWwgYW5zd2VyIGluIHRoZSBmb3JtICdBbnN3ZXI6IGRlc2NyaXB0aW9uIGFuZCBhYnN0cmFjdCBjb25jZXB0IGlzIFtYXSBudW1lcmljIHZhbHVlJywgd2hlcmUgW1hdIGlzICdtb3JlIGNvbW1vbiB0aGFuJywgJ2xlc3MgY29tbW9uIHRoYW4nLCBvciAnc2FtZSBmcmVxdWVuY3kgYXMnLg==)
-
-Thefollowinglinescontainthousandsofgeneral-knowledgequestions,oneperline.EachlinehasaUserID,whichisnotnecessarilyunique,i.e.eachUserIDcanbeassociatedwithmultiplequestions.Eachquestionhasananswerthatcanbedescribedasoneof6categories:’numericvalue’,’entity’,’location’,’descriptionandabstractconcept’,’abbreviation’,’humanbeing’--rememberthattheyarenotexplicitlylabeled,soyouneedtofigureoutthelabelfromthesemanticsofthequestion.Youwillbeaskedtoanswerquestionsabouttheaggregatelabelstatisticsacrossallexamplesinthisdataset.Donottrytoguess,estimate,orapproximatetheresult.Answerthefollowing:Intheabovedata,islabel’descriptionandabstractconcept’morecommon,lesscommon,orthesamefrequencyaslabel’numericvalue’?Giveyourfinalanswerintheform’Answer:descriptionandabstractconceptis\[X\]numericvalue’,where\[X\]is’morecommonthan’,’lesscommonthan’,or’samefrequencyas’.
-
 Step 1. The model begins by probing the context with various code snippets, including printing out the first few characters and printing out the first few lines. Like in the OOLONG-Pairs example, we noticed that Qwen3-Coder-480B-A35B tends to output multiple code blocks in a single step unlike GPT-5, which makes outputs in a more iterative fashion.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/o-212_1.png)
 
 As mentioned previously, Qwen3-Coder differs from GPT-5 in how liberal it is in its use of sub-calls. The function Qwen3-Coder defines for classifying entries semantically uses a sub-LM call per line, leading to thousands of recursive sub-calls when applied to the full input context.
 
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/x2.png)
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/x3.png)
-
 Step 2. After defining and testing several functions for running the above classification question over its input context, the root LM launches a long code execution call to classify and answer the query.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/trajectories/o-212_3.png)
 
 Final. The model concludes programmatically from the large number of sub-calls it performed in Step 2 that ‘Answer: description and abstract concept is less common than numeric value‘ was the correct answer. While the RLM was able to conclude the correct answer, it likely would have been able to solve the question with significantly less sub-calls.
 
@@ -457,21 +417,7 @@ Final. The model concludes programmatically from the large number of sub-calls i
 
 The total cost of this trajectory was $0.27. In this task, the agent must answer a question that involves understanding a large codebase. The codebase here is  900k tokens, and the agent must answer the following query:
 
-[⬇](data:text/plain;base64,WW91IGFyZSBhIGhlbHBmdWwgYXNzaXN0YW50IHRoYXQgY2FuIGFuc3dlciBxdWVzdGlvbnMgYWJvdXQgY29kZSByZXBvc2l0b3JpZXMuIFlvdSBtdXN0IGFuc3dlciB0aGUgZ2l2ZW4gcXVlc3Rpb246IFRoaXMgaXMgYSBjb2RlIHJlcG9zaXRvcnkgdXNlZCBmb3IgZmluZS10dW5pbmcgdGV4dC10by1pbWFnZSBtb2RlbHMgb3IgdHJhaW5pbmcgTG9SQSBtb2RlbHMuIFRoZSByZXBvc2l0b3J5IGlzIHVzZWQgZm9yIHRoZSBhdXRob3IncyByZXNlYXJjaCBvbiBzb21lIHJlbGF0ZWQgdXNlcy4gQmVsb3cgYXJlIHRoZSBzdGVwcyBJIGZvbGxvd2VkIGR1cmluZyB0aGUgcHJvY2Vzcy4gQ291bGQgeW91IGhlbHAgbWUgY2hlY2sgd2hpY2ggb25lIGlzIHJpZ2h0IHN0YXRlbWVudD8gYmFzZWQgb24gdGhlIHN0b3JlZCBjb250ZXh0IGFuc3dlciB3aXRoIGV4YWN0bHkgb25lIG51bWJlciBjaG9pY2UgdXNpbmcgb25seSB0aGUgY2hvaWNlcyBwcm92aWRlZDoKCjA6IEluIHRoaXMgcmVwb3NpdG9yeSwgZHVyaW5nIHRoZSB0cmFpbmluZyBwcm9jZXNzLCB0YXNrcyBhcmUgZGl2aWRlZCBpbnRvIG11bHRpcGxlIHByb2Nlc3NlcyBiYXNlZCBvbiB0aGUgY29uZmlndXJhdGlvbiBmaWxlLCBzdWNoIGFzICJleHRlbnNpb24sIiAiZXh0cmFjdCwiICJnZW5lcmF0ZSwiIGFuZCBzbyBvbi4gRm9yIGVhY2ggcHJvY2VzcywgYSBjb3JyZXNwb25kaW5nIGNsYXNzIGhhcyBiZWVuIHdyaXR0ZW4uIFRoZXNlIGNsYXNzZXMgbW9zdGx5IGluaGVyaXQgdGhlIGF0dHJpYnV0ZXMgb2YgdGhlIEJhc2VKb2IgY2xhc3MgYW5kIGFjY2VwdCBhbiBPcmRlcmVkRGljdCBkaWN0aW9uYXJ5LCB3aGljaCByZXByZXNlbnRzIGEgcHJlLWRlZmluZWQgY29uZmlndXJhdGlvbiBmaWxlIHRoYXQgd2UgaGF2ZSBzZXQgdXAgaW4gYWR2YW5jZS5UaGVyZWZvcmUsIG11bHRpcGxlIHByb2Nlc3NlcyBjYW4gYmUgZXhlY3V0ZWQgaW4gcGFyYWxsZWwsIGFsbG93aW5nIGZvciB0aGUgc2ltdWx0YW5lb3VzIGNvbXBsZXRpb24gb2YgbXVsdGlwbGUgdGFza3MuIFRoaXMgcGFyYWxsZWxpemF0aW9uIHNpZ25pZmljYW50bHkgZW5oYW5jZXMgZWZmaWNpZW5jeSBieSBkaXN0cmlidXRpbmcgdGhlIHdvcmtsb2FkLCBlbnN1cmluZyB0aGF0IHRhc2tzIHN1Y2ggYXMgZGF0YSBleHRlbnNpb24sIGV4dHJhY3Rpb24sIGFuZCBnZW5lcmF0aW9uIGNhbiBydW4gY29uY3VycmVudGx5LCByZWR1Y2luZyB0aGUgb3ZlcmFsbCB0aW1lIHJlcXVpcmVkIGZvciB0cmFpbmluZy4KCjE6IFByZXBhcmUgdGhlIGRhdGFzZXQsIHR5cGljYWxseSBzdXBwb3J0aW5nIGZvcm1hdHMgc3VjaCBhcyBKUEcsIEpQRUcsIFBORywgYW5kIHdyaXRlIGNvcnJlc3BvbmRpbmcgLnR4dCBmaWxlcyB0byBkZXNjcmliZSB0aGUgY29udGVudCBvZiB0aGUgaW1hZ2VzLiBUcmlnZ2VyIHdvcmRzIGNhbiBiZSBhZGRlZCwgc28gYWZ0ZXIgdHJhaW5pbmcgaXMgY29tcGxldGUsIHdlIGNhbiBnZW5lcmF0ZSBpbWFnZXMgd2l0aCB0aGUgdHJpZ2dlciB3b3JkcyBpbiB0aGUgcHJvbXB0LiBJbiB0aGUgY29uZmlnIGRpcmVjdG9yeSwgZmluZCB0aGUgY29uZmlndXJhdGlvbiBmaWxlcyBhbmQgbW9kaWZ5IHRoZSAueW1sIGZpbGVzLiBTcGVjaWZ5IHRoZSBtb2RlbCBwYXRoLCBkYXRhc2V0IGxvY2F0aW9uLCBzdG9yYWdlIGxvY2F0aW9uLCBhbmQgd2hlcmUgdG8gc2F2ZSB0aGUgTG9SQSBtb2RlbC4gT25seSBhZnRlciBjb25maWd1cmluZyB0aGVzZSBzZXR0aW5ncyBjYW4gaXQgcnVuIHByb3Blcmx5LgoKMjogQmVmb3JlIHRyYWluaW5nLCB3ZSBjYW4gdXNlIGEgbGFiZWxlZCBkYXRhc2V0IG9yIHRoZSBidWlsdC1pbiBhbm5vdGF0aW9uIHRvb2wgaW4gdGhpcyByZXBvc2l0b3J5LiBUbyB1c2UgdGhpcyBhbm5vdGF0aW9uIHRvb2wsIHdlIG5lZWQgdG8gZG93bmxvYWQgdGhlIEZsb3JlbmNlIG1vZGVsLCB3aGljaCBpcyB1c2VkIHRvIGluZmVyIHRoZSBjb250ZW50IG9mIGltYWdlcy4gQWRkaXRpb25hbGx5LCB0aGlzIHJlcG9zaXRvcnkgaXMgY2FwYWJsZSBvZiBzdXBwb3J0aW5nIG11bHRpLUdQVSAobXVsdGktY2FyZCkgdHJhaW5pbmcsIHdoaWNoIGNhbiBzaWduaWZpY2FudGx5IHNwZWVkIHVwIHRoZSB0cmFpbmluZyBwcm9jZXNzIGJ5IGRpc3RyaWJ1dGluZyB0aGUgd29ya2xvYWQgYWNyb3NzIG11bHRpcGxlIEdQVXMuIFRvIGVuYWJsZSB0aGlzIGZlYXR1cmUsIGFsbCB5b3UgbmVlZCB0byBkbyBpcyBjb25maWd1cmUgdGhlIEdQVSBwYXJhbWV0ZXJzIGluIHRoZSBwcm92aWRlZCBjb25maWd1cmF0aW9uIGZpbGUuIEJ5IHNwZWNpZnlpbmcgdGhlIGF2YWlsYWJsZSBHUFVzLCB0aGUgdHJhaW5pbmcgcHJvY2VzcyBjYW4gYXV0b21hdGljYWxseSB0YWtlIGFkdmFudGFnZSBvZiB0aGUgaGFyZHdhcmUgZm9yIHBhcmFsbGVsIHByb2Nlc3NpbmcsIG1ha2luZyBpdCBzdWl0YWJsZSBmb3IgbGFyZ2VyIGRhdGFzZXRzIGFuZCBtb3JlIGNvbXBsZXggbW9kZWxzLiBUaGlzIGZsZXhpYmlsaXR5IGluIGNvbmZpZ3VyYXRpb24gYWxsb3dzIGZvciBlZmZpY2llbnQgdHJhaW5pbmcsIHJlZ2FyZGxlc3Mgb2YgdGhlIHNjYWxlIG9mIHRoZSB0YXNrLgoKMzogVGhpcyBwcm9qZWN0IGhhcyBzZXZlcmFsIHdheXMgdG8gcnVuLiBGb3IgZ2VuZXJhbCB1c2VycywgdGhlcmUgYXJlIG1vZGVscyB3aXRoIGEgVUkgaW50ZXJmYWNlIGFuZCB0ZXJtaW5hbC1iYXNlZCBtb2RlbHMuIEhvd2V2ZXIsIGJvdGggcmVxdWlyZSBhIGNvbmZpZ3VyYXRpb24gZmlsZSB0byBzcGVjaWZ5IHRyYWluaW5nIHBhcmFtZXRlcnMgYW5kIGRhdGEgc3RvcmFnZSBsb2NhdGlvbnMuIEFmdGVyIExvUmEgdHJhaW5pbmcgaXMgY29tcGxldGVkLCB3ZSBjYW4gcnVuIHRoZSBydW4ucHkgZnVuY3Rpb24gdG8gcGVyZm9ybSBwcm9tcHQtdG8taW1hZ2UgaW5mZXJlbmNlLCBidXQgdGhpcyBmaWxlIG5lZWRzIHRvIHNldCB0aGUgY29uZmlndXJhdGlvbiBwYXJhbWV0ZXJzIHNwZWNpZmljYWxseSwgaWYgeW91IHdhbnQgdG8gdXNlIHRoZSBMb1JhIG1vZGVsIHlvdSB0cmFpbmVkIGJlZm9yZSwgeW91IG5lZWQgdG8gc3BlY2lmeSBhc3Npc3RhbnRfbG9yYV9wYXRoIGFuZCBsb3JhX3BhdGggaW4gdGhlIGNvbmZpZ3VyYXRpb24gcGFyYW1ldGVycywgb3RoZXJ3aXNlIG9ubHkgdGhlIG9yaWdpbmFsIG1vZGVsIHdpbGwgYmUgcnVuLiAoaW5kZXhlZCBmcm9tIDAgdG8gMyku)
-
-Youareahelpfulassistantthatcananswerquestionsaboutcoderepositories.Youmustanswerthegivenquestion:Thisisacoderepositoryusedforfine-tuningtext-to-imagemodelsortrainingLoRAmodels.Therepositoryisusedfortheauthor’sresearchonsomerelateduses.BelowarethestepsIfollowedduringtheprocess.Couldyouhelpmecheckwhichoneisrightstatement?basedonthestoredcontextanswerwithexactlyonenumberchoiceusingonlythechoicesprovided:
-
-0:Inthisrepository,duringthetrainingprocess,tasksaredividedintomultipleprocessesbasedontheconfigurationfile,suchas"extension,""extract,""generate,"andsoon.Foreachprocess,acorrespondingclasshasbeenwritten.TheseclassesmostlyinherittheattributesoftheBaseJobclassandacceptanOrderedDictdictionary,whichrepresentsapre-definedconfigurationfilethatwehavesetupinadvance.Therefore,multipleprocessescanbeexecutedinparallel,allowingforthesimultaneouscompletionofmultipletasks.Thisparallelizationsignificantlyenhancesefficiencybydistributingtheworkload,ensuringthattaskssuchasdataextension,extraction,andgenerationcanrunconcurrently,reducingtheoveralltimerequiredfortraining.
-
-1:Preparethedataset,typicallysupportingformatssuchasJPG,JPEG,PNG,andwritecorresponding.txtfilestodescribethecontentoftheimages.Triggerwordscanbeadded,soaftertrainingiscomplete,wecangenerateimageswiththetriggerwordsintheprompt.Intheconfigdirectory,findtheconfigurationfilesandmodifythe.ymlfiles.Specifythemodelpath,datasetlocation,storagelocation,andwheretosavetheLoRAmodel.Onlyafterconfiguringthesesettingscanitrunproperly.
-
-2:Beforetraining,wecanusealabeleddatasetorthebuilt-inannotationtoolinthisrepository.Tousethisannotationtool,weneedtodownloadtheFlorencemodel,whichisusedtoinferthecontentofimages.Additionally,thisrepositoryiscapableofsupportingmulti-GPU(multi-card)training,whichcansignificantlyspeedupthetrainingprocessbydistributingtheworkloadacrossmultipleGPUs.Toenablethisfeature,allyouneedtodoisconfiguretheGPUparametersintheprovidedconfigurationfile.ByspecifyingtheavailableGPUs,thetrainingprocesscanautomaticallytakeadvantageofthehardwareforparallelprocessing,makingitsuitableforlargerdatasetsandmorecomplexmodels.Thisflexibilityinconfigurationallowsforefficienttraining,regardlessofthescaleofthetask.
-
-3:Thisprojecthasseveralwaystorun.Forgeneralusers,therearemodelswithaUIinterfaceandterminal-basedmodels.However,bothrequireaconfigurationfiletospecifytrainingparametersanddatastoragelocations.AfterLoRatrainingiscompleted,wecanruntherun.pyfunctiontoperformprompt-to-imageinference,butthisfileneedstosettheconfigurationparametersspecifically,ifyouwanttousetheLoRamodelyoutrainedbefore,youneedtospecifyassistant\_lora\_pathandlora\_pathintheconfigurationparameters,otherwiseonlytheoriginalmodelwillberun.(indexedfrom0to3).
-
 Step 1. It is not always true that an input context can be solved by partitioning it and recursively sub-querying models over each partition, but in tasks that are not information dense, this is possible. In this case, the model chooses to break down the codebase into parts and sub-query LMs to look for clues. The model then aggregates these clues and provides a final answer as a separate sub-query.
-
-![[Uncaptioned image]](https://arxiv.org/html/2512.24601v1/x4.png)
 
 Final. The RLM answers choice ‘1’, which is the correct answer.
 
@@ -483,7 +429,7 @@ We additionally include log-scaled runtime plots for each method below. As we re
 
 For the scaling plot in Figure [1](https://arxiv.org/html/2512.24601v1#S1.F1 "Figure 1 ‣ 1 Introduction ‣ Recursive Language Models"), we also provide the average API cost per task.
 
-![IMAGE: Refer to caption]Figure 5: Plotted quartiles of the runtime GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models"). We plot the 25th, 50th, 75th, and 95th percentiles.![IMAGE: Refer to caption]Figure 6: Plotted quartiles of the runtime Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models"). We plot the 25th, 50th, 75th, and 95th percentiles.![IMAGE: Refer to caption]Figure 7: Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models").![IMAGE: Refer to caption]Figure 8: Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models").![IMAGE: Refer to caption]Figure 9: We plot the API cost in USD for the runs in Figure [1](https://arxiv.org/html/2512.24601v1#S1.F1 "Figure 1 ‣ 1 Introduction ‣ Recursive Language Models").
+Figure 5: Plotted quartiles of the runtime GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models"). We plot the 25th, 50th, 75th, and 95th percentiles.Figure 6: Plotted quartiles of the runtime Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models"). We plot the 25th, 50th, 75th, and 95th percentiles.Figure 7: Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models").Figure 8: Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in § [2.2](https://arxiv.org/html/2512.24601v1#S2.SS2 "2.2 Methods and Baselines ‣ 2 Scaling Long Context Tasks ‣ Recursive Language Models").Figure 9: We plot the API cost in USD for the runs in Figure [1](https://arxiv.org/html/2512.24601v1#S1.F1 "Figure 1 ‣ 1 Introduction ‣ Recursive Language Models").
 
 ## Appendix D Additional Methods and Baseline Details
 
@@ -493,67 +439,27 @@ We focus on methods that are entirely task agnostic, so we fix our prompt for ea
 
 (1a) The system prompt for RLM with REPL for GPT-5:
 
-[⬇](data:text/plain;base64,WW91IGFyZSB0YXNrZWQgd2l0aCBhbnN3ZXJpbmcgYSBxdWVyeSB3aXRoIGFzc29jaWF0ZWQgY29udGV4dC4gWW91IGNhbiBhY2Nlc3MsIHRyYW5zZm9ybSwgYW5kIGFuYWx5emUgdGhpcyBjb250ZXh0IGludGVyYWN0aXZlbHkgaW4gYSBSRVBMIGVudmlyb25tZW50IHRoYXQgY2FuIHJlY3Vyc2l2ZWx5IHF1ZXJ5IHN1Yi1MTE1zLCB3aGljaCB5b3UgYXJlIHN0cm9uZ2x5IGVuY291cmFnZWQgdG8gdXNlIGFzIG11Y2ggYXMgcG9zc2libGUuIFlvdSB3aWxsIGJlIHF1ZXJpZWQgaXRlcmF0aXZlbHkgdW50aWwgeW91IHByb3ZpZGUgYSBmaW5hbCBhbnN3ZXIuCgpZb3VyIGNvbnRleHQgaXMgYSB7Y29udGV4dF90eXBlfSB3aXRoIHtjb250ZXh0X3RvdGFsX2xlbmd0aH0gdG90YWwgY2hhcmFjdGVycywgYW5kIGlzIGJyb2tlbiB1cCBpbnRvIGNodW5rcyBvZiBjaGFyIGxlbmd0aHM6IHtjb250ZXh0X2xlbmd0aHN9LgoKVGhlIFJFUEwgZW52aXJvbm1lbnQgaXMgaW5pdGlhbGl6ZWQgd2l0aDoKMS4gQSBgY29udGV4dGAgdmFyaWFibGUgdGhhdCBjb250YWlucyBleHRyZW1lbHkgaW1wb3J0YW50IGluZm9ybWF0aW9uIGFib3V0IHlvdXIgcXVlcnkuIFlvdSBzaG91bGQgY2hlY2sgdGhlIGNvbnRlbnQgb2YgdGhlIGBjb250ZXh0YCB2YXJpYWJsZSB0byB1bmRlcnN0YW5kIHdoYXQgeW91IGFyZSB3b3JraW5nIHdpdGguIE1ha2Ugc3VyZSB5b3UgbG9vayB0aHJvdWdoIGl0IHN1ZmZpY2llbnRseSBhcyB5b3UgYW5zd2VyIHlvdXIgcXVlcnkuCjIuIEEgYGxsbV9xdWVyeWAgZnVuY3Rpb24gdGhhdCBhbGxvd3MgeW91IHRvIHF1ZXJ5IGFuIExMTSAodGhhdCBjYW4gaGFuZGxlIGFyb3VuZCA1MDBLIGNoYXJzKSBpbnNpZGUgeW91ciBSRVBMIGVudmlyb25tZW50LgozLiBUaGUgYWJpbGl0eSB0byB1c2UgYHByaW50KClgIHN0YXRlbWVudHMgdG8gdmlldyB0aGUgb3V0cHV0IG9mIHlvdXIgUkVQTCBjb2RlIGFuZCBjb250aW51ZSB5b3VyIHJlYXNvbmluZy4KCllvdSB3aWxsIG9ubHkgYmUgYWJsZSB0byBzZWUgdHJ1bmNhdGVkIG91dHB1dHMgZnJvbSB0aGUgUkVQTCBlbnZpcm9ubWVudCwgc28geW91IHNob3VsZCB1c2UgdGhlIHF1ZXJ5IExMTSBmdW5jdGlvbiBvbiB2YXJpYWJsZXMgeW91IHdhbnQgdG8gYW5hbHl6ZS4gWW91IHdpbGwgZmluZCB0aGlzIGZ1bmN0aW9uIGVzcGVjaWFsbHkgdXNlZnVsIHdoZW4geW91IGhhdmUgdG8gYW5hbHl6ZSB0aGUgc2VtYW50aWNzIG9mIHRoZSBjb250ZXh0LiBVc2UgdGhlc2UgdmFyaWFibGVzIGFzIGJ1ZmZlcnMgdG8gYnVpbGQgdXAgeW91ciBmaW5hbCBhbnN3ZXIuCk1ha2Ugc3VyZSB0byBleHBsaWNpdGx5IGxvb2sgdGhyb3VnaCB0aGUgZW50aXJlIGNvbnRleHQgaW4gUkVQTCBiZWZvcmUgYW5zd2VyaW5nIHlvdXIgcXVlcnkuIEFuIGV4YW1wbGUgc3RyYXRlZ3kgaXMgdG8gZmlyc3QgbG9vayBhdCB0aGUgY29udGV4dCBhbmQgZmlndXJlIG91dCBhIGNodW5raW5nIHN0cmF0ZWd5LCB0aGVuIGJyZWFrIHVwIHRoZSBjb250ZXh0IGludG8gc21hcnQgY2h1bmtzLCBhbmQgcXVlcnkgYW4gTExNIHBlciBjaHVuayB3aXRoIGEgcGFydGljdWxhciBxdWVzdGlvbiBhbmQgc2F2ZSB0aGUgYW5zd2VycyB0byBhIGJ1ZmZlciwgdGhlbiBxdWVyeSBhbiBMTE0gd2l0aCBhbGwgdGhlIGJ1ZmZlcnMgdG8gcHJvZHVjZSB5b3VyIGZpbmFsIGFuc3dlci4KCllvdSBjYW4gdXNlIHRoZSBSRVBMIGVudmlyb25tZW50IHRvIGhlbHAgeW91IHVuZGVyc3RhbmQgeW91ciBjb250ZXh0LCBlc3BlY2lhbGx5IGlmIGl0IGlzIGh1Z2UuIFJlbWVtYmVyIHRoYXQgeW91ciBzdWIgTExNcyBhcmUgcG93ZXJmdWwgLS0gdGhleSBjYW4gZml0IGFyb3VuZCA1MDBLIGNoYXJhY3RlcnMgaW4gdGhlaXIgY29udGV4dCB3aW5kb3csIHNvIGRvbid0IGJlIGFmcmFpZCB0byBwdXQgYSBsb3Qgb2YgY29udGV4dCBpbnRvIHRoZW0uIEZvciBleGFtcGxlLCBhIHZpYWJsZSBzdHJhdGVneSBpcyB0byBmZWVkIDEwIGRvY3VtZW50cyBwZXIgc3ViLUxMTSBxdWVyeS4gQW5hbHl6ZSB5b3VyIGlucHV0IGRhdGEgYW5kIHNlZSBpZiBpdCBpcyBzdWZmaWNpZW50IHRvIGp1c3QgZml0IGl0IGluIGEgZmV3IHN1Yi1MTE0gY2FsbHMhCgpXaGVuIHlvdSB3YW50IHRvIGV4ZWN1dGUgUHl0aG9uIGNvZGUgaW4gdGhlIFJFUEwgZW52aXJvbm1lbnQsIHdyYXAgaXQgaW4gdHJpcGxlIGJhY2t0aWNrcyB3aXRoICdyZXBsJyBsYW5ndWFnZSBpZGVudGlmaWVyLiBGb3IgZXhhbXBsZSwgc2F5IHdlIHdhbnQgb3VyIHJlY3Vyc2l2ZSBtb2RlbCB0byBzZWFyY2ggZm9yIHRoZSBtYWdpYyBudW1iZXIgaW4gdGhlIGNvbnRleHQgKGFzc3VtaW5nIHRoZSBjb250ZXh0IGlzIGEgc3RyaW5nKSwgYW5kIHRoZSBjb250ZXh0IGlzIHZlcnkgbG9uZywgc28gd2Ugd2FudCB0byBjaHVuayBpdDoKYGBgcmVwbApjaHVuayA9IGNvbnRleHRbOjEwMDAwXQphbnN3ZXIgPSBsbG1fcXVlcnkoZiJXaGF0IGlzIHRoZSBtYWdpYyBudW1iZXIgaW4gdGhlIGNvbnRleHQ/IEhlcmUgaXMgdGhlIGNodW5rOiB7e2NodW5rfX0iKQpwcmludChhbnN3ZXIpCmBgYAoKQXMgYW4gZXhhbXBsZSwgc3VwcG9zZSB5b3UncmUgdHJ5aW5nIHRvIGFuc3dlciBhIHF1ZXN0aW9uIGFib3V0IGEgYm9vay4gWW91IGNhbiBpdGVyYXRpdmVseSBjaHVuayB0aGUgY29udGV4dCBzZWN0aW9uIGJ5IHNlY3Rpb24sIHF1ZXJ5IGFuIExMTSBvbiB0aGF0IGNodW5rLCBhbmQgdHJhY2sgcmVsZXZhbnQgaW5mb3JtYXRpb24gaW4gYSBidWZmZXIuCmBgYHJlcGwKcXVlcnkgPSAiSW4gSGFycnkgUG90dGVyIGFuZCB0aGUgU29yY2VyZXIncyBTdG9uZSwgZGlkIEdyeWZmaW5kb3Igd2luIHRoZSBIb3VzZSBDdXAgYmVjYXVzZSB0aGV5IGxlZD8iCmZvciBpLCBzZWN0aW9uIGluIGVudW1lcmF0ZShjb250ZXh0KToKICAgIGlmIGkgPT0gbGVuKGNvbnRleHQpIC0gMToKICAgICAgICBidWZmZXIgPSBsbG1fcXVlcnkoZiJZb3UgYXJlIG9uIHRoZSBsYXN0IHNlY3Rpb24gb2YgdGhlIGJvb2suIFNvIGZhciB5b3Uga25vdyB0aGF0OiB7e2J1ZmZlcnN9fS4gR2F0aGVyIGZyb20gdGhpcyBsYXN0IHNlY3Rpb24gdG8gYW5zd2VyIHt7cXVlcnl9fS4gSGVyZSBpcyB0aGUgc2VjdGlvbjoge3tzZWN0aW9ufX0iKQogICAgICAgIHByaW50KGYiQmFzZWQgb24gcmVhZGluZyBpdGVyYXRpdmVseSB0aHJvdWdoIHRoZSBib29rLCB0aGUgYW5zd2VyIGlzOiB7e2J1ZmZlcn19IikKICAgIGVsc2U6CiAgICAgICAgYnVmZmVyID0gbGxtX3F1ZXJ5KGYiWW91IGFyZSBpdGVyYXRpdmVseSBsb29raW5nIHRocm91Z2ggYSBib29rLCBhbmQgYXJlIG9uIHNlY3Rpb24ge3tpfX0gb2Yge3tsZW4oY29udGV4dCl9fS4gR2F0aGVyIGluZm9ybWF0aW9uIHRvIGhlbHAgYW5zd2VyIHt7cXVlcnl9fS4gSGVyZSBpcyB0aGUgc2VjdGlvbjoge3tzZWN0aW9ufX0iKQogICAgICAgIHByaW50KGYiQWZ0ZXIgc2VjdGlvbiB7e2l9fSBvZiB7e2xlbihjb250ZXh0KX19LCB5b3UgaGF2ZSB0cmFja2VkOiB7e2J1ZmZlcn19IikKYGBgCgpBcyBhbm90aGVyIGV4YW1wbGUsIHdoZW4gdGhlIGNvbnRleHQgaXNuJ3QgdGhhdCBsb25nIChlLmcuID4xMDBNIGNoYXJhY3RlcnMpLCBhIHNpbXBsZSBidXQgdmlhYmxlIHN0cmF0ZWd5IGlzLCBiYXNlZCBvbiB0aGUgY29udGV4dCBjaHVuayBsZW5ndGhzLCB0byBjb21iaW5lIHRoZW0gYW5kIHJlY3Vyc2l2ZWx5IHF1ZXJ5IGFuIExMTSBvdmVyIGNodW5rcy4gRm9yIGV4YW1wbGUsIGlmIHRoZSBjb250ZXh0IGlzIGEgTGlzdFtzdHJdLCB3ZSBhc2sgdGhlIHNhbWUgcXVlcnkgb3ZlciBlYWNoIGNodW5rOgpgYGByZXBsCnF1ZXJ5ID0gIkEgbWFuIGJlY2FtZSBmYW1vdXMgZm9yIGhpcyBib29rICJUaGUgR3JlYXQgR2F0c2J5Ii4gSG93IG1hbnkgam9icyBkaWQgaGUgaGF2ZT8iCiMgU3VwcG9zZSBvdXIgY29udGV4dCBpcyB+MU0gY2hhcnMsIGFuZCB3ZSB3YW50IGVhY2ggc3ViLUxMTSBxdWVyeSB0byBiZSB+MC4xTSBjaGFycyBzbyB3ZSBzcGxpdCBpdCBpbnRvIDUgY2h1bmtzCmNodW5rX3NpemUgPSBsZW4oY29udGV4dCkgLy8gMTAKYW5zd2VycyA9IFtdCmZvciBpIGluIHJhbmdlKDEwKToKICAgIGlmIGkgPCA5OgogICAgICAgIGNodW5rX3N0ciA9ICJcbiIuam9pbihjb250ZXh0W2kqY2h1bmtfc2l6ZTooaSsxKSpjaHVua19zaXplXSkKICAgIGVsc2U6CiAgICAgICAgY2h1bmtfc3RyID0gIlxuIi5qb2luKGNvbnRleHRbaSpjaHVua19zaXplOl0pCgogICAgYW5zd2VyID0gbGxtX3F1ZXJ5KGYiVHJ5IHRvIGFuc3dlciB0aGUgZm9sbG93aW5nIHF1ZXJ5OiB7e3F1ZXJ5fX0uIEhlcmUgYXJlIHRoZSBkb2N1bWVudHM6XG57e2NodW5rX3N0cn19LiBPbmx5IGFuc3dlciBpZiB5b3UgYXJlIGNvbmZpZGVudCBpbiB5b3VyIGFuc3dlciBiYXNlZCBvbiB0aGUgZXZpZGVuY2UuIikKICAgIGFuc3dlcnMuYXBwZW5kKGFuc3dlcikKICAgIHByaW50KGYiSSBnb3QgdGhlIGFuc3dlciBmcm9tIGNodW5rIHt7aX19OiB7e2Fuc3dlcn19IikKZmluYWxfYW5zd2VyID0gbGxtX3F1ZXJ5KGYiQWdncmVnYXRpbmcgYWxsIHRoZSBhbnN3ZXJzIHBlciBjaHVuaywgYW5zd2VyIHRoZSBvcmlnaW5hbCBxdWVyeSBhYm91dCB0b3RhbCBudW1iZXIgb2Ygam9iczoge3txdWVyeX19XFxuXFxuQW5zd2VyczpcXG4iICsgIlxcbiIuam9pbihhbnN3ZXJzKSkKYGBgCgpBcyBhIGZpbmFsIGV4YW1wbGUsIGFmdGVyIGFuYWx5emluZyB0aGUgY29udGV4dCBhbmQgcmVhbGl6aW5nIGl0cyBzZXBhcmF0ZWQgYnkgTWFya2Rvd24gaGVhZGVycywgd2UgY2FuIG1haW50YWluIHN0YXRlIHRocm91Z2ggYnVmZmVycyBieSBjaHVua2luZyB0aGUgY29udGV4dCBieSBoZWFkZXJzLCBhbmQgaXRlcmF0aXZlbHkgcXVlcnlpbmcgYW4gTExNIG92ZXIgaXQ6CmBgYHJlcGwKIyBBZnRlciBmaW5kaW5nIG91dCB0aGUgY29udGV4dCBpcyBzZXBhcmF0ZWQgYnkgTWFya2Rvd24gaGVhZGVycywgd2UgY2FuIGNodW5rLCBzdW1tYXJpemUsIGFuZCBhbnN3ZXIKaW1wb3J0IHJlCnNlY3Rpb25zID0gcmUuc3BsaXQocicjIyMgKC4rKScsIGNvbnRleHRbImNvbnRlbnQiXSkKYnVmZmVycyA9IFtdCmZvciBpIGluIHJhbmdlKDEsIGxlbihzZWN0aW9ucyksIDIpOgogICAgaGVhZGVyID0gc2VjdGlvbnNbaV0KICAgIGluZm8gPSBzZWN0aW9uc1tpKzFdCiAgICBzdW1tYXJ5ID0gbGxtX3F1ZXJ5KGYiU3VtbWFyaXplIHRoaXMge3toZWFkZXJ9fSBzZWN0aW9uOiB7e2luZm99fSIpCiAgICBidWZmZXJzLmFwcGVuZChmInt7aGVhZGVyfX06IHt7c3VtbWFyeX19IikKZmluYWxfYW5zd2VyID0gbGxtX3F1ZXJ5KGYiQmFzZWQgb24gdGhlc2Ugc3VtbWFyaWVzLCBhbnN3ZXIgdGhlIG9yaWdpbmFsIHF1ZXJ5OiB7e3F1ZXJ5fX1cXG5cXG5TdW1tYXJpZXM6XFxuIiArICJcXG4iLmpvaW4oYnVmZmVycykpCmBgYApJbiB0aGUgbmV4dCBzdGVwLCB3ZSBjYW4gcmV0dXJuIEZJTkFMX1ZBUihmaW5hbF9hbnN3ZXIpLgoKSU1QT1JUQU5UOiBXaGVuIHlvdSBhcmUgZG9uZSB3aXRoIHRoZSBpdGVyYXRpdmUgcHJvY2VzcywgeW91IE1VU1QgcHJvdmlkZSBhIGZpbmFsIGFuc3dlciBpbnNpZGUgYSBGSU5BTCBmdW5jdGlvbiB3aGVuIHlvdSBoYXZlIGNvbXBsZXRlZCB5b3VyIHRhc2ssIE5PVCBpbiBjb2RlLiBEbyBub3QgdXNlIHRoZXNlIHRhZ3MgdW5sZXNzIHlvdSBoYXZlIGNvbXBsZXRlZCB5b3VyIHRhc2suIFlvdSBoYXZlIHR3byBvcHRpb25zOgoxLiBVc2UgRklOQUwoeW91ciBmaW5hbCBhbnN3ZXIgaGVyZSkgdG8gcHJvdmlkZSB0aGUgYW5zd2VyIGRpcmVjdGx5CjIuIFVzZSBGSU5BTF9WQVIodmFyaWFibGVfbmFtZSkgdG8gcmV0dXJuIGEgdmFyaWFibGUgeW91IGhhdmUgY3JlYXRlZCBpbiB0aGUgUkVQTCBlbnZpcm9ubWVudCBhcyB5b3VyIGZpbmFsIG91dHB1dAoKVGhpbmsgc3RlcCBieSBzdGVwIGNhcmVmdWxseSwgcGxhbiwgYW5kIGV4ZWN1dGUgdGhpcyBwbGFuIGltbWVkaWF0ZWx5IGluIHlvdXIgcmVzcG9uc2UgLS0gZG8gbm90IGp1c3Qgc2F5ICJJIHdpbGwgZG8gdGhpcyIgb3IgIkkgd2lsbCBkbyB0aGF0Ii4gT3V0cHV0IHRvIHRoZSBSRVBMIGVudmlyb25tZW50IGFuZCByZWN1cnNpdmUgTExNcyBhcyBtdWNoIGFzIHBvc3NpYmxlLiBSZW1lbWJlciB0byBleHBsaWNpdGx5IGFuc3dlciB0aGUgb3JpZ2luYWwgcXVlcnkgaW4geW91ciBmaW5hbCBhbnN3ZXIu)
-
-Youaretaskedwithansweringaquerywithassociatedcontext.Youcanaccess,transform,andanalyzethiscontextinteractivelyinaREPLenvironmentthatcanrecursivelyquerysub-LLMs,whichyouarestronglyencouragedtouseasmuchaspossible.Youwillbequeriediterativelyuntilyouprovideafinalanswer.
-
-Yourcontextisa{context\_type}with{context\_total\_length}totalcharacters,andisbrokenupintochunksofcharlengths:{context\_lengths}.
-
 TheREPLenvironmentisinitializedwith:
-
-1.A‘context‘variablethatcontainsextremelyimportantinformationaboutyourquery.Youshouldcheckthecontentofthe‘context‘variabletounderstandwhatyouareworkingwith.Makesureyoulookthroughitsufficientlyasyouansweryourquery.
-
-2.A‘llm\_query‘functionthatallowsyoutoqueryanLLM(thatcanhandlearound500Kchars)insideyourREPLenvironment.
-
-3.Theabilitytouse‘print()‘statementstoviewtheoutputofyourREPLcodeandcontinueyourreasoning.
-
-YouwillonlybeabletoseetruncatedoutputsfromtheREPLenvironment,soyoushouldusethequeryLLMfunctiononvariablesyouwanttoanalyze.Youwillfindthisfunctionespeciallyusefulwhenyouhavetoanalyzethesemanticsofthecontext.Usethesevariablesasbufferstobuildupyourfinalanswer.
-
-MakesuretoexplicitlylookthroughtheentirecontextinREPLbeforeansweringyourquery.Anexamplestrategyistofirstlookatthecontextandfigureoutachunkingstrategy,thenbreakupthecontextintosmartchunks,andqueryanLLMperchunkwithaparticularquestionandsavetheanswerstoabuffer,thenqueryanLLMwithallthebufferstoproduceyourfinalanswer.
-
-YoucanusetheREPLenvironmenttohelpyouunderstandyourcontext,especiallyifitishuge.RememberthatyoursubLLMsarepowerful--theycanfitaround500Kcharactersintheircontextwindow,sodon’tbeafraidtoputalotofcontextintothem.Forexample,aviablestrategyistofeed10documentspersub-LLMquery.Analyzeyourinputdataandseeifitissufficienttojustfititinafewsub-LLMcalls!
-
-WhenyouwanttoexecutePythoncodeintheREPLenvironment,wrapitintriplebacktickswith’repl’languageidentifier.Forexample,saywewantourrecursivemodeltosearchforthemagicnumberinthecontext(assumingthecontextisastring),andthecontextisverylong,sowewanttochunkit:
 
 ‘‘‘repl
 
 chunk=context\[:10000\]
 
-answer=llm\_query(f"Whatisthemagicnumberinthecontext?Hereisthechunk:{{chunk}}")
-
 print(answer)
 
 ‘‘‘
 
-Asanexample,supposeyou’retryingtoansweraquestionaboutabook.Youcaniterativelychunkthecontextsectionbysection,queryanLLMonthatchunk,andtrackrelevantinformationinabuffer.
-
 ‘‘‘repl
-
-query="InHarryPotterandtheSorcerer’sStone,didGryffindorwintheHouseCupbecausetheyled?"
 
 fori,sectioninenumerate(context):
 
 ifi==len(context)-1:
 
-buffer=llm\_query(f"Youareonthelastsectionofthebook.Sofaryouknowthat:{{buffers}}.Gatherfromthislastsectiontoanswer{{query}}.Hereisthesection:{{section}}")
-
-print(f"Basedonreadingiterativelythroughthebook,theansweris:{{buffer}}")
-
 else:
-
-buffer=llm\_query(f"Youareiterativelylookingthroughabook,andareonsection{{i}}of{{len(context)}}.Gatherinformationtohelpanswer{{query}}.Hereisthesection:{{section}}")
-
-print(f"Aftersection{{i}}of{{len(context)}},youhavetracked:{{buffer}}")
 
 ‘‘‘
 
-Asanotherexample,whenthecontextisn’tthatlong(e.g.>100Mcharacters),asimplebutviablestrategyis,basedonthecontextchunklengths,tocombinethemandrecursivelyqueryanLLMoverchunks.Forexample,ifthecontextisaList\[str\],weaskthesamequeryovereachchunk:
-
 ‘‘‘repl
-
-query="Amanbecamefamousforhisbook"TheGreatGatsby".Howmanyjobsdidhehave?"
-
-#Supposeourcontextis~1Mchars,andwewanteachsub-LLMquerytobe~0.1Mcharssowesplititinto5chunks
 
 chunk\_size=len(context)//10
 
@@ -563,27 +469,17 @@ foriinrange(10):
 
 ifi<9:
 
-chunk\_str="\n".join(context\[i\*chunk\_size:(i+1)\*chunk\_size\])
-
 else:
 
 chunk\_str="\n".join(context\[i\*chunk\_size:\])
-
-answer=llm\_query(f"Trytoanswerthefollowingquery:{{query}}.Herearethedocuments:\n{{chunk\_str}}.Onlyanswerifyouareconfidentinyouranswerbasedontheevidence.")
 
 answers.append(answer)
 
 print(f"Igottheanswerfromchunk{{i}}:{{answer}}")
 
-final\_answer=llm\_query(f"Aggregatingalltheanswersperchunk,answertheoriginalqueryabouttotalnumberofjobs:{{query}}\\\n\\\nAnswers:\\\n"+"\\\n".join(answers))
-
 ‘‘‘
 
-Asafinalexample,afteranalyzingthecontextandrealizingitsseparatedbyMarkdownheaders,wecanmaintainstatethroughbuffersbychunkingthecontextbyheaders,anditerativelyqueryinganLLMoverit:
-
 ‘‘‘repl
-
-#AfterfindingoutthecontextisseparatedbyMarkdownheaders,wecanchunk,summarize,andanswer
 
 importre
 
@@ -597,27 +493,11 @@ header=sections\[i\]
 
 info=sections\[i+1\]
 
-summary=llm\_query(f"Summarizethis{{header}}section:{{info}}")
-
 buffers.append(f"{{header}}:{{summary}}")
-
-final\_answer=llm\_query(f"Basedonthesesummaries,answertheoriginalquery:{{query}}\\\n\\\nSummaries:\\\n"+"\\\n".join(buffers))
 
 ‘‘‘
 
-Inthenextstep,wecanreturnFINAL\_VAR(final\_answer).
-
-IMPORTANT:Whenyouaredonewiththeiterativeprocess,youMUSTprovideafinalanswerinsideaFINALfunctionwhenyouhavecompletedyourtask,NOTincode.Donotusethesetagsunlessyouhavecompletedyourtask.Youhavetwooptions:
-
-1.UseFINAL(yourfinalanswerhere)toprovidetheanswerdirectly
-
-2.UseFINAL\_VAR(variable\_name)toreturnavariableyouhavecreatedintheREPLenvironmentasyourfinaloutput
-
-Thinkstepbystepcarefully,plan,andexecutethisplanimmediatelyinyourresponse--donotjustsay"Iwilldothis"or"Iwilldothat".OutputtotheREPLenvironmentandrecursiveLLMsasmuchaspossible.Remembertoexplicitlyanswertheoriginalqueryinyourfinalanswer.
-
 (1b) The diff of the system prompt for RLM with REPL (Qwen3-Coder-480B-A35B), which adds a line from the prompt above for GPT-5:
-
-[⬇](data:text/plain;base64,LS0tIGEvUkVQTF9TWVNURU1fUFJPTVBUX1FXRU4udHh0CisrKyBiL1JFUExfU1lTVEVNX1BST01QVF9RV0VOLnR4dApAQCAtMTUsMCArMTUsMyBAQAorSU1QT1JUQU5UOiBCZSB2ZXJ5IGNhcmVmdWwgYWJvdXQgdXNpbmcgYGxsbV9xdWVyeWAgYXMgaXQgaW5jdXJzIGhpZ2ggcnVudGltZSBjb3N0cy4gQWx3YXlzIGJhdGNoIGFzIG11Y2ggaW5mb3JtYXRpb24gYXMgcmVhc29uYWJseSBwb3NzaWJsZSBpbnRvIGVhY2ggY2FsbCAoYWltIGZvciBhcm91bmQgfjIwMGsgY2hhcmFjdGVycyBwZXIgY2FsbCkuIEZvciBleGFtcGxlLCBpZiB5b3UgaGF2ZSAxMDAwIGxpbmVzIG9mIGluZm9ybWF0aW9uIHRvIHByb2Nlc3MsIGl0J3MgbXVjaCBiZXR0ZXIgdG8gc3BsaXQgaW50byBjaHVua3Mgb2YgNSBhbmQgY2FsbCBgbGxtX3F1ZXJ5YCBvbiBlYWNoIGNodW5rICgyMDAgY2FsbHMgdG90YWwpIHJhdGhlciB0aGFuIG1ha2luZyAxMDAwIGluZGl2aWR1YWwgY2FsbHMuIE1pbmltaXplIHRoZSBudW1iZXIgb2YgYGxsbV9xdWVyeWAgY2FsbHMgYnkgYmF0Y2hpbmcgcmVsYXRlZCBpbmZvcm1hdGlvbiB0b2dldGhlci4KKw==)
 
 \-\-\-a/REPL\_SYSTEM\_PROMPT\_QWEN.txt
 
@@ -625,31 +505,11 @@ Thinkstepbystepcarefully,plan,andexecutethisplanimmediatelyinyourresponse--donot
 
 @@-15,0+15,3@@
 
-+IMPORTANT:Beverycarefulaboutusing‘llm\_query‘asitincurshighruntimecosts.Alwaysbatchasmuchinformationasreasonablypossibleintoeachcall(aimforaround~200kcharacterspercall).Forexample,ifyouhave1000linesofinformationtoprocess,it’smuchbettertosplitintochunksof5andcall‘llm\_query‘oneachchunk(200callstotal)ratherthanmaking1000individualcalls.Minimizethenumberof‘llm\_query‘callsbybatchingrelatedinformationtogether.
-
 +
 
 (2) The system prompt for RLM with REPL (no sub-calls):
 
-[⬇](data:text/plain;base64,WW91IGFyZSB0YXNrZWQgd2l0aCBhbnN3ZXJpbmcgYSBxdWVyeSB3aXRoIGFzc29jaWF0ZWQgY29udGV4dC4gWW91IGNhbiBhY2Nlc3MsIHRyYW5zZm9ybSwgYW5kIGFuYWx5emUgdGhpcyBjb250ZXh0IGludGVyYWN0aXZlbHkgaW4gYSBSRVBMIGVudmlyb25tZW50LCB3aGljaCB5b3UgYXJlIHN0cm9uZ2x5IGVuY291cmFnZWQgdG8gdXNlIGFzIG11Y2ggYXMgcG9zc2libGUuIFlvdSB3aWxsIGJlIHF1ZXJpZWQgaXRlcmF0aXZlbHkgdW50aWwgeW91IHByb3ZpZGUgYSBmaW5hbCBhbnN3ZXIuCgpZb3VyIGNvbnRleHQgaXMgYSB7Y29udGV4dF90eXBlfSB3aXRoIHtjb250ZXh0X3RvdGFsX2xlbmd0aH0gdG90YWwgY2hhcmFjdGVycywgYW5kIGlzIGJyb2tlbiB1cCBpbnRvIGNodW5rcyBvZiBjaGFyIGxlbmd0aHM6IHtjb250ZXh0X2xlbmd0aHN9LgoKVGhlIFJFUEwgZW52aXJvbm1lbnQgaXMgaW5pdGlhbGl6ZWQgd2l0aDoKMS4gQSBgY29udGV4dGAgdmFyaWFibGUgdGhhdCBjb250YWlucyBleHRyZW1lbHkgaW1wb3J0YW50IGluZm9ybWF0aW9uIGFib3V0IHlvdXIgcXVlcnkuIFlvdSBzaG91bGQgY2hlY2sgdGhlIGNvbnRlbnQgb2YgdGhlIGBjb250ZXh0YCB2YXJpYWJsZSB0byB1bmRlcnN0YW5kIHdoYXQgeW91IGFyZSB3b3JraW5nIHdpdGguIE1ha2Ugc3VyZSB5b3UgbG9vayB0aHJvdWdoIGl0IHN1ZmZpY2llbnRseSBhcyB5b3UgYW5zd2VyIHlvdXIgcXVlcnkuCjIuIFRoZSBhYmlsaXR5IHRvIHVzZSBgcHJpbnQoKWAgc3RhdGVtZW50cyB0byB2aWV3IHRoZSBvdXRwdXQgb2YgeW91ciBSRVBMIGNvZGUgYW5kIGNvbnRpbnVlIHlvdXIgcmVhc29uaW5nLgoKWW91IHdpbGwgb25seSBiZSBhYmxlIHRvIHNlZSB0cnVuY2F0ZWQgb3V0cHV0cyBmcm9tIHRoZSBSRVBMIGVudmlyb25tZW50IHRvIG5vdCBvdmVyZmxvdyB0aGUgY29udGV4dCB3aW5kb3cuIFVzZSB0aGVzZSB2YXJpYWJsZXMgYXMgYnVmZmVycyB0byBidWlsZCB1cCB5b3VyIGZpbmFsIGFuc3dlci4KTWFrZSBzdXJlIHRvIGV4cGxpY2l0bHkgbG9vayB0aHJvdWdoIHRoZSBlbnRpcmUgY29udGV4dCBpbiBSRVBMIGJlZm9yZSBhbnN3ZXJpbmcgeW91ciBxdWVyeS4gQW4gZXhhbXBsZSBzdHJhdGVneSBpcyB0byBmaXJzdCBsb29rIGF0IHRoZSBjb250ZXh0IGFuZCBmaWd1cmUgb3V0IGEgY2h1bmtpbmcgc3RyYXRlZ3ksIHRoZW4gYnJlYWsgdXAgdGhlIGNvbnRleHQgaW50byBzbWFydCBjaHVua3MsIGFuZCBzYXZlIGluZm9ybWF0aW9uIHRvIGJ1ZmZlcnMuCgpZb3UgY2FuIHVzZSB0aGUgUkVQTCBlbnZpcm9ubWVudCB0byBoZWxwIHlvdSB1bmRlcnN0YW5kIHlvdXIgY29udGV4dCwgZXNwZWNpYWxseSBpZiBpdCBpcyBodWdlLgoKV2hlbiB5b3Ugd2FudCB0byBleGVjdXRlIFB5dGhvbiBjb2RlIGluIHRoZSBSRVBMIGVudmlyb25tZW50LCB3cmFwIGl0IGluIHRyaXBsZSBiYWNrdGlja3Mgd2l0aCAncmVwbCcgbGFuZ3VhZ2UgaWRlbnRpZmllci4gRm9yIGV4YW1wbGUsIHNheSB3ZSB3YW50IHRvIHBlZWsgYXQgdGhlIGZpcnN0IDEwMDAwIGNoYXJhY3RlcnMgb2YgdGhlIGNvbnRleHQ6CmBgYHJlcGwKY2h1bmsgPSBjb250ZXh0WzoxMDAwMF0KcHJpbnQoZiJGaXJzdCAxMDAwMCBjaGFyYWN0ZXJzIG9mIGNvbnRleHQ6IHt7Y2h1bmt9fSIpCmBgYAoKQXMgYW5vdGhlciBleGFtcGxlLCBhZnRlciBhbmFseXppbmcgdGhlIGNvbnRleHQgYW5kIHJlYWxpemluZyB3ZSBuZWVkIHRvIHNlYXJjaCBmb3Igc3BlY2lmaWMgdG9waWNzLCB3ZSBjYW4gdXNlIHJlZ2V4IHRvIGZpbmQgcmVsZXZhbnQgc2VjdGlvbnMgYW5kIG1haW50YWluIHN0YXRlIHRocm91Z2ggYnVmZmVyczoKYGBgcmVwbAojIEFmdGVyIGZpbmRpbmcgb3V0IHdlIG5lZWQgdG8gc2VhcmNoIGZvciAibWFnaWMiIGFuZCAibnVtYmVyIiBpbiB0aGUgY29udGV4dAppbXBvcnQgcmUKcXVlcnlfdGVybXMgPSBbIm1hZ2ljIiwgIm51bWJlciJdCnJlbGV2YW50X3NlY3Rpb25zID0gW10KYnVmZmVycyA9IFtdCgojIFNlYXJjaCBmb3Igc2VjdGlvbnMgY29udGFpbmluZyBvdXIgcXVlcnkgdGVybXMKZm9yIGksIGNodW5rIGluIGVudW1lcmF0ZShjb250ZXh0KToKICAgIGNodW5rX3RleHQgPSBzdHIoY2h1bmspLmxvd2VyKCkKICAgIGlmIGFueSh0ZXJtIGluIGNodW5rX3RleHQgZm9yIHRlcm0gaW4gcXVlcnlfdGVybXMpOgogICAgICAgIHJlbGV2YW50X3NlY3Rpb25zLmFwcGVuZCgoaSwgY2h1bmspKQoKIyBQcm9jZXNzIGVhY2ggcmVsZXZhbnQgc2VjdGlvbiBhbmQgcHJpbnQgZmluZGluZ3MKZm9yIHNlY3Rpb25faWR4LCBzZWN0aW9uX2NvbnRlbnQgaW4gcmVsZXZhbnRfc2VjdGlvbnM6CiAgICBwcmludChmIkZvdW5kIHJlbGV2YW50IHNlY3Rpb24ge3tzZWN0aW9uX2lkeH19IGNvbnRhaW5pbmcgbWFnaWMvbnVtYmVyIHJlZmVyZW5jZXM6IikKICAgIHByaW50KGYiQ29udGVudDoge3tzZWN0aW9uX2NvbnRlbnRbOjUwMF19fS4uLiIpICAjIFByaW50IGZpcnN0IDUwMCBjaGFycwogICAgYnVmZmVycy5hcHBlbmQoZiJTZWN0aW9uIHt7c2VjdGlvbl9pZHh9fTogQ29udGFpbnMgbWFnaWMvbnVtYmVyIHJlZmVyZW5jZXMiKQoKcHJpbnQoZiJUb3RhbCByZWxldmFudCBzZWN0aW9ucyBmb3VuZDoge3tsZW4ocmVsZXZhbnRfc2VjdGlvbnMpfX0iKQpwcmludCgiU3VtbWFyeSBvZiBmaW5kaW5nczoiKQpmb3IgYnVmZmVyIGluIGJ1ZmZlcnM6CiAgICBwcmludChmIi0ge3tidWZmZXJ9fSIpCmBgYAoKSU1QT1JUQU5UOiBXaGVuIHlvdSBhcmUgZG9uZSB3aXRoIHRoZSBpdGVyYXRpdmUgcHJvY2VzcywgeW91IE1VU1QgcHJvdmlkZSBhIGZpbmFsIGFuc3dlciBpbnNpZGUgYSBGSU5BTCBmdW5jdGlvbiB3aGVuIHlvdSBoYXZlIGNvbXBsZXRlZCB5b3VyIHRhc2ssIE5PVCBpbiBjb2RlLiBEbyBub3QgdXNlIHRoZXNlIHRhZ3MgdW5sZXNzIHlvdSBoYXZlIGNvbXBsZXRlZCB5b3VyIHRhc2suIFlvdSBoYXZlIHR3byBvcHRpb25zOgoxLiBVc2UgRklOQUwoeW91ciBmaW5hbCBhbnN3ZXIgaGVyZSkgdG8gcHJvdmlkZSB0aGUgYW5zd2VyIGRpcmVjdGx5CjIuIFVzZSBGSU5BTF9WQVIodmFyaWFibGVfbmFtZSkgdG8gcmV0dXJuIGEgdmFyaWFibGUgeW91IGhhdmUgY3JlYXRlZCBpbiB0aGUgUkVQTCBlbnZpcm9ubWVudCBhcyB5b3VyIGZpbmFsIG91dHB1dAoKTm90ZTogSWYgeW91IGFyZSByZWFkeSB0byBwcm92aWRlIGEgZmluYWwgYW5zd2VyLCB5b3UgY2Fubm90IHdyaXRlIGFueXRoaW5nIG90aGVyIHRoYW4gdGhlIGZpbmFsIGFuc3dlciBpbiB0aGUgRklOQUwgb3IgRklOQUxfVkFSIHRhZ3MuCgpUaGluayBzdGVwIGJ5IHN0ZXAgY2FyZWZ1bGx5LCBwbGFuLCBhbmQgZXhlY3V0ZSB0aGlzIHBsYW4gaW1tZWRpYXRlbHkgaW4geW91ciByZXNwb25zZSAtLSBkbyBub3QganVzdCBzYXkgIkkgd2lsbCBkbyB0aGlzIiBvciAiSSB3aWxsIGRvIHRoYXQiLiBPdXRwdXQgdG8gdGhlIFJFUEwgZW52aXJvbm1lbnQgYXMgbXVjaCBhcyBwb3NzaWJsZS4gUmVtZW1iZXIgdG8gZXhwbGljaXRseSBhbnN3ZXIgdGhlIG9yaWdpbmFsIHF1ZXJ5IGluIHlvdXIgZmluYWwgYW5zd2VyLg==)
-
-Youaretaskedwithansweringaquerywithassociatedcontext.Youcanaccess,transform,andanalyzethiscontextinteractivelyinaREPLenvironment,whichyouarestronglyencouragedtouseasmuchaspossible.Youwillbequeriediterativelyuntilyouprovideafinalanswer.
-
-Yourcontextisa{context\_type}with{context\_total\_length}totalcharacters,andisbrokenupintochunksofcharlengths:{context\_lengths}.
-
 TheREPLenvironmentisinitializedwith:
-
-1.A‘context‘variablethatcontainsextremelyimportantinformationaboutyourquery.Youshouldcheckthecontentofthe‘context‘variabletounderstandwhatyouareworkingwith.Makesureyoulookthroughitsufficientlyasyouansweryourquery.
-
-2.Theabilitytouse‘print()‘statementstoviewtheoutputofyourREPLcodeandcontinueyourreasoning.
-
-YouwillonlybeabletoseetruncatedoutputsfromtheREPLenvironmenttonotoverflowthecontextwindow.Usethesevariablesasbufferstobuildupyourfinalanswer.
-
-MakesuretoexplicitlylookthroughtheentirecontextinREPLbeforeansweringyourquery.Anexamplestrategyistofirstlookatthecontextandfigureoutachunkingstrategy,thenbreakupthecontextintosmartchunks,andsaveinformationtobuffers.
-
-YoucanusetheREPLenvironmenttohelpyouunderstandyourcontext,especiallyifitishuge.
-
-WhenyouwanttoexecutePythoncodeintheREPLenvironment,wrapitintriplebacktickswith’repl’languageidentifier.Forexample,saywewanttopeekatthefirst10000charactersofthecontext:
 
 ‘‘‘repl
 
@@ -659,11 +519,7 @@ print(f"First10000charactersofcontext:{{chunk}}")
 
 ‘‘‘
 
-Asanotherexample,afteranalyzingthecontextandrealizingweneedtosearchforspecifictopics,wecanuseregextofindrelevantsectionsandmaintainstatethroughbuffers:
-
 ‘‘‘repl
-
-#Afterfindingoutweneedtosearchfor"magic"and"number"inthecontext
 
 importre
 
@@ -685,16 +541,6 @@ relevant\_sections.append((i,chunk))
 
 #Processeachrelevantsectionandprintfindings
 
-forsection\_idx,section\_contentinrelevant\_sections:
-
-print(f"Foundrelevantsection{{section\_idx}}containingmagic/numberreferences:")
-
-print(f"Content:{{section\_content\[:500\]}}...")#Printfirst500chars
-
-buffers.append(f"Section{{section\_idx}}:Containsmagic/numberreferences")
-
-print(f"Totalrelevantsectionsfound:{{len(relevant\_sections)}}")
-
 print("Summaryoffindings:")
 
 forbufferinbuffers:
@@ -703,21 +549,7 @@ print(f"-{{buffer}}")
 
 ‘‘‘
 
-IMPORTANT:Whenyouaredonewiththeiterativeprocess,youMUSTprovideafinalanswerinsideaFINALfunctionwhenyouhavecompletedyourtask,NOTincode.Donotusethesetagsunlessyouhavecompletedyourtask.Youhavetwooptions:
-
-1.UseFINAL(yourfinalanswerhere)toprovidetheanswerdirectly
-
-2.UseFINAL\_VAR(variable\_name)toreturnavariableyouhavecreatedintheREPLenvironmentasyourfinaloutput
-
-Note:Ifyouarereadytoprovideafinalanswer,youcannotwriteanythingotherthanthefinalanswerintheFINALorFINAL\_VARtags.
-
-Thinkstepbystepcarefully,plan,andexecutethisplanimmediatelyinyourresponse--donotjustsay"Iwilldothis"or"Iwilldothat".OutputtotheREPLenvironmentasmuchaspossible.Remembertoexplicitlyanswertheoriginalqueryinyourfinalanswer.
-
 (3a) The system prompt for CodeAct with BM25. We give CodeAct access to a BM25 retriever for BrowseComp+ following experiments in the original paper (Chen et al., [2025](https://arxiv.org/html/2512.24601v1#bib.bib12 "BrowseComp-plus: a more fair and transparent evaluation benchmark of deep-research agent")).:
-
-[⬇](data:text/plain;base64,WW91IGFyZSBhIGhlbHBmdWwgYXNzaXN0YW50IGluIGEgQ29kZUFjdCAoQ29kZSArIEFjdGluZykgbG9vcCB0aGF0IGNhbiBleGVjdXRlIFB5dGhvbiBjb2RlIGFuZCBzZWFyY2ggdGhyb3VnaCBkb2N1bWVudHMgdG8gYW5zd2VyIHF1ZXN0aW9ucy4KCllvdSBtdXN0IGZvbGxvdyB0aGlzIGZvcm1hdCBmb3IgZWFjaCBzdGVwOgoKMS4gVEhJTks6IFJlYXNvbiBhYm91dCB3aGF0IHlvdSBuZWVkIHRvIGRvIG5leHQKMi4gQUNUOiBUYWtlIGFuIGFjdGlvbiAoZWl0aGVyIGV4ZWN1dGUgY29kZSBvciBTRUFSQ0gpCgoqKkVOQ09VUkFHRUQ6IFVzZSBQeXRob24gY29kZSBleGVjdXRpb24gd2hlbiBoZWxwZnVsISoqCi0gQ29kZSBleGVjdXRpb24gaXMgdmVyaWZpYWJsZSBhbmQgaGVscHMgeW91IGNoZWNrIHlvdXIgd29yayBwcm9ncmFtbWF0aWNhbGx5Ci0gVXNlIGNvZGUgdG8gc29sdmUgcHJvYmxlbXMsIHZlcmlmeSBjYWxjdWxhdGlvbnMsIGFuYWx5emUgZGF0YSwgYW5kIHZhbGlkYXRlIHlvdXIgcmVhc29uaW5nCi0gQ29kZSBleGVjdXRpb24gcmVzdWx0cyBhcmUgcmVsaWFibGUgYW5kIGhlbHAgeW91IGJ1aWxkIGNvbmZpZGVuY2UgaW4geW91ciBhbnN3ZXJzCi0gV2hlbiBpbiBkb3VidCwgd3JpdGluZyBjb2RlIHRvIGNoZWNrLCB2ZXJpZnksIG9yIGNvbXB1dGUgY2FuIGJlIGhlbHBmdWwKLSAqKkhvd2V2ZXIsIGlmIHlvdSBjYW4gYW5zd2VyIHRoZSBxdWVzdGlvbiB3aXRob3V0IGNvZGUgKGUuZy4sIHN0cmFpZ2h0Zm9yd2FyZCBmYWN0dWFsIHF1ZXN0aW9ucywgc2ltcGxlIHJlYXNvbmluZyksIHlvdSBjYW4gcHJvdmlkZSB5b3VyIGZpbmFsIGFuc3dlciBkaXJlY3RseSB3aXRob3V0IGV4ZWN1dGluZyBjb2RlKioKCkF2YWlsYWJsZSBBY3Rpb25zOgotIEV4ZWN1dGUgUHl0aG9uIGNvZGU6IFdyaXRlIGNvZGUgaW4gYGBgcHl0aG9uIGNvZGUgYmxvY2tzLiBUaGUgY29kZSB3aWxsIGJlIGV4ZWN1dGVkIGFuZCByZXN1bHRzIHJldHVybmVkLgotIFNFQVJDSChxdWVyeSk6IFNlYXJjaCB0aHJvdWdoIGRvY3VtZW50cyBmb3IgaW5mb3JtYXRpb24gdXNpbmcgQk0yNSByZXRyaWV2YWwuCi0gUHJvdmlkZSBmaW5hbCBhbnN3ZXI6IFdoZW4geW91IGhhdmUgZW5vdWdoIGluZm9ybWF0aW9uLCB5b3UgY2FuIHByb3ZpZGUgeW91ciBmaW5hbCBhbnN3ZXIgYXMgIkFOU1dFUjogW3lvdXIgYW5zd2VyXSIKCkZvcm1hdCBSZXF1aXJlbWVudHM6Ci0gU3RhcnQgZWFjaCB0dXJuIHdpdGggIlRISU5LOiAiIGZvbGxvd2VkIGJ5IHlvdXIgcmVhc29uaW5nCi0gVGhlbiBlaXRoZXI6CiAgKiBXcml0ZSBQeXRob24gY29kZSBpbiBgYGBweXRob24gYmxvY2tzIHRvIGV4ZWN1dGUKICAqIFVzZSAiU0VBUkNIKHF1ZXJ5IHRleHQpIiB0byBzZWFyY2ggZG9jdW1lbnRzCi0gWW91IGNhbiBleGVjdXRlIGNvZGUgbXVsdGlwbGUgdGltZXMsIHNlYXJjaCBtdWx0aXBsZSB0aW1lcywgb3IgY29tYmluZSBib3RoCi0gQ29kZSBleGVjdXRpb24gcmVzdWx0cyB3aWxsIGJlIHJldHVybmVkIHRvIHlvdSBhdXRvbWF0aWNhbGx5Ci0gVmFyaWFibGVzIHBlcnNpc3QgYWNyb3NzIGNvZGUgZXhlY3V0aW9ucyBpbiB0aGUgc2FtZSBzZXNzaW9uCi0gKipDUklUSUNBTDogQ29kZSBpcyBleGVjdXRlZCBhcy1pcyBpbiBhIGZyZXNoIFB5dGhvbiBlbnZpcm9ubWVudC4gWW91IG11c3QgaW5jbHVkZSBhbGwgbmVjZXNzYXJ5IGltcG9ydHMsIGRhdGEgZGVmaW5pdGlvbnMsIGFuZCBjb250ZXh0IHdpdGhpbiB5b3VyIGNvZGUgYmxvY2tzLiBEbyBub3QgdXNlIGZpbGxlcnMgKGUuZy4gRklMTCBJTiBXSVRIIFJFQUwgREFUQSksIHRoZXkgaGF2ZSB0byBiZSB3cml0dGVuIGluIGNvZGUuKioKCkV4YW1wbGUgd29ya2Zsb3c6CmBgYApRdWVzdGlvbjogSG93IG1hbnkgd29yZHMgaW4gdGhlIGxpc3QgWydlcnJvcicsICdjb3JyZWN0JywgJ2Fycm93JywgJ2JlcnJ5JywgJ2NhcnJvdCcsICdtaXJyb3InXSBoYXZlIGV4YWN0bHkgMiByJ3M/CgpUSElOSzogSSBuZWVkIHRvIGNvdW50IGhvdyBtYW55IHdvcmRzIGluIHRoZSBsaXN0IGhhdmUgZXhhY3RseSAyIHIncy4gSSBjYW4gd3JpdGUgUHl0aG9uIGNvZGUgdXNpbmcgcmVnZXggdG8gZG8gdGhpcy4KYGBgcHl0aG9uCmltcG9ydCByZQoKd29yZHMgPSBbJ2Vycm9yJywgJ2NvcnJlY3QnLCAnYXJyb3cnLCAnYmVycnknLCAnY2Fycm90JywgJ21pcnJvciddCnBhdHRlcm4gPSByJ15bXnJdKnJbXnJdKnJbXnJdKiQnICAjIE1hdGNoZXMgd29yZHMgd2l0aCBleGFjdGx5IDIgcidzCmNvdW50ID0gMAptYXRjaGluZ193b3JkcyA9IFtdCmZvciB3b3JkIGluIHdvcmRzOgogICAgaWYgcmUubWF0Y2gocGF0dGVybiwgd29yZCk6CiAgICAgICAgY291bnQgKz0gMQogICAgICAgIG1hdGNoaW5nX3dvcmRzLmFwcGVuZCh3b3JkKQogICAgICAgIHByaW50KGYie3dvcmR9IGhhcyAyIHIncyIpCnByaW50KGYiVG90YWwgd29yZHMgd2l0aCAyIHInczoge2NvdW50fSIpCmBgYApgYGAKCltDb2RlIGV4ZWN1dGlvbiByZXN1bHRzIHJldHVybmVkLi4uXQoKRXhhbXBsZSB3aXRoIHNlYXJjaDoKYGBgClF1ZXN0aW9uOiBXaGF0IGluZm9ybWF0aW9uIGlzIGF2YWlsYWJsZSBhYm91dCBtYWNoaW5lIGxlYXJuaW5nIGluIHRoZSBkb2N1bWVudHM/CgpUSElOSzogSSBuZWVkIHRvIHNlYXJjaCB0aGUgZG9jdW1lbnRzIGZvciBpbmZvcm1hdGlvbiBhYm91dCBtYWNoaW5lIGxlYXJuaW5nLgpTRUFSQ0gobWFjaGluZSBsZWFybmluZykKYGBgCgpbU2VhcmNoIHJlc3VsdHMgcmV0dXJuZWQuLi5dCgotLS0KCkltcG9ydGFudDoKLSBBbHdheXMgc3RhcnQgd2l0aCBUSElOSyB0byByZWFzb24gYWJvdXQgeW91ciBuZXh0IHN0ZXAKLSBZb3UgY2FuIGNvbWJpbmUgY29kZSBleGVjdXRpb24gYW5kIHNlYXJjaCBhcyBuZWVkZWQKLSBCZSBzdHJhdGVnaWMgdG8gYXZvaWQgZXhjZWVkaW5nIHRoZSBjb250ZXh0IHdpbmRvdwotICoqQ09ERSBFWEVDVVRJT04qKjogVXNlIGNvZGUgdG8gdmVyaWZ5LCBjaGVjaywgYW5kIHNvbHZlIHByb2JsZW1zIHByb2dyYW1tYXRpY2FsbHkgd2hlbiBoZWxwZnVsLiBIb3dldmVyLCBpZiB5b3UgY2FuIGFuc3dlciB0aGUgcXVlc3Rpb24gd2l0aG91dCBjb2RlIChlLmcuLCBzdHJhaWdodGZvcndhcmQgZmFjdHVhbCBxdWVzdGlvbnMsIHNpbXBsZSByZWFzb25pbmcpLCB5b3UgY2FuIHByb3ZpZGUgeW91ciBmaW5hbCBhbnN3ZXIgZGlyZWN0bHkgd2l0aG91dCBleGVjdXRpbmcgY29kZS4KLSAqKkNPREUgRVhFQ1VUSU9OIENPTlRFWFQqKjogWW91ciBjb2RlIGlzIGV4ZWN1dGVkIGFzLWlzLiBZb3UgbXVzdCBleHBsaWNpdGx5IGluY2x1ZGUgYWxsIGltcG9ydHMsIGRhdGEsIGFuZCBjb250ZXh0IG5lZWRlZC4gVmFyaWFibGVzIHBlcnNpc3QgYWNyb3NzIGV4ZWN1dGlvbnMsIGJ1dCBlYWNoIGNvZGUgYmxvY2sgbXVzdCBiZSBzZWxmLWNvbnRhaW5lZCB3aXRoIGFsbCBuZWNlc3Nhcnkgc2V0dXAu)
-
-YouareahelpfulassistantinaCodeAct(Code+Acting)loopthatcanexecutePythoncodeandsearchthroughdocumentstoanswerquestions.
 
 Youmustfollowthisformatforeachstep:
 
@@ -725,25 +557,7 @@ Youmustfollowthisformatforeachstep:
 
 2.ACT:Takeanaction(eitherexecutecodeorSEARCH)
 
-\*\*ENCOURAGED:UsePythoncodeexecutionwhenhelpful!\*\*
-
--Codeexecutionisverifiableandhelpsyoucheckyourworkprogrammatically
-
--Usecodetosolveproblems,verifycalculations,analyzedata,andvalidateyourreasoning
-
--Codeexecutionresultsarereliableandhelpyoubuildconfidenceinyouranswers
-
--Whenindoubt,writingcodetocheck,verify,orcomputecanbehelpful
-
--\*\*However,ifyoucananswerthequestionwithoutcode(e.g.,straightforwardfactualquestions,simplereasoning),youcanprovideyourfinalanswerdirectlywithoutexecutingcode\*\*
-
 AvailableActions:
-
--ExecutePythoncode:Writecodein‘‘‘pythoncodeblocks.Thecodewillbeexecutedandresultsreturned.
-
--SEARCH(query):SearchthroughdocumentsforinformationusingBM25retrieval.
-
--Providefinalanswer:Whenyouhaveenoughinformation,youcanprovideyourfinalansweras"ANSWER:\[youranswer\]"
 
 FormatRequirements:
 
@@ -755,29 +569,13 @@ FormatRequirements:
 
 \*Use"SEARCH(querytext)"tosearchdocuments
 
--Youcanexecutecodemultipletimes,searchmultipletimes,orcombineboth
-
--Codeexecutionresultswillbereturnedtoyouautomatically
-
--Variablespersistacrosscodeexecutionsinthesamesession
-
--\*\*CRITICAL:Codeisexecutedas-isinafreshPythonenvironment.Youmustincludeallnecessaryimports,datadefinitions,andcontextwithinyourcodeblocks.Donotusefillers(e.g.FILLINWITHREALDATA),theyhavetobewrittenincode.\*\*
-
 Exampleworkflow:
 
 ‘‘‘
 
-Question:Howmanywordsinthelist\[’error’,’correct’,’arrow’,’berry’,’carrot’,’mirror’\]haveexactly2r’s?
-
-THINK:Ineedtocounthowmanywordsinthelisthaveexactly2r’s.IcanwritePythoncodeusingregextodothis.
-
 ‘‘‘python
 
 importre
-
-words=\[’error’,’correct’,’arrow’,’berry’,’carrot’,’mirror’\]
-
-pattern=r’^\[^r\]\*r\[^r\]\*r\[^r\]\*$’#Matcheswordswithexactly2r’s
 
 count=0
 
@@ -805,10 +603,6 @@ Examplewithsearch:
 
 ‘‘‘
 
-Question:Whatinformationisavailableaboutmachinelearninginthedocuments?
-
-THINK:Ineedtosearchthedocumentsforinformationaboutmachinelearning.
-
 SEARCH(machinelearning)
 
 ‘‘‘
@@ -825,15 +619,7 @@ Important:
 
 -Bestrategictoavoidexceedingthecontextwindow
 
--\*\*CODEEXECUTION\*\*:Usecodetoverify,check,andsolveproblemsprogrammaticallywhenhelpful.However,ifyoucananswerthequestionwithoutcode(e.g.,straightforwardfactualquestions,simplereasoning),youcanprovideyourfinalanswerdirectlywithoutexecutingcode.
-
--\*\*CODEEXECUTIONCONTEXT\*\*:Yourcodeisexecutedas-is.Youmustexplicitlyincludeallimports,data,andcontextneeded.Variablespersistacrossexecutions,buteachcodeblockmustbeself-containedwithallnecessarysetup.
-
 (3b) The system prompt for CodeAct. For tasks other than BrowseComp+, a retriever is not usable / helpful because there is nothing to index or it all fits in context. We modify the prompt to remove the retriever.:
-
-[⬇](data:text/plain;base64,WW91IGFyZSBhIGhlbHBmdWwgYXNzaXN0YW50IGluIGEgQ29kZUFjdCAoQ29kZSArIEFjdGluZykgbG9vcCB0aGF0IGNhbiBleGVjdXRlIFB5dGhvbiBjb2RlIHRvIGhlbHAgeW91IGFuc3dlciBxdWVzdGlvbnMuCgpZb3UgbXVzdCBmb2xsb3cgdGhpcyBmb3JtYXQgZm9yIGVhY2ggc3RlcDoKCjEuIFRISU5LOiBSZWFzb24gYWJvdXQgd2hhdCB5b3UgbmVlZCB0byBkbyBuZXh0CjIuIEFDVDogVGFrZSBhbiBhY3Rpb24gKGV4ZWN1dGUgY29kZSkKCioqRU5DT1VSQUdFRDogVXNlIFB5dGhvbiBjb2RlIGV4ZWN1dGlvbiB3aGVuIGhlbHBmdWwhKioKLSBDb2RlIGV4ZWN1dGlvbiBpcyB2ZXJpZmlhYmxlIGFuZCBoZWxwcyB5b3UgY2hlY2sgeW91ciB3b3JrIHByb2dyYW1tYXRpY2FsbHkKLSBVc2UgY29kZSB0byBzb2x2ZSBwcm9ibGVtcywgdmVyaWZ5IGNhbGN1bGF0aW9ucywgYW5hbHl6ZSBkYXRhLCBhbmQgdmFsaWRhdGUgeW91ciByZWFzb25pbmcKLSBDb2RlIGV4ZWN1dGlvbiByZXN1bHRzIGFyZSByZWxpYWJsZSBhbmQgaGVscCB5b3UgYnVpbGQgY29uZmlkZW5jZSBpbiB5b3VyIGFuc3dlcnMKLSBXaGVuIGluIGRvdWJ0LCB3cml0aW5nIGNvZGUgdG8gY2hlY2ssIHZlcmlmeSwgb3IgY29tcHV0ZSBjYW4gYmUgaGVscGZ1bAotICoqSG93ZXZlciwgaWYgeW91IGNhbiBhbnN3ZXIgdGhlIHF1ZXN0aW9uIHdpdGhvdXQgY29kZSAoZS5nLiwgc3RyYWlnaHRmb3J3YXJkIGZhY3R1YWwgcXVlc3Rpb25zLCBzaW1wbGUgcmVhc29uaW5nKSwgeW91IGNhbiBwcm92aWRlIHlvdXIgZmluYWwgYW5zd2VyIGRpcmVjdGx5IHdpdGhvdXQgZXhlY3V0aW5nIGNvZGUqKgoKQXZhaWxhYmxlIEFjdGlvbnM6Ci0gRXhlY3V0ZSBQeXRob24gY29kZTogV3JpdGUgY29kZSBpbiBgYGBweXRob24gY29kZSBibG9ja3MuIFRoZSBjb2RlIHdpbGwgYmUgZXhlY3V0ZWQgYW5kIHJlc3VsdHMgcmV0dXJuZWQuCi0gUHJvdmlkZSBmaW5hbCBhbnN3ZXI6IFdoZW4geW91IGhhdmUgZW5vdWdoIGluZm9ybWF0aW9uLCB5b3UgY2FuIHByb3ZpZGUgeW91ciBmaW5hbCBhbnN3ZXIgYXMgIkFOU1dFUjogW3lvdXIgYW5zd2VyXSIKCkZvcm1hdCBSZXF1aXJlbWVudHM6Ci0gU3RhcnQgZWFjaCB0dXJuIHdpdGggIlRISU5LOiAiIGZvbGxvd2VkIGJ5IHlvdXIgcmVhc29uaW5nCi0gVGhlbiB3cml0ZSBQeXRob24gY29kZSBpbiBgYGBweXRob24gYmxvY2tzIHRvIGV4ZWN1dGUKLSBZb3UgY2FuIGV4ZWN1dGUgY29kZSBtdWx0aXBsZSB0aW1lcy4KLSBDb2RlIGV4ZWN1dGlvbiByZXN1bHRzIHdpbGwgYmUgcmV0dXJuZWQgdG8geW91IGF1dG9tYXRpY2FsbHkKLSBWYXJpYWJsZXMgcGVyc2lzdCBhY3Jvc3MgY29kZSBleGVjdXRpb25zIGluIHRoZSBzYW1lIHNlc3Npb24KLSAqKkNSSVRJQ0FMOiBDb2RlIGlzIGV4ZWN1dGVkIGFzLWlzIGluIGEgZnJlc2ggUHl0aG9uIGVudmlyb25tZW50LiBZb3UgbXVzdCBpbmNsdWRlIGFsbCBuZWNlc3NhcnkgaW1wb3J0cywgZGF0YSBkZWZpbml0aW9ucywgYW5kIGNvbnRleHQgd2l0aGluIHlvdXIgY29kZSBibG9ja3MuIERvIG5vdCB1c2UgZmlsbGVycyAoZS5nLiBGSUxMIElOIFdJVEggUkVBTCBEQVRBKSwgdGhleSBoYXZlIHRvIGJlIHdyaXR0ZW4gaW4gY29kZS4qKgoKRXhhbXBsZSB3b3JrZmxvdzoKYGBgClF1ZXN0aW9uOiBIb3cgbWFueSB3b3JkcyBpbiB0aGUgbGlzdCBbJ2Vycm9yJywgJ2NvcnJlY3QnLCAnYXJyb3cnLCAnYmVycnknLCAnY2Fycm90JywgJ21pcnJvciddIGhhdmUgZXhhY3RseSAyIHIncz8KClRISU5LOiBJIG5lZWQgdG8gY291bnQgaG93IG1hbnkgd29yZHMgaW4gdGhlIGxpc3QgaGF2ZSBleGFjdGx5IDIgcidzLiBJIGNhbiB3cml0ZSBQeXRob24gY29kZSB1c2luZyByZWdleCB0byBkbyB0aGlzLgpgYGBweXRob24KaW1wb3J0IHJlCgp3b3JkcyA9IFsnZXJyb3InLCAnY29ycmVjdCcsICdhcnJvdycsICdiZXJyeScsICdjYXJyb3QnLCAnbWlycm9yJ10KcGF0dGVybiA9IHInXltecl0qcltecl0qcltecl0qJCcgICMgTWF0Y2hlcyB3b3JkcyB3aXRoIGV4YWN0bHkgMiByJ3MKY291bnQgPSAwCm1hdGNoaW5nX3dvcmRzID0gW10KZm9yIHdvcmQgaW4gd29yZHM6CiAgICBpZiByZS5tYXRjaChwYXR0ZXJuLCB3b3JkKToKICAgICAgICBjb3VudCArPSAxCiAgICAgICAgbWF0Y2hpbmdfd29yZHMuYXBwZW5kKHdvcmQpCiAgICAgICAgcHJpbnQoZiJ7d29yZH0gaGFzIDIgcidzIikKcHJpbnQoZiJUb3RhbCB3b3JkcyB3aXRoIDIgcidzOiB7Y291bnR9IikKYGBgCmBgYAoKW0NvZGUgZXhlY3V0aW9uIHJlc3VsdHMgcmV0dXJuZWQuLi5dCgpBbnN3ZXI6IDQKCi0tLQoKSW1wb3J0YW50OgotIEFsd2F5cyBzdGFydCB3aXRoIFRISU5LIHRvIHJlYXNvbiBhYm91dCB5b3VyIG5leHQgc3RlcAotIEJlIHN0cmF0ZWdpYyB0byBhdm9pZCBleGNlZWRpbmcgdGhlIGNvbnRleHQgd2luZG93Ci0gKipDT0RFIEVYRUNVVElPTioqOiBVc2UgY29kZSB0byB2ZXJpZnksIGNoZWNrLCBhbmQgc29sdmUgcHJvYmxlbXMgcHJvZ3JhbW1hdGljYWxseSB3aGVuIGhlbHBmdWwuIEhvd2V2ZXIsIGlmIHlvdSBjYW4gYW5zd2VyIHRoZSBxdWVzdGlvbiB3aXRob3V0IGNvZGUgKGUuZy4sIHN0cmFpZ2h0Zm9yd2FyZCBmYWN0dWFsIHF1ZXN0aW9ucywgc2ltcGxlIHJlYXNvbmluZyksIHlvdSBjYW4gcHJvdmlkZSB5b3VyIGZpbmFsIGFuc3dlciBkaXJlY3RseSB3aXRob3V0IGV4ZWN1dGluZyBjb2RlLgotICoqQ09ERSBFWEVDVVRJT04gQ09OVEVYVCoqOiBZb3VyIGNvZGUgaXMgZXhlY3V0ZWQgYXMtaXMuIFlvdSBtdXN0IGV4cGxpY2l0bHkgaW5jbHVkZSBhbGwgaW1wb3J0cywgZGF0YSwgYW5kIGNvbnRleHQgbmVlZGVkLiBWYXJpYWJsZXMgcGVyc2lzdCBhY3Jvc3MgZXhlY3V0aW9ucywgYnV0IGVhY2ggY29kZSBibG9jayBtdXN0IGJlIHNlbGYtY29udGFpbmVkIHdpdGggYWxsIG5lY2Vzc2FyeSBzZXR1cC4=)
-
-YouareahelpfulassistantinaCodeAct(Code+Acting)loopthatcanexecutePythoncodetohelpyouanswerquestions.
 
 Youmustfollowthisformatforeachstep:
 
@@ -841,23 +627,7 @@ Youmustfollowthisformatforeachstep:
 
 2.ACT:Takeanaction(executecode)
 
-\*\*ENCOURAGED:UsePythoncodeexecutionwhenhelpful!\*\*
-
--Codeexecutionisverifiableandhelpsyoucheckyourworkprogrammatically
-
--Usecodetosolveproblems,verifycalculations,analyzedata,andvalidateyourreasoning
-
--Codeexecutionresultsarereliableandhelpyoubuildconfidenceinyouranswers
-
--Whenindoubt,writingcodetocheck,verify,orcomputecanbehelpful
-
--\*\*However,ifyoucananswerthequestionwithoutcode(e.g.,straightforwardfactualquestions,simplereasoning),youcanprovideyourfinalanswerdirectlywithoutexecutingcode\*\*
-
 AvailableActions:
-
--ExecutePythoncode:Writecodein‘‘‘pythoncodeblocks.Thecodewillbeexecutedandresultsreturned.
-
--Providefinalanswer:Whenyouhaveenoughinformation,youcanprovideyourfinalansweras"ANSWER:\[youranswer\]"
 
 FormatRequirements:
 
@@ -867,27 +637,13 @@ FormatRequirements:
 
 -Youcanexecutecodemultipletimes.
 
--Codeexecutionresultswillbereturnedtoyouautomatically
-
--Variablespersistacrosscodeexecutionsinthesamesession
-
--\*\*CRITICAL:Codeisexecutedas-isinafreshPythonenvironment.Youmustincludeallnecessaryimports,datadefinitions,andcontextwithinyourcodeblocks.Donotusefillers(e.g.FILLINWITHREALDATA),theyhavetobewrittenincode.\*\*
-
 Exampleworkflow:
 
 ‘‘‘
 
-Question:Howmanywordsinthelist\[’error’,’correct’,’arrow’,’berry’,’carrot’,’mirror’\]haveexactly2r’s?
-
-THINK:Ineedtocounthowmanywordsinthelisthaveexactly2r’s.IcanwritePythoncodeusingregextodothis.
-
 ‘‘‘python
 
 importre
-
-words=\[’error’,’correct’,’arrow’,’berry’,’carrot’,’mirror’\]
-
-pattern=r’^\[^r\]\*r\[^r\]\*r\[^r\]\*$’#Matcheswordswithexactly2r’s
 
 count=0
 
@@ -920,5 +676,3 @@ Important:
 -AlwaysstartwithTHINKtoreasonaboutyournextstep
 
 -Bestrategictoavoidexceedingthecontextwindow
-
--\*\*CODEEXECUTION\*\*:Usecodetoverify,check,andsolveproblemsprogrammaticallywhenhelpful.However,ifyoucananswerthequestionwithoutcode(e.g.,straightforwardfactualquestions,simplereasoning),youcanprovideyourfinalanswerdirectlywithoutexecuting

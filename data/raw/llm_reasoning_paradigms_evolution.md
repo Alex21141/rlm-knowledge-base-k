@@ -66,7 +66,6 @@ This shift from tokens to state to systems is what distinguishes RLMs from all p
 ## RLMs vs Other Reasoning Paradigms
 
 | Paradigm | Strengths | Limitations | RLM advantage |
-|----------|-----------|-------------|---------------|
 | Single-prompt | Simple, fast | No decomposition, brittle | Recursive decomposition |
 | CoT | Explicit steps | All reasoning in context | Context as external variable |
 | Tool-augmented | External tools | Trajectory accumulates tokens | Programmatic exploration |

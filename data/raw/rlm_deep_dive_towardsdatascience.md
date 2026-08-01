@@ -564,8 +564,6 @@ Please accept cookies to access this content
 
 Check out my open-source implementation of RLMs; it comes with a TUI log viewer for recursive traces.
 
-[https://github.com/avbiswas/fast-rlm](https://github.com/avbiswas/fast-rlm)
-
 Here is the full system prompt that I used for my RLM implementation. This will reveal a lot!
 
 **Click here to reveal the full System Prompt (it’s hidden because it’s long)**. You can find the author-recommended prompt in the RLM paper (linked below). The prompt here was repurposed from the paper’s prompt, with a few additional few-shot examples and instructions that reduced failure states on open-source models (tested on Minimax-M2.7, GLM-5.1)
@@ -754,23 +752,13 @@ Thanks for reading!
 
 **My Patreon:**
 
-[https://www.patreon.com/NeuralBreakdownwithAVB](https://www.patreon.com/NeuralBreakdownwithAVB)
-
 **My YouTube channel:**
-
-[https://www.youtube.com/@avb\_fj](https://www.youtube.com/@avb_fj)
 
 **Follow me on Twitter:**
 
-[https://x.com/neural\_avb](https://x.com/neural_avb)
-
 **I am building Paper Breakdown, a place to study research papers**
 
-[https://paperbreakdown.com](https://paperbreakdown.com/)
-
 **Read my articles:**
-
-[https://towardsdatascience.com/author/neural-avb/](https://towardsdatascience.com/author/neural-avb/)
 
 * * *
 

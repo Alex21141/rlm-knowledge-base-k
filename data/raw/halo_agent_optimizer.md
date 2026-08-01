@@ -1,7 +1,7 @@
 # HALO: Hierarchical Agent Loop Optimizer
 
-**Repository:** https://github.com/context-labs/halo  
-**PyPI:** `halo-engine`  
+**Repository:** https://github.com/context-labs/halo
+**PyPI:** `halo-engine`
 **Tagline:** RLM-based agent optimizer using production traces
 
 ## What is HALO?
@@ -135,7 +135,6 @@ The feedback from HALO Engine surfaced failures in the harnesses such as halluci
 **Results:**
 
 | Model | Split | Baseline SGC | Peak SGC after HALO | Improvement |
-|-------|-------|-------------|---------------------|-------------|
 | gemini-3-flash | dev | 36.8 | 52.6 | +15.8 |
 | gemini-3-flash | test_normal | 37.5 | 48.2 | +10.7 |
 | claude-sonnet-4.6 | dev | 73.7 | 89.5 | +15.8 |
