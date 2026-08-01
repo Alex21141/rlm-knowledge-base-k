@@ -198,19 +198,13 @@ sys
 
 user q
 
-<think>
-
 a₁
 
 o₁
 
-<think>
-
 a₂
 
 o₂
-
-<think>
 
 a₃
 
@@ -224,8 +218,6 @@ sys
 
 user q
 
-<think>
-
 a₁
 
 2
@@ -237,8 +229,6 @@ a₁
 o₁
 
 user q
-
-<think>
 
 a₂
 
@@ -255,8 +245,6 @@ a₂
 o₂
 
 user q
-
-<think>
 
 a₃
 

@@ -9,17 +9,13 @@ Alex L. Zhang
 
 MIT CSAIL
 
-altzhang@mit.edu
 &Tim Kraska
 
 MIT CSAIL
 
-kraska@mit.edu
 &Omar Khattab
 
 MIT CSAIL
-
-okhattab@mit.edu
 
 ###### Abstract
 

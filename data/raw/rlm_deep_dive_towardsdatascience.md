@@ -94,7 +94,6 @@ Using the above idea, the ReAct agent will be able to do the following:
 Generate a dictionary with 50 fruits and the number of 'r' in each
 
 # Assistant
-<think> 50 fruit names are: strawberry, berry, grape, </think>
 
 # Assistant
 count_alphabets_in_word("strawberry", "r")
@@ -110,8 +109,7 @@ count_alphabets_in_word("berry", "r") ## Tool call executed!
 . . .
 
 # Assistant
-<think> I now have everything I need in my message history,
-let's construct that dictionary </think>
+
 { "strawberry": 3, "berry": 2, . }
 ```
 
@@ -142,7 +140,6 @@ It will go something like this:
 Generate a dictionary with 50 fruits and the number of 'r' in each
 
 # Assistant
-<think> Okay let's write some python code for this. </think>
 
 python -c '
 fruits = [ 'strawberry', 'berry' 'grape', . ]
@@ -154,8 +151,7 @@ Number of fruits: 50
 Counts are: {"strawberry": 3, "berry": 2 .}
 
 # Assistant
-<think> Okay, I have read the terminal output,
-let me return write it down again to return the output </think>
+
 { "strawberry": 3, "berry": 2, . }
 ```
 
@@ -203,7 +199,6 @@ We already know the subagent architecture will easily solve Problem 1 with num\_
 Generate a dictionary of different categories: fruits, countries, animals. For each category, generate 50 names. And count the number of R in each, return as a nested dictionary
 
 # Assistant
-<think> Let's call some subagents and divide tasks among them </think>
 
 call_subagent("Return a dictionary of 50 fruit names and number of r in them")
 
@@ -223,7 +218,7 @@ call_subagent("Return a dictionary of 50 animals names and number of r in them")
 {"kangaroo": 1, "deer": 1 .}
 
 # Assistant
-<think> I have responses from all subagents, now I will write the final JSON </think>
+
 {
 "fruits": { "strawberry": 3, "berry": 2, . },
 "countries": { "france": 1, "russia": 1 . }
@@ -309,7 +304,6 @@ Generate your code inside ```repl blocks
 When ready to answer, submit your result using: FINAL(answer)
 
 # Assistant
-<think> Let me print out the context to find out about my task </think>
 
 ```repl
 print(context)
@@ -393,7 +387,6 @@ Generate a dictionary containing 50 names of fruits and
 count the number of r in each
 
 # Assistant
-<think>okay I need to generate 50 fruit names</think>
 
 ```repl
 FRUIT_NAMES = ['grape', 'strawberry', 'berry', .]
@@ -404,9 +397,6 @@ print(len(FRUIT_NAMES) # let's check if it is 50
 52
 
 # Assistant
-<think> Okay I added 2 extra by mistake.
-Let me pick first 50 and check again.
-</think>
 
 ```repl
 FRUIT_NAMES_50 = FRUIT_NAMES[:50] # Just take first 50
@@ -417,7 +407,7 @@ print("Succcessful: ", len(FRUIT_NAMES_50)
 [[REPL]] Successful: 50
 
 # Assistant
-<think> Cool, I'll just calculate the r counts now </think>
+
 ```repl
 fruit_r_count = { fruit: sum([ 'r' in f for f in fruit.lower() ]) }
 for fruit in FRUIT_NAMES_50 }
@@ -470,8 +460,7 @@ For each category, generate 50 names. And count the number of R in each,
 return as a nested dictionary
 
 # Assistant
-<think> Cool I will just launch subagents to capture the
-R counting for each category and do the job </think>
+
 ````
 
 And then execute the code below:
