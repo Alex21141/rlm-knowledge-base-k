@@ -1,8 +1,16 @@
 # LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)
-
 **Source:** https://medium.com/@mndeepan06/recursive-language-models-rlms-from-prompting-to-recursive-systems
+
+**Source:**
 **Author:** Deepan MN (AI Engineer, Zoho)
 **Date:** January 20, 2026
+**URL:**
+
+## Introduction: Why Reasoning Paradigms Matter More Than Ever
+
+Progress in Large Language Models has been dominated by a familiar narrative: bigger models, more parameters, and larger context windows. Each new release promises to read more tokens, remember more information, and solve harder problems simply by scaling up. And yet, many real-world failures persist. Models hallucinate despite having the correct information in context. They miss obvious connections in long documents. They struggle when answers depend on most of the input rather than a few relevant snippets. These failures raise an important question: Is the bottleneck really model size and context length — or is it how LLMs reason?
+The hidden limitation: reasoning, not memory. Much of today's discourse treats reasoning as a prompting problem. If the model fails, we tweak the prompt. If it struggles with complexity, we add chain-of-thought. If it lacks knowledge, we retrieve more context. But many of these techniques still rely on the same underlying assumption: All reasoning must happen inside the token context of the model. This assumption quietly constrains what LLMs can do. As prompts grow longer and tasks become more information-dense, attention degrades, intermediate reasoning becomes noisy, and performance drops — a phenomenon often referred to as context rot. In other words, giving models more tokens does not automatically give them better reasoning.
+A broader shift is underway. What's emerging instead is a paradigm shift in how we think about LLMs: From text generators to reasoning engines. From prompt engineering to system design. From token-based memory to stateful, programmatic interaction. This shift is visible across multiple developments: tool-augmented reasoning, agents, retrieval systems, inference-time scaling, and more recently, Recursive Language Models (RLMs). Rather than asking "How do we fit everything into the prompt?", these approaches ask a deeper question: How should a language model interact with information to reason effectively?
 
 ## Single-Prompt Reasoning: The Starting Point
 

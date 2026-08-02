@@ -1,8 +1,24 @@
 # Recursive Language Models: An All-in-One Deep Dive (Avishek Biswas, Towards Data Science, May 2026)
-
 **Source:** https://towardsdatascience.com/recursive-language-models-one-example-deep-dive-that-explains-everything/
+
+**Source:**
 **Author:** Avishek Biswas
 **Date:** May 16, 2026
+**Tags:** RLM, ReAct, CodeAct, Subagents, REPL, Pass-by-Reference
+
+# Recursive Language Models: An All-in-One Deep Dive
+
+Exactly how does it differ from ReAct, CodeAct, Self-Loops, and Subagents?
+Avishek Biswas
+May 16, 2026
+33 min read
+Share
+In this article, you will learn what Recursive Language Models (RLMs) are, why they are winning all the long-context benchmarks right now, and understand how they are different from existing agentic harness designs!
+**And we are going to learn it by magnifying _one_ simple case study.**
+I have spent a decent chunk of last month implementing RLMs, running benchmarks, and producing a 50-minute tutorial video on it. Throughout the process, I responded to 100+ questions on YouTube and X about RLMs. This article is a summary of what I learned answering those questions, and the specific nuances about RLMs that made me go “ **a-ha**!”
+_Side note: Unless specified, all images used in this article were produced by the author. Free licensing._
+The main reason Recursive Language Models feel inaccessible to a lot of the audience is that some of the ideas are actually quite counter-intuitive compared to existing methods (like ReAct, CodeAct, vanilla subagents, etc). The best way to understand RLMs is to first understand where those other methods fail, and realize the single missing piece in agentic harnesses.
+> The idea of passing context around by reference, instead of replicating it.
 
 ## 1\. Of all the complicated experiments I ran…
 

@@ -60,28 +60,27 @@
 | Метрика | Значення |
 |---------|----------|
 | Вихідних документів | 10 |
-| Всього чанків | 467 |
-| Всього символів | 325,538 |
-| Чанків 500-1000 chars | 458 (98.1%) ✅ |
-| Undersized (<500) | 6 (1.3%) |
-| Oversized (>1000) | 3 (0.6%) |
-| Середній розмір | 697 chars |
+| Всього чанків | 492 |
+| Всього символів | 335,368 |
+| Чанків 500-1000 chars | 486 (98%) ✅ |
+| Undersized (<500) | 6 |
+| Oversized (>1000) | 0 |
+| Середній розмір | 681 chars |
 
 **Per-document breakdown:**
 
 | Документ | Chunks | Chars | Avg |
 |----------|--------|-------|-----|
-| alexzhang_blog_context_rot | 73 | 48,575 | 665 |
-| halo_agent_optimizer | 14 | 9,180 | 655 |
-| llm_reasoning_paradigms_evolution | 27 | 17,661 | 654 |
-| prime_intellect_ablations | 80 | 53,620 | 670 |
-| rlm_candemir_medium | 36 | 23,824 | 661 |
-| rlm_comprehensive_guide | 32 | 20,823 | 650 |
-| rlm_deep_dive_towardsdatascience | 62 | 41,060 | 662 |
-| rlm_original_paper | 54 | 51,814 | 959 |
-| rlm_production_zenml | 35 | 23,567 | 673 |
-| rlm_rl_training_alphaxiv | 54 | 35,414 | 655 |
-
+| alexzhang_blog_context_rot | 69 | 47,500 | 688 |
+| halo_agent_optimizer | 14 | 9,362 | 668 |
+| llm_reasoning_paradigms_evolution | 26 | 17,738 | 682 |
+| prime_intellect_ablations | 76 | 51,757 | 681 |
+| rlm_candemir_medium | 35 | 23,679 | 676 |
+| rlm_comprehensive_guide | 31 | 21,069 | 679 |
+| rlm_deep_dive_towardsdatascience | 57 | 39,360 | 690 |
+| rlm_original_paper | 99 | 67,622 | 683 |
+| rlm_production_zenml | 33 | 22,111 | 670 |
+| rlm_rl_training_alphaxiv | 52 | 35,170 | 676 |
 ---
 
 ## 6. Приклади chunks
