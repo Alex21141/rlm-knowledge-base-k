@@ -1,29 +1,8 @@
 # Recursive Language Models (Alex Zhang, MIT CSAIL)
 
+**Source:** https://alexzhang13.github.io/blog/2025/rlm/
 **Authors:** Alex L. Zhang, Omar Khattab (MIT CSAIL)
-**Published:** October 15, 2025
-**Source:**
-**Paper:** (alphaXiv)
-**Code:**
-
-# Recursive Language Models
-
-We propose Recursive Language Models (RLMs), an inference strategy where language models can decompose and recursively interact with input context of unbounded length through REPL environments.
-
-### Authors
-
-### Affiliations
-
-Alex Zhang
-MIT CSAIL
-Omar Khattab
-MIT CSAIL
-
-### Published
-
-Oct. 15, 2025
-_The full paper is now available here:
-You can find the official codebase for Recursive Language Models (RLMs) here:
+**Date:** October 15, 2025
 
 ## tl;dr
 

@@ -1,19 +1,9 @@
 # Recursive Language Models
 
+**Source:** https://arxiv.org/abs/2512.24601
 **Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab (MIT CSAIL)
-**Paper:** arXiv:2512.24601 (v1, Dec 31, 2025) —
-**Source:**
-**Code:**
-Alex L. Zhang
-MIT CSAIL
-&Tim Kraska
-MIT CSAIL
-&Omar Khattab
-MIT CSAIL
-
-###### Abstract
-
-We study allowing large language models (LLMs) to process arbitrarily long prompts through the lens of inference-time scaling. We propose Recursive Language Models (RLMs), a general inference strategy that treats long prompts as part of an external environment and allows the LLM to programmatically examine, decompose, and recursively call itself over snippets of the prompt. We find that RLMs successfully handle inputs up to two orders of magnitude beyond model context windows and, even for shorter prompts, dramatically outperform the quality of base LLMs and common long-context scaffolds across four diverse long-context tasks, while having comparable (or cheaper) cost per query.
+**Paper:** Recursive Language Models — arXiv:2512.24601 (Dec 31, 2025)
+**Code:** https://github.com/mit-han-lab/rlm-code
 
 ## 1 Introduction
 

@@ -10,24 +10,20 @@
 
 ## 2. Джерела
 
-| # | Документ | Джерело | Тип |
-|---|----------|---------|-----|
-| 1 | `alexzhang_blog_context_rot.md` | alexzhang13.github.io/blog/2025/rlm | Blog |
-| 2 | `halo_agent_optimizer.md` | github.com/context-labs/halo | Production tool |
-| 3 | `llm_reasoning_paradigms_evolution.md` | medium.com/@mndeepan06 | Blog (analysis) |
-| 4 | `prime_intellect_ablations.md` | primeintellect.ai/blog/rlm | Blog (experimental) |
-| 5 | `rlm_candemir_medium.md` | medium.com/@candemir13 | Blog (beginner guide) |
-| 6 | `rlm_rl_training_alphaxiv.md` | alphaxiv.org/blog/rlm | Blog (RL training) |
-| 7 | `rlm_comprehensive_guide.md` | rlm.md | Guide |
-| 8 | `rlm_deep_dive_towardsdatascience.md` | towardsdatascience.com (Avishek Biswas) | Blog (deep-dive) |
-| 9 | `rlm_original_paper.md` | arXiv:2512.24601 (Zhang, Kraska, Khattab) | Research paper |
-| 10 | `rlm_production_zenml.md` | zenml.io/blog (ZenML) | Blog (production) |
+| # | Файл | URL | Тип |
+|---|------|-----|-----|
+| 1 | `alexzhang_blog_context_rot.md` | https://alexzhang13.github.io/blog/2025/rlm/ | Blog |
+| 2 | `halo_agent_optimizer.md` | https://github.com/context-labs/halo | Tool |
+| 3 | `llm_reasoning_paradigms_evolution.md` | https://medium.com/@mndeepan06/recursive-language-models-rlms-from-prompting-to-recursive-systems | Blog (analysis) |
+| 4 | `prime_intellect_ablations.md` | https://app.primeintellect.ai/blog/rlm | Blog (experimental) |
+| 5 | `rlm_candemir_medium.md` | https://medium.com/@candemir13/recursive-language-models-how-llms-learned-to-stop-memorizing-and-start-searching | Blog (beginner) |
+| 6 | `rlm_comprehensive_guide.md` | https://rlm.md | Guide |
+| 7 | `rlm_deep_dive_towardsdatascience.md` | https://towardsdatascience.com/recursive-language-models-one-example-deep-dive-that-explains-everything/ | Blog (deep-dive) |
+| 8 | `rlm_original_paper.md` | https://arxiv.org/abs/2512.24601 | Research paper |
+| 9 | `rlm_production_zenml.md` | https://zenml.io/blog/rlms-in-production-what-happens-after-the-notebook | Blog (production) |
+| 10 | `rlm_rl_training_alphaxiv.md` | https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms | Blog (RL training) |
 
-**Домени:** recursive-language-models, ml-reasoning, agent-optimization, context-engineering
-
----
-
-## 3. Структура метаданих
+**Домени:** recursive-language-models, ml-reasoning, agent-optimization, context-engineering## 3. Структура метаданих
 
 Кожен chunk містить:
 

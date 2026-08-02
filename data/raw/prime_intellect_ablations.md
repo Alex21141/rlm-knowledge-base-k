@@ -1,27 +1,8 @@
 # Recursive Language Models: the paradigm of 2026 (Prime Intellect)
 
-**Source:**
-**Authors:** Prime Intellect team (Sebastian)
-**Date:** March 2026 (estimated)
-**Tags:** RLM, context folding, ablations, GPT-5-mini, INTELLECT-3, DeepDive, Oolong, verbatim copy
-.png&w=3840&q=75)
-
-# Recursive Language Models: _the_ paradigm of 2026
-
-### How we plan to manage extremely long contexts
-
-LLM agents have become significantly more useful over the course of this year. They are now capable of implementing complex changes in large codebases autonomously, often reading and editing dozens of files, searching the web, and maintaining context even over the course of multiple such complex requests.
-These capabilities require the use of vast numbers of tokens.
-But that, in turn, is difficult for current LLMs: per-token costs rise linearly with the context length, while the performance of even the best models drops with it. A well-known phenomenon at this point is context rot, the reduction of LLM capabilities as contexts grow in size. And even though changes to architecture and training data have caused, and will continue to cause, much progress to address these challenges, there is one thing that is complementary to both, and has consistently been a huge multiplier to LLMs’ effective context length: scaffolding.
-Claude Code, OpenAI's Codex, and similar TUI systems tend to use file-systems and context compression by LLM summarization at regular intervals as the basis of their scaffolding. This effectively leads to a succession of agents, all connected to each other by a prompt and the state of some set of files.
-A different approach to the context problem is "context folding". Its goal is to have a continual, growing rollout, while managing the context window itself (instead of external files) in order to keep it short. This is compatible with the file-based scaffolding, as an LLM using context folding looks just like a normal LLM from the outside, and thus, it is a way to further prevent context rot and manage costs. Some examples are:
-- Scaling Long-Horizon LLM Agent via Context-Folding: the agent can actively `branch` its rollout, and `return` from the branch; within the branch, it retains the full previous context, but after returning, only a self-chosen summary of the branch remains in the context window
-- AgentFold: Long-Horizon Web Agents with Proactive Context Management: every one of the agent's actions produces both a result, and a summary of the action and the reasoning that led to it. These summaries can be hierarchical, consolidating the lessons from multiple actions into a single point, or retaining per-action summaries
-- Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models: a three-agent system with a Generator that uses the current knowledge base for creating the rollout, a Reflector which takes lessons and information about the generation and about the current state of the knowledge base, and a Curator for taking the Reflector's lessons and adapting the knowledge base with them in a structured manner
-However, we at Prime Intellect believe that the simplest, most flexible method for context folding is the Recursive Language Model (RLM), introduced by Alex Zhang in October 2025 as a blog post, and now available as a full paper: It is now a major focus of our research.
-The RLM allows the model to actively manage its own context. This approach is more in line with The Bitter Lesson than the ones presented before; it enables training directly with the RLM scaffolding and getting better and better, learned context folding; and it never actually summarizes context, which leads to information loss. Instead, it pro-actively delegates context to Python scripts and sub-LLMs.
-We believe that teaching models to manage their own context end-to-end through reinforcement learning will be the next major breakthrough, enabling agents to solve long-horizon tasks spanning weeks to months.
-In this article, we share our initial ablations with the RLM scaffolding on existing models called through APIs. In future work, we will be scaling the training of the RLM on environments that reward effective very long-horizon reasoning.
+**Source:** https://app.primeintellect.ai/blog/rlm
+**Authors:** Prime Intellect team
+**Date:** March 2026
 
 ## The RLM
 

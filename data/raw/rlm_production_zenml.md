@@ -1,17 +1,8 @@
 # RLMs in Production: What Happens After the Notebook (ZenML Blog)
 
-**Source:**
+**Source:** https://zenml.io/blog/rlms-in-production-what-happens-after-the-notebook
 **Author:** Alex Strick van Linschoten
-**Date:** February 20, 2026
-**Tags:** RLM, production, orchestration, LLMOps, dynamic pipelines, cost tracking
-
-# RLMs in Production: What Happens After the Notebook
-
-Alex Strick van Linschoten
-On this page
-Recursive Language Models are having a moment. The original paper by Zhang, Kraska, and Khattab showed that instead of cramming documents into ever-longer context windows, you can let an LLM _programmatically explore_ its data, calling tools, delegating sub-tasks, and iterating until it finds what it needs. DSPy’s experimental dspy.RLM module brought the pattern to a broader audience. Viral posts about auditing codebases for 87 cents caught everyone’s attention (worth noting: even that experiment frames itself as a demo, not a replacement for a real security audit, and reruns catch different issues). Prime Intellect called RLMs “the paradigm of 2026.”
-We agree. We’ve been running RLM-style workflows in production using ZenML’s dynamic pipelines, and we wanted to share what we learned about making them observable, debuggable, and cost-controlled.
-We’re not here to replace DSPy or any other framework. We’re here to show what happens when you wrap the RLM pattern in proper orchestration.
+**Date:** February 2026
 
 ## What Are RLMs? A Quick Primer
 

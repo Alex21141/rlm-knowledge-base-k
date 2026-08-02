@@ -1,13 +1,8 @@
 # Recursive Language Models: How LLMs Learned to Stop Memorizing and Start Searching
 
-**Source:**
+**Source:** https://medium.com/@candemir13/recursive-language-models-how-llms-learned-to-stop-memorizing-and-start-searching
 **Author:** Can Demir
 **Date:** February 18, 2026
-**Tags:** RLM, context rot, beginner guide, out-of-core algorithms, inference paradigm
-
----
-
-_A beginner-friendly guide to the inference paradigm that lets AI process 100x more context — no retraining required_
 
 ## Part 1: The Problem That Needed Solving
 
