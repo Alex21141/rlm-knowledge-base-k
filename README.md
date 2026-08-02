@@ -23,7 +23,9 @@
 | 9 | `rlm_production_zenml.md` | https://zenml.io/blog/rlms-in-production-what-happens-after-the-notebook | Blog (production) |
 | 10 | `rlm_rl_training_alphaxiv.md` | https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms | Blog (RL training) |
 
-**Домени:** recursive-language-models, ml-reasoning, agent-optimization, context-engineering## 3. Структура метаданих
+**Домени:** recursive-language-models, ml-reasoning, agent-optimization, context-engineering
+
+## 3. Структура метаданих
 
 Кожен chunk містить:
 
