@@ -1,7 +1,6 @@
 # Recursive Language Models: the paradigm of 2026 (Prime Intellect)
 **Source:** https://app.primeintellect.ai/blog/rlm
 
-**Source:**
 **Authors:** Prime Intellect team (Sebastian)
 **Date:** March 2026 (estimated)
 **Tags:** RLM, context folding, ablations, GPT-5-mini, INTELLECT-3, DeepDive, Oolong, verbatim copy

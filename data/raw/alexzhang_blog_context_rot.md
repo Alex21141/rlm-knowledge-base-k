@@ -3,7 +3,6 @@
 
 **Authors:** Alex L. Zhang, Omar Khattab (MIT CSAIL)
 **Published:** October 15, 2025
-**Source:**
 **Paper:** (alphaXiv)
 **Code:**
 

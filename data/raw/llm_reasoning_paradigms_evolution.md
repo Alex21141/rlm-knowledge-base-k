@@ -1,7 +1,6 @@
 # LLM Reasoning Paradigms Evolution: From Prompting to Recursive Systems (Deepan MN, Medium Jan 2026)
 **Source:** https://medium.com/@mndeepan06/recursive-language-models-rlms-from-prompting-to-recursive-systems
 
-**Source:**
 **Author:** Deepan MN (AI Engineer, Zoho)
 **Date:** January 20, 2026
 **URL:**

@@ -1,7 +1,6 @@
 # Recursive Language Models: An All-in-One Deep Dive (Avishek Biswas, Towards Data Science, May 2026)
 **Source:** https://towardsdatascience.com/recursive-language-models-one-example-deep-dive-that-explains-everything/
 
-**Source:**
 **Author:** Avishek Biswas
 **Date:** May 16, 2026
 **Tags:** RLM, ReAct, CodeAct, Subagents, REPL, Pass-by-Reference

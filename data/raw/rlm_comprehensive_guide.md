@@ -1,7 +1,6 @@
 # RLM.md — Comprehensive Guide to Recursive Language Models
 **Source:** https://rlm.md
 
-**Source:** (The Complete RLM Reference)
 **Authors:** Community-curated from rlm.md (based on MIT OASYS Lab research by Alex L. Zhang, Tim Kraska, Omar Khattab)
 **Paper:** "Recursive Language Models" — arXiv:2512.24601, Accepted at ICML 2025
 

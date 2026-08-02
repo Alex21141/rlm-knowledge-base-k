@@ -3,7 +3,6 @@
 
 **Authors:** Alex L. Zhang, Tim Kraska, Omar Khattab (MIT CSAIL)
 **Paper:** arXiv:2512.24601 (v1, Dec 31, 2025) —
-**Source:**
 **Code:**
 Alex L. Zhang
 MIT CSAIL

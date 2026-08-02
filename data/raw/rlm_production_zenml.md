@@ -1,7 +1,6 @@
 # RLMs in Production: What Happens After the Notebook (ZenML Blog)
 **Source:** https://zenml.io/blog/rlms-in-production-what-happens-after-the-notebook
 
-**Source:**
 **Author:** Alex Strick van Linschoten
 **Date:** February 20, 2026
 **Tags:** RLM, production, orchestration, LLMOps, dynamic pipelines, cost tracking

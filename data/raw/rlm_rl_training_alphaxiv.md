@@ -1,7 +1,6 @@
 # Reinforcing Recursive Language Models — alphaXiv Blog
 **Source:** https://www.alphaxiv.org/blog/reinforcement-learning-for-rlms
 
-**Source:**
 **Platform:** alphaXiv / NovaSky AI (SkyRL)
 **Date:** 2026
 **Authors:** alphaXiv team
